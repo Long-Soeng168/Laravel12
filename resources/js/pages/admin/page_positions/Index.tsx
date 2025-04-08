@@ -11,7 +11,11 @@ import { MyImportButton } from '@/components/my-import-button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Page Position',
+        title: 'Pages',
+        href: '/admin/pages',
+    },
+    {
+        title: 'Positions',
         href: '/admin/page_positions',
     },
 ];

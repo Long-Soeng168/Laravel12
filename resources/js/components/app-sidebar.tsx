@@ -34,21 +34,18 @@ const mainNavItems: NavItem[] = [
         url: '/admin/website_info',
         icon: ProjectorIcon,
     },
-];
-
-const mainNavItemsDropdown: any = [
     {
-        title: "Page",
+        title: "Pages",
         url: "/admin/pages",
         icon: PanelTopIcon,
         isActive: true,
-        items: [
+        subItems: [
             {
-                title: "Page",
+                title: "Pages",
                 url: "/admin/pages",
             },
             {
-                title: "Page Position",
+                title: "Positions",
                 url: "/admin/page_positions",
             },
         ],
@@ -84,7 +81,6 @@ export function AppSidebar() {
 
             <SidebarContent>
                 <NavMain items={mainNavItems} />
-                <NavMainDropdown items={mainNavItemsDropdown} />
             </SidebarContent>
 
             <SidebarFooter>
