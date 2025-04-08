@@ -10,17 +10,17 @@ const SidebarTree = () => {
             <ScrollArea className="h-[85vh] w-auto">
                 <SidebarContent>
                     <SidebarGroup>
-                        <SidebarGroupLabel className="flex justify-between">Folders</SidebarGroupLabel>
+                        {/* <SidebarGroupLabel className="flex justify-between">Folders</SidebarGroupLabel> */}
                         <SidebarGroupContent>
                             <button
                                 onClick={() => {
                                     setPage(1);
                                     setCurrentFolder(null);
                                 }}
-                                className={`decoration-primary mb-2 flex flex-1 cursor-pointer items-center gap-x-2 px-1.5 decoration-2 underline-offset-2 transition-all duration-300 hover:underline hover:decoration-3 hover:underline-offset-4 focus-visible:outline-none ${currentFolder === null && 'underline text-primary font-bold stroke-primary'}`}
+                                className={`decoration-primary mt-1 mb-2 flex flex-1 cursor-pointer items-center gap-x-2 px-1.5 decoration-2 underline-offset-2 transition-all duration-300 hover:underline hover:decoration-3 hover:underline-offset-4 focus-visible:outline-none ${currentFolder === null && 'underline text-primary font-bold stroke-primary'}`}
                             >
                                 <FoldersIcon />
-                                <span>Files</span>
+                                <span>Folders</span>
                             </button>
                             <SidebarMenu>{folderTableData?.map((item, index) => <Tree key={item.id} item={item} />)}</SidebarMenu>
                         </SidebarGroupContent>

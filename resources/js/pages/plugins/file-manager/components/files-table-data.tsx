@@ -7,6 +7,7 @@ import CopyFileUrl from './copy-file-url';
 import DeleteFileButton from './delete-file-button';
 import { Pagination } from './pagination';
 import { ViewImage } from './view-image';
+import MyNoData from '@/components/my-no-data';
 
 const extensionColors = {
     pdf: {
@@ -99,9 +100,7 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
         <div className="overflow-y-auto p-4 pt-2">
             <ViewImage selectedImage={selectedImage} open={isOpenViewImages} setOpen={setIsOpenViewImages} />
             {fileTableData?.data?.length < 1 && (
-                <div className="flex w-full justify-center text-center">
-                    <img src={`/assets/icons/no-data.gif`} alt="" className="w-[100px]" />
-                </div>
+                <MyNoData />
             )}
             <div className="mt-1 grid grid-cols-3 gap-4 lg:grid-cols-4">
                 {fileTableData?.data?.map((item, i) => (
