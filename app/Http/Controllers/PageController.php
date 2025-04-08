@@ -69,8 +69,8 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:255',
-            'short_description_kh' => 'nullable|string|max:255',
+            'short_description' => 'nullable|string|max:500',
+            'short_description_kh' => 'nullable|string|max:500',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
@@ -110,7 +110,7 @@ class PageController extends Controller
                 return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Page Created Successfully!.');
     }
 
     /**
@@ -124,17 +124,83 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(Page $page)
     {
-        //
+
+        $query = Page::query();
+
+        $parentData = $query->where('id', '!=', $page->id)->get();
+        return Inertia::render('admin/pages/Create', [
+            'editData' => $page->load('images'),
+            'parentData' => $parentData,
+            'pagePositions' => PagePosition::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePageRequest $request, Page $page)
+    public function update(Request $request, Page $page)
     {
-        //
+        // dd($request->all());
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'title_kh' => 'nullable|string|max:255',
+            'short_description' => 'nullable|string|max:500',
+            'short_description_kh' => 'nullable|string|max:500',
+            'long_description' => 'nullable|string',
+            'long_description_kh' => 'nullable|string',
+            'link' => 'nullable|string|max:255',
+            'order_index' => 'nullable|integer|min:0|max:255',
+            'parent_id' => 'nullable|numeric',
+            'position_code' => 'nullable|string',
+            'type' => 'nullable|string|in:content,link',
+            'status' => 'nullable|string|in:active,inactive',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+
+        $validated['created_by'] = $request->user()->id;
+        $validated['updated_by'] = $request->user()->id;
+
+        $image_files = $request->file('images');
+        unset($validated['images']);
+
+        foreach ($validated as $key => $value) {
+            if ($value === null || $value === '') {
+                unset($validated[$key]);
+            }
+        }
+
+        $page->update($validated);
+
+        if ($image_files) {
+            try {
+                foreach ($image_files as $image) {
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 600);
+                    PageImage::create([
+                        'image' => $created_image_name,
+                        'page_id' => $page->id,
+                    ]);
+                }
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
+            }
+        }
+        return redirect()->back()->with('success', 'Page Updated Successfully!.');
+    }
+
+    public function update_status(Request $request, Page $page)
+    {
+        $request->validate([
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $page->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
     }
 
     /**
@@ -149,5 +215,21 @@ class PageController extends Controller
         }
         $page->delete();
         return redirect()->back()->with('success', 'page deleted successfully.');
+    }
+
+    public function destroy_image(PageImage $image)
+    {
+        // Debugging (Check if model is found)
+        if (!$image) {
+            return redirect()->back()->with('error', 'Image not found.');
+        }
+
+        // Call helper function to delete image
+        ImageHelper::deleteImage($image->image, 'assets/images/pages');
+
+        // Delete from DB
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Image deleted successfully.');
     }
 }

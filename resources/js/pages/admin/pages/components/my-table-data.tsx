@@ -3,12 +3,13 @@ import MyImageGallery from '@/components/my-image-gallery';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { router, usePage } from '@inertiajs/react';
-import { ArrowUpDown } from 'lucide-react';
+import { Link, router, usePage } from '@inertiajs/react';
+import { ArrowUpDown, EditIcon } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
 import MyNoData from '@/components/my-no-data';
+import { MyTooltipButton } from '@/components/my-tooltip-button';
 
 const MyTableData = () => {
     const { tableData } = usePage().props;
@@ -124,7 +125,12 @@ const MyTableData = () => {
                                     <span className="flex h-full items-center justify-start">
                                         <ViewButton item={item} />
                                         <DeleteButton deletePath="/admin/pages/" id={item.id} />
-                                        <EditButton item={item} />
+                                        <Link href={`/admin/pages/${item.id}/edit`}>
+                                            <MyTooltipButton title='Edit' side='right'>
+                                                <EditIcon />
+                                            </MyTooltipButton>
+                                        </Link>
+
                                     </span>
                                 </TableCell>
                                 <TableCell>
