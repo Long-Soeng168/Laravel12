@@ -15,7 +15,7 @@ import {
     SidebarMenuSubButton,
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { usePage } from "@inertiajs/react"
+import { Link, usePage } from "@inertiajs/react"
 
 export function NavMainDropdown({
     items,
@@ -58,9 +58,9 @@ export function NavMainDropdown({
                                     {item.items?.map((subItem) => (
                                         <SidebarMenuSubItem key={subItem.title}>
                                             <SidebarMenuSubButton isActive={subItem.url === page.url} asChild>
-                                                <a href={subItem.url}>
+                                                <Link href={subItem.url}>
                                                     <span>{subItem.title}</span>
-                                                </a>
+                                                </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     ))}

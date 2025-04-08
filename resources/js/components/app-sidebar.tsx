@@ -39,7 +39,6 @@ const mainNavItems: NavItem[] = [
 const mainNavItemsDropdown: any = [
     {
         title: "Page",
-        url: "/admin/pages",
         icon: PanelTopIcon,
         isActive: true,
         items: [
