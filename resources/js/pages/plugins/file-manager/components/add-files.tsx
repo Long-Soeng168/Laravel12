@@ -23,29 +23,29 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
         maxFiles: 100, // Allow up to 100 files
         maxSize: 1024 * 1024 * 10,
         multiple: true, // Allow multiple uploads
-        accept: {
-            'image/jpeg': ['.jpg', '.jpeg'],
-            'image/png': ['.png'],
-            'image/gif': ['.gif'],
-            'image/svg+xml': ['.svg'],
-            'image/webp': ['.webp'],
-            'application/pdf': ['.pdf'],
-            'application/msword': ['.doc'],
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
-            'application/vnd.ms-excel': ['.xls'],
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
-            'text/plain': ['.txt'],
-            'application/json': ['.json'],
-            'text/csv': ['.csv'],
-            'application/zip': ['.zip'],
-            'application/x-rar-compressed': ['.rar'],
-            'audio/mpeg': ['.mp3'],
-            'audio/wav': ['.wav'],
-            'audio/ogg': ['.ogg'],
-            'video/mp4': ['.mp4'],
-            'video/webm': ['.webm'],
-            'video/x-msvideo': ['.avi'],
-        },
+        // accept: {
+        //     'image/jpeg': ['.jpg', '.jpeg'],
+        //     'image/png': ['.png'],
+        //     'image/gif': ['.gif'],
+        //     'image/svg+xml': ['.svg'],
+        //     'image/webp': ['.webp'],
+        //     'application/pdf': ['.pdf'],
+        //     'application/msword': ['.doc'],
+        //     'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+        //     'application/vnd.ms-excel': ['.xls'],
+        //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+        //     'text/plain': ['.txt'],
+        //     'application/json': ['.json'],
+        //     'text/csv': ['.csv'],
+        //     'application/zip': ['.zip'],
+        //     'application/x-rar-compressed': ['.rar'],
+        //     'audio/mpeg': ['.mp3'],
+        //     'audio/wav': ['.wav'],
+        //     'audio/ogg': ['.ogg'],
+        //     'video/mp4': ['.mp4'],
+        //     'video/webm': ['.webm'],
+        //     'video/x-msvideo': ['.avi'],
+        // },
     };
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -86,8 +86,9 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                     }
                 },
                 onError: (e) => {
+                    console.log(e);
                     toast.error('Error: Upload Failed', {
-                        description: 'Something went wrong.',
+                        description: 'Something went wrong.' + JSON.stringify(e, null, 2),
                     });
                 },
                 onFinish: () => {
@@ -171,8 +172,8 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                                         &nbsp; or drag and drop
                                                     </p>
                                                     <p className="text-center text-xs text-gray-500 dark:text-gray-400">
-                                                        <strong>Allowed</strong> : PDF, DOC, DOCX, XLS, XLSX, TXT, CSV, ZIP, RAR, MP3, WAV, MP4, WEBM, SVG,
-                                                        PNG, JPG, JPEG, GIF
+                                                        {/* <strong>Allowed</strong> : PDF, DOC, DOCX, XLS, XLSX, TXT, CSV, ZIP, RAR, MP3, WAV, MP4, WEBM, SVG,
+                                                        PNG, JPG, JPEG, GIF */}
                                                     </p>
                                                 </div>
                                             </FileInput>

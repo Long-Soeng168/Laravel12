@@ -14,7 +14,7 @@ const TopBreadcrumb = () => {
                         }}
                         className="cursor-pointer"
                     >
-                        Files
+                        Folders
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 {currentFolder?.path?.length > 0 && <BreadcrumbSeparator />}

@@ -1,3 +1,4 @@
+import DeleteButton from '@/components/delete-button';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
@@ -13,8 +14,8 @@ import MyCkeditor5 from '@/pages/plugins/ckeditor5/my-ckeditor5';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
-import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
-import { useState } from 'react';
+import { Check, ChevronsUpDown, CloudUpload, Loader, Trash2Icon } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
@@ -28,25 +29,12 @@ const formSchema = z.object({
     type: z.string().optional(),
     order_index: z.string().min(0).max(255).optional(),
     status: z.string().optional(),
-    parent_id: z.number().optional(),
+    parent_id: z.string().optional(),
     position_code: z.string().optional(),
 });
 
 export default function Create() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            title: '',
-            title_kh: '',
-            short_description: '',
-            short_description_kh: '',
-            link: '',
-            type: 'content',
-            order_index: '',
-            status: 'active',
-            position_code: '',
-        },
-    });
+    // ===== Start Our Code =====
     const dropZoneConfig = {
         maxFiles: 100,
         maxSize: 1024 * 1024 * 2, // 2MB
@@ -58,14 +46,35 @@ export default function Create() {
             'image/webp': ['.webp'],
         },
     };
-    // ===== Start Our Code =====
+
+    const { post, progress, processing, transform, errors } = inertiaUseForm();
+    const { parentData, pagePositions, editData } = usePage().props;
+
     const [files, setFiles] = useState<File[] | null>(null);
-    const [long_description, setLong_description] = useState('');
-    const [long_description_kh, setLong_description_kh] = useState('');
+    const [long_description, setLong_description] = useState(editData?.long_description || '');
+    const [long_description_kh, setLong_description_kh] = useState(editData?.long_description_kh || '');
     const [editorKey, setEditorKey] = useState(0);
 
-    const { parentData, pagePositions } = usePage().props;
-    const { post, progress, processing, transform, errors } = inertiaUseForm();
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            title: editData?.title || '',
+            title_kh: editData?.title_kh || '',
+            short_description: editData?.short_description || '',
+            short_description_kh: editData?.short_description_kh || '',
+            link: editData?.link || '',
+            type: editData?.type || 'content',
+            order_index: editData?.order_index?.toString() || '',
+            status: editData?.status || 'active',
+            parent_id: editData?.parent_id?.toString() || '',
+            position_code: editData?.position_code?.toString() || '',
+        },
+    });
+
+    useEffect(() => {
+
+    }, []);
+
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             // console.log(values);
@@ -80,27 +89,50 @@ export default function Create() {
                 long_description_kh: long_description_kh,
                 images: files || null,
             }));
-            post('/admin/pages', {
-                preserveScroll: true,
-                onSuccess: () => {
-                    form.reset();
-                    setLong_description('');
-                    setLong_description_kh('');
-                    setEditorKey((prev) => prev + 1);
-                    setFiles(null);
-                    toast.success('Success', {
-                        description: 'Page Created Successfully!',
-                    });
-                },
-                onError: (e) => {
-                    toast.error('Error', {
-                        description: 'Failed to create.' + JSON.stringify(e, null, 2),
-                    });
-                },
-            });
+
+            if (editData?.id) {
+                post(`/admin/pages/${editData?.id}/update`, {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        setFiles(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            } else {
+                post('/admin/pages', {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        form.reset();
+                        setLong_description('');
+                        setLong_description_kh('');
+                        setEditorKey((prev) => prev + 1);
+                        setFiles(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            }
+
         } catch (error) {
             console.error('Form submission error', error);
-            toast.error('Failed to submit the form. Please try again.');
+            toast.error('Failed to submit the form. Please try again.' + error);
         }
     }
     const breadcrumbs: BreadcrumbItem[] = [
@@ -284,7 +316,7 @@ export default function Create() {
                                                         className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
                                                     >
                                                         {field.value
-                                                            ? parentData?.find((parent) => parent.id === field.value)?.title
+                                                            ? parentData?.find((parent) => parent.id == field.value)?.title
                                                             : 'Select parent'}
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
@@ -296,18 +328,32 @@ export default function Create() {
                                                     <CommandList>
                                                         <CommandEmpty>No parent found.</CommandEmpty>
                                                         <CommandGroup>
+                                                            <CommandItem
+                                                                value=''
+                                                                onSelect={() => {
+                                                                    form.setValue('parent_id', '');
+                                                                }}
+                                                            >
+                                                                <Check
+                                                                    className={cn(
+                                                                        'mr-2 h-4 w-4',
+                                                                        '' == field.value ? 'opacity-100' : 'opacity-0',
+                                                                    )}
+                                                                />
+                                                                Select Parent
+                                                            </CommandItem>
                                                             {parentData?.map((parent) => (
                                                                 <CommandItem
                                                                     value={parent.title}
                                                                     key={parent.id}
                                                                     onSelect={() => {
-                                                                        form.setValue('parent_id', parent.id);
+                                                                        form.setValue('parent_id', parent.id.toString());
                                                                     }}
                                                                 >
                                                                     <Check
                                                                         className={cn(
                                                                             'mr-2 h-4 w-4',
-                                                                            parent.id === field.value ? 'opacity-100' : 'opacity-0',
+                                                                            parent.id == field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
                                                                     {parent.title}
@@ -353,6 +399,20 @@ export default function Create() {
                                                     <CommandList>
                                                         <CommandEmpty>No position found.</CommandEmpty>
                                                         <CommandGroup>
+                                                            <CommandItem
+                                                                value=''
+                                                                onSelect={() => {
+                                                                    form.setValue('position_code', '');
+                                                                }}
+                                                            >
+                                                                <Check
+                                                                    className={cn(
+                                                                        'mr-2 h-4 w-4',
+                                                                        '' == field.value ? 'opacity-100' : 'opacity-0',
+                                                                    )}
+                                                                />
+                                                                Select Position
+                                                            </CommandItem>
                                                             {pagePositions?.map((position) => (
                                                                 <CommandItem
                                                                     value={position.name}
@@ -422,19 +482,49 @@ export default function Create() {
                             </FormItem>
                         )}
                     />
+                    {/* Initial Image */}
+                    {editData?.images?.length > 0 && (
+                        <div className="mt-4 p-1">
+                            <FormDescription className="mb-2">Uploaded Image(s).</FormDescription>
+                            <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-6">
+                                {editData.images.map((imageObject) => (
+                                    <>
+
+                                        <span
+                                            key={imageObject.id}
+                                            className="group bg-background relative aspect-square h-auto w-full overflow-hidden rounded-md border p-0"
+                                        >
+                                            <img
+                                                src={'/assets/images/pages/thumb/' + imageObject.image}
+                                                alt={imageObject.name}
+                                                className="h-full w-full object-contain"
+                                            />
+                                            <span className='absolute top-1 right-1 lg:opacity-0 group-hover:opacity-100'>
+                                                <DeleteButton deletePath="/admin/pages/images/" id={imageObject.id} />
+                                            </span>
+                                        </span>
+                                    </>
+
+                                    // <FileUploaderItem key={i} index={i}>
+                                    //     <Paperclip className="h-4 w-4 stroke-current" />
+                                    //     <span>{file.name}</span>
+                                    // </FileUploaderItem>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                     {/* Start Long Description */}
                     <div key={editorKey} className="space-y-8">
+                        <div>
+                            <p className="mb-1 text-sm font-medium">Long Description</p>
+                            <MyCkeditor5 data={long_description} setData={setLong_description} />
+                        </div>
                         <div >
                             <p className="mb-1 text-sm font-medium">Long Description Khmer</p>
                             <MyCkeditor5 data={long_description_kh} setData={setLong_description_kh} />
                         </div>
-                        <div >
-                            <p className="mb-1 text-sm font-medium">Long Description</p>
-                            <MyCkeditor5 data={long_description} setData={setLong_description} />
-                        </div>
                     </div>
 
-                    {/* <MyCkeditor5 key={form} data={long_description} setData={setLong_description} /> */}
                     {/* End Long Description */}
                     {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                     <Button disabled={processing} type="submit">

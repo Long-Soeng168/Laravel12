@@ -4,8 +4,9 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, FilePenLineIcon, Folder, LayoutGrid, PanelTopIcon, ProjectorIcon, ReplaceIcon } from 'lucide-react';
+import { BookOpen, Bot, FilePenLineIcon, Folder, LayoutGrid, PanelTopIcon, ProjectorIcon, ReplaceIcon, Settings2, SquareTerminal } from 'lucide-react';
 import AppLogo from './app-logo';
+import { NavMainDropdown } from './nav-main-dropdown';
 
 const mainNavItems: NavItem[] = [
     {
@@ -24,16 +25,6 @@ const mainNavItems: NavItem[] = [
         icon: ProjectorIcon,
     },
     {
-        title: 'Page Position',
-        url: '/admin/page_positions',
-        icon: ReplaceIcon,
-    },
-    {
-        title: 'Page',
-        url: '/admin/pages',
-        icon: PanelTopIcon,
-    },
-    {
         title: 'Links',
         url: '/admin/links',
         icon: ProjectorIcon,
@@ -42,6 +33,22 @@ const mainNavItems: NavItem[] = [
         title: 'Website Info',
         url: '/admin/website_info',
         icon: ProjectorIcon,
+    },
+    {
+        title: "Pages",
+        url: "/admin/pages",
+        icon: PanelTopIcon,
+        isActive: true,
+        subItems: [
+            {
+                title: "Pages",
+                url: "/admin/pages",
+            },
+            {
+                title: "Positions",
+                url: "/admin/page_positions",
+            },
+        ],
     },
 ];
 
@@ -57,7 +64,6 @@ const footerNavItems: NavItem[] = [
     //     icon: Folder,
     // },
 ];
-
 export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" variant="inset">

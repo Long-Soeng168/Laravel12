@@ -423,7 +423,7 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
     // End Handle the CKEditor toolbar and MyFileManager component
 
     return (
-        <div className="prose max-w-none">
+        <div className="prose max-w-none p-2 border-gray-500 border border-dashed rounded  shadow">
             <div id={toolbarContainerId} className="relative top-0 z-[50] border bg-transparent text-sm">
                 {/* Wrap MyFileManager and CKEditor toolbar together */}
                 <div className="absolute top-0 right-0">

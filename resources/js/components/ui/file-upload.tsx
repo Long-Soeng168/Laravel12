@@ -305,13 +305,13 @@ export const FileUploaderItem = forwardRef<
       <button
         type="button"
         className={cn(
-          "absolute invisible group-hover:visible",
+          "absolute lg:invisible group-hover:visible",
           direction === "rtl" ? "top-1 left-1" : "top-1 right-1"
         )}
         onClick={() => removeFileFromSet(index)}
       >
         <span className="sr-only">remove item {index}</span>
-        <RemoveIcon className="w-4 h-4 group-hover:bg-destructive/80 stroke-white rounded-sm p-0.5 group-hover:stroke-white duration-200 ease-in-out" />
+        <RemoveIcon className="w-4 h-4 bg-destructive/80 stroke-white rounded-sm p-0.5 group-hover:stroke-white duration-200 ease-in-out" />
       </button>
     </div>
   );

@@ -12,6 +12,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useForm } from '@inertiajs/react';
 import { LoaderIcon } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface UpdateStatusButtonProps {
     id: number;
@@ -41,7 +42,21 @@ const MyUpdateStatusButton = ({ id, pathName, currentStatus, statuses }: UpdateS
 
     const handleChangeStatus = (status: string) => {
         data.status = status;
-        post(`${pathName}/${id}/update_status`, { preserveScroll: true });
+        post(`${pathName}/${id}/update_status`, {
+            preserveScroll: true,
+            onSuccess: (page) => {
+                if (page.props.flash?.success) {
+                    toast.success('Success', {
+                        description: page.props.flash.success,
+                    });
+                }
+            },
+            onError: (e) => {
+                toast.error('Error', {
+                    description: 'Failed to update.' + JSON.stringify(e, null, 2),
+                });
+            },
+        });
     };
 
     return (

@@ -8,6 +8,7 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
+import MyNoData from '@/components/my-no-data';
 
 const MyTableData = () => {
     const { tableData } = usePage().props;
@@ -139,9 +140,7 @@ const MyTableData = () => {
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
             {tableData?.length < 1 && (
-                <div className="flex justify-center text-center">
-                    <img src={`/assets/icons/no-data.gif`} alt="" className="w-[100px]" />
-                </div>
+               <MyNoData />
             )}
         </>
     );

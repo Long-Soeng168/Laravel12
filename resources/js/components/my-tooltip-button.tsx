@@ -4,6 +4,7 @@ import React from 'react';
 
 export function MyTooltipButton({
     variant = 'outline',
+    side = 'top',
     className = '',
     children,
     size = 'default',
@@ -11,6 +12,7 @@ export function MyTooltipButton({
     onClick,
 }: {
     variant?: 'link' | 'default' | 'success' | 'warning' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'myStyle' | null | undefined;
+    side?:  "top" | "right" | "bottom" | "left" | undefined;
     className?: string | undefined;
     children?: React.ReactNode;
     size?: 'default' | 'sm' | 'lg' | 'icon' | null | undefined;
@@ -25,7 +27,7 @@ export function MyTooltipButton({
                         {children || 'Hover'}
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side={side}>
                     <p>{title}</p>
                 </TooltipContent>
             </Tooltip>

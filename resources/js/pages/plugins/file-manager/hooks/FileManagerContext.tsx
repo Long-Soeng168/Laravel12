@@ -70,6 +70,7 @@ export const FileManagerProvider = ({ children }: { children: ReactNode }) => {
         setSortDirection('desc');
         setFileType('');
         setCurrentFolder(null);
+        getFileData();
     };
 
     const handleFileType = (fileType: string) => {

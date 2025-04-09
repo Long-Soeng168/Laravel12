@@ -64,8 +64,8 @@ export function MyFileManagerDialog({
                 </DialogTrigger>
                 {/* End Trigger Dialog Button */}
 
-                {isOpenFileManager && <div className="fixed inset-0 z-50 bg-black/10" />}
-                <DialogContent className="h-[85vh] overflow-hidden p-0 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px]">
+                {/* {isOpenFileManager && <div className="fixed inset-0 z-50 bg-black/10" />} */}
+                <DialogContent className="h-[85vh] ring-1 ring-offset-4 ring-primary overflow-hidden p-0 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px]">
                     <DialogTitle className="sr-only"></DialogTitle>
                     <DialogDescription className="sr-only"></DialogDescription>
                     <SidebarProvider className="items-start">

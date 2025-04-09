@@ -40,10 +40,10 @@ Route::middleware('auth')->group(function () {
 
     // Page Route
     Route::resource('admin/pages', PageController::class);
-    Route::post('admin/pages/{page}/update', [ProjectController::class, 'update']);
-    Route::post('admin/pages/{page}/update_status', [ProjectController::class, 'update_status']);
-    Route::get('admin/all_pages', [ProjectController::class, 'all_pages']);
-    Route::delete('admin/pages/images/{image}', [ProjectController::class, 'destroy_image']);
+    Route::post('admin/pages/{page}/update', [PageController::class, 'update']);
+    Route::post('admin/pages/{page}/update_status', [PageController::class, 'update_status']);
+    // Route::get('admin/all_pages', [ProjectController::class, 'all_pages']);
+    Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
 
     // File Upload Route
     Route::get('/admin/ckeditor5', function () {

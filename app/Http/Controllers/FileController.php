@@ -10,6 +10,7 @@ use App\Models\File as FileModel;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use PDO;
 
 class FileController extends Controller
 {
@@ -111,7 +112,7 @@ class FileController extends Controller
         $validated = $request->validate([
             'folder_id' => 'nullable|integer|max:255|exists:folders,id',
             'files' => 'required|array',
-            'files.*' => 'mimes:jpeg,png,jpg,gif,svg,webp,pdf,doc,docx,xls,xlsx,txt,zip,rar,json,csv,mp4,mp3,ogg,wav,webm,avi|max:10240', // 10MB
+            // 'files.*' => 'mimes:jpeg,png,jpg,gif,svg,webp,pdf,doc,docx,xls,xlsx,txt,zip,rar,json,csv,mp4,mp3,ogg,wav,webm,avi|max:10240', // 10MB
         ]);
 
         $files = $request->file('files');
@@ -164,18 +165,20 @@ class FileController extends Controller
                             $height = null;
                         }
 
-                        $createdItem = FileModel::create([
-                            'name' => $created_file_name,
-                            'path' => $folder,
-                            'mime_type' => $mimeType,
-                            'extension' => $extension,
-                            'size' => round($size / 1024, 2), // Convert bytes to KB
-                            'width' => $width,
-                            'height' => $height,
-                            'folder_id' => $request->folder_id ?? null,
-                            'created_by' => $request->user()->id,
-                            'updated_by' => $request->user()->id,
-                        ]);
+                        if (!empty($created_file_name)) {
+                            $createdItem = FileModel::create([
+                                'name' => $created_file_name,
+                                'path' => $folder,
+                                'mime_type' => $mimeType,
+                                'extension' => $extension,
+                                'size' => round($size / 1024, 2), // Convert bytes to KB
+                                'width' => $width,
+                                'height' => $height,
+                                'folder_id' => $request->folder_id ?? null,
+                                'created_by' => $request->user()->id,
+                                'updated_by' => $request->user()->id,
+                            ]);
+                        }
                     }
                 }
             } catch (\Exception $e) {
