@@ -10,7 +10,7 @@ const HestoryAndValues = () => {
     return (
         <MyLayoutWestern>
             <div className="font-now-alt-regular">
-                <div className="aspect-[16/9] w-full bg-[url('assets/demo-images/02TopBackground/01_history.jpg')] bg-cover bg-center bg-no-repeat lg:aspect-[20/9]">
+                <div className="aspect-[16/9] w-full bg-[url('/assets/demo-images/02TopBackground/01_history.jpg')] bg-cover bg-center bg-no-repeat lg:aspect-[20/9]">
                     <header className="flex flex-wrap items-center px-4 py-6 lg:px-16">
                         <div className="flex flex-1 items-center text-white">
                             <Link href="/" className="flex items-center gap-4 text-2xl">

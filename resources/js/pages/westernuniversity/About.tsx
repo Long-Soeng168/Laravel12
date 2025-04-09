@@ -15,11 +15,11 @@ const About = () => {
         {/* Header */}
         <div className='font-now-alt-regular'>
             <MyLanguageSwitcherAndSerchInput />
-            <div className="aspect-[21/7] w-full bg-[url('assets/demo-images/Homepage/02_flag_ceremony_at_wis_main_campus.png')] bg-cover bg-center bg-no-repeat">
+            <div className="aspect-[21/7] w-full bg-[url('/assets/demo-images/Homepage/02_flag_ceremony_at_wis_main_campus.png')] bg-cover bg-center bg-no-repeat">
                 <header className="flex flex-wrap items-center py-6 px-4 lg:px-16">
                     <div className="flex flex-1 items-center text-white">
                         <Link href="/" className="flex items-center gap-4 text-2xl">
-                            <img src="assets/demo-images/Homepage/01_Logo_WIS.png" className="w-20" />
+                            <img src="/assets/demo-images/Homepage/01_Logo_WIS.png" className="w-20" />
                             <div className="flex flex-col items-center justify-center">
                                 <p className="font-moul-regular text-2xl">សាលាវេស្ទើនអន្តរជាតិ</p>
                                 <p className="font-now-alt-bold mt-1 text-[10px] tracking-[2px]">WESTERN INTERNATIONAL SCHOOL</p>

@@ -7,7 +7,7 @@ const SchoolFacilities = () => {
     return (
         <MyLayoutWestern>
             <div className="font-now-alt-regular">
-                <div className="aspect-[21/6] w-full bg-[url('assets/demo-images/02TopBackground/03Campuses.jpg')] bg-cover bg-center bg-no-repeat lg:aspect-[21/6]">
+                <div className="aspect-[21/6] w-full bg-[url('/assets/demo-images/02TopBackground/03Campuses.jpg')] bg-cover bg-center bg-no-repeat lg:aspect-[21/6]">
                     <header className="flex flex-wrap items-center px-4 py-6 lg:px-16">
                         <div className="flex flex-1 items-center text-white">
                             <Link href="/" className="flex items-center gap-4 text-2xl">
