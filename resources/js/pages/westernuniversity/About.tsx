@@ -2,6 +2,12 @@ import MyLanguageSwitcherAndSerchInput from '@/components/my-language-switcher-a
 import { Link } from '@inertiajs/react';
 import { MyNavbar } from './components-wu/my-navbar';
 import MyHeroSection from './components-wu/my-hero-section';
+import MyVideo from './components-wu/my-video';
+import MyStats from './components-wu/my-stats';
+import { MyContentWithSlide } from './components-wu/my-content-with-image-slide';
+import MyHeroBottom from './components-wu/my-hero-bottom';
+import MyEnroll from './components-wu/my-enroll';
+import MyFooter from './components-wu/my-footer';
 
 const About = () => {
     return (
@@ -9,7 +15,6 @@ const About = () => {
         {/* Header */}
         <div className='font-now-alt-regular'>
             <MyLanguageSwitcherAndSerchInput />
-
             <div className="aspect-[21/7] w-full bg-[url('assets/demo-images/Homepage/02_flag_ceremony_at_wis_main_campus.png')] bg-cover bg-center bg-no-repeat">
                 <header className="flex flex-wrap items-center py-6 px-4 lg:px-16">
                     <div className="flex flex-1 items-center text-white">
@@ -35,17 +40,28 @@ const About = () => {
                     </div>
                 </header>
 
-                <div className="mx-auto flex flex-col h-full w-[55%] items-center justify-center py-10 text-center">
-                    <p className="font-now-alt-medium text-8xl text-white uppercase">Start your future today !</p>
-                    <Link href='/admissions' className="transform text-xl rounded-full bg-white  px-20 py-3 mt-10 font-bold text-[#272766] transition duration-400 hover:-translate-y-1">
-                        Enroll Now
-                    </Link>
-                </div>
+                <div className="mx-auto flex flex-col h-full w-full md:w-4/5 lg:w-3/5 items-center justify-center py-10 px-4 text-center">
+  <p className="font-now-alt-medium text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-white uppercase leading-tight">
+    Start your future today!
+  </p>
+  <Link
+    href="/admissions"
+    className="mt-8 text-lg sm:text-xl rounded-full bg-white px-10 sm:px-16 py-3 font-bold text-[#272766] transition-transform duration-300 hover:-translate-y-1"
+  >
+    Enroll Now
+  </Link>
+</div>
+
             </div>
         </div>
         {/*End Header */}
         <MyHeroSection/>
-
+        <MyStats/>
+        <MyVideo/>
+        <MyContentWithSlide/>
+        <MyHeroBottom/>
+        <MyEnroll/>
+        <MyFooter/>
         </>
     );
 };

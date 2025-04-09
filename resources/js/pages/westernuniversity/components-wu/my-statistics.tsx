@@ -3,7 +3,7 @@ import { User } from 'lucide-react';
 const MyStatistics = () => {
     return (
         <div>
-            <div className="mx-auto max-w-screen-2xl bg-white px-4 pb-16 text-center sm:px-8 lg:px-16">
+            <div className="mx-auto max-w-screen-2xl  bg-white px-4 pb-16 text-center sm:px-8 lg:px-16">
                 <h2 className="font-noto-san-extra-light text-3xl text-black sm:text-4xl">Statistics</h2>
                 <div className="mx-auto my-4 h-1 w-16 bg-black"></div>
                 <p className="font-noto-san-regular mx-auto max-w-2xl text-sm text-gray-600 sm:text-base">

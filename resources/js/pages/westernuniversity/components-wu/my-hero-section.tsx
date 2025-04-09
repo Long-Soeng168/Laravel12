@@ -15,7 +15,7 @@ const MyHeroSection = () => {
                 Western International School (WIS) opened its doors on September 1, 2003. With more than 15 campuses across Cambodia, WIS continues to strive to be the leading and fastest growing global education provider in the country.
                 </p>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 lg:w-1/3">
                 <MyWelcomeSlide/>
             </div>
             {/* <div className="lg:w-1/3 flex justify-center shadow">
