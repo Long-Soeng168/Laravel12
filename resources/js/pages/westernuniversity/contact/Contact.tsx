@@ -36,7 +36,7 @@ const Contact = () => {
                         <p className="font-now-alt-bold text-5xl text-white">Contact Us</p>
                     </div>
                 </div>
-         </div>careers
+         </div>
          <MyContact/>
     </MyLayoutWestern>
   )
