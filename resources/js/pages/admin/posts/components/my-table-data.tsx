@@ -35,7 +35,7 @@ const MyTableData = () => {
         <>
             <ScrollArea className="w-full rounded-md border">
                 <MyImageGallery
-                    imagePath="/assets/images/pages/"
+                    imagePath="/assets/images/posts/"
                     selectedImages={selectedImages}
                     isOpenViewImages={isOpenViewImages}
                     setIsOpenViewImages={setIsOpenViewImages}
@@ -66,29 +66,19 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Short Description Khmer
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('order_index')}>
-                                <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Order Index
-                                </span>
-                            </TableHead>
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('parent_id')}>
+                            <TableHead onClick={() => handleSort('category_code')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Parent
+                                    <ArrowUpDown size={16} /> Category
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type
-                                </span>
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('position_code')}>
-                                <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Position
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
@@ -121,13 +111,13 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
-                                        <Link href={`/admin/pages/${item.id}`}>
+                                        <Link href={`/admin/posts/${item.id}`}>
                                             <MyTooltipButton title="View" side="bottom" variant='ghost'>
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
-                                        <DeleteButton deletePath="/admin/pages/" id={item.id} />
-                                        <Link href={`/admin/pages/${item.id}/edit`}>
+                                        <DeleteButton deletePath="/admin/posts/" id={item.id} />
+                                        <Link href={`/admin/posts/${item.id}/edit`}>
                                             <MyTooltipButton title="Edit" side="bottom" variant='ghost'>
                                                 <EditIcon />
                                             </MyTooltipButton>
@@ -144,7 +134,7 @@ const MyTableData = () => {
                                             className="cursor-pointer"
                                         >
                                             <img
-                                                src={`/assets/images/pages/thumb/` + item.images[0]?.image}
+                                                src={`/assets/images/posts/thumb/` + item.images[0]?.image}
                                                 width={100}
                                                 height={100}
                                                 alt=""
@@ -165,18 +155,16 @@ const MyTableData = () => {
                                 <TableCell>{item.title_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
-                                <TableCell>{item.order_index || '---'}</TableCell>
                                 <TableCell>
                                     <MyUpdateStatusButton
                                         id={item.id}
-                                        pathName="/admin/pages"
+                                        pathName="/admin/posts"
                                         currentStatus={item.status}
                                         statuses={['active', 'inactive']}
                                     />
                                 </TableCell>
-                                <TableCell>{item.parent?.title || '---'}</TableCell>
+                                <TableCell>{item.category?.name || '---'}</TableCell>
                                 <TableCell className="capitalize">{item.type || '---'}</TableCell>
-                                <TableCell>{item.position?.name || '---'}</TableCell>
                                 <TableCell>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {

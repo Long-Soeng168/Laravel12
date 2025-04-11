@@ -424,7 +424,7 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
 
     return (
         <div className="prose max-w-none p-2 border-gray-500 border border-dashed rounded  shadow">
-            <div id={toolbarContainerId} className="relative top-0 z-[50] border bg-transparent text-sm">
+            <div id={toolbarContainerId} className="relative top-0 border bg-transparent text-sm">
                 {/* Wrap MyFileManager and CKEditor toolbar together */}
                 <div className="absolute top-0 right-0">
                     <MyFileManager toolbarContainerId={toolbarContainerId} handleInsertMedia={handleInsertMedia} />
@@ -466,7 +466,7 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
                         const toolbarContainer = document.getElementById(toolbarContainerId);
                         if (toolbarContainer) {
                             toolbarContainer.classList.remove('relative'); // Remove relative
-                            toolbarContainer.classList.add('sticky', 'top-0'); // Add sticky and top-0
+                            toolbarContainer.classList.add('sticky', 'top-0', 'z-[50]'); // Add sticky and top-0
                         }
                     }}
                     onBlur={(event, editor) => {
@@ -477,7 +477,7 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
                             if (!isEditorFocused) {
                                 const toolbarContainer = document.getElementById(toolbarContainerId);
                                 if (toolbarContainer) {
-                                    toolbarContainer.classList.remove('sticky', 'top-0');
+                                    toolbarContainer.classList.remove('sticky', 'top-0', 'z-[50]');
                                     toolbarContainer.classList.add('relative');
                                 }
                             }

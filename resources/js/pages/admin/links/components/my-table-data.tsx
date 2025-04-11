@@ -1,5 +1,6 @@
 import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
+import MyNoData from '@/components/my-no-data';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -8,7 +9,6 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
-import MyNoData from '@/components/my-no-data';
 
 const MyTableData = () => {
     const { tableData } = usePage().props;
@@ -34,7 +34,6 @@ const MyTableData = () => {
     const [isOpenViewImages, setIsOpenViewImages] = useState(false);
     return (
         <>
-
             <ScrollArea className="w-full rounded-md border">
                 <MyImageGallery
                     imagePath="/assets/images/links/"
@@ -59,14 +58,23 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Title Khmer
                                 </span>
                             </TableHead>
-                            <TableHead>link or Content</TableHead>
-                            <TableHead>Types</TableHead>
+                            <TableHead>Link</TableHead>
+                            <TableHead onClick={() => handleSort('type')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Type
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('status')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Status
+                                </span>
+                            </TableHead>
                             <TableHead>Created At</TableHead>
                             <TableHead>Last Updated</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {tableData?.map((item: any, index: number) => {
+                        {tableData?.data?.map((item: any, index: number) => {
                             return (
                                 <TableRow key={item.id}>
                                     <TableCell className="font-medium">
@@ -83,7 +91,7 @@ const MyTableData = () => {
                                         {item.image ? (
                                             <button
                                                 onClick={() => {
-                                                    setSelectedImages(item.image);
+                                                    setSelectedImages([{ image: item.image }]);
                                                     setIsOpenViewImages(true);
                                                 }}
                                                 className="cursor-pointer"
@@ -97,51 +105,55 @@ const MyTableData = () => {
                                                 />
                                             </button>
                                         ) : (
-                                            <img src={`/assets/icons/image-icon.png`} width={100} height={100} alt="" className="size-10 object-contain" />
+                                            <img
+                                                src={`/assets/icons/image-icon.png`}
+                                                width={100}
+                                                height={100}
+                                                alt=""
+                                                className="size-10 object-contain"
+                                            />
                                         )}
                                     </TableCell>
                                     <TableCell>{item.title || '---'}</TableCell>
                                     <TableCell>{item.title_kh || '---'}</TableCell>
                                     <TableCell>{item.link || '---'}</TableCell>
+                                    <TableCell>{item.type || '---'}</TableCell>
                                     <TableCell>
                                         <MyUpdateStatusButton
                                             id={item.id}
                                             pathName="/admin/links"
-                                            currentStatus={item.type}
-                                            statuses={['link', 'content']}
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
                                         />
                                     </TableCell>
+
                                     <TableCell>
                                         {item.created_at
                                             ? new Date(item.created_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                     <TableCell>
                                         {item.updated_at
                                             ? new Date(item.updated_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                 </TableRow>
-                            )
+                            );
                         })}
-
-
                     </TableBody>
                 </Table>
 
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-            {tableData?.length < 1 && (
-               <MyNoData />
-            )}
+            {tableData?.data?.length < 1 && <MyNoData />}
         </>
     );
 };

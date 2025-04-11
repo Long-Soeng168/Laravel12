@@ -1,17 +1,14 @@
+import MyDialogCancelButton from '@/components/my-dialog-cancel-button';
 import { Button } from '@/components/ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
-import axios from 'axios';
-import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { CloudUpload, Loader } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
@@ -21,10 +18,20 @@ const formSchema = z.object({
     title_kh: z.string().min(1).max(255).optional(),
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
+    status: z.string().optional(),
     image: z.string().optional(),
 });
 
-export default function Create() {
+export default function Create({
+    editData,
+    readOnly,
+    setIsOpen,
+}: {
+    editData?: any;
+    readOnly?: boolean;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+    // ===== Start Our Code =====
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -41,28 +48,13 @@ export default function Create() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: '',
-            title_kh: '',
-            link: '',
-            type: '',
+            title: editData?.title || '',
+            title_kh: editData?.title_kh || '',
+            link: editData?.link || '',
+            type: editData?.type || 'social_media',
+            status: editData?.status || 'active',
         },
     });
-
-    // ===== Start Our Code =====
-    const [parentsTableData, setParentsTableData] = useState([]);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        // Fetch data from the Laravel API route
-        axios
-            .get('/admin/links')
-            .then((response) => {
-                setParentsTableData(response.data); // Set the data to state
-            })
-            .catch((error) => {
-                setError(error); // Handle errors if any
-            });
-    }, []);
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
 
@@ -75,20 +67,44 @@ export default function Create() {
         try {
             transform(() => ({
                 ...values,
-                images: files || null,
+                image: files ? files[0] : null,
             }));
-            post('/admin/links', {
-                preserveScroll: true,
-                onSuccess: () => {
-                    form.reset();
-                    setFiles(null);
-                },
-                onError: () => {
-                    toast.error('Error', {
-                        description: 'Failed to create.',
-                    });
-                },
-            });
+            if (editData?.id) {
+                post('/admin/links/' + editData.id + '/update', {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        setFiles(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            } else {
+                post('/admin/links', {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        form.reset();
+                        setFiles(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            }
         } catch (error) {
             console.error('Form submission error', error);
             toast.error('Error', {
@@ -136,17 +152,16 @@ export default function Create() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="link"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Code</FormLabel>
+                                    <FormLabel>Link</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="ex: http//..." type="text" {...field} />
+                                        <Input placeholder="ex: https://..." type="text" {...field} />
                                     </FormControl>
-                                    <FormDescription>Your Project Uniqe Code</FormDescription>
                                     <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
                                 </FormItem>
                             )}
@@ -158,7 +173,30 @@ export default function Create() {
                             name="type"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>Type</FormLabel>
+                                    <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select Type" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <SelectItem value="social_media">Social Media</SelectItem>
+                                            <SelectItem value="contact">Contact</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="status"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>status</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -166,8 +204,8 @@ export default function Create() {
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="link">Link</SelectItem>
-                                            <SelectItem value="content">Content</SelectItem>
+                                            <SelectItem value="active">Active</SelectItem>
+                                            <SelectItem value="inactive">Inactive</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -175,9 +213,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-
                 </div>
-
 
                 <FormField
                     control={form.control}
@@ -197,15 +233,15 @@ export default function Create() {
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
                                     </FileInput>
-                                    <FileUploaderContent className="grid grid-cols-3 lg:grid-cols-4 w-full gap-2 rounded-md">
+                                    <FileUploaderContent className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-4">
                                         {files?.map((file, i) => (
                                             <FileUploaderItem
                                                 key={i}
                                                 index={i}
-                                                className="w-full h-auto aspect-square overflow-hidden rounded-md border p-0 bg-background"
+                                                className="bg-background aspect-square h-auto w-full overflow-hidden rounded-md border p-0"
                                                 aria-roledescription={`file ${i + 1} containing ${file.name}`}
                                             >
-                                                <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-full object-contain" />
+                                                <img src={URL.createObjectURL(file)} alt={file.name} className="h-full w-full object-contain" />
                                             </FileUploaderItem>
                                             // <FileUploaderItem key={i} index={i}>
                                             //     <Paperclip className="h-4 w-4 stroke-current" />
@@ -216,18 +252,41 @@ export default function Create() {
                                 </FileUploader>
                             </FormControl>
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
+
+                            {editData?.image && (
+                                <div className="mt-4 p-1">
+                                    <FormDescription className="mb-2">Uploaded image.</FormDescription>
+                                    <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
+                                        <span
+                                            key={editData?.image}
+                                            className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
+                                        >
+                                            <img
+                                                src={'/assets/images/links/thumb/' + editData?.image}
+                                                alt={editData?.image}
+                                                className="h-full w-full object-contain"
+                                            />
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
                         </FormItem>
                     )}
                 />
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
-                <Button disabled={processing} type="submit">
-                    {processing && (
-                        <span className="size-6 animate-spin">
-                            <Loader />
-                        </span>
-                    )}
-                    {processing ? 'Submiting...' : 'Submit'}
-                </Button>
+
+                {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
+
+                {!readOnly && (
+                    <Button disabled={processing} type="submit">
+                        {processing && (
+                            <span className="size-6 animate-spin">
+                                <Loader />
+                            </span>
+                        )}
+                        {processing ? 'Submiting...' : 'Submit'}
+                    </Button>
+                )}
             </form>
         </Form>
     );

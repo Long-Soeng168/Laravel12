@@ -27,10 +27,9 @@ const formSchema = z.object({
     short_description_kh: z.string().min(0).max(500).optional(),
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
-    order_index: z.string().min(0).max(255).optional(),
     status: z.string().optional(),
     parent_id: z.string().optional(),
-    position_code: z.string().optional(),
+    category_code: z.string().optional(),
 });
 
 export default function Create() {
@@ -48,7 +47,7 @@ export default function Create() {
     };
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { parentData, pagePositions, editData, readOnly } = usePage().props;
+    const { postCategories, editData, readOnly } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
@@ -64,10 +63,8 @@ export default function Create() {
             short_description_kh: editData?.short_description_kh || '',
             link: editData?.link || '',
             type: editData?.type || 'content',
-            order_index: editData?.order_index?.toString() || '',
             status: editData?.status || 'active',
-            parent_id: editData?.parent_id?.toString() || '',
-            position_code: editData?.position_code?.toString() || '',
+            category_code: editData?.category_code?.toString() || '',
         },
     });
 
@@ -81,6 +78,7 @@ export default function Create() {
             //         <code className="text-white">{JSON.stringify(values, null, 2)}</code>
             //     </pre>,
             // );
+            // return;
             transform(() => ({
                 ...values,
                 long_description: long_description,
@@ -89,7 +87,7 @@ export default function Create() {
             }));
 
             if (editData?.id) {
-                post(`/admin/pages/${editData?.id}/update`, {
+                post(`/admin/posts/${editData?.id}/update`, {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -106,7 +104,7 @@ export default function Create() {
                     },
                 });
             } else {
-                post('/admin/pages', {
+                post('/admin/posts', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
@@ -133,11 +131,11 @@ export default function Create() {
         }
     }
 
-    const currentBreadcrumb = readOnly ? 'Show' : (editData ? 'Edit' : 'Create');
+    const currentBreadcrumb = readOnly ? 'Show' : editData ? 'Edit' : 'Create';
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: 'Pages',
-            href: '/admin/pages',
+            title: 'Posts',
+            href: '/admin/posts',
         },
         {
             title: currentBreadcrumb,
@@ -259,15 +257,66 @@ export default function Create() {
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
-                                name="order_index"
+                                name="category_code"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Order Index</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Order Index" type="number" {...field} />
-                                        </FormControl>
-                                        <FormDescription>Less number is priority (Default 1)</FormDescription>
-                                        <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel>Category</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                                                    >
+                                                        {field.value
+                                                            ? postCategories?.find((category) => category.code === field.value)?.name
+                                                            : 'Select category'}
+                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="p-0">
+                                                <Command>
+                                                    <CommandInput placeholder="Search category..." />
+                                                    <CommandList>
+                                                        <CommandEmpty>No category found.</CommandEmpty>
+                                                        <CommandGroup>
+                                                            <CommandItem
+                                                                value=""
+                                                                onSelect={() => {
+                                                                    form.setValue('category_code', '');
+                                                                }}
+                                                            >
+                                                                <Check
+                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
+                                                                />
+                                                                Select category
+                                                            </CommandItem>
+                                                            {postCategories?.map((category) => (
+                                                                <CommandItem
+                                                                    value={category.name}
+                                                                    key={category.code}
+                                                                    onSelect={() => {
+                                                                        form.setValue('category_code', category.code);
+                                                                    }}
+                                                                >
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'mr-2 h-4 w-4',
+                                                                            category.code === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                    {category.name}
+                                                                </CommandItem>
+                                                            ))}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormDescription>Select the category where this page will show.</FormDescription>
+                                        <FormMessage>{errors.category_code && <div>{errors.category_code}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
@@ -292,144 +341,6 @@ export default function Create() {
                                             </SelectContent>
                                         </Select>
                                         <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="parent_id"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col">
-                                        <FormLabel>Parent Page</FormLabel>
-                                        <Popover>
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
-                                                    >
-                                                        {field.value
-                                                            ? parentData?.find((parent) => parent.id == field.value)?.title
-                                                            : 'Select parent'}
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="p-0">
-                                                <Command>
-                                                    <CommandInput placeholder="Search parent..." />
-                                                    <CommandList>
-                                                        <CommandEmpty>No parent found.</CommandEmpty>
-                                                        <CommandGroup>
-                                                            <CommandItem
-                                                                value=""
-                                                                onSelect={() => {
-                                                                    form.setValue('parent_id', '');
-                                                                }}
-                                                            >
-                                                                <Check
-                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
-                                                                />
-                                                                Select Parent
-                                                            </CommandItem>
-                                                            {parentData?.map((parent) => (
-                                                                <CommandItem
-                                                                    value={parent.title}
-                                                                    key={parent.id}
-                                                                    onSelect={() => {
-                                                                        form.setValue('parent_id', parent.id.toString());
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'mr-2 h-4 w-4',
-                                                                            parent.id == field.value ? 'opacity-100' : 'opacity-0',
-                                                                        )}
-                                                                    />
-                                                                    {parent.title}
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormDescription>Select the Page this page belongs to.</FormDescription>
-                                        <FormMessage>{errors.parent_id && <div>{errors.parent_id}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="position_code"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col">
-                                        <FormLabel>Position Page</FormLabel>
-                                        <Popover>
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
-                                                    >
-                                                        {field.value
-                                                            ? pagePositions?.find((position) => position.code === field.value)?.name
-                                                            : 'Select position'}
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="p-0">
-                                                <Command>
-                                                    <CommandInput placeholder="Search position..." />
-                                                    <CommandList>
-                                                        <CommandEmpty>No position found.</CommandEmpty>
-                                                        <CommandGroup>
-                                                            <CommandItem
-                                                                value=""
-                                                                onSelect={() => {
-                                                                    form.setValue('position_code', '');
-                                                                }}
-                                                            >
-                                                                <Check
-                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
-                                                                />
-                                                                Select Position
-                                                            </CommandItem>
-                                                            {pagePositions?.map((position) => (
-                                                                <CommandItem
-                                                                    value={position.name}
-                                                                    key={position.code}
-                                                                    onSelect={() => {
-                                                                        form.setValue('position_code', position.code);
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'mr-2 h-4 w-4',
-                                                                            position.code === field.value ? 'opacity-100' : 'opacity-0',
-                                                                        )}
-                                                                    />
-                                                                    {position.name}
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormDescription>Select the position where this page will show.</FormDescription>
-                                        <FormMessage>{errors.position_code && <div>{errors.position_code}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
@@ -487,12 +398,12 @@ export default function Create() {
                                             className="group bg-background relative aspect-square h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/pages/thumb/' + imageObject.image}
+                                                src={'/assets/images/posts/thumb/' + imageObject.image}
                                                 alt={imageObject.name}
                                                 className="h-full w-full object-contain"
                                             />
                                             <span className="absolute top-1 right-1 group-hover:opacity-100 lg:opacity-0">
-                                                <DeleteButton deletePath="/admin/pages/images/" id={imageObject.id} />
+                                                <DeleteButton deletePath="/admin/posts/images/" id={imageObject.id} />
                                             </span>
                                         </span>
                                     </>

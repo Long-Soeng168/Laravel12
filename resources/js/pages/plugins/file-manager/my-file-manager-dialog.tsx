@@ -105,7 +105,7 @@ export function MyFileManagerDialog({
                                                 const toolbarContainer = document.getElementById(toolbarContainerId);
                                                 if (toolbarContainer) {
                                                     toolbarContainer.classList.remove('relative'); // Remove relative
-                                                    toolbarContainer.classList.add('sticky', 'top-0'); // Add sticky and top-0
+                                                    toolbarContainer.classList.add('sticky', 'top-0', 'z-[50]'); // Add sticky and top-0
                                                 }
                                                 // End Keep CKEditor Sticky
                                                 setIsOpenFileManager(false);

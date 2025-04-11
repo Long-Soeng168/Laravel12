@@ -1,3 +1,4 @@
+import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { cn } from '@/lib/utils';
 import { DownloadCloudIcon, FileIcon, ViewIcon } from 'lucide-react';
@@ -7,7 +8,6 @@ import CopyFileUrl from './copy-file-url';
 import DeleteFileButton from './delete-file-button';
 import { Pagination } from './pagination';
 import { ViewImage } from './view-image';
-import MyNoData from '@/components/my-no-data';
 
 const extensionColors = {
     pdf: {
@@ -99,21 +99,19 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
     return (
         <div className="overflow-y-auto p-4 pt-2">
             <ViewImage selectedImage={selectedImage} open={isOpenViewImages} setOpen={setIsOpenViewImages} />
-            {fileTableData?.data?.length < 1 && (
-                <MyNoData />
-            )}
+            {fileTableData?.data?.length < 1 && <MyNoData />}
             <div className="mt-1 grid grid-cols-3 gap-4 lg:grid-cols-4">
                 {fileTableData?.data?.map((item, i) => (
                     <div key={item.id}>
                         <div
                             key={i}
-                            className="bg-muted group relative flex aspect-square max-w-full items-center hover:bg-primary/10 cursor-pointer justify-center overflow-hidden rounded-lg"
+                            className="bg-muted group hover:bg-primary/10 relative flex aspect-square max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg"
                         >
                             {item.mime_type.startsWith('image/') ? (
                                 <button
                                     type="button"
                                     onClick={(e: React.MouseEvent) => {
-                                        handleInsertMedia('image', `/${item.path}/${item.name}`);
+                                        handleInsertMedia('image', `${window.location.origin}/${item.path}/${item.name}`);
                                         setIsOpenFileManager(false);
                                     }}
                                     // onClick={() => {
@@ -137,7 +135,7 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
                                             <button
                                                 type="button"
                                                 onClick={() => {
-                                                    handleInsertMedia('file', `/${item.path}/${item.name}`, item.name);
+                                                    handleInsertMedia('file', `${window.location.origin}/${item.path}/${item.name}`, item.name);
                                                     setIsOpenFileManager(false);
                                                 }}
                                             >
@@ -160,7 +158,7 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
                                 </span>
                             )}
 
-                            <div className="absolute top-0 right-0 hidden gap-1 p-1 transition-all duration-300 group-hover:flex">
+                            <div className="absolute top-0 right-0 flex gap-1 p-1 transition-all duration-300 group-hover:flex lg:hidden">
                                 <DeleteFileButton key={item.id} deletePath="/api/file_manager/files/" id={item.id} />
                                 <MyTooltipButton
                                     onClick={() => {

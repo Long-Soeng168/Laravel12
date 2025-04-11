@@ -13,27 +13,31 @@ class LinkController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-{
-    $search = $request->input('search', '');
-    $sortBy = $request->input('sortBy', 'id');
-    $sortDirection = $request->input('sortDirection', 'desc');
+    {
+        $search = $request->input('search', '');
+        $sortBy = $request->input('sortBy', 'id');
+        $status = $request->input('status', '');
+        $sortDirection = $request->input('sortDirection', 'desc');
 
-    $query = Link::query();
+        $query = Link::query();
 
-    if ($search) {
-        $query->where(function ($sub_query) use ($search) {
-            $sub_query->where('title', 'LIKE', "%{$search}%");
-        });
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                $sub_query->where('title', 'LIKE', "%{$search}%");
+            });
+        }
+        if ($status) {
+            $query->where("status", $status);
+        }
+
+        $query->orderBy($sortBy, $sortDirection);
+
+        $tableData = $query->paginate(perPage: 10)->onEachSide(1);
+
+        return Inertia::render('admin/links/Index', [
+            'tableData' => $tableData,
+        ]);
     }
-
-    $query->orderBy($sortBy, $sortDirection);
-
-    $tableData = link::get();
-
-    return Inertia::render('admin/links/Index', [
-        'tableData' => $tableData,
-    ]);
-}
 
 
 
@@ -51,14 +55,15 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $image_files = $request->file('images');
+        $image_file = $request->file('image');
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
@@ -67,15 +72,10 @@ class LinkController extends Controller
             }
         }
 
-
-
-        if ($image_files) {
+        if ($image_file) {
             try {
-                foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/links', 600);
-                    $validated['image'] = $created_image_name;
-                    break; // Stop after the first image
-                }
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/links', 600);
+                $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
@@ -83,7 +83,7 @@ class LinkController extends Controller
 
         Link::create($validated);
 
-        return redirect()->back()->with('success', 'Project created successfully!');
+        return redirect()->back()->with('success', 'Link created successfully!');
     }
 
     /**
@@ -105,17 +105,18 @@ class LinkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Link $link)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $image_files = $request->file('images');
+        $image_file = $request->file('image');
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
@@ -124,21 +125,34 @@ class LinkController extends Controller
             }
         }
 
-        $link = Link::findOrFail($id);
-
-        if ($image_files) {
+        if ($image_file) {
             try {
-                foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'links', 600);
-                    $validated['image'] = $created_image_name;
-                    break; // Stop after the first image
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/links', 600);
+                $validated['image'] = $created_image_name;
+
+                if ($link->image && $created_image_name) {
+                    ImageHelper::deleteImage($link->image, 'assets/images/links');
                 }
             } catch (\Exception $e) {
-                return redirect('/admin/links')->with('error', 'Failed to upload images: ' . $e->getMessage());
+                return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
+
         $link->update($validated);
-        return redirect()->back()->with('success', 'Project updated successfully!');
+
+        return redirect()->back()->with('success', 'Link updated successfully!');
+    }
+
+    public function update_status(Request $request, Link $link)
+    {
+        $request->validate([
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $link->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
     }
 
     /**

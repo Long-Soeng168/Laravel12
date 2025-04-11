@@ -17,10 +17,10 @@
         }
     }
 }
-
-.toaster .toast::before {
+ 
+.toaster .toast::after {
     content: '';
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: -1px;
     right: 1px;
@@ -31,6 +31,9 @@
     transform: translate(0px, 1px);
     animation: toast-progress linear;
     animation-duration: 4.2s; /* Match the default Sonner timeout */
+}
+.toaster .toast:hover::after {
+    opacity: 0;
 }
 
 @keyframes toast-progress {
@@ -672,9 +675,13 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
 }
 
 .ck.ck-button {
-    padding: 2px !important;
+    padding-top: 1.5px !important;
+    padding-bottom: 1.5px !important;
     padding-left: 4px !important;
     padding-right: 4px !important;
+}
+.ck.ck-menu-bar__menu .ck-button.ck-menu-bar__menu__item__button {
+    padding: 4px !important;
 }
 
 .ck.ck-button__label {

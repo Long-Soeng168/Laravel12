@@ -1,4 +1,5 @@
 import MySpinner from '@/components/customized/spinner/my-spinner';
+import MyDialogCancelButton from '@/components/my-dialog-cancel-button';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
@@ -32,11 +33,11 @@ const formSchema = z.object({
 });
 
 export default function Create({
-    item,
+    editData,
     readOnly,
     setIsOpen,
 }: {
-    item?: any;
+    editData?: any;
     readOnly?: boolean;
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -58,14 +59,14 @@ export default function Create({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: item?.name || '',
-            name_kh: item?.name_kh || '',
-            code: item?.code || '',
-            status: item?.status || 'active',
-            short_description: item?.short_description || '',
-            short_description_kh: item?.short_description_kh || '',
-            order_index: item?.order_index.toString() || '',
-            parent_code: item?.parent_code || '',
+            name: editData?.name || '',
+            name_kh: editData?.name_kh || '',
+            code: editData?.code || '',
+            status: editData?.status || 'active',
+            short_description: editData?.short_description || '',
+            short_description_kh: editData?.short_description_kh || '',
+            order_index: editData?.order_index.toString() || '',
+            parent_code: editData?.parent_code || '',
             image: '',
             banner: '',
         },
@@ -82,7 +83,6 @@ export default function Create({
     }, []);
 
     function getParentsTableData() {
-        console.log('Fetching...');
         axios
             .get('/admin/all_page_categories')
             .then((response) => {
@@ -109,8 +109,8 @@ export default function Create({
                 image: files ? files[0] : null,
                 banner: filesBanner ? filesBanner[0] : null,
             }));
-            if (item?.id) {
-                post('/admin/post_categories/' + item?.id + '/update', {
+            if (editData?.id) {
+                post('/admin/post_categories/' + editData?.id + '/update', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -302,23 +302,26 @@ export default function Create({
                                                             <Check className={cn('mr-2 h-4 w-4', '' === field.value ? 'opacity-100' : 'opacity-0')} />
                                                             Select Parent
                                                         </CommandItem>
-                                                        {parentsTableData?.map((item) => (
-                                                            <CommandItem
-                                                                value={item.name + item.code}
-                                                                key={item.code}
-                                                                onSelect={() => {
-                                                                    form.setValue('parent_code', item.code);
-                                                                }}
-                                                            >
-                                                                <Check
-                                                                    className={cn(
-                                                                        'mr-2 h-4 w-4',
-                                                                        item.code === field.value ? 'opacity-100' : 'opacity-0',
-                                                                    )}
-                                                                />
-                                                                {item.name}
-                                                            </CommandItem>
-                                                        ))}
+                                                        {parentsTableData?.map((item) => {
+                                                            if (item.id === editData?.id) return null;
+                                                            return (
+                                                                <CommandItem
+                                                                    value={item.name + item.code}
+                                                                    key={item.code}
+                                                                    onSelect={() => {
+                                                                        form.setValue('parent_code', item.code);
+                                                                    }}
+                                                                >
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'mr-2 h-4 w-4',
+                                                                            item.code === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                    {item.name}
+                                                                </CommandItem>
+                                                            );
+                                                        })}
                                                     </CommandGroup>
                                                 </CommandList>
                                             </Command>
@@ -396,18 +399,18 @@ export default function Create({
                                 </FileUploader>
                             </FormControl>
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
-                            {item?.image && (
+                            {editData?.image && (
                                 <div className="mt-4 p-1">
                                     <FormDescription className="mb-2">Uploaded Image.</FormDescription>
                                     <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
                                         <span
-                                            key={item?.image}
+                                            key={editData?.image}
                                             className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/post_categories/thumb/' + item?.image}
-                                                alt={item?.image}
-                                                className="h-full w-full object-cover"
+                                                src={'/assets/images/post_categories/thumb/' + editData?.image}
+                                                alt={editData?.image}
+                                                className="h-full w-full object-contain"
                                             />
                                         </span>
                                     </div>
@@ -453,18 +456,18 @@ export default function Create({
                                 </FileUploader>
                             </FormControl>
                             <FormMessage>{errors.banner && <div>{errors.banner}</div>}</FormMessage>
-                            {item?.banner && (
+                            {editData?.banner && (
                                 <div className="mt-4 p-1">
                                     <FormDescription className="mb-2">Uploaded Banner.</FormDescription>
                                     <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
                                         <span
-                                            key={item?.banner}
+                                            key={editData?.banner}
                                             className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/post_categories/thumb/' + item?.banner}
-                                                alt={item?.banner}
-                                                className="h-full w-full object-cover"
+                                                src={'/assets/images/post_categories/thumb/' + editData?.banner}
+                                                alt={editData?.banner}
+                                                className="h-full w-full object-contain"
                                             />
                                         </span>
                                     </div>
@@ -474,11 +477,7 @@ export default function Create({
                     )}
                 />
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
-                {setIsOpen && (
-                    <Button variant="outline" className="mr-2" onClick={() => setIsOpen(false)}>
-                        Cancel
-                    </Button>
-                )}
+                {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
 
                 {!readOnly && (
                     <Button disabled={processing} type="submit">

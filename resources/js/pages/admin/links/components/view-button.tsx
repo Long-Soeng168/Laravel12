@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ScanEyeIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
-import Show from '../Show';
+import Create from '../Create';
 
 const ViewButton = ({ item }: { item: any }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +31,7 @@ const ViewButton = ({ item }: { item: any }) => {
                 <DialogHeader>
                     <DialogTitle>View Project</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
-                    <Show item={item} />
+                    <Create editData={item} readOnly={true} setIsOpen={setIsOpen} />
                 </DialogHeader>
             </DialogContent>
         </Dialog>

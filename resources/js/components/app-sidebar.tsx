@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { AppWindowIcon, FilePenLineIcon, LayoutGrid, ProjectorIcon } from 'lucide-react';
+import { AppWindowIcon, FilePenLineIcon, LayoutGrid, LinkIcon, ProjectorIcon } from 'lucide-react';
 import AppLogo from './app-logo';
 
 export function AppSidebar() {
@@ -36,7 +36,7 @@ export function AppSidebar() {
         {
             title: 'Links',
             url: '/admin/links',
-            icon: ProjectorIcon,
+            icon: LinkIcon,
             isActive: isActive('/admin/links'),
         },
         {

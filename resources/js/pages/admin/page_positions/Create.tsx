@@ -1,7 +1,8 @@
+import MyDialogCancelButton from '@/components/my-dialog-cancel-button';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -24,7 +25,16 @@ const formSchema = z.object({
     banner: z.string().optional(),
 });
 
-export default function Create() {
+export default function Create({
+    editData,
+    readOnly,
+    setIsOpen,
+}: {
+    editData?: any;
+    readOnly?: boolean;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+    // ===== Start Our Code =====
     const [files, setFiles] = useState<File[] | null>(null);
     const [filesBanner, setFilesBanner] = useState<File[] | null>(null);
 
@@ -33,27 +43,26 @@ export default function Create() {
         maxSize: 1024 * 1024 * 4,
         multiple: false,
         accept: {
-          'image/jpeg': ['.jpeg', '.jpg'],
-          'image/png': ['.png'],
-          'image/gif': ['.gif'],
-          'image/webp': ['.webp'],
-      },
+            'image/jpeg': ['.jpeg', '.jpg'],
+            'image/png': ['.png'],
+            'image/gif': ['.gif'],
+            'image/webp': ['.webp'],
+        },
     };
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: '',
-            name_kh: '',
-            code: '',
-            status: 'active',
-            short_description: '',
-            short_description_kh: '',
+            name: editData?.name || '',
+            name_kh: editData?.name_kh || '',
+            code: editData?.code || '',
+            status: editData?.status || 'active',
+            short_description: editData?.short_description || '',
+            short_description_kh: editData?.short_description_kh || '',
             image: '',
             banner: '',
         },
     });
 
-    // ===== Start Our Code =====
     const { post, data, progress, processing, transform, errors } = inertiaUseForm();
 
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -68,19 +77,44 @@ export default function Create() {
                 image: files ? files[0] : null,
                 banner: filesBanner ? filesBanner[0] : null,
             }));
-            post('/admin/page_positions', {
-                preserveScroll: true,
-                onSuccess: () => {
-                    form.reset();
-                    setFiles(null);
-                    setFilesBanner(null);
-                },
-                onError: (e) => {
-                    toast.error('Error', {
-                        description: 'Failed to create.' + JSON.stringify(e, null, 2),
-                    });
-                },
-            });
+            if (editData?.id) {
+                post('/admin/page_positions/' + editData.id + '/update', {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        setFiles(null);
+                        setFilesBanner(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to update.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            } else {
+                post('/admin/page_positions', {
+                    preserveScroll: true,
+                    onSuccess: (page) => {
+                        form.reset();
+                        setFiles(null);
+                        setFilesBanner(null);
+                        if (page.props.flash?.success) {
+                            toast.success('Success', {
+                                description: page.props.flash.success,
+                            });
+                        }
+                    },
+                    onError: (e) => {
+                        toast.error('Error', {
+                            description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                        });
+                    },
+                });
+            }
         } catch (error) {
             console.error('Form submission error', error);
             toast.error('Error', {
@@ -104,7 +138,7 @@ export default function Create() {
                                     <FormControl>
                                         <Input placeholder="Name" type="text" {...field} />
                                     </FormControl>
-                                    <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage> 
+                                    <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -120,7 +154,7 @@ export default function Create() {
                                     <FormControl>
                                         <Input placeholder="ឈ្មោះ" type="text" {...field} />
                                     </FormControl>
-                                    <FormMessage>{errors.name_kh && <div>{errors.name_kh}</div>}</FormMessage> 
+                                    <FormMessage>{errors.name_kh && <div>{errors.name_kh}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -162,7 +196,7 @@ export default function Create() {
                                             <SelectItem value="inactive">Inactive</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage> 
+                                    <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -178,7 +212,7 @@ export default function Create() {
                             <FormControl>
                                 <AutosizeTextarea placeholder="Put your Short Description" className="resize-none" {...field} />
                             </FormControl>
-                            <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage> 
+                            <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                         </FormItem>
                     )}
                 />
@@ -233,6 +267,25 @@ export default function Create() {
                                 </FileUploader>
                             </FormControl>
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
+
+                            {/* Initial Image */}
+                            {editData?.image && (
+                                <div className="mt-4 p-1">
+                                    <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                    <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-5">
+                                        <span
+                                            key={editData?.image}
+                                            className="group bg-background relative aspect-square h-auto w-full overflow-hidden rounded-md border p-0"
+                                        >
+                                            <img
+                                                src={'/assets/images/page_positions/thumb/' + editData?.image}
+                                                alt={editData?.image}
+                                                className="h-full w-full object-contain"
+                                            />
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
                         </FormItem>
                     )}
                 />
@@ -273,18 +326,41 @@ export default function Create() {
                                 </FileUploader>
                             </FormControl>
                             <FormMessage>{errors.banner && <div>{errors.banner}</div>}</FormMessage>
+
+                            {/* Initial Image */}
+                            {editData?.banner && (
+                                <div className="mt-4 p-1">
+                                    <FormDescription className="mb-2">Uploaded Banner.</FormDescription>
+                                    <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
+                                        <span
+                                            key={editData?.banner}
+                                            className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
+                                        >
+                                            <img
+                                                src={'/assets/images/page_positions/thumb/' + editData?.banner}
+                                                alt={editData?.banner}
+                                                className="h-full w-full object-contain"
+                                            />
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
                         </FormItem>
                     )}
                 />
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
-                <Button disabled={processing} type="submit">
-                    {processing && (
-                        <span className="size-6 animate-spin">
-                            <Loader />
-                        </span>
-                    )}
-                    {processing ? 'Submiting...' : 'Submit'}
-                </Button>
+                {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
+
+                {!readOnly && (
+                    <Button disabled={processing} type="submit">
+                        {processing && (
+                            <span className="size-6 animate-spin">
+                                <Loader />
+                            </span>
+                        )}
+                        {processing ? 'Submiting...' : 'Submit'}
+                    </Button>
+                )}
             </form>
         </Form>
     );

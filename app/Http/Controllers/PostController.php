@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Models\Page;
-use App\Models\PageImage;
-use App\Models\PagePosition;
+use App\Models\Post;
+use App\Models\PostCategory;
+use App\Models\PostImage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PageController extends Controller
+class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $search = $request->input('search', '');
@@ -21,9 +18,9 @@ class PageController extends Controller
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
 
-        $query = Page::query();
+        $query = Post::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'parent', 'position');
+        $query->with('created_by', 'updated_by', 'images', 'category');
 
         if ($status) {
             $query->where('status', $status);
@@ -33,13 +30,13 @@ class PageController extends Controller
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('code', 'LIKE', "%{$search}%");
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%");
             });
         }
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/pages/Index', [
+        return Inertia::render('admin/posts/Index', [
             'tableData' => $tableData,
         ]);
     }
@@ -49,13 +46,8 @@ class PageController extends Controller
      */
     public function create(Request $request)
     {
-
-        $query = Page::query();
-
-        $parentData = $query->get();
-        return Inertia::render('admin/pages/Create', [
-            'parentData' => $parentData,
-            'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
+        return Inertia::render('admin/posts/Create', [
+            'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -72,9 +64,7 @@ class PageController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
-            'order_index' => 'nullable|integer|min:0|max:255',
-            'parent_id' => 'nullable|numeric',
-            'position_code' => 'nullable|string',
+            'category_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
@@ -93,36 +83,32 @@ class PageController extends Controller
             }
         }
 
-        $created_project = Page::create($validated);
+        $created_project = Post::create($validated);
 
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 600);
-                    PageImage::create([
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 600);
+                    PostImage::create([
                         'image' => $created_image_name,
-                        'page_id' => $created_project->id,
+                        'post_id' => $created_project->id,
                     ]);
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
             }
         }
-        return redirect()->back()->with('success', 'Page Created Successfully!.');
+        return redirect()->back()->with('success', 'Post Created Successfully!.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Page $page)
+    public function show(Post $post)
     {
-        $query = Page::query();
-
-        $parentData = $query->where('id', '!=', $page->id)->get();
-        return Inertia::render('admin/pages/Create', [
-            'editData' => $page->load('images'),
-            'parentData' => $parentData,
-            'pagePositions' => PagePosition::all(),
+        return Inertia::render('admin/posts/Create', [
+            'editData' => $post->load('images'),
+            'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
             'readOnly' => true,
         ]);
     }
@@ -131,23 +117,18 @@ class PageController extends Controller
      * Show the form for editing the specified resource.
      */
 
-    public function edit(Page $page)
+    public function edit(Post $post)
     {
-
-        $query = Page::query();
-
-        $parentData = $query->where('id', '!=', $page->id)->get();
-        return Inertia::render('admin/pages/Create', [
-            'editData' => $page->load('images'),
-            'parentData' => $parentData,
-            'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
+        return Inertia::render('admin/posts/Create', [
+            'editData' => $post->load('images'),
+            'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, Post $post)
     {
         // dd($request->all());
         $validated = $request->validate([
@@ -158,9 +139,7 @@ class PageController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
-            'order_index' => 'nullable|integer|min:0|max:255',
-            'parent_id' => 'nullable|numeric',
-            'position_code' => 'nullable|string',
+            'category_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
@@ -179,30 +158,30 @@ class PageController extends Controller
             }
         }
 
-        $page->update($validated);
+        $post->update($validated);
 
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 600);
-                    PageImage::create([
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 600);
+                    PostImage::create([
                         'image' => $created_image_name,
-                        'page_id' => $page->id,
+                        'post_id' => $post->id,
                     ]);
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
             }
         }
-        return redirect()->back()->with('success', 'Page Updated Successfully!.');
+        return redirect()->back()->with('success', 'Post Updated Successfully!.');
     }
 
-    public function update_status(Request $request, Page $page)
+    public function update_status(Request $request, Post $post)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $page->update([
+        $post->update([
             'status' => $request->status,
         ]);
 
@@ -212,18 +191,18 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Page $page)
+    public function destroy(Post $post)
     {
-        if (count($page->images) > 0) {
-            foreach ($page->images as $image) {
-                ImageHelper::deleteImage($image->image, 'assets/images/pages');
+        if (count($post->images) > 0) {
+            foreach ($post->images as $image) {
+                ImageHelper::deleteImage($image->image, 'assets/images/posts');
             }
         }
-        $page->delete();
-        return redirect()->back()->with('success', 'page deleted successfully.');
+        $post->delete();
+        return redirect()->back()->with('success', 'post deleted successfully.');
     }
 
-    public function destroy_image(PageImage $image)
+    public function destroy_image(PostImage $image)
     {
         // Debugging (Check if model is found)
         if (!$image) {
@@ -231,7 +210,7 @@ class PageController extends Controller
         }
 
         // Call helper function to delete image
-        ImageHelper::deleteImage($image->image, 'assets/images/pages');
+        ImageHelper::deleteImage($image->image, 'assets/images/posts');
 
         // Delete from DB
         $image->delete();

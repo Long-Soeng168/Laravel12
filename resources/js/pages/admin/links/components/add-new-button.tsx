@@ -3,18 +3,14 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
+import MyAddNewButton from '@/components/my-add-new-button';
 
 const AddNewButton = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
-                <span className="border-primary rounded-xl border p-1 transition-all duration-300 hover:rounded-lg hover:border-white hover:p-0 hover:m-1 ">
-                    <Button onClick={() => setIsOpen(true)}>
-                        <Plus />
-                        Add New
-                    </Button>
-                </span>
+                <MyAddNewButton onClick={() => setIsOpen(true)} />
             </DialogTrigger>
             {isOpen && <div className="fixed inset-0 z-40 bg-black/80" />}
             {/* Custom dark background */}
@@ -26,7 +22,7 @@ const AddNewButton = () => {
                 <DialogHeader>
                     <DialogTitle>Create Projects</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
-                    <Create />
+                    <Create setIsOpen={setIsOpen}/>
                 </DialogHeader>
             </DialogContent>
         </Dialog>
