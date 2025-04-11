@@ -3,84 +3,98 @@ import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { AppWindowIcon, BookOpen, Bot, FilePenLineIcon, Folder, LayoutGrid, PanelTopIcon, ProjectorIcon, ReplaceIcon, Settings2, SquareTerminal } from 'lucide-react';
+import { Link, usePage } from '@inertiajs/react';
+import { AppWindowIcon, FilePenLineIcon, LayoutGrid, ProjectorIcon } from 'lucide-react';
 import AppLogo from './app-logo';
-import { NavMainDropdown } from './nav-main-dropdown';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        url: '/dashboard',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Items',
-        url: '/items',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Projects',
-        url: '/admin/projects',
-        icon: ProjectorIcon,
-    },
-    {
-        title: 'Links',
-        url: '/admin/links',
-        icon: ProjectorIcon,
-    },
-    {
-        title: 'Website Info',
-        url: '/admin/website_info',
-        icon: ProjectorIcon,
-    },
-    {
-        title: "Post",
-        url: "/admin/posts",
-        icon: FilePenLineIcon,
-        isActive: true,
-        subItems: [
-            {
-                title: "Posts",
-                url: "/admin/posts",
-            },
-            {
-                title: "Categories",
-                url: "/admin/post_categories",
-            },
-        ],
-    },
-    {
-        title: "Pages",
-        url: "/admin/pages",
-        icon: AppWindowIcon,
-        isActive: false,
-        subItems: [
-            {
-                title: "Pages",
-                url: "/admin/pages",
-            },
-            {
-                title: "Positions",
-                url: "/admin/page_positions",
-            },
-        ],
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Sample Content',
-        url: '/admin/ckeditor5',
-        icon: FilePenLineIcon,
-    },
-    // {
-    //     title: 'File Manager',
-    //     url: '/admin/my_file_manager',
-    //     icon: Folder,
-    // },
-];
 export function AppSidebar() {
+    const { url } = usePage(); // Get current URL path
+
+    const isActive = (path: string) => {
+        return url.startsWith(path);
+    };
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: 'Dashboard',
+            url: '/dashboard',
+            icon: LayoutGrid,
+            isActive: isActive('/dashboard'),
+        },
+        {
+            title: 'Items',
+            url: '/items',
+            icon: LayoutGrid,
+            isActive: isActive('/items'),
+        },
+        {
+            title: 'Projects',
+            url: '/admin/projects',
+            icon: ProjectorIcon,
+            isActive: isActive('/admin/projects'),
+        },
+        {
+            title: 'Links',
+            url: '/admin/links',
+            icon: ProjectorIcon,
+            isActive: isActive('/admin/links'),
+        },
+        {
+            title: 'Website Info',
+            url: '/admin/website_info',
+            icon: ProjectorIcon,
+            isActive: isActive('/admin/website_info'),
+        },
+        {
+            title: 'Post',
+            url: '/admin/posts',
+            icon: FilePenLineIcon,
+            isActive: isActive('/admin/posts') || isActive('/admin/post_categories'),
+            subItems: [
+                {
+                    title: 'Posts',
+                    url: '/admin/posts',
+                    isActive: isActive('/admin/posts'),
+                },
+                {
+                    title: 'Categories',
+                    url: '/admin/post_categories',
+                    isActive: isActive('/admin/post_categories'),
+                },
+            ],
+        },
+        {
+            title: 'Pages',
+            url: '/admin/pages',
+            icon: AppWindowIcon,
+            isActive: isActive('/admin/pages') || isActive('/admin/page_positions'),
+            subItems: [
+                {
+                    title: 'Pages',
+                    url: '/admin/pages',
+                    isActive: isActive('/admin/pages'),
+                },
+                {
+                    title: 'Positions',
+                    url: '/admin/page_positions',
+                    isActive: isActive('/admin/page_positions'),
+                },
+            ],
+        },
+    ];
+
+    const footerNavItems: NavItem[] = [
+        {
+            title: 'Sample Content',
+            url: '/admin/ckeditor5',
+            icon: FilePenLineIcon,
+        },
+        // {
+        //     title: 'File Manager',
+        //     url: '/admin/my_file_manager',
+        //     icon: Folder,
+        // },
+    ];
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>

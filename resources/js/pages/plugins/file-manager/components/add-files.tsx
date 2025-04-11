@@ -127,7 +127,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>
-                                    <BreadcrumbLink className="cursor-pointer">Files</BreadcrumbLink>
+                                    <BreadcrumbLink className="cursor-pointer">Folders</BreadcrumbLink>
                                 </BreadcrumbItem>
                                 {currentFolder?.path?.length > 0 && <BreadcrumbSeparator />}
                                 {currentFolder?.path?.map((item, index) => (
