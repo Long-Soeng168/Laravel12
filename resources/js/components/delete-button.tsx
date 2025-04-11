@@ -4,6 +4,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useForm } from '@inertiajs/react';
 import { Loader, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,13 @@ const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) =>
     const handleDelete = () => {
         destroy(deletePath + id, {
             preserveScroll: true,
+            onSuccess: (page) => {
+                if (page.props.flash?.success) {
+                    toast.success('Success', {
+                        description: page.props.flash.success,
+                    });
+                }
+            },
         });
     };
 

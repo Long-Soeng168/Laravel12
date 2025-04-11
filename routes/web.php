@@ -9,7 +9,6 @@ use Inertia\Inertia;
 // })->name('home');
 
 Route::get('/', function () {
-    // return Inertia::render('welcome');
    return Inertia::render('LaravelDefaultPage');
 })->name('home');
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
+use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WebInfoController;
 use App\Models\WebInfo;
@@ -32,6 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/projects/{project}/update_status', [ProjectController::class, 'update_status']);
     Route::get('admin/all_projects', [ProjectController::class, 'all_projects']);
     Route::delete('admin/projects/images/{image}', [ProjectController::class, 'destroy_image']);
+
+     // Post Position Route
+     Route::resource('admin/post_categories', PostCategoryController::class);
+     Route::post('admin/post_categories/{postCategory}/update', [PostCategoryController::class, 'update']);
+     Route::post('admin/post_categories/{postCategory}/update_status', [PostCategoryController::class, 'update_status']);
 
     // Page Position Route
     Route::resource('admin/page_positions', PagePositionController::class);

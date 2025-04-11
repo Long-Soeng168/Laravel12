@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Models\PagePosition;
+use App\Http\Requests\StorePostCategoryRequest;
+use App\Http\Requests\UpdatePostCategoryRequest;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-
-class PagePositionController extends Controller
+class PostCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class PagePositionController extends Controller
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
 
-        $query = PagePosition::query();
+        $query = PostCategory::query();
 
         $query->with('created_by', 'updated_by');
 
@@ -39,9 +40,17 @@ class PagePositionController extends Controller
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/page_positions/Index', [
+        return Inertia::render('admin/post_categories/Index', [
             'tableData' => $tableData,
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -52,7 +61,7 @@ class PagePositionController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'required|string|max:255',
-            'code' => 'required|string|max:255|unique:page_positions,code',
+            'code' => 'required|string|max:255|unique:post_categories,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
             'status' => 'nullable|string|in:active,inactive',
@@ -77,7 +86,7 @@ class PagePositionController extends Controller
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/page_positions', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/post_categories', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -85,27 +94,43 @@ class PagePositionController extends Controller
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/page_positions', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/post_categories', 900);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        PagePosition::create($validated);
+        PostCategory::create($validated);
 
-        return redirect()->back()->with('success', 'Page position created successfully!');
+        return redirect()->back()->with('success', 'Post category created successfully!');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(PostCategory $postCategory)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(PostCategory $postCategory)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PagePosition $pagePosition)
+    public function update(Request $request, PostCategory $postCategory)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'required|string|max:255',
-            'code' => 'required|string|max:255|unique:page_positions,code,' . $pagePosition->id,
+            'code' => 'required|string|max:255|unique:post_categories,code,' . $postCategory->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
             'status' => 'nullable|string|in:active,inactive',
@@ -128,11 +153,11 @@ class PagePositionController extends Controller
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/page_positions', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/post_categories', 600);
                 $validated['image'] = $created_image_name;
 
-                if ($pagePosition->image && $created_image_name) {
-                    ImageHelper::deleteImage($pagePosition->image, 'assets/images/page_positions');
+                if ($postCategory->image && $created_image_name) {
+                    ImageHelper::deleteImage($postCategory->image, 'assets/images/post_categories');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -140,46 +165,48 @@ class PagePositionController extends Controller
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/page_positions', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/post_categories', 900);
                 $validated['banner'] = $created_image_name;
 
-                if ($pagePosition->banner && $created_image_name) {
-                    ImageHelper::deleteImage($pagePosition->banner, 'assets/images/page_positions');
+                if ($postCategory->banner && $created_image_name) {
+                    ImageHelper::deleteImage($postCategory->banner, 'assets/images/post_categories');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        $pagePosition->update($validated);
+        $postCategory->update($validated);
 
 
-        return redirect()->back()->with('success', 'Position updated successfully!');
+        return redirect()->back()->with('success', 'Category updated successfully!');
     }
 
-    public function update_status(Request $request, PagePosition $pagePosition)
+
+    public function update_status(Request $request, PostCategory $postCategory)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $pagePosition->update([
+        $postCategory->update([
             'status' => $request->status,
         ]);
 
         return redirect()->back()->with('success', 'Status updated successfully!');
     }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PagePosition $pagePosition)
+    public function destroy(PostCategory $postCategory)
     {
-        if ($pagePosition->image) {
-            ImageHelper::deleteImage($pagePosition->image, 'assets/images/page_positions');
+        if ($postCategory->image) {
+            ImageHelper::deleteImage($postCategory->image, 'assets/images/post_categories');
         }
-        if ($pagePosition->banner) {
-            ImageHelper::deleteImage($pagePosition->banner, 'assets/images/page_positions');
+        if ($postCategory->banner) {
+            ImageHelper::deleteImage($postCategory->banner, 'assets/images/post_categories');
         }
-        $pagePosition->delete();
-        return redirect()->back()->with('success', 'Position deleted successfully.');
+        $postCategory->delete();
+        return redirect()->back()->with('success', 'Category deleted successfully.');
     }
 }

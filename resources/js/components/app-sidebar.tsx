@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Bot, FilePenLineIcon, Folder, LayoutGrid, PanelTopIcon, ProjectorIcon, ReplaceIcon, Settings2, SquareTerminal } from 'lucide-react';
+import { AppWindowIcon, BookOpen, Bot, FilePenLineIcon, Folder, LayoutGrid, PanelTopIcon, ProjectorIcon, ReplaceIcon, Settings2, SquareTerminal } from 'lucide-react';
 import AppLogo from './app-logo';
 import { NavMainDropdown } from './nav-main-dropdown';
 
@@ -35,10 +35,26 @@ const mainNavItems: NavItem[] = [
         icon: ProjectorIcon,
     },
     {
+        title: "Post",
+        url: "/admin/posts",
+        icon: FilePenLineIcon,
+        isActive: true,
+        subItems: [
+            {
+                title: "Posts",
+                url: "/admin/posts",
+            },
+            {
+                title: "Categories",
+                url: "/admin/post_categories",
+            },
+        ],
+    },
+    {
         title: "Pages",
         url: "/admin/pages",
-        icon: PanelTopIcon,
-        isActive: true,
+        icon: AppWindowIcon,
+        isActive: false,
         subItems: [
             {
                 title: "Pages",
