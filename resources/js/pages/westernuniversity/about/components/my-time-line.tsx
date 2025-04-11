@@ -1,12 +1,12 @@
 const timelineData = [
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: 'Event Title', image: '/assets/demo-images/02Topbackground/12.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
   ];
   
   const MyTimeLine = () => {
