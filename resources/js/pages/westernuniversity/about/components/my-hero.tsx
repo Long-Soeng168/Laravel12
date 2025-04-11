@@ -31,7 +31,7 @@ const MyHero = () => {
         </p>
         
       </div>
-      <div className="w-full max-w-screen-xl mx-auto aspect-video bg-accent rounded-xl" >
+      <div className="w-full max-w-screen-xl mx-auto aspect-[21/9] bg-accent rounded-xl" >
         <img
           src="/assets/demo-images/02TopBackground/01_history.jpg"
           alt="Hero Image"

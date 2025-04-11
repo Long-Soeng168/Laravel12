@@ -62,7 +62,7 @@ export default function MyVideo({ className }: {className:any}) {
                 alt={item.title}
                 className="w-full object-cover aspect-video transition-all duration-300 transform group-hover:scale-105"
               />
-              <span className="absolute -translate-x-1/2 bg-blue-800/50 rounded-full p-2 -translate-y-1/2 text-white top-[50%] left-[50%]">
+              <span className="absolute -translate-x-1/2  rounded-full p-2 -translate-y-1/2 text-white top-[50%] left-[50%]">
                 <Play size={100} />
                 
               </span>

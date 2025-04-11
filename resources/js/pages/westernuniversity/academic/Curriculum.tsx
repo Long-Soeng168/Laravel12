@@ -1,8 +1,8 @@
 import { Link } from '@inertiajs/react';
 import { MyNavbar } from '../components-wu/my-navbar';
 import MyLayoutWestern from '../layout/layout';
-import MyCurricullum from '../about/components/my-curriculum';
-import { MyCurriculumCard } from '../about/components/my-curriculum-card';
+import MyCurricullum from './components/my-curriculum';
+import { MyCurriculumCard } from './components/my-curriculum-card';
 
 const Curriculum = () => {
     return (

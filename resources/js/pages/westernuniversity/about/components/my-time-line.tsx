@@ -30,7 +30,7 @@ const timelineData = [
                   <h1 className="mx-auto text-lg font-semibold text-white">{index + 1}</h1>
                 </div>
                 <div
-                  className={`order-1 flex gap-4 items-center justify-between w-5/12 rounded-2xl bg-gray-900 shadow-xl ${
+                  className={`order-1 grid lg:flex lg:flex-row gap-4 items-center justify-between w-5/12 rounded-2xl bg-gray-900 shadow-xl ${
                     isLeft ? 'px-6 py-4' : 'px-4 py-4'
                   }`}
                 >
@@ -40,21 +40,21 @@ const timelineData = [
                         <h3 className="mb-3 text-xl font-bold text-white">{event.title}</h3>
                         <p className="leading-tight text-white">{event.description}</p>
                       </div>
-                      <div className="w-5/6">
+                      <div className="w-full h-full xl:w-5/6">
                         <img
                           src={event.image}
                           alt={`Timeline event ${index + 1}`}
-                          className="aspect-square object-cover rounded-2xl"
+                          className="aspect-square h-full object-cover rounded-2xl"
                         />
                       </div>
                     </>
                   ) : (
                     <>
-                      <div className="w-5/6">
+                      <div className="w-full h-full xl:w-5/6">
                         <img
                           src={event.image}
                           alt={`Timeline event ${index + 1}`}
-                          className="aspect-square object-cover rounded-2xl"
+                          className="aspect-square h-full object-cover rounded-2xl"
                         />
                       </div>
                       <div>

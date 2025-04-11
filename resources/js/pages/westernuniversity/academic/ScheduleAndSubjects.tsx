@@ -1,13 +1,14 @@
 import React from 'react'
 import MyLayoutWestern from '../layout/layout'
-import { Link } from '@inertiajs/react'
 import { MyNavbar } from '../components-wu/my-navbar'
-import MyProgramsFeature from './components/my-programs-feature'
+import { Link } from '@inertiajs/react'
+import MyTable from './components/my-table'
+import MySubject from './components/my-subject'
 
-const Programs = () => {
+const ScheduleAndSubjects = () => {
   return (
     <MyLayoutWestern>
-         <div className="font-now-alt-regular">
+        <div className="font-now-alt-regular">
                 <div className="aspect-[21/6] w-full bg-[url('/assets/demo-images/02TopBackground/11OutreachPrograms.jpg')] bg-cover bg-center bg-no-repeat lg:aspect-[21/6]">
                     <header className="flex flex-wrap items-center px-4 py-6 lg:px-16">
                         <div className="flex flex-1 items-center text-white">
@@ -33,13 +34,14 @@ const Programs = () => {
                         </div>
                     </header>
                     <div className="mx-auto flex h-full w-[55%] flex-col items-center justify-center py-10 text-center">
-                        <p className="font-now-alt-bold text-5xl text-white">Programs</p>
+                        <p className="font-now-alt-bold text-5xl text-white">Class Schedules</p>
                     </div>
                 </div>
-         </div>
-         <MyProgramsFeature/>
+        </div>
+        <MyTable/>
+        <MySubject/>
     </MyLayoutWestern>
   )
 }
 
-export default Programs
+export default ScheduleAndSubjects

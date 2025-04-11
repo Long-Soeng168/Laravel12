@@ -1,91 +1,78 @@
-import { Separator } from '@/components/ui/separator';
 import { Link } from '@inertiajs/react';
 import { ArrowUpCircleIcon } from 'lucide-react';
 
 const footerSections = [
     {
-        title: 'Product',
+        title: 'ACADEMICS',
         links: [
             {
-                title: 'Overview',
+                title: 'General English Program',
                 href: '#',
             },
             {
-                title: 'Features',
+                title: 'Curriculum',
                 href: '#',
             },
             {
-                title: 'Solutions',
+                title: 'Exchange Program',
                 href: '#',
             },
             {
-                title: 'Tutorials',
+                title: 'Summer Program',
                 href: '#',
             },
             {
-                title: 'Pricing',
-                href: '#',
-            },
-            {
-                title: 'Releases',
+                title: 'School Calendar',
                 href: '#',
             },
         ],
     },
     {
-        title: 'Resources',
+        title: 'SCHOOL INFO',
         links: [
             {
-                title: 'Blog',
+                title: 'About',
                 href: '#',
             },
             {
-                title: 'Newsletter',
+                title: 'Campuses',
                 href: '#',
             },
             {
-                title: 'Events',
+                title: 'School Facilities',
                 href: '#',
             },
             {
-                title: 'Help centre',
+                title: 'Class Schedule and Subjects',
                 href: '#',
             },
             {
-                title: 'Tutorials',
-                href: '#',
-            },
-            {
-                title: 'Support',
+                title: 'Student Council',
                 href: '#',
             },
         ],
     },
     {
-        title: 'Resources',
+        title: 'CONTACT',
         links: [
             {
-                title: 'Blog',
+                title: '📞 016 699 192',
                 href: '#',
             },
             {
-                title: 'Newsletter',
+                title: '📞 078 672 072',
                 href: '#',
             },
             {
-                title: 'Events',
+                title: '📍 Find us on Google Map',
                 href: '#',
             },
             {
-                title: 'Help centre',
+                title: '✉️ info@western.edu.kh',
                 href: '#',
             },
             {
-                title: 'Tutorials',
-                href: '#',
-            },
-            {
-                title: 'Support',
+                title: '🏠 #20, St. 598C,Phnom Penh Thmey,Sen Sok, Cambodia',
                 href: '#',
             },
         ],
@@ -94,18 +81,18 @@ const footerSections = [
 
 const MyFooter = () => {
     return (
-        <div className="flex flex-col bg-blue-900 text-white relative">
+        <div className="relative flex flex-col bg-blue-900 text-white">
             <div className="bg-muted grow" />
-            <footer >
-                <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 md:px-20">
-                    <div className="grid grid-cols-1 items-center justify-center gap-x-8 gap-y-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 xl:px-0">
+            <footer>
+                <div className="mx-auto max-w-screen-xl ">
+                    <div className="grid grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 lg:grid-cols-4">
                         {footerSections.map(({ title, links }) => (
-                            <div key={title}>
-                                <h6 className="text-4xl font-semibold">{title}</h6>
-                                <ul className="mt-6 space-y-4">
+                            <div key={title} className="space-y-6">
+                                <h6 className="text-xl font-bold tracking-wide">{title}</h6>
+                                <ul className="space-y-3">
                                     {links.map(({ title, href }) => (
                                         <li key={title}>
-                                            <Link href={href} className="hover:cursor-pointer">
+                                            <Link href={href} className="transition-colors duration-300 hover:text-slate-300">
                                                 {title}
                                             </Link>
                                         </li>
@@ -114,7 +101,6 @@ const MyFooter = () => {
                             </div>
                         ))}
 
-                        {/* Social icons + scroll to top */}
                         <div>
                             {/* Social icons + Scroll to Top */}
                             <div className="space-y-6">
@@ -165,14 +151,11 @@ const MyFooter = () => {
                         </div>
                     </div>
 
+                    {/* Bottom section */}
                     <div className="flex flex-col-reverse items-center justify-center gap-x-2 gap-y-5 px-6 py-8 xl:px-0">
                         {/* Copyright */}
                         <span className=" text-white">
-                            &copy; {new Date().getFullYear()}{' '}
-                            <Link href="/" target="_blank">
-                                Shadcn UI Blocks
-                            </Link>
-                            . All rights reserved.
+                        Copyright © 2023 Western International School. All Rights Reserved.
                         </span>
 
                         <div className="text-muted-foreground flex items-center gap-5">
@@ -184,13 +167,12 @@ const MyFooter = () => {
                 </div>
 
                 {/* Scroll to Top Button */}
-                {/* Scroll to Top Button */}
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="absolute right-10 -top-10 z-50 flex flex-col items-center justify-center rounded-xl bg-gradient-to-b from-slate-100 to-slate-200 px-1 py-4 text-blue-900 shadow-md transition hover:shadow-lg md:right-20 "
+                    className="absolute -top-8 right-6 flex flex-col items-center justify-center rounded-xl bg-gradient-to-b from-slate-100 to-slate-200 px-2 py-6 text-blue-900 shadow-md transition hover:shadow-lg md:right-20"
                 >
-                    <ArrowUpCircleIcon className="h-10 w-10" />
-                    <span className="text-[10px]">Scroll to Top</span>
+                    <ArrowUpCircleIcon className="h-8 w-8" />
+                    <span className="mt-1 text-[10px]">Scroll to Top</span>
                 </button>
             </footer>
         </div>

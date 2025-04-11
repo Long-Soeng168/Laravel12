@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { motion } from "motion/react";
 import { Link } from "@inertiajs/react";
@@ -26,7 +25,7 @@ export const MenuItem = ({
   return (
     <div onMouseEnter={() => setActive(item)} className="relative ">
       <motion.a
-          href={item.toLowerCase() === "about" ? '/'  : `/${item.toLowerCase().replace(/\s+/g,'-')}`}
+          // href={item.toLowerCase() === "about" ? '/'  : `/${item.toLowerCase().replace(/\s+/g,'-')}`}
         transition={{ duration: 0.5 }}
         className="cursor-pointer text-white font-now-regular tracking-widest hover:underline underline-offset-4 dark:text-white flex gap-0.5 items-center justify-center"
       >
@@ -39,11 +38,11 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_10px)] left-1/2 transform -translate-x-1/2">
+            <div className="absolute xl:top-[calc(100%_+_10px)] top-[calc(100%_+_-10px)] left-26 xl:left-1/2 transform xl:-translate-x-1/2">
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
-                className="bg-gray-900 dark:bg-black backdrop-blur-sm overflow-hidden"
+                className="bg-black dark:bg-black backdrop-blur-sm overflow-hidden"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -71,9 +70,9 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative  flex justify-between items-center py-2 "
+      className="relative  flex xl:justify-between xl:items-center py-2 "
     >
-        <div className="flex justify-between items-center space-x-6 ">
+        <div className="flex flex-col space-y-6 xl:space-y-0 items-start xl:flex xl:flex-row  xl:justify-between xl:items-center xl:space-x-6 ">
         {children}
         </div>
 
@@ -117,7 +116,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
       {...rest}
-      className="text-white max-w-56 dark:text-neutral-200 hover:text-[#273896] "
+      className="text-white  max-w-56 dark:text-neutral-200 hover:underline "
     >
       {children}
     </Link>

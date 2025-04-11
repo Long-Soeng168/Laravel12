@@ -2,9 +2,10 @@ import React from 'react'
 import MyLayoutWestern from '../layout/layout'
 import { Link } from '@inertiajs/react'
 import { MyNavbar } from '../components-wu/my-navbar'
-import MyProgramsFeature from './components/my-programs-feature'
+import MyAdmissionFeature from './components/my-admission-feature'
+import MyTable from './components/my-table'
 
-const Programs = () => {
+const Index = () => {
   return (
     <MyLayoutWestern>
          <div className="font-now-alt-regular">
@@ -33,13 +34,14 @@ const Programs = () => {
                         </div>
                     </header>
                     <div className="mx-auto flex h-full w-[55%] flex-col items-center justify-center py-10 text-center">
-                        <p className="font-now-alt-bold text-5xl text-white">Programs</p>
+                        <p className="font-now-alt-bold text-5xl text-white">Admission</p>
                     </div>
                 </div>
          </div>
-         <MyProgramsFeature/>
+         <MyAdmissionFeature/>
+         <MyTable/>
     </MyLayoutWestern>
   )
 }
 
-export default Programs
+export default Index
