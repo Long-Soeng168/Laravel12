@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
      // Post Position Route
      Route::resource('admin/post_categories', PostCategoryController::class);
      Route::post('admin/post_categories/{postCategory}/update', [PostCategoryController::class, 'update']);
+     Route::get('admin/all_page_categories', [PostCategoryController::class, 'all_page_categories']);
      Route::post('admin/post_categories/{postCategory}/update_status', [PostCategoryController::class, 'update_status']);
 
     // Page Position Route

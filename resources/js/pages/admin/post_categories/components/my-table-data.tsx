@@ -74,6 +74,16 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Short Description Khmer
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('parent_code')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Parent
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('order_index')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Order Index
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
@@ -162,6 +172,8 @@ const MyTableData = () => {
                                 <TableCell>{item.name_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                <TableCell>{item.parent_code || '---'}</TableCell>
+                                <TableCell>{item.order_index || '---'}</TableCell>
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>
                                     <MyUpdateStatusButton

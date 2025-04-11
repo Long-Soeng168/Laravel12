@@ -31,7 +31,7 @@ const ViewButton = ({ item }: { item: any }) => {
                 <DialogHeader>
                     <DialogTitle>View Project</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
-                    <Create item={item} />
+                    <Create readOnly={true} item={item} />
                 </DialogHeader>
             </DialogContent>
         </Dialog>

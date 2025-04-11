@@ -45,9 +45,19 @@ class PostCategoryController extends Controller
         ]);
     }
 
+    public function all_page_categories()
+    {
+        $query = PostCategory::query();
+
+        $tableData = $query->where('status', 'active')->orderBy('id', 'desc')->get();
+
+        return response()->json($tableData);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
+    
     public function create()
     {
         //
@@ -64,6 +74,8 @@ class PostCategoryController extends Controller
             'code' => 'required|string|max:255|unique:post_categories,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
+            'parent_code' => 'nullable|string|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -133,6 +145,8 @@ class PostCategoryController extends Controller
             'code' => 'required|string|max:255|unique:post_categories,code,' . $postCategory->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
+            'parent_code' => 'nullable|string|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',

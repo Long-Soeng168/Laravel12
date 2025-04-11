@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('short_description_kh', 500)->nullable();
             $table->string('image')->nullable();
             $table->string('banner')->nullable();
+            $table->integer('order_index')->nullable()->default(1);
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')
