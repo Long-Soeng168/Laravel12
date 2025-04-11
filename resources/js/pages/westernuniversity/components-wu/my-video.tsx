@@ -9,7 +9,7 @@ const videos = [
     id: 1,
     src: "https://www.youtube.com/embed/ILRs2r6lcHY?si=zxxTKdVhSCOb5HYG",
     title: "Video 1",
-    thumb: "/assets/demo-images/banner5.JPG",
+    thumb: "/assets/demo-images/banner5.jpg",
   },
 //   {
 //     id: 3,
