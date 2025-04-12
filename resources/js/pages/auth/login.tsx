@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
+import { PasswordInput } from '@/components/ui/password-input';
 
 type LoginForm = {
     email: string;
@@ -66,9 +67,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 </TextLink>
                             )}
                         </div>
-                        <Input
+                        <PasswordInput
                             id="password"
-                            type="password"
+                            // type="password"
                             required
                             tabIndex={2}
                             autoComplete="current-password"

@@ -11,6 +11,9 @@ How to setup project
 
 - command pull branch in githug is: 
     - git branch -a
-    -git checkout your branch name
+    - git checkout your branch name
+
+- Seed roles and permissions
+    - php artisan db:seed --class=RolesAndPermissionsSeeder
 # Laravel12
 # Laravel12

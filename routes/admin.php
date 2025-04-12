@@ -7,13 +7,29 @@ use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
+
+    // === Testing Spatie Role & Permission ===
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/admin_test', function () {
+            return 'Admin Login Success';
+        });
+    });
+    Route::group(['middleware' => ['permission:create post']], function () {
+        Route::get('/permission_test', function () {
+            return 'Permission Create post';
+        });
+    });
+    // === End Testing Spatie Role & Permission ===
 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('dashboard', function () {
@@ -73,10 +89,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/banners/remove_image/{banner}', [BannerController::class, 'remove_banner_image']);
     Route::delete('admin/banners/images/{image}', [BannerController::class, 'destroy_image']);
 
-    // Heading
+    // Heading Route
     Route::resource('admin/headings', HeadingController::class);
     Route::post('admin/headings/{heading}/update', [HeadingController::class, 'update']);
     Route::post('admin/headings/{heading}/update_status', [HeadingController::class, 'update_status']);
+
+    // Roles & Permissions & User Route 
+    Route::resource('admin/permissions', PermissionController::class);
+    Route::resource('admin/roles', RoleController::class);
+    Route::get('admin/all_roles', [RoleController::class, 'all_roles']);
+    Route::resource('admin/users', UserController::class);
+    Route::post('admin/users/{user}/update', [UserController::class, 'update']);
+    // Route::get('/assign-admin', [RoleController::class, 'assignAdmin']);
 
 
     // File Upload Route

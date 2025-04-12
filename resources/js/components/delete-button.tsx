@@ -19,6 +19,16 @@ const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) =>
                         description: page.props.flash.success,
                     });
                 }
+                if (page.props.flash?.error) {
+                    toast.error('Error', {
+                        description: page.props.flash.error,
+                    });
+                }
+            },
+            onError: (e) => {
+                toast.error('Error', {
+                    description: 'Failed to create.' + JSON.stringify(e, null, 2),
+                });
             },
         });
     };

@@ -68,8 +68,6 @@ export default function Create() {
         },
     });
 
-    useEffect(() => {}, []);
-
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             // console.log(values);

@@ -19,10 +19,11 @@
 }
  
 .toaster .toast::after {
+    z-index: 100;
     content: '';
-    position: fixed;
-    bottom: 0;
-    left: -1px;
+    position: absolute;
+    bottom: -6px;
+    left: 1px;
     right: 1px;
     width: 100%;
     height: 6px;
@@ -30,11 +31,8 @@
     border-radius: 100px 100px 100px 100px;
     transform: translate(0px, 1px);
     animation: toast-progress linear;
-    animation-duration: 4.2s; /* Match the default Sonner timeout */
-}
-.toaster .toast:hover::after {
-    opacity: 0;
-}
+    animation-duration: 4.4s;
+} 
 
 @keyframes toast-progress {
     from {
