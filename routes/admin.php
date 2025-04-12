@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
+use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
@@ -71,6 +72,12 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/banners/{banner}/update_status', [BannerController::class, 'update_status']);
     Route::delete('admin/banners/remove_image/{banner}', [BannerController::class, 'remove_banner_image']);
     Route::delete('admin/banners/images/{image}', [BannerController::class, 'destroy_image']);
+
+    // Heading
+    Route::resource('admin/headings', HeadingController::class);
+    Route::post('admin/headings/{heading}/update', [HeadingController::class, 'update']);
+    Route::post('admin/headings/{heading}/update_status', [HeadingController::class, 'update_status']);
+
 
     // File Upload Route
     Route::get('/admin/ckeditor5', function () {
