@@ -1,13 +1,10 @@
 import DeleteButton from '@/components/delete-button';
-import MyImageGallery from '@/components/my-image-gallery';
-import MyUpdateStatusButton from '@/components/my-update-status-button';
+import MyNoData from '@/components/my-no-data';
+import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
-import { useState } from 'react';
-import MyNoData from '@/components/my-no-data';
-import { MyTooltipButton } from '@/components/my-tooltip-button';
 
 const MyTableData = () => {
     const { tableData } = usePage().props;
@@ -40,7 +37,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Name
                                 </span>
-                            </TableHead> 
+                            </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -52,19 +49,37 @@ const MyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <Link href={`/admin/roles/${item.id}`}>
-                                            <MyTooltipButton title="View" side="bottom" variant='ghost'>
+                                            <MyTooltipButton title="View" side="bottom" variant="ghost">
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
                                         <DeleteButton deletePath="/admin/roles/" id={item.id} />
                                         <Link href={`/admin/roles/${item.id}/edit`}>
-                                            <MyTooltipButton title="Edit" side="bottom" variant='ghost'>
+                                            <MyTooltipButton title="Edit" side="bottom" variant="ghost">
                                                 <EditIcon />
                                             </MyTooltipButton>
                                         </Link>
                                     </span>
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
+                                <TableCell>
+                                    {item.created_at
+                                        ? new Date(item.created_at).toLocaleDateString('en-UK', {
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
+                                        : '---'}
+                                </TableCell>
+                                <TableCell>
+                                    {item.updated_at
+                                        ? new Date(item.updated_at).toLocaleDateString('en-UK', {
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
+                                        : '---'}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -72,9 +87,7 @@ const MyTableData = () => {
 
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-            {tableData?.data?.length < 1 && (
-                <MyNoData />
-            )}
+            {tableData?.data?.length < 1 && <MyNoData />}
         </>
     );
 };

@@ -42,6 +42,8 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Name
                                 </span>
                             </TableHead> 
+                            <TableHead>Created At</TableHead>
+                            <TableHead>Updated At</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -57,6 +59,24 @@ const MyTableData = () => {
                                     </span>
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
+                                <TableCell>
+                                    {item.created_at
+                                        ? new Date(item.created_at).toLocaleDateString('en-UK', {
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
+                                        : '---'}
+                                </TableCell>
+                                <TableCell>
+                                    {item.updated_at
+                                        ? new Date(item.updated_at).toLocaleDateString('en-UK', {
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
+                                        : '---'}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
