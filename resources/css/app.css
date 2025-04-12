@@ -758,6 +758,9 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     margin-left: 42px;
 }
 
+.ck-content img.image_resized {
+    display: inline;
+}
 .ck-content h3.category {
     font-size: 20px;
     font-weight: bold;

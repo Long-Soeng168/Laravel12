@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { AppWindowIcon, FilePenLineIcon, LayoutGrid, LinkIcon, ProjectorIcon } from 'lucide-react';
+import { AppWindowIcon, FilePenLineIcon, GalleryThumbnailsIcon, Heading1Icon, InfoIcon, LayoutGrid, LinkIcon, ProjectorIcon, UsersIcon } from 'lucide-react';
 import AppLogo from './app-logo';
 
 export function AppSidebar() {
@@ -32,6 +32,12 @@ export function AppSidebar() {
             url: '/admin/projects',
             icon: ProjectorIcon,
             isActive: isActive('/admin/projects'),
+        }, 
+        {
+            title: 'Headings',
+            url: '/admin/headings',
+            icon: Heading1Icon,
+            isActive: isActive('/admin/headings'),
         },
         {
             title: 'Links',
@@ -40,10 +46,10 @@ export function AppSidebar() {
             isActive: isActive('/admin/links'),
         },
         {
-            title: 'Website Info',
-            url: '/admin/website_info',
-            icon: ProjectorIcon,
-            isActive: isActive('/admin/website_info'),
+            title: 'Application Info',
+            url: '/admin/application_info',
+            icon: InfoIcon,
+            isActive: isActive('/admin/application_info'),
         },
         {
             title: 'Post',
@@ -78,6 +84,47 @@ export function AppSidebar() {
                     title: 'Positions',
                     url: '/admin/page_positions',
                     isActive: isActive('/admin/page_positions'),
+                },
+            ],
+        },
+        {
+            title: 'Banners',
+            url: '/admin/banners',
+            icon: GalleryThumbnailsIcon,
+            isActive: isActive('/admin/banners') || isActive('/admin/banner_positions'),
+            subItems: [
+                {
+                    title: 'Banners',
+                    url: '/admin/banners',
+                    isActive: isActive('/admin/banners'),
+                },
+                {
+                    title: 'Positions',
+                    url: '/admin/banner_positions',
+                    isActive: isActive('/admin/banner_positions'),
+                },
+            ],
+        },
+        {
+            title: 'Users',
+            url: '/admin/users',
+            icon: UsersIcon,
+            isActive: isActive('/admin/users') || isActive('/admin/roles') || isActive('/admin/permissions'),
+            subItems: [
+                {
+                    title: 'Users',
+                    url: '/admin/users',
+                    isActive: isActive('/admin/users'),
+                },
+                {
+                    title: 'Roles',
+                    url: '/admin/roles',
+                    isActive: isActive('/admin/roles'),
+                },
+                {
+                    title: 'Permissions',
+                    url: '/admin/permissions',
+                    isActive: isActive('/admin/permissions'),
                 },
             ],
         },

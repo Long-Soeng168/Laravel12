@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\ApplicationInfoController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BannerPositionController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\WebInfoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,12 +24,15 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::resource('admin/website_info', WebInfoController::class);
-    Route::post('admin/website_info/{website_info}/update', [WebInfoController::class, 'update']);
+    // Application Info Router
+    Route::resource('admin/application_info', ApplicationInfoController::class);
+    Route::post('admin/application_info/{application_info}/update', [ApplicationInfoController::class, 'update']);
+
+    // Links Route
     Route::resource('admin/links', LinkController::class);
     Route::post('admin/links/{link}/update', [LinkController::class, 'update']);
     Route::post('admin/links/{link}/update_status', [LinkController::class, 'update_status']);
-    
+
     // Project Route
     Route::resource('admin/projects', ProjectController::class);
     Route::post('admin/projects/{project}/update', [ProjectController::class, 'update']);
@@ -55,6 +60,16 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/pages/{page}/update', [PageController::class, 'update']);
     Route::post('admin/pages/{page}/update_status', [PageController::class, 'update_status']);
     Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
+
+    // Banner Position Route
+    Route::resource('admin/banner_positions', BannerPositionController::class);
+    Route::post('admin/banner_positions/{bannerPosition}/update', [BannerPositionController::class, 'update']);
+    Route::post('admin/banner_positions/{bannerPosition}/update_status', [BannerPositionController::class, 'update_status']);
+    // Banner Route
+    Route::resource('admin/banners', BannerController::class);
+    Route::post('admin/banners/{banner}/update', [BannerController::class, 'update']);
+    Route::post('admin/banners/{banner}/update_status', [BannerController::class, 'update_status']);
+    Route::delete('admin/banners/images/{image}', [BannerController::class, 'destroy_image']);
 
     // File Upload Route
     Route::get('/admin/ckeditor5', function () {

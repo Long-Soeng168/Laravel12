@@ -7,13 +7,17 @@ use Illuminate\Support\Facades\Storage;
 
 class FileHelper
 {
-    public static function uploadFile($file, $folder = 'assets/files/file_manager')
+    public static function uploadFile($file, $folder = 'assets/files/file_manager', $timePrefixFileName = false)
     {
         if (!$file) {
             return null;
         }
 
-        $file_name = $file->getClientOriginalName();
+        if ($timePrefixFileName) {
+            $file_name = time() . '_' . $file->getClientOriginalName();
+        } else {
+            $file_name = $file->getClientOriginalName();
+        }
 
         // Define paths
         $file_path = public_path("$folder/");

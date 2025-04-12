@@ -175,7 +175,7 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
                                 >
                                     {item.mime_type.startsWith('image/') ? <ViewIcon /> : <DownloadCloudIcon />}
                                 </MyTooltipButton>
-                                <CopyFileUrl url={`/${item.path}/${item.name}`} />
+                                <CopyFileUrl url={`${window.location.origin}/${item.path}/${item.name}`} />
                             </div>
                             {/* {item.mime_type.startsWith('image/') && (
                                 <div className="absolute bottom-1 left-1 max-w-full gap-1 rounded-tr-md rounded-bl-md bg-white px-2 text-xs whitespace-nowrap text-black transition-all duration-300 group-hover:flex">

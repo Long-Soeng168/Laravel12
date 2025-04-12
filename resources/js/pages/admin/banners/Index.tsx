@@ -1,18 +1,16 @@
+import MyAddNewButton from '@/components/my-add-new-button';
 import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
-import AddNewButton from './components/add-new-button';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
-import { MyExportButton } from '@/components/my-export-button';
-import { MyImportButton } from '@/components/my-import-button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Website Info',
-        href: '/admin/website_info',
+        title: 'Banners',
+        href: '/admin/banners',
     },
 ];
 const Index = () => {
@@ -24,9 +22,9 @@ const Index = () => {
                     <MyFilterButton />
                     <MyRefreshButton />
                     <span className="flex-1"></span>
-                    <MyExportButton />
-                    <MyImportButton />
-                    <AddNewButton />
+                    {/* <MyExportButton />
+                    <MyImportButton /> */}
+                    <MyAddNewButton url="/admin/banners/create" type="link" />
                 </div>
             </div>
             <div className="h-2" />

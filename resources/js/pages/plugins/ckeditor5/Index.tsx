@@ -1,7 +1,9 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { useState } from 'react';
 import MyCkeditor5 from './my-ckeditor5';
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Sample Content',
@@ -12,9 +14,23 @@ export default function Page() {
     const [data, setData] = useState(sampleData);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <div className="mx-auto flex h-full max-w-6xl items-center justify-center py-2">
-                <MyCkeditor5 data={data} setData={setData} />
-            </div>
+            <Tabs defaultValue="followers" className="w-full max-w-full lg:p-4">
+                <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="followers">Editor</TabsTrigger>
+                    <TabsTrigger value="following">Preview</TabsTrigger>
+                </TabsList>
+
+                <div className="mt-2 rounded-md">
+                    <TabsContent value="followers" className="z-[100]">
+                        <div className="mx-auto flex h-full max-w-6xl items-center justify-center py-2">
+                            <MyCkeditor5 data={data} setData={setData} />
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="following" className="prose ck-content max-w-none">
+                        <div dangerouslySetInnerHTML={{ __html: data }} />
+                    </TabsContent>
+                </div>
+            </Tabs>
         </AppLayout>
     );
 }
