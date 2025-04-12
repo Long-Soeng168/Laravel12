@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/banners', BannerController::class);
     Route::post('admin/banners/{banner}/update', [BannerController::class, 'update']);
     Route::post('admin/banners/{banner}/update_status', [BannerController::class, 'update_status']);
+    Route::delete('admin/banners/remove_image/{banner}', [BannerController::class, 'remove_banner_image']);
     Route::delete('admin/banners/images/{image}', [BannerController::class, 'destroy_image']);
 
     // File Upload Route

@@ -287,6 +287,17 @@ class BannerController extends Controller
         $banner->delete();
         return redirect()->back()->with('success', 'Banner deleted successfully.');
     }
+    public function remove_banner_image(Banner $banner)
+    {
+        if ($banner->image) {
+            ImageHelper::deleteImage($banner->image, 'assets/images/banners');
+        }
+
+        $banner->update([
+            'image' => null,
+        ]);
+        return redirect()->back()->with('success', 'Banner image remove successfully.');
+    }
 
     public function destroy_image(BannerImage $image)
     {

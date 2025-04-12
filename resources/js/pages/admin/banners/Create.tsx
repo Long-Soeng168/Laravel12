@@ -336,8 +336,8 @@ export default function Create() {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="image">Image</SelectItem>
-                                                <SelectItem value="multi_images">Multi Images</SelectItem>
+                                                <SelectItem value="image">Image (Single Image)</SelectItem>
+                                                <SelectItem value="multi_images">Images (Multiple Images)</SelectItem>
                                                 <SelectItem value="video">Video</SelectItem>
                                                 <SelectItem value="embed">Embed</SelectItem>
                                             </SelectContent>
@@ -418,6 +418,9 @@ export default function Create() {
                                                     alt={editData?.image}
                                                     className="h-full w-full object-contain"
                                                 />
+                                                <span className="absolute top-1 right-1 group-hover:opacity-100 lg:opacity-0">
+                                                    <DeleteButton deletePath="/admin/banners/remove_image/" id={editData?.id} />
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
