@@ -28,7 +28,7 @@ export default function SearchInput() {
                 placeholder="Search..."
             />
             <Button variant="outline" type="submit" onClick={() => getFileData()}>
-                <SearchIcon className="[&_svg]:size-2" /> Search
+                <SearchIcon className="[&_svg]:size-2" /> <span className='hidden lg:inline'>Search</span>
             </Button>
         </div>
     );
