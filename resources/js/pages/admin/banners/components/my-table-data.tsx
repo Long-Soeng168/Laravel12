@@ -6,7 +6,7 @@ import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, FileVideo2Icon, FileVideoIcon, Link2Icon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
+import { ArrowUpDown, EditIcon, FileVideoIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
@@ -46,8 +46,8 @@ const MyTableData = () => {
                             <TableHead className="w-[50px]">No</TableHead>
                             <TableHead className="text-left">Action</TableHead>
                             <TableHead>Image(s)</TableHead>
-                            <TableHead className='text-center'>Video</TableHead>
-                            <TableHead className='text-center'>Link</TableHead>
+                            <TableHead className="text-center">Video</TableHead>
+                            <TableHead className="text-center">Link</TableHead>
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title
@@ -77,7 +77,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
                                 </span>
-                            </TableHead> 
+                            </TableHead>
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type
@@ -176,7 +176,7 @@ const MyTableData = () => {
                                         />
                                     )}
                                 </TableCell>
-                                <TableCell className='text-center'>
+                                <TableCell className="text-center">
                                     {item.video ? (
                                         <a href={`/assets/files/banners/videos/${item.video}`} target="_blank">
                                             <MyTooltipButton variant="ghost" title={item.video}>
@@ -187,11 +187,21 @@ const MyTableData = () => {
                                         '---'
                                     )}
                                 </TableCell>
-                                <TableCell className='text-center'>
+                                <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
-                                            <MyTooltipButton variant="ghost" title={item.link}>
-                                                <SquareArrowOutUpRightIcon className="hover:stroke-3" />
+                                            <MyTooltipButton variant="ghost" title={item.link} className="p-0 hover:bg-transparent">
+                                                {item.source_detail ? (
+                                                    <span>
+                                                        <img
+                                                            src={`/assets/images/links/thumb/${item?.source_detail?.image}`}
+                                                            className="aspect-square h-10 object-contain"
+                                                            alt=""
+                                                        />
+                                                    </span>
+                                                ) : (
+                                                    <SquareArrowOutUpRightIcon className="hover:stroke-3" />
+                                                )}
                                             </MyTooltipButton>
                                         </a>
                                     ) : (

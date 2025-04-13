@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
+use App\Models\Link;
 use App\Models\Page;
 use App\Models\PageImage;
 use App\Models\PagePosition;
@@ -23,7 +24,7 @@ class PageController extends Controller
 
         $query = Page::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'parent', 'position');
+        $query->with('created_by', 'updated_by', 'images', 'parent', 'position', 'source_detail');
 
         if ($status) {
             $query->where('status', $status);
@@ -54,6 +55,7 @@ class PageController extends Controller
 
         $parentData = $query->get();
         return Inertia::render('admin/pages/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'parentData' => $parentData,
             'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
@@ -72,6 +74,7 @@ class PageController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',
@@ -120,6 +123,7 @@ class PageController extends Controller
 
         $parentData = $query->where('id', '!=', $page->id)->get();
         return Inertia::render('admin/pages/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $page->load('images'),
             'parentData' => $parentData,
             'pagePositions' => PagePosition::all(),
@@ -138,6 +142,7 @@ class PageController extends Controller
 
         $parentData = $query->where('id', '!=', $page->id)->get();
         return Inertia::render('admin/pages/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $page->load('images'),
             'parentData' => $parentData,
             'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
@@ -158,6 +163,7 @@ class PageController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',

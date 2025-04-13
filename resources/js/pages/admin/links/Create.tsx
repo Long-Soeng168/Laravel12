@@ -183,6 +183,7 @@ export default function Create({
                                         <SelectContent>
                                             <SelectItem value="social_media">Social Media</SelectItem>
                                             <SelectItem value="contact">Contact</SelectItem>
+                                            <SelectItem value="other">Other</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>

@@ -15,6 +15,10 @@ class Page extends Model
     {
         return $this->belongsTo(PagePosition::class, 'position_code', 'code');
     }
+    public function source_detail()
+    {
+        return $this->belongsTo(Link::class, 'source', 'id');
+    }
     public function parent()
     {
         return $this->belongsTo(Page::class, 'parent_id', 'id');

@@ -41,6 +41,11 @@ class PostController extends Controller
         return response()->json($tableData);
     }
 
+    public function show(Post $post)
+    {
+        return response()->json($post->load('created_by', 'images', 'category'));
+    }
+
     // Post Categories
     public function post_categories(Request $request)
     {

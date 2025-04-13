@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
+use App\Models\Link;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\PostImage;
@@ -20,7 +21,7 @@ class PostController extends Controller
 
         $query = Post::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'category');
+        $query->with('created_by', 'updated_by', 'images', 'category', 'source_detail');
 
         if ($status) {
             $query->where('status', $status);
@@ -47,6 +48,7 @@ class PostController extends Controller
     public function create(Request $request)
     {
         return Inertia::render('admin/posts/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
@@ -64,6 +66,7 @@ class PostController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'category_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
@@ -107,6 +110,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return Inertia::render('admin/posts/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $post->load('images'),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
             'readOnly' => true,
@@ -120,6 +124,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return Inertia::render('admin/posts/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $post->load('images'),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
@@ -139,6 +144,7 @@ class PostController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'category_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',

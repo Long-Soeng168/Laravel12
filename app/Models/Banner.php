@@ -16,6 +16,10 @@ class Banner extends Model
     {
         return $this->belongsTo(BannerPosition::class, 'position_code', 'code');
     }
+    public function source_detail()
+    {
+        return $this->belongsTo(Link::class, 'source', 'id');
+    }
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');

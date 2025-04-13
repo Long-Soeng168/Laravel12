@@ -7,6 +7,7 @@ use App\Helpers\ImageHelper;
 use App\Models\Banner;
 use App\Models\BannerImage;
 use App\Models\BannerPosition;
+use App\Models\Link;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -24,7 +25,7 @@ class BannerController extends Controller
 
         $query = Banner::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'position');
+        $query->with('created_by', 'updated_by', 'images', 'position', 'source_detail');
 
         if ($status) {
             $query->where('status', $status);
@@ -56,6 +57,7 @@ class BannerController extends Controller
 
         $parentData = $query->get();
         return Inertia::render('admin/banners/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'bannerPositions' => BannerPosition::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
@@ -73,6 +75,7 @@ class BannerController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',
@@ -151,6 +154,7 @@ class BannerController extends Controller
             'parentData' => $parentData,
             'bannerPositions' => BannerPosition::all(),
             'readOnly' => true,
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
         ]);
     }
 
@@ -165,6 +169,7 @@ class BannerController extends Controller
 
         $parentData = $query->where('id', '!=', $banner->id)->get();
         return Inertia::render('admin/banners/Create', [
+            'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $banner->load('images'),
             'parentData' => $parentData,
             'bannerPositions' => BannerPosition::where('status', 'active')->orderBy('id', 'desc')->get(),
@@ -184,6 +189,7 @@ class BannerController extends Controller
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
+            'source' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',

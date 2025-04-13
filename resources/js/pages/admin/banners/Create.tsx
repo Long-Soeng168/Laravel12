@@ -25,6 +25,7 @@ const formSchema = z.object({
     short_description: z.string().max(500).optional(),
     short_description_kh: z.string().max(500).optional(),
     link: z.string().max(255).optional(),
+    source: z.string().max(255).optional(),
     type: z.string().optional(),
     order_index: z.string().max(255).optional(),
     status: z.string().optional(),
@@ -38,7 +39,7 @@ export default function Create() {
     // ===== Start Our Code =====
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { editData, readOnly, bannerPositions } = usePage().props;
+    const { editData, readOnly, bannerPositions, links } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [fileVideos, setFileVideos] = useState<File[] | null>(null);
@@ -51,6 +52,7 @@ export default function Create() {
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
             link: editData?.link || '',
+            source: editData?.source?.toString() || '',
             image: editData?.image || '',
             video: editData?.video || '',
             type: editData?.type || 'image',
@@ -193,22 +195,64 @@ export default function Create() {
                             </FormItem>
                         )}
                     />
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="link"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Link</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Link to external content" type="text" {...field} />
-                                        </FormControl>
-                                        <FormDescription>For external content you can put link here.</FormDescription>
-                                        <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
+                    <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
+                        <div className="col-span-6 flex space-x-2">
+                            <span>
+                                <FormField
+                                    control={form.control}
+                                    name="source"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Source</FormLabel>
+                                            <Select
+                                                onValueChange={(value) => {
+                                                    field.onChange(value);
+                                                    !editData?.id &&
+                                                    form.setValue('link', links?.find((link: any) => link.id.toString() == value)?.link);
+                                                }}
+                                                defaultValue={field.value}
+                                            >
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {links?.map((link: any) => (
+                                                        <SelectItem value={link?.id.toString()}>
+                                                            <span>
+                                                                <img
+                                                                    src={`/assets/images/links/thumb/${link?.image}`}
+                                                                    className="aspect-square h-6 object-contain"
+                                                                    alt=""
+                                                                />
+                                                            </span>
+                                                            {link?.title}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage>{errors.link_source && <div>{errors.link_source}</div>}</FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                            </span>
+                            <span className="flex-1">
+                                <FormField
+                                    control={form.control}
+                                    name="link"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Link</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Link to external content" type="text" {...field} />
+                                            </FormControl>
+                                            <FormDescription>For external content you can put link here.</FormDescription>
+                                            <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                            </span>
                         </div>
 
                         <div className="col-span-6">
