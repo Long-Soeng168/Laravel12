@@ -41,7 +41,7 @@ import {
                       {item.subItems.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton isActive={subItem.url === page.url} asChild>
-                            <Link href={subItem.url} prefetch>
+                            <Link href={subItem.url} prefetch='hover'>
                               <span>{subItem.title}</span>
                             </Link>
                           </SidebarMenuSubButton>
