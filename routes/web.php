@@ -9,7 +9,6 @@ Route::get('/', function () {
 })->name('home');
 
 // === Client ===
-// require __DIR__ . '/western_university.php';
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/vectorasoft.php';
 
