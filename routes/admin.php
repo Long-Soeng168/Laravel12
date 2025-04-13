@@ -13,6 +13,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\PostDailyView;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,7 +34,16 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('dashboard', function () {
-            return Inertia::render('admin/dashboard/Index');
+            $post_daily_views_data = DB::table('post_daily_views')
+                ->selectRaw('view_date as date, SUM(view_counts) as total')
+                ->groupBy('view_date')
+                ->orderBy('view_date')
+                ->get();
+
+            // dd($post_daily_views);
+            return Inertia::render('admin/dashboard/Index', [
+                'post_daily_views_data' => $post_daily_views_data
+            ]);
         })->name('dashboard');
         Route::get('items', function () {
             return Inertia::render('admin/items/page');

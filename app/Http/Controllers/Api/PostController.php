@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\PostDailyView;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -43,6 +45,19 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $date = now()->toDateString();
+
+        $view = PostDailyView::firstOrCreate(
+            ['post_id' => $post->id, 'view_date' => $date],
+            ['view_counts' => 0]
+        );
+
+        $view->increment('view_counts');
+
+        $post->update([
+            'total_view_counts' => $post->total_view_counts + 1,
+        ]);
+
         return response()->json($post->load('created_by', 'images', 'category'));
     }
 

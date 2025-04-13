@@ -6,7 +6,7 @@ import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
+import { ArrowUpDown, EditIcon, EyeIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
@@ -80,6 +80,11 @@ const MyTableData = () => {
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('total_view_counts')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Total View
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
@@ -187,6 +192,15 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.category?.name || '---'}</TableCell>
                                 <TableCell className="capitalize">{item.type || '---'}</TableCell>
+                                <TableCell>
+                                    {item.total_view_counts ? (
+                                        <span className='flex items-center gap-1'>
+                                            {item.total_view_counts}
+                                        </span>
+                                    ) : (
+                                        '---'
+                                    )}
+                                </TableCell>
                                 <TableCell>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {
