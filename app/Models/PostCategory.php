@@ -18,4 +18,8 @@ class PostCategory extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    public function children(){
+        return $this->hasMany(PostCategory::class,'parent_code','code');
+    }
 }

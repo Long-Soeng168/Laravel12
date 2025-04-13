@@ -38,6 +38,8 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Name
                                 </span>
                             </TableHead>
+                            <TableHead>Created At</TableHead>
+                            <TableHead>Updated At</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
