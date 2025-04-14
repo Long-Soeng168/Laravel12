@@ -21,7 +21,7 @@ class PostController extends Controller
 
         $query = Post::query();
 
-        $query->with('created_by', 'images', 'category');
+        $query->with('created_by', 'images', 'category', 'source_detail');
 
         if ($status) {
             $query->where('status', $status);
@@ -58,7 +58,7 @@ class PostController extends Controller
             'total_view_counts' => $post->total_view_counts + 1,
         ]);
 
-        return response()->json($post->load('created_by', 'images', 'category'));
+        return response()->json($post->load('created_by', 'images', 'category', 'source_detail'));
     }
 
     // Post Categories
