@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('status')->nullable()->default('active');
+            $table->string('status')->nullable()->default('active');
 
             // Optionally add foreign keys if created_by/updated_by reference users table
             $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
