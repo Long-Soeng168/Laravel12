@@ -65,8 +65,8 @@ class PostController extends Controller
     public function post_categories(Request $request)
     {
         $search = $request->input('search', '');
-        $sortBy = $request->input('sortBy', 'id');
-        $sortDirection = $request->input('sortDirection', 'desc');
+        $sortBy = $request->input('sortBy', 'order_index');
+        $sortDirection = $request->input('sortDirection', 'asc');
         $status = $request->input('status');
 
         $query = PostCategory::query();
