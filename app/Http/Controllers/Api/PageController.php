@@ -39,7 +39,7 @@ class PageController extends Controller
             });
         }
 
-        $tableData = $query->where('status', 'active')->get();
+        $tableData = $query->where('status', 'active')->first();
 
         return response()->json($tableData);
     }
