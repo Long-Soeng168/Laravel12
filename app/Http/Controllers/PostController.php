@@ -78,7 +78,7 @@ class PostController extends Controller
 
         $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
-        $validated['post_date'] = Carbon::parse($validated['post_date'])->toDateString();
+        $validated['post_date'] = Carbon::parse($validated['post_date'], 'Asia/Bangkok')->toDateString();
 
 
         $image_files = $request->file('images');
