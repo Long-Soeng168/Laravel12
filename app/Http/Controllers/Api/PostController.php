@@ -29,6 +29,7 @@ class PostController extends Controller
         if ($category_code) {
             $query->where('category_code', $category_code);
         }
+        $query->orderBy('post_date', 'desc');
         $query->orderBy($sortBy, $sortDirection);
 
         if ($search) {
