@@ -18,6 +18,7 @@ class PostController extends Controller
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
         $category_code = $request->input('category_code');
+        $categoryId = $request->input('categoryId');
 
         $query = Post::query();
 
@@ -29,6 +30,13 @@ class PostController extends Controller
         if ($category_code) {
             $query->where('category_code', $category_code);
         }
+        if ($categoryId) {
+            $fetchedCate = PostCategory::find($categoryId);
+            if ($fetchedCate->code) {
+                $query->where('category_code', $$fetchedCate->code);
+            }
+        }
+
         $query->orderBy('post_date', 'desc');
         $query->orderBy($sortBy, $sortDirection);
 
