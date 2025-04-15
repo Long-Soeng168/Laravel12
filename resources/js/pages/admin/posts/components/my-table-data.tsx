@@ -206,7 +206,7 @@ const MyTableData = () => {
                                         '---'
                                     )}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className='whitespace-nowrap'>
                                     {item.post_date
                                         ? new Date(item.post_date).toLocaleDateString('en-UK', {
                                               year: 'numeric',
@@ -215,7 +215,7 @@ const MyTableData = () => {
                                           })
                                         : '---'}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className='whitespace-nowrap'>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {
                                               year: 'numeric',
@@ -225,7 +225,7 @@ const MyTableData = () => {
                                         : '---'}
                                 </TableCell>
                                 <TableCell>{item.created_by?.name || '---'}</TableCell>
-                                <TableCell>
+                                <TableCell className='whitespace-nowrap'>
                                     {item.updated_at
                                         ? new Date(item.updated_at).toLocaleDateString('en-UK', {
                                               year: 'numeric',
