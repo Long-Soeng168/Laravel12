@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\PostImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -77,6 +78,8 @@ class PostController extends Controller
 
         $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
+        $validated['post_date'] = Carbon::parse($validated['post_date'])->toDateString();
+
 
         $image_files = $request->file('images');
         unset($validated['images']);
