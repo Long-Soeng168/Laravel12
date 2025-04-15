@@ -17,6 +17,7 @@ class PostController extends Controller
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
+        $skipId = $request->input('skipId');
         $category_code = $request->input('category_code');
         $categoryId = $request->input('categoryId');
 
@@ -26,6 +27,9 @@ class PostController extends Controller
 
         if ($status) {
             $query->where('status', $status);
+        }
+        if ($skipId) {
+            $query->where('id', '!=', $skipId);
         }
         if ($category_code) {
             $query->where('category_code', $category_code);
