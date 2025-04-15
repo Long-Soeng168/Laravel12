@@ -59,7 +59,7 @@ class LinkController extends Controller
             'title_kh' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255',
-            'order_index' => 'nullable|numberic|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -112,7 +112,7 @@ class LinkController extends Controller
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255',
-            'order_index' => 'nullable|numberic|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'type' => 'nullable|string|max:255',
             'status' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
