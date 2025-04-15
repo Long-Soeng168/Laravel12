@@ -85,6 +85,7 @@ export default function Create() {
             // return;
             transform(() => ({
                 ...values,
+                post_date: format(values.post_date, 'yyyy-MM-dd'),
                 long_description: long_description,
                 long_description_kh: long_description_kh,
                 images: files || null,
