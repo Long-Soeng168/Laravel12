@@ -11,10 +11,10 @@ class LinkController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', '');
-        $sortBy = $request->input('sortBy', 'id');
+        $sortBy = $request->input('sortBy', 'order_index');
         $status = $request->input('status', '');
         $type = $request->input('type', '');
-        $sortDirection = $request->input('sortDirection', 'desc');
+        $sortDirection = $request->input('sortDirection', 'asc');
 
         $query = Link::query();
 
