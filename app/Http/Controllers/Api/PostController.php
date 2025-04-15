@@ -33,7 +33,7 @@ class PostController extends Controller
         if ($categoryId) {
             $fetchedCate = PostCategory::find($categoryId);
             if ($fetchedCate->code) {
-                $query->where('category_code', $$fetchedCate->code);
+                $query->where('category_code', $fetchedCate->code);
             }
         }
 
