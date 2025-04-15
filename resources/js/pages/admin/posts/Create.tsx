@@ -1,6 +1,7 @@
 import DeleteButton from '@/components/delete-button';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -14,7 +15,8 @@ import MyCkeditor5 from '@/pages/plugins/ckeditor5/my-ckeditor5';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
-import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
+import { format } from 'date-fns';
+import { CalendarIcon, Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -31,6 +33,7 @@ const formSchema = z.object({
     parent_id: z.string().optional(),
     source: z.string().optional(),
     category_code: z.string().optional(),
+    post_date: z.coerce.date(),
 });
 
 export default function Create() {
@@ -67,6 +70,7 @@ export default function Create() {
             source: editData?.source?.toString() || '',
             status: editData?.status || 'active',
             category_code: editData?.category_code?.toString() || '',
+            post_date: editData?.id ? new Date(editData?.post_date) : new Date(),
         },
     });
 
@@ -147,6 +151,48 @@ export default function Create() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
+                    <div className="grid grid-cols-12 gap-4">
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="post_date"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel>Post Date</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant={'outline'}
+                                                        className={cn(
+                                                            'w-[280px] pl-3 text-left font-normal',
+                                                            !field.value && 'text-muted-foreground',
+                                                        )}
+                                                    >
+                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
+                                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                    fromYear={1960}
+                                                    toYear={2030}
+                                                    captionLayout="dropdown-buttons"
+                                                    mode="single"
+                                                    selected={field.value}
+                                                    onSelect={field.onChange}
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage>{errors.post_date && <div>{errors.post_date}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField

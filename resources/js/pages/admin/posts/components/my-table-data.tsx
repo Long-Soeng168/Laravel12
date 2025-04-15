@@ -87,6 +87,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Total View
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('post_date')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Post Date
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Created at
@@ -200,6 +205,15 @@ const MyTableData = () => {
                                     ) : (
                                         '---'
                                     )}
+                                </TableCell>
+                                <TableCell>
+                                    {item.post_date
+                                        ? new Date(item.post_date).toLocaleDateString('en-UK', {
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
+                                        : '---'}
                                 </TableCell>
                                 <TableCell>
                                     {item.created_at

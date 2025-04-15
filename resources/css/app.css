@@ -17,7 +17,7 @@
         }
     }
 }
- 
+
 .toaster .toast::after {
     z-index: 100;
     content: '';
@@ -32,7 +32,7 @@
     transform: translate(0px, 1px);
     animation: toast-progress linear;
     animation-duration: 4.4s;
-} 
+}
 
 @keyframes toast-progress {
     from {
@@ -43,131 +43,120 @@
     }
 }
 
-
 /* Western font */
 
 @font-face {
     font-family: NowBlack;
-    src: url('/public/assets/fonts/NowAlt/Now-Black.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Black.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowBold;
-    src: url('/public/assets/fonts/NowAlt/Now-Bold.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Bold.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowLight;
-    src: url('/public/assets/fonts/NowAlt/Now-Light.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Light.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowMedium;
-    src: url('/public/assets/fonts/NowAlt/Now-Medium.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Medium.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowRegular;
-    src: url('/public/assets/fonts/NowAlt/Now-Regular.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Regular.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowThin;
-    src: url('/public/assets/fonts/NowAlt/Now-Thin.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/Now-Thin.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltBlack;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Black.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Black.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltBold;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Bold.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Bold.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltLight;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Light.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Light.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltMedium;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Medium.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Medium.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltRegular;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Regular.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Regular.otf') format('truetype');
 }
 
 @font-face {
     font-family: NowAltThin;
-    src: url('/public/assets/fonts/NowAlt/NowAlt-Thin.otf')format('truetype');
+    src: url('/public/assets/fonts/NowAlt/NowAlt-Thin.otf') format('truetype');
 }
 
 @font-face {
     font-family: MoulRegular;
-    src: url('/public/assets/fonts/Moul/Moul-Regular.ttf')format('truetype');
+    src: url('/public/assets/fonts/Moul/Moul-Regular.ttf') format('truetype');
 }
 
-
 /*End Western font */
-
-
-
-
-
-
-
-
-
 
 /* Kh */
 
 @font-face {
     font-family: NotoSansBlack;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-black.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-black.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansBold;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-bold.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-bold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansExtraBold;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-extra-bold.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-extra-bold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansExtraLight;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-extra-light.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-extra-light.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansLight;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-light.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-light.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansMedium;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-medium.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-medium.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansRegular;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-regular.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansSemibold;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-semibold.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-semibold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: NotoSansThin;
-    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-thin.ttf')format('truetype');
+    src: url('/public/assets/fonts/NotoSansFonts/noto-sans-khmer-thin.ttf') format('truetype');
 }
 
 /* End Kh */
@@ -180,37 +169,37 @@
 
 @font-face {
     font-family: NovaRegular;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-regular.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-regular.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaBold;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaBoldItalic;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold-italic.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold-italic.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaExtrabold;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-extrabold.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-extrabold.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaExtraboldItalic;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold-italic.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-bold-italic.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaSemibold;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-semibold.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-semibold.otf') format('truetype');
 }
 
 @font-face {
     font-family: ProximaSemiboldItalic;
-    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-semibold-italic.otf')format('truetype');
+    src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-semibold-italic.otf') format('truetype');
     font-family: ProximaBlackItalic;
     src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-black-italic.otf') format('truetype');
 }
@@ -220,9 +209,10 @@
     src: url('/public/assets/fonts/ProximaNovaFonts/proxima-nova-thin.otf') format('truetype');
 }
 
-
 /* End En */
-
+.rdp-vhidden {
+    @apply hidden;
+}
 @theme {
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -320,7 +310,6 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -346,7 +335,6 @@
 }
 
 @keyframes custom-bounce {
-
     0%,
     100% {
         transform: translateY(-10%);
@@ -424,11 +412,13 @@
 }
 
 .bg-gradient-line {
-    background-image: linear-gradient(90deg,
-            rgba(149, 131, 198, 0) 1.46%,
-            rgba(149, 131, 198, 0.6) 40.83%,
-            rgba(149, 131, 198, 0.3) 65.57%,
-            rgba(149, 131, 198, 0) 107.92%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(149, 131, 198, 0) 1.46%,
+        rgba(149, 131, 198, 0.6) 40.83%,
+        rgba(149, 131, 198, 0.3) 65.57%,
+        rgba(149, 131, 198, 0) 107.92%
+    );
 }
 
 /* Custom scrollbar for WebKit browsers */
@@ -664,7 +654,7 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     margin-bottom: 0;
 }
 
-.ck.ck-menu-bar__menu.ck-menu-bar__menu_top-level>.ck-menu-bar__menu__button .ck-button__label {
+.ck.ck-menu-bar__menu.ck-menu-bar__menu_top-level > .ck-menu-bar__menu__button .ck-button__label {
     margin: 0 !important;
 }
 
@@ -706,8 +696,8 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     padding: 0 !important;
 }
 
-.ck.ck-splitbutton.ck-splitbutton_open>.ck-splitbutton__arrow:not(.ck-disabled)::after,
-.ck.ck-splitbutton:hover>.ck-splitbutton__arrow:not(.ck-disabled)::after {
+.ck.ck-splitbutton.ck-splitbutton_open > .ck-splitbutton__arrow:not(.ck-disabled)::after,
+.ck.ck-splitbutton:hover > .ck-splitbutton__arrow:not(.ck-disabled)::after {
     left: -1px;
 }
 
@@ -791,10 +781,12 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     border: 1px solid var(--background-color);
     background:
         linear-gradient(135deg, var(--background-color) 0%, var(--background-color) var(--background-size), transparent var(--background-size)),
-        linear-gradient(135deg,
+        linear-gradient(
+            135deg,
             transparent calc(100% - var(--background-size)),
             var(--background-color) calc(100% - var(--background-size)),
-            var(--background-color));
+            var(--background-color)
+        );
     border-radius: 10px;
     margin: 1.5em 2em;
     box-shadow: 5px 5px 0 #ffe6ef;
