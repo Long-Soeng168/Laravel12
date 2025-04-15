@@ -18,6 +18,7 @@ const formSchema = z.object({
     title_kh: z.string().min(1).max(255).optional(),
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
+    order_index: z.string().optional(),
     status: z.string().optional(),
     image: z.string().optional(),
 });
@@ -52,6 +53,7 @@ export default function Create({
             title_kh: editData?.title_kh || '',
             link: editData?.link || '',
             type: editData?.type || 'social_media',
+            order_index: editData?.order_index?.toString() || '',
             status: editData?.status || 'active',
         },
     });
@@ -152,7 +154,7 @@ export default function Create({
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-12">
+                    <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="link"
@@ -163,6 +165,21 @@ export default function Create({
                                         <Input placeholder="ex: https://..." type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="order_index"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Order Index</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="default: 1" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />

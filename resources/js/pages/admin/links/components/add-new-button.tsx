@@ -20,7 +20,7 @@ const AddNewButton = () => {
                 </Button>
 
                 <DialogHeader>
-                    <DialogTitle>Create Projects</DialogTitle>
+                    <DialogTitle>Create Links</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create setIsOpen={setIsOpen}/>
                 </DialogHeader>

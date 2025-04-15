@@ -29,7 +29,7 @@ const ViewButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>View Project</DialogTitle>
+                    <DialogTitle>View Link</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} readOnly={true} setIsOpen={setIsOpen} />
                 </DialogHeader>

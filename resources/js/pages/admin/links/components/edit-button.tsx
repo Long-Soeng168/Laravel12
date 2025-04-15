@@ -20,7 +20,7 @@ const EditButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>Edit Project</DialogTitle>
+                    <DialogTitle>Edit Link</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} setIsOpen={setIsOpen}/>
                 </DialogHeader>
