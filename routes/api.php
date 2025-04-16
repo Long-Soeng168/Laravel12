@@ -14,6 +14,8 @@ Route::get('/user', function (Request $request) {
 Route::get('/links', [LinkController::class, 'index']);
 Route::get('/banners', [BannerController::class, 'index']);
 Route::get('/pages', [PageController::class, 'index']);
+
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts_most_views', [PostController::class, 'posts_most_views']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
 Route::get('/post_categories', [PostController::class, 'post_categories']);

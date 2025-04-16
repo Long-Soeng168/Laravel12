@@ -56,6 +56,51 @@ class PostController extends Controller
         return response()->json($tableData);
     }
 
+    public function posts_most_views(Request $request)
+    {
+        $search = $request->input('search', '');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $status = $request->input('status');
+        $skipId = $request->input('skipId');
+        $category_code = $request->input('category_code');
+        $categoryId = $request->input('categoryId');
+
+        $query = Post::query();
+
+        $query->with('created_by', 'images', 'category', 'source_detail');
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+        if ($skipId) {
+            $query->where('id', '!=', $skipId);
+        }
+        if ($category_code) {
+            $query->where('category_code', $category_code);
+        }
+        if ($categoryId) {
+            $fetchedCate = PostCategory::find($categoryId);
+            if ($fetchedCate->code) {
+                $query->where('category_code', $fetchedCate->code);
+            }
+        }
+
+        $query->orderBy('total_view_counts', 'desc');
+        $query->orderBy($sortBy, $sortDirection);
+
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $tableData = $query->where('status', 'active')->paginate(10);
+
+        return response()->json($tableData);
+    }
+
     public function show(Post $post)
     {
         $date = now()->toDateString();
