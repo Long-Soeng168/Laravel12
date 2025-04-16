@@ -517,7 +517,7 @@ export default function Create() {
                                             onValueChange={setFileVideos}
                                             dropzoneOptions={{
                                                 maxFiles: 5, // Adjust as needed
-                                                maxSize: 1024 * 1024 * 50, // 50MB for videos
+                                                maxSize: 1024 * 1024 * 200, // 50MB for videos
                                                 multiple: true, // Allow multiple videos
                                                 accept: {
                                                     'video/mp4': ['.mp4'],
