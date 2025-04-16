@@ -11,8 +11,8 @@ class BannerController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', '');
-        $sortBy = $request->input('sortBy', 'id');
-        $sortDirection = $request->input('sortDirection', 'desc');
+        $sortBy = $request->input('sortBy', 'order_index');
+        $sortDirection = $request->input('sortDirection', 'asc');
         $status = $request->input('status');
         $type = $request->input('type');
         $position_code = $request->input('position_code');
