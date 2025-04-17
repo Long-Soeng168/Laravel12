@@ -17,6 +17,7 @@ class DashboardController extends Controller
     {
         $post_daily_views_data = DB::table('post_daily_views')
             ->selectRaw('view_date as date, SUM(view_counts) as total')
+            ->where('view_date', '>=', now()->subDays(6)->toDateString())
             ->groupBy('view_date')
             ->orderBy('view_date')
             ->get();
