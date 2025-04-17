@@ -9,7 +9,8 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    public function all_roles(){
+    public function all_roles()
+    {
         return response()->json(Role::all());
     }
     public function index(Request $request)
@@ -38,9 +39,9 @@ class RoleController extends Controller
 
     public function create()
     {
-        $role_permission = Permission::select('name', 'id')->groupBy('name')->get();
+        $role_permission = Permission::select('name')->distinct()->get();
 
-        $custom_permission = array();
+        $custom_permission = [];
 
         foreach ($role_permission as $per) {
             $key = substr($per->name, 0, strpos($per->name, " "));
@@ -48,12 +49,12 @@ class RoleController extends Controller
                 $custom_permission[$key][] = $per;
             }
         }
-        // dd($custom_permission);
 
         return Inertia::render('admin/roles/Create', [
             'permissions' => $custom_permission,
         ]);
     }
+
 
     public function store(Request $request)
     {
