@@ -5,11 +5,14 @@ import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown, EditIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
+
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -123,16 +126,18 @@ const MyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <Link href={`/admin/pages/${item.id}`}>
-                                            <MyTooltipButton title="View" side="bottom" variant='ghost'>
+                                            <MyTooltipButton title="View" side="bottom" variant="ghost">
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
-                                        <DeleteButton deletePath="/admin/pages/" id={item.id} />
-                                        <Link href={`/admin/pages/${item.id}/edit`}>
-                                            <MyTooltipButton title="Edit" side="bottom" variant='ghost'>
-                                                <EditIcon />
-                                            </MyTooltipButton>
-                                        </Link>
+                                        {hasPermission('page delete') && <DeleteButton deletePath="/admin/pages/" id={item.id} />}
+                                        {hasPermission('page update') && (
+                                            <Link href={`/admin/pages/${item.id}/edit`}>
+                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                    <EditIcon />
+                                                </MyTooltipButton>
+                                            </Link>
+                                        )}
                                     </span>
                                 </TableCell>
                                 <TableCell>
@@ -189,12 +194,16 @@ const MyTableData = () => {
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 <TableCell>
-                                    <MyUpdateStatusButton
-                                        id={item.id}
-                                        pathName="/admin/pages"
-                                        currentStatus={item.status}
-                                        statuses={['active', 'inactive']}
-                                    />
+                                    {hasPermission('page update') ? (
+                                        <MyUpdateStatusButton
+                                            id={item.id}
+                                            pathName="/admin/pages"
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
+                                        />
+                                    ) : (
+                                        <span className="capitalize">{item.status}</span>
+                                    )}
                                 </TableCell>
                                 <TableCell>{item.parent?.title || '---'}</TableCell>
                                 <TableCell className="capitalize">{item.type || '---'}</TableCell>

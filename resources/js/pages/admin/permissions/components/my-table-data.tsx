@@ -1,16 +1,14 @@
 import DeleteButton from '@/components/delete-button';
-import MyImageGallery from '@/components/my-image-gallery';
-import MyUpdateStatusButton from '@/components/my-update-status-button';
+import MyNoData from '@/components/my-no-data';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
-import { useState } from 'react';
 import EditButton from './edit-button';
-import ViewButton from './view-button';
-import MyNoData from '@/components/my-no-data';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -41,7 +39,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Name
                                 </span>
-                            </TableHead> 
+                            </TableHead>
                             <TableHead>Created At</TableHead>
                             <TableHead>Updated At</TableHead>
                         </TableRow>
@@ -54,8 +52,8 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
-                                        <DeleteButton deletePath="/admin/permissions/" id={item.id} />
-                                        <EditButton item={item} />
+                                        {hasPermission('permission delete') && <DeleteButton deletePath="/admin/permissions/" id={item.id} />}
+                                        {hasPermission('permission update') && <EditButton item={item} />}
                                     </span>
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
@@ -84,9 +82,7 @@ const MyTableData = () => {
 
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-            {tableData?.data?.length < 1 && (
-                <MyNoData />
-            )}
+            {tableData?.data?.length < 1 && <MyNoData />}
         </>
     );
 };

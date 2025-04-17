@@ -7,10 +7,33 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker, DropdownProps } from "react-day-picker"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export const khmerLocale = {
+  code: 'km',
+  formatDistance: () => '',
+  formatLong: {
+    date: () => 'dd/MM/yyyy',
+    time: () => 'HH:mm',
+    dateTime: () => 'dd/MM/yyyy HH:mm',
+  },
+  formatRelative: () => '',
+  localize: {
+    month: (n) => [
+      'មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា',
+      'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ',
+    ][n],
+    day: (n) => ['អាទិត្យ', 'ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហ', 'សុក្រ', 'សៅរ៍'][n],
+    dayPeriod: () => '',
+  },
+  options: {
+    weekStartsOn: 1,
+    firstWeekContainsDate: 1,
+  },
+};
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   return (
     <DayPicker
+      // locale={khmerLocale}
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       classNames={{

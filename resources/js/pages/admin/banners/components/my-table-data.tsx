@@ -5,11 +5,14 @@ import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown, EditIcon, FileVideoIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
+
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -123,12 +126,15 @@ const MyTableData = () => {
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
-                                        <DeleteButton deletePath="/admin/banners/" id={item.id} />
-                                        <Link href={`/admin/banners/${item.id}/edit`}>
-                                            <MyTooltipButton title="Edit" side="bottom" variant="ghost">
-                                                <EditIcon />
-                                            </MyTooltipButton>
-                                        </Link>
+
+                                        {hasPermission('banner delete') && <DeleteButton deletePath="/admin/banners/" id={item.id} />}
+                                        {hasPermission('banner update') && (
+                                            <Link href={`/admin/banners/${item.id}/edit`}>
+                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                    <EditIcon />
+                                                </MyTooltipButton>
+                                            </Link>
+                                        )}
                                     </span>
                                 </TableCell>
                                 <TableCell>
@@ -214,12 +220,16 @@ const MyTableData = () => {
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 <TableCell>
-                                    <MyUpdateStatusButton
-                                        id={item.id}
-                                        pathName="/admin/banners"
-                                        currentStatus={item.status}
-                                        statuses={['active', 'inactive']}
-                                    />
+                                    {hasPermission('banner update') ? (
+                                        <MyUpdateStatusButton
+                                            id={item.id}
+                                            pathName="/admin/banners"
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
+                                        />
+                                    ) : (
+                                        <span className='capitalize'>{item.status}</span>
+                                    )}
                                 </TableCell>
                                 <TableCell className="capitalize">{item.type || '---'}</TableCell>
                                 <TableCell>{item.position?.name || '---'}</TableCell>

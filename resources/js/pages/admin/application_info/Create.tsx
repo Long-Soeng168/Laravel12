@@ -4,6 +4,7 @@ import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
+import usePermission from '@/hooks/use-permission';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { CloudUpload, Loader } from 'lucide-react';
@@ -29,6 +30,8 @@ const formSchema = z.object({
 });
 
 export default function Create() {
+    const hasPermission = usePermission();
+
     const [files, setFiles] = useState<File[] | null>(null);
     const { editData } = usePage().props;
     const dropZoneConfig = {
@@ -367,14 +370,16 @@ export default function Create() {
                     )}
                 />
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
-                <Button disabled={processing} type="submit">
-                    {processing && (
-                        <span className="size-6 animate-spin">
-                            <Loader />
-                        </span>
-                    )}
-                    {processing ? 'Submiting...' : 'Submit'}
-                </Button>
+                {hasPermission('application_info update') && (
+                    <Button disabled={processing} type="submit">
+                        {processing && (
+                            <span className="size-6 animate-spin">
+                                <Loader />
+                            </span>
+                        )}
+                        {processing ? 'Submiting...' : 'Submit'}
+                    </Button>
+                )}
             </form>
         </Form>
     );

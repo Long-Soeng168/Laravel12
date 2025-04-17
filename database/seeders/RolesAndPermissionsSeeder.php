@@ -58,6 +58,17 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'user update']);
         Permission::firstOrCreate(['name' => 'user delete']);
 
+        // role
+        Permission::firstOrCreate(['name' => 'role view']);
+        Permission::firstOrCreate(['name' => 'role create']);
+        Permission::firstOrCreate(['name' => 'role update']);
+        Permission::firstOrCreate(['name' => 'role delete']);
+
+         // permission
+         Permission::firstOrCreate(['name' => 'permission create']);
+         Permission::firstOrCreate(['name' => 'permission update']);
+         Permission::firstOrCreate(['name' => 'permission delete']);
+
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
         // Give all existing permissions to the admin role

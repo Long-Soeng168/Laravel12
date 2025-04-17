@@ -3,10 +3,12 @@ import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -50,17 +52,22 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
-                                        <Link href={`/admin/roles/${item.id}`}>
-                                            <MyTooltipButton title="View" side="bottom" variant="ghost">
-                                                <ScanEyeIcon />
-                                            </MyTooltipButton>
-                                        </Link>
-                                        <DeleteButton deletePath="/admin/roles/" id={item.id} />
-                                        <Link href={`/admin/roles/${item.id}/edit`}>
-                                            <MyTooltipButton title="Edit" side="bottom" variant="ghost">
-                                                <EditIcon />
-                                            </MyTooltipButton>
-                                        </Link>
+                                        {hasPermission('role view') && (
+                                            <Link href={`/admin/roles/${item.id}`}>
+                                                <MyTooltipButton title="View" side="bottom" variant="ghost">
+                                                    <ScanEyeIcon />
+                                                </MyTooltipButton>
+                                            </Link>
+                                        )}
+                                        {hasPermission('role delete') && <DeleteButton deletePath="/admin/roles/" id={item.id} />}
+
+                                        {hasPermission('role update') && (
+                                            <Link href={`/admin/roles/${item.id}/edit`}>
+                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                    <EditIcon />
+                                                </MyTooltipButton>
+                                            </Link>
+                                        )}
                                     </span>
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>

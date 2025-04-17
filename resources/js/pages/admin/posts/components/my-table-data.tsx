@@ -5,11 +5,14 @@ import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, EyeIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
+import { ArrowUpDown, EditIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
+
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -127,12 +130,14 @@ const MyTableData = () => {
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
-                                        <DeleteButton deletePath="/admin/posts/" id={item.id} />
-                                        <Link href={`/admin/posts/${item.id}/edit`}>
-                                            <MyTooltipButton title="Edit" side="bottom" variant="ghost">
-                                                <EditIcon />
-                                            </MyTooltipButton>
-                                        </Link>
+                                        {hasPermission('post delete') && <DeleteButton deletePath="/admin/posts/" id={item.id} />}
+                                        {hasPermission('post update') && (
+                                            <Link href={`/admin/posts/${item.id}/edit`}>
+                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                    <EditIcon />
+                                                </MyTooltipButton>
+                                            </Link>
+                                        )}
                                     </span>
                                 </TableCell>
                                 <TableCell>
@@ -188,25 +193,23 @@ const MyTableData = () => {
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
                                 <TableCell>
-                                    <MyUpdateStatusButton
-                                        id={item.id}
-                                        pathName="/admin/posts"
-                                        currentStatus={item.status}
-                                        statuses={['active', 'inactive']}
-                                    />
+                                    {hasPermission('post update') ? (
+                                        <MyUpdateStatusButton
+                                            id={item.id}
+                                            pathName="/admin/posts"
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
+                                        />
+                                    ) : (
+                                        <span className='capitalize'>{item.status}</span>
+                                    )}
                                 </TableCell>
                                 <TableCell>{item.category?.name || '---'}</TableCell>
                                 <TableCell className="capitalize">{item.type || '---'}</TableCell>
                                 <TableCell>
-                                    {item.total_view_counts ? (
-                                        <span className='flex items-center gap-1'>
-                                            {item.total_view_counts}
-                                        </span>
-                                    ) : (
-                                        '---'
-                                    )}
+                                    {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell>
-                                <TableCell className='whitespace-nowrap'>
+                                <TableCell className="whitespace-nowrap">
                                     {item.post_date
                                         ? new Date(item.post_date).toLocaleDateString('en-UK', {
                                               year: 'numeric',
@@ -215,7 +218,7 @@ const MyTableData = () => {
                                           })
                                         : '---'}
                                 </TableCell>
-                                <TableCell className='whitespace-nowrap'>
+                                <TableCell className="whitespace-nowrap">
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {
                                               year: 'numeric',
@@ -225,7 +228,7 @@ const MyTableData = () => {
                                         : '---'}
                                 </TableCell>
                                 <TableCell>{item.created_by?.name || '---'}</TableCell>
-                                <TableCell className='whitespace-nowrap'>
+                                <TableCell className="whitespace-nowrap">
                                     {item.updated_at
                                         ? new Date(item.updated_at).toLocaleDateString('en-UK', {
                                               year: 'numeric',

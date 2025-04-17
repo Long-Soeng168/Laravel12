@@ -4,6 +4,7 @@ import MyNoData from '@/components/my-no-data';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
@@ -11,6 +12,8 @@ import EditButton from './edit-button';
 import ViewButton from './view-button';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
+
     const { tableData } = usePage().props;
 
     const queryParams = new URLSearchParams(window.location.search);
@@ -83,8 +86,8 @@ const MyTableData = () => {
                                     <TableCell>
                                         <span className="flex h-full items-center justify-start">
                                             <ViewButton item={item} />
-                                            <DeleteButton deletePath="/admin/links/" id={item.id} />
-                                            <EditButton item={item} />
+                                            {hasPermission('link delete') && <DeleteButton deletePath="/admin/links/" id={item.id} />}
+                                            {hasPermission('link update') && <EditButton item={item} />}
                                         </span>
                                     </TableCell>
                                     <TableCell>
@@ -119,12 +122,16 @@ const MyTableData = () => {
                                     <TableCell>{item.link || '---'}</TableCell>
                                     <TableCell>{item.type || '---'}</TableCell>
                                     <TableCell>
-                                        <MyUpdateStatusButton
-                                            id={item.id}
-                                            pathName="/admin/links"
-                                            currentStatus={item.status}
-                                            statuses={['active', 'inactive']}
-                                        />
+                                        {hasPermission('link update') ? (
+                                            <MyUpdateStatusButton
+                                                id={item.id}
+                                                pathName="/admin/links"
+                                                currentStatus={item.status}
+                                                statuses={['active', 'inactive']}
+                                            />
+                                        ) : (
+                                            <span className='capitalize'>{item.status}</span>
+                                        )}
                                     </TableCell>
 
                                     <TableCell>

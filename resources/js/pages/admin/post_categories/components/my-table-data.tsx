@@ -1,16 +1,19 @@
 import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
+import MyNoData from '@/components/my-no-data';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import usePermission from '@/hooks/use-permission';
 import { router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
-import MyNoData from '@/components/my-no-data';
 
 const MyTableData = () => {
+    const hasPermission = usePermission();
+
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -120,8 +123,9 @@ const MyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <ViewButton item={item} />
-                                        <DeleteButton deletePath="/admin/post_categories/" id={item.id} />
-                                        <EditButton item={item} />
+
+                                        {hasPermission('post delete') && <DeleteButton deletePath="/admin/post_categories/" id={item.id} />}
+                                        {hasPermission('post update') && <EditButton item={item} />}
                                     </span>
                                 </TableCell>
                                 <TableCell>
@@ -142,7 +146,13 @@ const MyTableData = () => {
                                             />
                                         </button>
                                     ) : (
-                                        <img src={`/assets/icons/image-icon.png`} width={100} height={100} alt="" className="size-10 object-contain" />
+                                        <img
+                                            src={`/assets/icons/image-icon.png`}
+                                            width={100}
+                                            height={100}
+                                            alt=""
+                                            className="size-10 object-contain"
+                                        />
                                     )}
                                 </TableCell>
                                 <TableCell>
@@ -164,7 +174,13 @@ const MyTableData = () => {
                                             />
                                         </button>
                                     ) : (
-                                        <img src={`/assets/icons/image-icon.png`} width={100} height={100} alt="" className="size-10 object-contain" />
+                                        <img
+                                            src={`/assets/icons/image-icon.png`}
+                                            width={100}
+                                            height={100}
+                                            alt=""
+                                            className="size-10 object-contain"
+                                        />
                                     )}
                                 </TableCell>
                                 <TableCell>{item.code || '---'}</TableCell>
@@ -176,30 +192,34 @@ const MyTableData = () => {
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>
-                                    <MyUpdateStatusButton
-                                        id={item.id}
-                                        pathName="/admin/post_categories"
-                                        currentStatus={item.status}
-                                        statuses={['active', 'inactive']}
-                                    />
+                                    {hasPermission('post update') ? (
+                                        <MyUpdateStatusButton
+                                            id={item.id}
+                                            pathName="/admin/post_categories"
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
+                                        />
+                                    ) : (
+                                        <span className='capitalize'>{item.status}</span>
+                                    )}
                                 </TableCell>
                                 <TableCell>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
                                         : '---'}
                                 </TableCell>
                                 <TableCell>{item.created_by?.name || '---'}</TableCell>
                                 <TableCell>
                                     {item.updated_at
                                         ? new Date(item.updated_at).toLocaleDateString('en-UK', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })
+                                              year: 'numeric',
+                                              month: 'long',
+                                              day: 'numeric',
+                                          })
                                         : '---'}
                                 </TableCell>
                                 <TableCell>{item.updated_by?.name || '---'}</TableCell>
@@ -210,9 +230,7 @@ const MyTableData = () => {
 
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-            {tableData?.data?.length < 1 && (
-                <MyNoData />
-            )}
+            {tableData?.data?.length < 1 && <MyNoData />}
         </>
     );
 };
