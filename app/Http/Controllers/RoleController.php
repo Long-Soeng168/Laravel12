@@ -39,7 +39,9 @@ class RoleController extends Controller
 
     public function create()
     {
-        $role_permission = Permission::select('name')->distinct()->get();
+        $role_permission = Permission::selectRaw('MIN(id) as id, name')
+            ->groupBy('name')
+            ->get();
 
         $custom_permission = [];
 
