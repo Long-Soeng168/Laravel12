@@ -33,12 +33,17 @@ export function AppSidebar() {
             icon: LayoutGrid,
             isActive: isActive('/dashboard'),
         },
-        {
-            title: 'Items',
-            url: '/items',
-            icon: LayoutGrid,
-            isActive: isActive('/items'),
-        },
+
+        ...(hasPermission('item view')
+            ? [
+                  {
+                      title: 'Items',
+                      url: '/items',
+                      icon: LayoutGrid,
+                      isActive: isActive('/items'),
+                  },
+              ]
+            : []),
         ...(hasPermission('project view')
             ? [
                   {
@@ -175,11 +180,11 @@ export function AppSidebar() {
     ];
 
     const footerNavItems: NavItem[] = [
-        {
-            title: 'Sample Content',
-            url: '/admin/ckeditor5',
-            icon: FilePenLineIcon,
-        },
+        // {
+        //     title: 'Sample Content',
+        //     url: '/admin/ckeditor5',
+        //     icon: FilePenLineIcon,
+        // },
         // {
         //     title: 'File Manager',
         //     url: '/admin/my_file_manager',
