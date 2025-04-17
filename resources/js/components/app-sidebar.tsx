@@ -90,7 +90,7 @@ export function AppSidebar() {
                       title: 'Post',
                       url: '/admin/posts',
                       icon: FilePenLineIcon,
-                      isActive: isActive('/admin/posts') || isActive('/admin/post_categories'),
+                      isActive: isActive('/admin/posts') || isActive('/admin/post_categories') || isActive('/admin/post_view_counts'),
                       subItems: [
                           {
                               title: 'Posts',
@@ -101,6 +101,11 @@ export function AppSidebar() {
                               title: 'Categories',
                               url: '/admin/post_categories',
                               isActive: isActive('/admin/post_categories'),
+                          },
+                          {
+                              title: 'View Counts',
+                              url: '/admin/post_view_counts',
+                              isActive: isActive('/admin/post_view_counts'),
                           },
                       ],
                   },

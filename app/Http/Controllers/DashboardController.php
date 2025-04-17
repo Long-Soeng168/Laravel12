@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\PostDailyView;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ class DashboardController extends Controller
             ->groupBy('view_date')
             ->orderBy('view_date')
             ->get();
+        $totalPostViews = PostDailyView::query()->sum('view_counts');
+
 
         $post_counts = Post::count();
         $page_counts = Page::count();
@@ -33,6 +36,7 @@ class DashboardController extends Controller
             'post_daily_views_data' => $post_daily_views_data,
             'featureDatas' => [
                 'post_counts' => $post_counts,
+                'totalPostViews' => $totalPostViews,
                 'page_counts' => $page_counts,
                 'link_counts' => $link_counts,
                 'banner_counts' => $banner_counts,

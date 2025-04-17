@@ -107,7 +107,7 @@ class PostController extends Controller
 
         $view = PostDailyView::firstOrCreate(
             ['post_id' => $post->id, 'view_date' => $date],
-            ['view_counts' => 0]
+            ['view_counts' => 0],
         );
 
         $view->increment('view_counts');

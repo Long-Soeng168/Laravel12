@@ -11,6 +11,7 @@ use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostViewController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -69,7 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/posts/{post}/update', [PostController::class, 'update']);
     Route::post('admin/posts/{post}/update_status', [PostController::class, 'update_status']);
     Route::delete('admin/posts/images/{image}', [PostController::class, 'destroy_image']);
-
+    Route::get('admin/post_view_counts', [PostViewController::class, 'index']);
+    
     // Page Position Route
     Route::resource('admin/page_positions', PagePositionController::class);
     Route::post('admin/page_positions/{pagePosition}/update', [PagePositionController::class, 'update']);

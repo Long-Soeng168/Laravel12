@@ -9,7 +9,8 @@ const SectionCards = () => {
         {
             icon: FilePenLineIcon,
             title: 'Posts',
-            description: `Total : ${featureDatas?.post_counts}`,
+            description: `Posts : ${featureDatas?.post_counts}`,
+            sub_description: `Total view : ${featureDatas?.totalPostViews}`,
             link: '/admin/posts',
             permission: 'post view',
         },
@@ -66,6 +67,7 @@ const SectionCards = () => {
                             <div className="flex flex-col items-end">
                                 <span className="text-lg font-semibold">{feature.title}</span>
                                 <p className="text-foreground/80 mt-1 text-[15px]">{feature.description}</p>
+                                {feature.sub_description && <p className="text-foreground/80 mt-1 text-[15px]">{feature.sub_description}</p>}
                             </div>
                         </Link>
                     ) : null,
