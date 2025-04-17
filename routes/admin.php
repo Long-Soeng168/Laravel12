@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
@@ -33,25 +34,16 @@ Route::middleware('auth')->group(function () {
     // === End Testing Spatie Role & Permission ===
 
     Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('dashboard', function () {
-            $post_daily_views_data = DB::table('post_daily_views')
-                ->selectRaw('view_date as date, SUM(view_counts) as total')
-                ->groupBy('view_date')
-                ->orderBy('view_date')
-                ->get();
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
 
-            // dd($post_daily_views);
-            return Inertia::render('admin/dashboard/Index', [
-                'post_daily_views_data' => $post_daily_views_data
-            ]);
-        })->name('dashboard');
-        Route::get('items', function () {
-            return Inertia::render('admin/items/page');
-        });
+    // Item Route
+    Route::get('items', function () {
+        return Inertia::render('admin/items/page');
     });
 
 
-    // Application Info Router
+    // Application Info Route
     Route::resource('admin/application_info', ApplicationInfoController::class);
     Route::post('admin/application_info/{application_info}/update', [ApplicationInfoController::class, 'update']);
 
