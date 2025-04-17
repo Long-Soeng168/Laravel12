@@ -180,11 +180,11 @@ export function AppSidebar() {
     ];
 
     const footerNavItems: NavItem[] = [
-        // {
-        //     title: 'Sample Content',
-        //     url: '/admin/ckeditor5',
-        //     icon: FilePenLineIcon,
-        // },
+        {
+            title: 'Sample Content',
+            url: '/admin/ckeditor5',
+            icon: FilePenLineIcon,
+        },
         // {
         //     title: 'File Manager',
         //     url: '/admin/my_file_manager',

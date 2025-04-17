@@ -28,7 +28,7 @@ export function ChartAreaInteractive() {
                 <CardDescription>Showing total post's visitors for the last 30 dates</CardDescription>
             </CardHeader>
             <CardContent>
-                <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+                <ChartContainer config={chartConfig}>
                     <AreaChart
                         accessibilityLayer
                         data={post_daily_views_data}
