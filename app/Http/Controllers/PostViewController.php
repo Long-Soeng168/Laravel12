@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PostDailyViewExport;
 use App\Models\PostDailyView;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 
 class PostViewController extends Controller
@@ -42,9 +45,25 @@ class PostViewController extends Controller
         }
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
+        $totalViews = $query->sum('view_counts');
 
         return Inertia::render('admin/post_view_counts/Index', [
             'tableData' => $tableData,
+            'totalViews' => $totalViews,
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $filters = [
+            'search' => $request->input('search', ''),
+            'status' => $request->input('status'),
+            'sortBy' => $request->input('sortBy', 'view_date'),
+            'sortDirection' => $request->input('sortDirection', 'desc'),
+            'startDate' => Carbon::parse('2025-01-01'),
+            'endDate' => Carbon::parse('2025-04-30'),
+        ];
+
+        return Excel::download(new PostDailyViewExport($filters), 'post_views.xlsx');
     }
 }

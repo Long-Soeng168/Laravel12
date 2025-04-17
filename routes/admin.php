@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/posts/{post}/update_status', [PostController::class, 'update_status']);
     Route::delete('admin/posts/images/{image}', [PostController::class, 'destroy_image']);
     Route::get('admin/post_view_counts', [PostViewController::class, 'index']);
+    Route::get('admin/post_view_counts/export', [PostViewController::class, 'export']);
     
     // Page Position Route
     Route::resource('admin/page_positions', PagePositionController::class);
