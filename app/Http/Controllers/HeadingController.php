@@ -60,7 +60,7 @@ class HeadingController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'title_kh' => 'required|string|max:255',
+            'title_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:headings,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
@@ -105,7 +105,7 @@ class HeadingController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'title_kh' => 'required|string|max:255',
+            'title_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:headings,code,'. $heading->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',

@@ -64,7 +64,7 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'title_kh' => 'required|string|max:255',
+            'title_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:projects,code',
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_code' => 'nullable|string',
@@ -127,7 +127,7 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'title_kh' => 'required|string|max:255',
+            'title_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:projects,code,' . $project->id,
             'order_index' => 'nullable|integer|min:0|max:255',
             'parent_code' => 'nullable|string',

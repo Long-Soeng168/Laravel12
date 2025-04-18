@@ -70,7 +70,7 @@ class PostCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'name_kh' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:post_categories,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
@@ -141,7 +141,7 @@ class PostCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'name_kh' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:post_categories,code,' . $postCategory->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
