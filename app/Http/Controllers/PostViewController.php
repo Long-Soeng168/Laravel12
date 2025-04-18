@@ -19,16 +19,27 @@ class PostViewController extends Controller
         $sortBy = $request->input('sortBy', 'view_date');
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
 
-        $startDate = Carbon::parse('2025-01-1');
-        $endDate = Carbon::parse('2025-04-30');
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
 
         $query = PostDailyView::query();
 
 
+        if ($from_date) {
+            // dd($from_date);
+            $query->where('view_date', '>=', $from_date);
+        }
 
-        if (true) {
-            $query->whereBetween('view_date', [$startDate, $endDate]);
+        if ($to_date) {
+            $query->where('view_date', '<=', $to_date);
         }
 
         if ($status) {
@@ -50,18 +61,32 @@ class PostViewController extends Controller
         return Inertia::render('admin/post_view_counts/Index', [
             'tableData' => $tableData,
             'totalViews' => $totalViews,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
         ]);
     }
 
     public function export(Request $request)
     {
+        // dd($request->all());
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
+        // dd($from_date, $to_date);
+
         $filters = [
             'search' => $request->input('search', ''),
             'status' => $request->input('status'),
             'sortBy' => $request->input('sortBy', 'view_date'),
             'sortDirection' => $request->input('sortDirection', 'desc'),
-            'startDate' => Carbon::parse('2025-01-01'),
-            'endDate' => Carbon::parse('2025-04-30'),
+            'from_date' => $from_date,
+            'to_date' => $to_date,
         ];
 
         return Excel::download(new PostDailyViewExport($filters), 'post_views.xlsx');

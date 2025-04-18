@@ -34,7 +34,7 @@ export function MySearchTableData() {
                 placeholder="Search..."
             />
             <Button variant="outline" type="submit" onClick={() => handleSearch(search)}>
-                <SearchIcon className="[&_svg]:size-2" /> Search
+                <SearchIcon className="[&_svg]:size-2" /> <span className='hidden lg:inline'>Search</span>
             </Button>
         </div>
     );

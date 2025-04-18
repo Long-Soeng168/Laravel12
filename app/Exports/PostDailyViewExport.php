@@ -20,7 +20,7 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
     {
         $query = PostDailyView::query()
             ->with('post')
-            ->whereBetween('view_date', [$this->filters['startDate'], $this->filters['endDate']])
+            ->whereBetween('view_date', [$this->filters['from_date'], $this->filters['to_date']])
             ->orderBy($this->filters['sortBy'], $this->filters['sortDirection']);
 
         if (!empty($this->filters['status'])) {
