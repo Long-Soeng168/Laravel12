@@ -139,7 +139,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="name_kh"
@@ -153,9 +153,9 @@ export default function Create() {
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="address"
                     render={({ field }) => (
@@ -309,7 +309,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                </div>
+                </div> */}
 
                 <FormField
                     control={form.control}
