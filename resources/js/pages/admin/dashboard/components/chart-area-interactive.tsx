@@ -1,6 +1,6 @@
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { usePage } from '@inertiajs/react';
 const chartData = [
@@ -20,7 +20,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
-    const { post_daily_views_data } = usePage().props;
+    const { post_daily_views_data, featureDatas } = usePage().props;
     const formattedData = (post_daily_views_data || []).map((item) => ({
         date: item.date,
         total: Number(item.total),
@@ -48,6 +48,9 @@ export function ChartAreaInteractive() {
                             <Area dataKey="total" type="natural" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
                         </AreaChart>
                     </ChartContainer>
+                    <CardFooter className="flex-col items-start gap-2 text-sm">
+                        <div className="flex gap-2 leading-none font-medium">Total Views up to date : {featureDatas?.totalPostViews} views</div>
+                    </CardFooter>
                 </CardContent>
             </Card>
         </>
