@@ -62,7 +62,7 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Name
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('name_kh')}>
+                            {/* <TableHead onClick={() => handleSort('name_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Name Khmer
                                 </span>
@@ -81,7 +81,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Parent
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('order_index')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Order Index
@@ -185,10 +185,10 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.code || '---'}</TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
-                                <TableCell>{item.name_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.name_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
-                                <TableCell>{item.parent_code || '---'}</TableCell>
+                                <TableCell>{item.parent_code || '---'}</TableCell> */}
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>

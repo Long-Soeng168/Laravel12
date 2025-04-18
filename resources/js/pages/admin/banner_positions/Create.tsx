@@ -144,7 +144,7 @@ export default function Create({
                         />
                     </div>
 
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="name_kh"
@@ -158,7 +158,7 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
@@ -203,7 +203,7 @@ export default function Create({
                     </div>
                 </div>
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="short_description"
                     render={({ field }) => (
@@ -229,9 +229,9 @@ export default function Create({
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
                     )}
-                />
+                /> */}
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="image"
                     render={({ field }) => (
@@ -268,7 +268,6 @@ export default function Create({
                             </FormControl>
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
 
-                            {/* Initial Image */}
                             {editData?.image && (
                                 <div className="mt-4 p-1">
                                     <FormDescription className="mb-2">Uploaded Image.</FormDescription>
@@ -288,9 +287,9 @@ export default function Create({
                             )}
                         </FormItem>
                     )}
-                />
+                /> */}
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="banner"
                     render={({ field }) => (
@@ -327,7 +326,6 @@ export default function Create({
                             </FormControl>
                             <FormMessage>{errors.banner && <div>{errors.banner}</div>}</FormMessage>
 
-                            {/* Initial Image */}
                             {editData?.banner && (
                                 <div className="mt-4 p-1">
                                     <FormDescription className="mb-2">Uploaded Banner.</FormDescription>
@@ -347,7 +345,7 @@ export default function Create({
                             )}
                         </FormItem>
                     )}
-                />
+                /> */}
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
 

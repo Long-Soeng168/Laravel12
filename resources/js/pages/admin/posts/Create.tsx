@@ -194,7 +194,7 @@ export default function Create() {
                     </div>
 
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -210,7 +210,7 @@ export default function Create() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="title_kh"
@@ -224,9 +224,9 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
-
+{/* 
                     <FormField
                         control={form.control}
                         name="short_description"
@@ -253,7 +253,7 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
                         <div className="col-span-6 flex space-x-2">
@@ -315,7 +315,7 @@ export default function Create() {
                             </span>
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="type"
@@ -338,11 +338,9 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
-                    </div>
+                        </div> */}
 
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="category_code"
@@ -408,7 +406,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
                             <FormField
@@ -510,10 +508,10 @@ export default function Create() {
                             <p className="mb-1 text-sm font-medium">Long Description</p>
                             <MyCkeditor5 data={long_description} setData={setLong_description} />
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="mb-1 text-sm font-medium">Long Description Khmer</p>
                             <MyCkeditor5 data={long_description_kh} setData={setLong_description_kh} />
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* End Long Description */}

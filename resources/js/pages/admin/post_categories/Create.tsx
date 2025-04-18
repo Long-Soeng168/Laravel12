@@ -168,7 +168,7 @@ export default function Create({
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-10">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="name"
@@ -184,7 +184,7 @@ export default function Create({
                         />
                     </div>
 
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="name_kh"
@@ -198,7 +198,7 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
@@ -260,7 +260,7 @@ export default function Create({
                         />
                     </div>
 
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="parent_code"
@@ -332,10 +332,10 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="short_description"
                     render={({ field }) => (
@@ -361,7 +361,7 @@ export default function Create({
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
                     )}
-                />
+                /> */}
 
                 <FormField
                     control={form.control}
@@ -420,7 +420,7 @@ export default function Create({
                     )}
                 />
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="banner"
                     render={({ field }) => (
@@ -475,7 +475,7 @@ export default function Create({
                             )}
                         </FormItem>
                     )}
-                />
+                /> */}
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
 

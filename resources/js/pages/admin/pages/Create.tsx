@@ -150,7 +150,7 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -166,7 +166,7 @@ export default function Create() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="title_kh"
@@ -180,10 +180,10 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="short_description"
                         render={({ field }) => (
@@ -209,9 +209,9 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
-                    <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
+                    {/* <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
                         <div className="col-span-6 flex space-x-2">
                             <span>
                                 <FormField
@@ -295,10 +295,10 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="order_index"
@@ -313,7 +313,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
                             <FormField
@@ -337,11 +337,8 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        </div> 
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="parent_id"
@@ -407,7 +404,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
                             <FormField
@@ -477,7 +474,7 @@ export default function Create() {
                             />
                         </div>
                     </div>
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="images"
                         render={({ field }) => (
@@ -516,7 +513,7 @@ export default function Create() {
                                 <FormMessage>{errors.images && <div>{errors.images}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
                     {/* Initial Image */}
                     {editData?.images?.length > 0 && (
                         <div className="mt-4 p-1">
@@ -553,10 +550,10 @@ export default function Create() {
                             <p className="mb-1 text-sm font-medium">Long Description</p>
                             <MyCkeditor5 data={long_description} setData={setLong_description} />
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="mb-1 text-sm font-medium">Long Description Khmer</p>
                             <MyCkeditor5 data={long_description_kh} setData={setLong_description_kh} />
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* End Long Description */}

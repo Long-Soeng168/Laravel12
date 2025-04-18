@@ -50,8 +50,8 @@ const MyTableData = () => {
                         <TableRow>
                             <TableHead className="w-[50px]">No</TableHead>
                             <TableHead className="text-left">Action</TableHead>
-                            <TableHead>Image</TableHead>
-                            <TableHead>Banner</TableHead>
+                            {/* <TableHead>Image</TableHead> */}
+                            {/* <TableHead>Banner</TableHead> */}
                             <TableHead onClick={() => handleSort('code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Code
@@ -62,11 +62,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Name
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('name_kh')}>
+                            {/* <TableHead onClick={() => handleSort('name_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Name Khmer
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
@@ -107,7 +107,7 @@ const MyTableData = () => {
                                         {hasPermission('banner update') && <EditButton item={item} />}
                                     </span>
                                 </TableCell>
-                                <TableCell>
+                                {/* <TableCell>
                                     {item.image ? (
                                         <button
                                             onClick={() => {
@@ -160,10 +160,10 @@ const MyTableData = () => {
                                             className="size-10 object-contain"
                                         />
                                     )}
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell>{item.code || '---'}</TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
-                                <TableCell>{item.name_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.name_kh || '---'}</TableCell> */}
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>
                                     {hasPermission('banner update') ? (

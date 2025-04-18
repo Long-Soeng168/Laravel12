@@ -34,56 +34,6 @@ export function AppSidebar() {
             isActive: isActive('/dashboard'),
         },
 
-        ...(hasPermission('item view')
-            ? [
-                  {
-                      title: 'Items',
-                      url: '/items',
-                      icon: LayoutGrid,
-                      isActive: isActive('/items'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('project view')
-            ? [
-                  {
-                      title: 'Projects',
-                      url: '/admin/projects',
-                      icon: ProjectorIcon,
-                      isActive: isActive('/admin/projects'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('heading view')
-            ? [
-                  {
-                      title: 'Headings',
-                      url: '/admin/headings',
-                      icon: Heading1Icon,
-                      isActive: isActive('/admin/headings'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('link view')
-            ? [
-                  {
-                      title: 'Links',
-                      url: '/admin/links',
-                      icon: LinkIcon,
-                      isActive: isActive('/admin/links'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('application_info view')
-            ? [
-                  {
-                      title: 'Application Info',
-                      url: '/admin/application_info',
-                      icon: InfoIcon,
-                      isActive: isActive('/admin/application_info'),
-                  },
-              ]
-            : []),
         ...(hasPermission('post view')
             ? [
                   {
@@ -179,6 +129,56 @@ export function AppSidebar() {
                               isActive: isActive('/admin/permissions'),
                           },
                       ],
+                  },
+              ]
+            : []),
+        ...(hasPermission('item view')
+            ? [
+                  {
+                      title: 'Items',
+                      url: '/items',
+                      icon: LayoutGrid,
+                      isActive: isActive('/items'),
+                  },
+              ]
+            : []),
+        ...(hasPermission('project view')
+            ? [
+                  {
+                      title: 'Projects',
+                      url: '/admin/projects',
+                      icon: ProjectorIcon,
+                      isActive: isActive('/admin/projects'),
+                  },
+              ]
+            : []),
+        ...(hasPermission('heading view')
+            ? [
+                  {
+                      title: 'Headings',
+                      url: '/admin/headings',
+                      icon: Heading1Icon,
+                      isActive: isActive('/admin/headings'),
+                  },
+              ]
+            : []),
+        ...(hasPermission('link view')
+            ? [
+                  {
+                      title: 'Links',
+                      url: '/admin/links',
+                      icon: LinkIcon,
+                      isActive: isActive('/admin/links'),
+                  },
+              ]
+            : []),
+        ...(hasPermission('application_info view')
+            ? [
+                  {
+                      title: 'Application Info',
+                      url: '/admin/application_info',
+                      icon: InfoIcon,
+                      isActive: isActive('/admin/application_info'),
                   },
               ]
             : []),

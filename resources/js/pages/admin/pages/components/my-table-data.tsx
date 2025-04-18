@@ -48,14 +48,14 @@ const MyTableData = () => {
                         <TableRow>
                             <TableHead className="w-[50px]">No</TableHead>
                             <TableHead className="text-left">Action</TableHead>
-                            <TableHead>Image(s)</TableHead>
-                            <TableHead>Link</TableHead>
+                            {/* <TableHead>Image(s)</TableHead> */}
+                            {/* <TableHead>Link</TableHead> */}
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            {/* <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title Khmer
                                 </span>
@@ -69,18 +69,18 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Short Description Khmer
                                 </span>
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('order_index')}>
+                            </TableHead> */}
+                            {/* <TableHead onClick={() => handleSort('order_index')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Order Index
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('parent_id')}>
+                            {/* <TableHead onClick={() => handleSort('parent_id')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Parent
                                 </span>
@@ -89,7 +89,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('position_code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Position
@@ -140,7 +140,7 @@ const MyTableData = () => {
                                         )}
                                     </span>
                                 </TableCell>
-                                <TableCell>
+                                {/* <TableCell>
                                     {item.images[0] ? (
                                         <button
                                             onClick={() => {
@@ -166,8 +166,8 @@ const MyTableData = () => {
                                             className="size-10 object-contain"
                                         />
                                     )}
-                                </TableCell>
-                                <TableCell className="text-center">
+                                </TableCell> */}
+                                {/* <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
                                             <MyTooltipButton variant="ghost" title={item.link} className="p-0 hover:bg-transparent">
@@ -187,12 +187,12 @@ const MyTableData = () => {
                                     ) : (
                                         '---'
                                     )}
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell>{item.title || '---'}</TableCell>
-                                <TableCell>{item.title_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.title_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
-                                <TableCell>{item.order_index || '---'}</TableCell>
+                                <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>
                                     {hasPermission('page update') ? (
                                         <MyUpdateStatusButton
@@ -205,8 +205,8 @@ const MyTableData = () => {
                                         <span className="capitalize">{item.status}</span>
                                     )}
                                 </TableCell>
-                                <TableCell>{item.parent?.title || '---'}</TableCell>
-                                <TableCell className="capitalize">{item.type || '---'}</TableCell>
+                                {/* <TableCell>{item.parent?.title || '---'}</TableCell> */}
+                                {/* <TableCell className="capitalize">{item.type || '---'}</TableCell> */}
                                 <TableCell>{item.position?.name || '---'}</TableCell>
                                 <TableCell>
                                     {item.created_at

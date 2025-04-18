@@ -55,7 +55,7 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Title
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            {/* <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title Khmer
                                 </span>
@@ -69,7 +69,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Short Description Khmer
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
@@ -80,11 +80,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Category
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('type')}>
+                            {/* <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('total_view_counts')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Total View
@@ -189,9 +189,9 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.title || '---'}</TableCell>
-                                <TableCell>{item.title_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.title_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
-                                <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                <TableCell>{item.short_description_kh || '---'}</TableCell> */}
                                 <TableCell>
                                     {hasPermission('post update') ? (
                                         <MyUpdateStatusButton
@@ -205,7 +205,7 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.category?.name || '---'}</TableCell>
-                                <TableCell className="capitalize">{item.type || '---'}</TableCell>
+                                {/* <TableCell className="capitalize">{item.type || '---'}</TableCell> */}
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell>

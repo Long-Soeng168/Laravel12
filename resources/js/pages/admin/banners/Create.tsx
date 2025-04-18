@@ -137,7 +137,7 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -152,7 +152,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-
+{/* 
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -167,9 +167,9 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="short_description"
                         render={({ field }) => (
@@ -194,9 +194,9 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
-                        <div className="col-span-6 flex space-x-2">
+                        {/* <div className="col-span-6 flex space-x-2">
                             <span>
                                 <FormField
                                     control={form.control}
@@ -253,7 +253,7 @@ export default function Create() {
                                     )}
                                 />
                             </span>
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
                             <FormField
@@ -322,6 +322,31 @@ export default function Create() {
                                 )}
                             />
                         </div>
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Type</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Type" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="image">Image (Single Image)</SelectItem>
+                                                {/* <SelectItem value="multi_images">Images (Multiple Images)</SelectItem> */}
+                                                {/* <SelectItem value="video">Video</SelectItem> */}
+                                                <SelectItem value="embed">Embed</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                     </div>
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
@@ -364,34 +389,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                    </div>
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="type"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Type</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select Type" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                <SelectItem value="image">Image (Single Image)</SelectItem>
-                                                <SelectItem value="multi_images">Images (Multiple Images)</SelectItem>
-                                                <SelectItem value="video">Video</SelectItem>
-                                                <SelectItem value="embed">Embed</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                    </div>
+                    </div> 
                     <FormField
                         control={form.control}
                         name="images"
