@@ -33,7 +33,7 @@ export function ChartAreaInteractive() {
                     <ChartContainer config={chartConfig}>
                         <AreaChart
                             accessibilityLayer
-                            data={post_daily_views_data}
+                            data={chartData}
                             margin={{
                                 left: 12,
                                 right: 12,
