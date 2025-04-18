@@ -15,7 +15,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     title: z.string().min(1).max(255),
-    title_kh: z.string().min(1).max(255).optional(),
+    title_kh: z.string().max(255).optional(),
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
     order_index: z.string().optional(),
@@ -136,7 +136,7 @@ export default function Create({
                         />
                     </div>
 
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="title_kh"
@@ -150,7 +150,7 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
@@ -198,11 +198,11 @@ export default function Create({
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="social_media">Social Media</SelectItem>
-                                            <SelectItem value="contact">Contact</SelectItem>
+                                            {/* <SelectItem value="social_media">Social Media</SelectItem>
+                                            <SelectItem value="contact">Contact</SelectItem> */}
                                             <SelectItem value="menu">Menu</SelectItem>
                                             <SelectItem value="footer">Footer</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
+                                            {/* <SelectItem value="other">Other</SelectItem> */}
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>

@@ -118,7 +118,7 @@ const MyTableData = () => {
                                         )}
                                     </TableCell>
                                     <TableCell>{item.title || '---'}</TableCell>
-                                    <TableCell>{item.title_kh || '---'}</TableCell>
+                                    {/* <TableCell>{item.title_kh || '---'}</TableCell> */}
                                     <TableCell>{item.link || '---'}</TableCell>
                                     <TableCell>{item.type || '---'}</TableCell>
                                     <TableCell>
