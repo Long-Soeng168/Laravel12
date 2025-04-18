@@ -42,7 +42,7 @@ export function ChartAreaInteractive() {
                             <CartesianGrid vertical={false} />
                             <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => value} />
                             <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-                            <Area dataKey="total" type="natural" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
+                            <Area dataKey="total" type="linear" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
                         </AreaChart>
                     </ChartContainer>
                 </CardContent>
