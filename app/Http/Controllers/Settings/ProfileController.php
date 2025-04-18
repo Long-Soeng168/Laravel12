@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -29,13 +30,24 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // dd($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'image' => ['nullable', 'image', 'max:2048'], // 2MB max
+        ]);
+    
+        $user = $request->user();
+    
+        if ($request->hasFile('image')) {
+          $image_created_name = ImageHelper::uploadAndResizeImage($request->file('image'), 'assets/images/users', 600 );
+          if( $image_created_name ) {
+            ImageHelper::deleteImage($user->image, 'assets/images/users');
+          }
+          $validated['image'] = $image_created_name;
         }
-
-        $request->user()->save();
+    
+        $user->update($validated);
 
         return to_route('profile.edit');
     }

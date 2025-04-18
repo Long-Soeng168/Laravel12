@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { Loader2Icon } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -22,20 +23,22 @@ const breadcrumbs: BreadcrumbItem[] = [
 interface ProfileForm {
     name: string;
     email: string;
+    image: any;
 }
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
     const { auth } = usePage<SharedData>().props;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
+    const { data, setData, post, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
         name: auth.user.name,
         email: auth.user.email,
+        image: auth.user.image,
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'), {
+        post(route('profile.update'), {
             preserveScroll: true,
         });
     };
@@ -81,6 +84,18 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                             <InputError className="mt-2" message={errors.email} />
                         </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="image">Image</Label>
+
+                            <Input
+                                id="image"
+                                type="file"
+                                className="mt-1 block w-full"
+                                onChange={(e) => setData('image', e.target.files?.[0] ?? null)}
+                            />
+
+                            <InputError className="mt-2" message={errors.email} />
+                        </div>
 
                         {mustVerifyEmail && auth.user.email_verified_at === null && (
                             <div>
@@ -105,7 +120,14 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         )}
 
                         <div className="flex items-center gap-4">
-                            <Button disabled={processing}>Save</Button>
+                            <Button disabled={processing}>
+                                {processing && (
+                                    <span className="animate-spin">
+                                        <Loader2Icon />
+                                    </span>
+                                )}
+                                Save
+                            </Button>
 
                             <Transition
                                 show={recentlySuccessful}
@@ -114,7 +136,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 leave="transition ease-in-out"
                                 leaveTo="opacity-0"
                             >
-                                <p className="text-sm text-neutral-600">Saved</p>
+                                <p className="text-sm text-green-600">Saved</p>
                             </Transition>
                         </div>
                     </form>
