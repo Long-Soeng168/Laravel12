@@ -10,7 +10,7 @@ const SectionCards = () => {
             icon: FilePenLineIcon,
             title: 'Posts',
             description: `Posts : ${featureDatas?.post_counts}`,
-            sub_description: `Total view : ${featureDatas?.totalPostViews}`,
+            // sub_description: `Total view : ${featureDatas?.totalPostViews}`,
             link: '/admin/posts',
             permission: 'post view',
         },
