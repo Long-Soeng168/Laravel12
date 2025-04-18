@@ -56,11 +56,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Title
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            {/* <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title Khmer
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead>Link</TableHead>
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
