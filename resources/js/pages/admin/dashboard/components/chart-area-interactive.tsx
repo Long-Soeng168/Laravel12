@@ -1,7 +1,6 @@
-import { TrendingUp } from 'lucide-react';
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { usePage } from '@inertiajs/react';
 const chartData = [
@@ -22,6 +21,10 @@ const chartConfig = {
 
 export function ChartAreaInteractive() {
     const { post_daily_views_data } = usePage().props;
+    const formattedData = (post_daily_views_data || []).map((item) => ({
+        date: item.date,
+        total: Number(item.total),
+    }));
     return (
         <>
             <Card>
@@ -33,7 +36,7 @@ export function ChartAreaInteractive() {
                     <ChartContainer config={chartConfig}>
                         <AreaChart
                             accessibilityLayer
-                            data={chartData}
+                            data={formattedData}
                             margin={{
                                 left: 12,
                                 right: 12,
