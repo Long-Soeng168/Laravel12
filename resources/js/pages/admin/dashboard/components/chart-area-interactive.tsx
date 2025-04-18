@@ -1,5 +1,5 @@
 import { TrendingUp } from 'lucide-react';
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
@@ -31,7 +31,7 @@ export function ChartAreaInteractive() {
                 </CardHeader>
                 <CardContent>
                     <ChartContainer config={chartConfig}>
-                        <AreaChart
+                        <BarChart
                             accessibilityLayer
                             data={post_daily_views_data}
                             margin={{
@@ -42,8 +42,8 @@ export function ChartAreaInteractive() {
                             <CartesianGrid vertical={false} />
                             <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => value} />
                             <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-                            <Area dataKey="total" type="linear" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
-                        </AreaChart>
+                            <Bar dataKey="total" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
+                        </BarChart>
                     </ChartContainer>
                 </CardContent>
             </Card>
