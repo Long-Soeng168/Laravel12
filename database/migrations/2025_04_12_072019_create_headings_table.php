@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('title_kh');
+            $table->string('title_kh')->nullable();
             $table->string('code')->unique();
             $table->string('status')->nullable()->default('active');
             $table->string('short_description', 500)->nullable();
