@@ -14,8 +14,8 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     address: z.string().min(1).max(255),
-       phone: z.string().min(1).max(255).optional(),
-       opening_hours: z.string().min(0).max(255).optional(),
+       phone: z.string().max(255).optional(),
+       opening_hours: z.string().max(255).optional(),
        email: z.string().optional(),
        copyright: z.string().optional(),
        image: z.string().optional(),

@@ -18,8 +18,8 @@ import * as z from 'zod';
 
 const formSchema = z.object({
       title: z.string().min(1).max(255),
-      title_kh: z.string().min(1).max(255).optional(),
-      link: z.string().min(0).max(255).optional(),
+      title_kh: z.string().max(255).optional(),
+      link: z.string().max(255).optional(),
       type: z.string().optional(),
       image: z.string().optional(),
 });

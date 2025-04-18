@@ -23,11 +23,11 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 const formSchema = z.object({
-    title: z.string().min(1).min(1).max(255),
-    title_kh: z.string().min(0).max(255).optional(),
-    short_description: z.string().min(0).max(500).optional(),
-    short_description_kh: z.string().min(0).max(500).optional(),
-    link: z.string().min(0).max(255).optional(),
+    title: z.string().min(1).max(255),
+    title_kh: z.string().max(255).optional(),
+    short_description: z.string().max(500).optional(),
+    short_description_kh: z.string().max(500).optional(),
+    link: z.string().max(255).optional(),
     type: z.string().optional(),
     status: z.string().optional(),
     parent_id: z.string().optional(),
