@@ -42,7 +42,6 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
             $view->post?->title ?? 'N/A',
             $view->view_date,
             $view->view_counts,
-            $view->status ?? 'N/A',
         ];
     }
 
@@ -52,7 +51,6 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
             'Post Title',
             'View Date',
             'View Counts',
-            'Status',
         ];
     }
 }
