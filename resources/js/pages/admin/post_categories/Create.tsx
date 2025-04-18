@@ -21,7 +21,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     name: z.string().min(1).min(1).max(255),
-    name_kh: z.string().min(1).min(1).max(255).optional(),
+    name_kh: z.string().max(255).optional(),
     code: z.string().min(1).max(255),
     status: z.string().max(255).optional(),
     order_index: z.string().max(255).optional(),

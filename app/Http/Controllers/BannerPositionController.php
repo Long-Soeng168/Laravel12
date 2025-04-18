@@ -50,7 +50,7 @@ class BannerPositionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'name_kh' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:banner_positions,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
@@ -103,7 +103,7 @@ class BannerPositionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'name_kh' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'code' => 'required|string|max:255|unique:banner_positions,code,' . $bannerPosition->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
