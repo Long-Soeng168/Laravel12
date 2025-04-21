@@ -15,5 +15,6 @@ How to setup project
 
 - Seed roles and permissions
     - php artisan db:seed --class=RolesAndPermissionsSeeder
+    - php artisan db:seed --class=TypeSeeder
 # Laravel12
 # Laravel12

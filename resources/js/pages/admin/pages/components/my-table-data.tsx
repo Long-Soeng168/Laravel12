@@ -92,7 +92,7 @@ const MyTableData = () => {
                             </TableHead>
                             <TableHead onClick={() => handleSort('position_code')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Position
+                                    <ArrowUpDown size={16} /> Position Code
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
@@ -206,8 +206,8 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.parent?.title || '---'}</TableCell>
-                                <TableCell className="capitalize">{item.type || '---'}</TableCell>
-                                <TableCell>{item.position?.name || '---'}</TableCell>
+                                <TableCell>{item.type || '---'}</TableCell>
+                                <TableCell>{item.position_code || '---'}</TableCell>
                                 <TableCell>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {

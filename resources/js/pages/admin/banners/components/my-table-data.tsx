@@ -231,7 +231,7 @@ const MyTableData = () => {
                                         <span className='capitalize'>{item.status}</span>
                                     )}
                                 </TableCell>
-                                <TableCell className="capitalize">{item.type || '---'}</TableCell>
+                                <TableCell>{item.type || '---'}</TableCell>
                                 <TableCell>{item.position?.name || '---'}</TableCell>
                                 <TableCell>
                                     {item.created_at

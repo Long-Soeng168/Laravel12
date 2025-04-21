@@ -14,6 +14,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostViewController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Models\PostDailyView;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,11 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('admin/items/page');
     });
 
+
+    // Type Route
+    Route::resource('admin/types', TypeController::class);
+    Route::post('admin/types/{type}/update', [TypeController::class, 'update']);
+    Route::post('admin/types/{type}/update_status', [TypeController::class, 'update_status']);
 
     // Application Info Route
     Route::resource('admin/application_info', ApplicationInfoController::class);

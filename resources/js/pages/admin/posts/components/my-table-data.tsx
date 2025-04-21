@@ -77,7 +77,7 @@ const MyTableData = () => {
                             </TableHead>
                             <TableHead onClick={() => handleSort('category_code')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Category
+                                    <ArrowUpDown size={16} /> Category Code
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('type')}>
@@ -204,8 +204,8 @@ const MyTableData = () => {
                                         <span className='capitalize'>{item.status}</span>
                                     )}
                                 </TableCell>
-                                <TableCell>{item.category?.name || '---'}</TableCell>
-                                <TableCell className="capitalize">{item.type || '---'}</TableCell>
+                                <TableCell>{item.category_code || '---'}</TableCell>
+                                <TableCell>{item.type || '---'}</TableCell>
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell>
