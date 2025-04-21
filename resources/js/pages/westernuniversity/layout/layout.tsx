@@ -14,7 +14,7 @@ const MyLayoutWestern = ({ children }: LayoutProps) => {
       <MyLanguageSwitcherAndSerchInput />
 
       {/* End Header */}
-      <main className="min-h-screen  mx-auto">{children}</main>
+      <main className="min-h-screen font-now-alt-medium mx-auto">{children}</main>
       {/* Footer */}
       <MyFooter/>
       {/* End Footer */}

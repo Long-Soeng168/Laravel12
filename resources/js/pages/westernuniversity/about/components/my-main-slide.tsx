@@ -6,10 +6,9 @@ import { useEffect, useState } from 'react';
 
 export function MyMainSlide() {
     const images = [
-        { id: '1', image: '/assets/demo-images/02TopBackground/02 School Facilities.jpg', alt: 'Slide 1' },
-        { id: '2', image: '/assets/demo-images/02TopBackground/03 Campuses.jpg', alt: 'Slide 2' },
-        { id: '2', image: '/assets/demo-images/02TopBackground/04 Curriculum.jpg', alt: 'Slide 2' },
-        { id: '2', image: '/assets/demo-images/02TopBackground/03 Campuses.jpg', alt: 'Slide 2' },
+        { id: '1', image: '/assets/demo-images/01ourHistory/01.jpg', alt: 'Slide 1' },
+        { id: '2', image: '/assets/demo-images/01ourHistory/02jpg', alt: 'Slide 2' },
+        { id: '2', image: '/assets/demo-images/01ourHistory/03.jpg', alt: 'Slide 2' },
     ];
 
    const [selectedIndex, setSelectedIndex] = useState(0);

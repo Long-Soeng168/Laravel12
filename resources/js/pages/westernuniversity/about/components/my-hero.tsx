@@ -1,87 +1,73 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link } from "@inertiajs/react";
-import { ArrowRight, ArrowUpRight, CirclePlay } from "lucide-react";
 import React from "react";
 
 const MyHero = () => {
-  const features = [
-    {
-      category: "Marketing and Sales",
-      title: "Collect and enrich leads your way",
-      details:
-        "Take control over how and when to follow up with your leads. Store and reference leads in multiple tables and, from there, automatically send them personalized emails.",
-      tutorialLink: "#",
-    },
-   
-  
-  ];
-  
   return (
     <>
-    <div className="min-h-screen w-full flex flex-col gap-10 items-center justify-center px-6 py-16">
-      <div className="text-center max-w-2xl">
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold !leading-[1.2] tracking-tight">
-          Our Vission
-        </h1>
-        <p className="mt-6 text-[17px] md:text-lg">
-          Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-        </p>
-        
-      </div>
-      <div className="w-full max-w-screen-xl mx-auto aspect-[21/9] bg-accent rounded-xl" >
-        <img
-          src="/assets/demo-images/02TopBackground/01_history.jpg"
-          alt="Hero Image"
-          className="object-cover w-full h-full rounded-xl"
-        />
-      </div>
-    </div>
-    <div className="mt-8 md:mt-16 w-full max-w-screen-xl mx-auto space-y-20">
-    <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold !leading-[1.2] tracking-tight text-center">
-          Our Mission
-        </h1>
-            <div
-              className="flex flex-col md:flex-row items-center gap-x-20 gap-y-6 md:odd:flex-row-reverse"
-            >
-              <div className="w-full aspect-[6/4] bg-muted rounded-xl border border-border/50 basis-1/2 p-6" >
-              <h4 className="my-3 text-3xl font-semibold tracking-tight">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </h4>
-                <h4 className="my-3 text-3xl font-semibold tracking-tight">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </h4>
-                <p className="text-muted-foreground text-[17px]">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </p>
-              </div>
-              <div className="w-full aspect-[6/4] bg-muted rounded-xl border border-border/50 basis-1/2 p-6">
-              <h4 className="my-3 text-3xl font-semibold tracking-tight">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </h4>
-                <h4 className="my-3 text-3xl font-semibold tracking-tight">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </h4>
-                <p className="text-muted-foreground text-[17px]">
-                Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
-                </p>
-              </div>
-            </div>
+      {/* Hero Section */}
+      <section className="min-h-screen w-full bg-gradient-to-br from-[#1e3a8a] via-[#2e63d9] to-[#0f172a] flex flex-col justify-center items-center px-6 py-20 text-white">
+        <div className="max-w-4xl text-center animate-fade-in-up">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6 drop-shadow-lg">
+            Our Vision
+          </h1>
+          <p className="text-lg md:text-2xl font-light text-white/90">
+            Western International School aims to be the leading and most
+            progressive bilingual international school in Cambodia.
+          </p>
         </div>
+
+        <div className="w-full max-w-6xl mt-12 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+          <img
+            src="/assets/demo-images/OurVision.jpg"
+            alt="Our Vision"
+            className="w-full h-full object-cover aspect-[21/9]"
+          />
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="bg-gray-100 py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16">
+            Our Mission
+          </h2>
+
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
+            {/* Mission Left */}
+            <div className="flex-1 bg-white rounded-2xl p-8 shadow-xl border border-gray-200 text-[#d4050d] text-lg md:text-xl space-y-6">
+              <p>
+                We provide students with a strong academic foundation
+                in a nurturing and globally aware environment.
+              </p>
+              <p>
+                Our commitment to bilingual education fosters critical thinking
+                and cultural understanding.
+              </p>
+              <p>
+                Integrity, innovation, and inclusivity drive our everyday goals.
+              </p>
+            </div>
+
+            {/* Mission Right */}
+            <div className="flex-1 bg-white rounded-2xl p-8 shadow-xl border border-gray-200 text-[#244494] text-lg md:text-xl space-y-6">
+              <p>
+                We empower students to become independent thinkers and lifelong
+                learners.
+              </p>
+              <p>
+                Our curriculum is designed to cultivate leadership,
+                responsibility, and creativity.
+              </p>
+              <p>
+                We strive to create an inclusive and forward-thinking community.
+              </p>
+              <p>
+                Excellence in education is at the heart of everything we do.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

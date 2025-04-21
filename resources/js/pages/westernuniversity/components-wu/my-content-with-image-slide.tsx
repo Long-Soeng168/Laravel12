@@ -41,169 +41,194 @@ const Carousel = ({ images }) => {
 };
 
 export function MyContentWithSlide() {
-  const images1 = [
+  const carouselContent = [
     {
-      id: '1',
-      image: '/assets/demo-images/Quotes1.jpg',
-      alt: 'Slide 1',
-      short: 'Safety and security don’t just happen; <strong>CCTV</strong> is an investment in protection',
-      bg: '#273896',
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/04_quality_education_1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/04_quality_education_2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/04_quality_education_3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Quality Education',
+      description: 'Access to quality teachers; use of quality learning tools and professional development; quality education as one that focuses on the',
+      textColor: 'text-blue-900',
+      borderColor: 'border-blue-900',
     },
     {
-      id: '2',
-      image: '/assets/demo-images/Quotes2.jpg',
-      alt: 'Slide 2',
-      short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
-      bg: '#008080',
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/05_caring_environment_1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/05_caring_environment_2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/05_caring_environment_3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Caring Environment',
+      description: 'The establishment of safe and supportive quality learning environments. A safe and caring school environment is one in which',
+      textColor: 'text-blue-900',
+      borderColor: 'border-blue-900',
     },
     {
-      id: '3',
-      image: '/assets/demo-images/Quotes3.jpg',
-      alt: 'Slide 3',
-      short: 'Peace of mind begins with protection—<strong>Intrusion Alarms</strong> ensure you sleep soundly.',
-      bg: '#36454f',
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/06_global_competitiveness_1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/06_global_competitiveness_2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/06_global_competitiveness_3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Globally Competitive',
+      description: 'Globally competent individuals are life-long learners who understand the issues of global significance and have an appreciation for cultural',
+      textColor: 'text-blue-900',
+      borderColor: 'border-blue-900',
     },
+    {
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/07_leadership1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/07_leadership2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/07_leadership3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Leadership',
+      description: 'Leadership education enhances communication, critical thinking, and decision-making skills.',
+      textColor: 'text-red-700',
+      borderColor: 'border-red-700',
+    },
+    {
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/08_exchange_program_1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/08_exchange_program_2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/08_exchange_program_3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Exchange Program (IR)',
+      description: 'US Exchange Program is an American cultural exchange where students study and live in a volunteer host family for 1 semester in one of the',
+      textColor: 'text-red-700',
+      borderColor: 'border-red-700',
+    },
+    {
+      images: [
+        {
+          id: '1',
+          image: '/assets/demo-images/Homepage/09_study_tour_1.jpg',
+          alt: 'Slide 1',
+          bg: '#273896',
+        },
+        {
+          id: '2',
+          image: '/assets/demo-images/Homepage/09_study_tour_2.jpg',
+          alt: 'Slide 2',
+          bg: '#008080',
+        },
+        {
+          id: '3',
+          image: '/assets/demo-images/Homepage/09_study_tour_3.jpg',
+          alt: 'Slide 3',
+          bg: '#36454f',
+        },
+      ],
+      title: 'Study Tours (IR)',
+      description: 'A study tour helps students appreciate their field of study more and it really helps them better realize the interaction between their',
+      textColor: 'text-red-700',
+      borderColor: 'border-red-700',
+    },
+    // Add more items as needed...
   ];
-
-  const images2 = [
-    {
-      id: '1',
-      image: '/assets/demo-images/banner1.png',
-      alt: 'Slide 1',
-      short: 'Safety and security don’t just happen; <strong>CCTV</strong> is an investment in protection',
-      bg: '#273896',
-    },
-    {
-      id: '2',
-      image: '/assets/demo-images/banner5.jpg',
-      alt: 'Slide 2',
-      short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
-      bg: '#008080',
-    },
-    {
-      id: '3',
-      image: '/assets/demo-images/banner4.jpg',
-      alt: 'Slide 3',
-      short: 'Peace of mind begins with protection—<strong>Intrusion Alarms</strong> ensure you sleep soundly.',
-      bg: '#36454f',
-    },
-  ];
-
-  const images3 = [
-    {
-        id: '1',
-        image: '/assets/demo-images/Quotes1.jpg',
-        alt: 'Slide 1',
-        short: 'Safety and security don’t just happen; <strong>CCTV</strong> is an investment in protection',
-        bg: '#273896',
-      },
-      {
-        id: '2',
-        image: '/assets/demo-images/Quotes2.jpg',
-        alt: 'Slide 2',
-        short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
-        bg: '#008080',
-      },
-      {
-        id: '3',
-        image: '/assets/demo-images/Quotes3.jpg',
-        alt: 'Slide 3',
-        short: 'Peace of mind begins with protection—<strong>Intrusion Alarms</strong> ensure you sleep soundly.',
-        bg: '#36454f',
-      },
-  ];
+  
   return (
     <>
-      <div className="mx-auto mb-10 flex max-w-screen-2xl flex-col justify-center gap-16 px-4 sm:px-10 py-8 sm:py-12 md:px-20">
-        <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
-          <div className="mx-auto w-full max-w-full">
-            <Carousel images={images1} />
-            <div className="text-blue-900">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
+       <div className="mx-auto max-w-screen-2xl px-4 lg:px-20 py-12">
+      <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        {carouselContent.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col h-full w-full max-w-full rounded-2xl bg-white transition duration-300 hover:shadow-xl"
+          >
+            <Carousel images={item.images} />
+            <div className={`flex flex-col px-4 pt-6 pb-4 ${item.textColor}`}>
+              <h3 className="text-2xl font-semibold text-balance">{item.title}</h3>
+              <p className="mt-4 text-base leading-relaxed line-clamp-3">
+                {item.description}
               </p>
             </div>
-            <div className="mt-10 text-blue-900">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-blue-900 px-8 rounded-md font-now-alt-medium py-4">
+            <div className="mt-auto px-4 pb-6 pt-4">
+              <Link
+                href="#"
+                className={`inline-block border-2 ${item.borderColor} ${item.textColor} text-base sm:text-lg px-6 py-3 rounded-md font-now-alt-medium hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all duration-200`}
+              >
                 Read more
               </Link>
             </div>
           </div>
-          <div className="mx-auto w-full max-w-full">
-            <Carousel images={images2} />
-            <div className="text-blue-900">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
-              </p>
-            </div>
-            <div className="mt-10 text-blue-900">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-blue-900 px-8 rounded-md font-now-alt-medium py-4">
-                Read more
-              </Link>
-            </div>
-          </div>
-          <div className="mx-auto w-full max-w-full">
-            <Carousel images={images3} />
-            <div className="text-blue-900">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
-              </p>
-            </div>
-            <div className="mt-10 text-blue-900">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-blue-900 px-8 rounded-md font-now-alt-medium py-4">
-                Read more
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-1 mt-6 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
-        <div className="mx-auto w-full max-w-full">
-            <Carousel images={images1} />
-            <div className="text-red-700">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
-              </p>
-            </div>
-            <div className="mt-10 text-red-700">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-red-700 px-8 rounded-md font-now-alt-medium py-4">
-                Read more
-              </Link>
-            </div>
-          </div>
-          <div className="mx-auto w-full max-w-full">
-            <Carousel images={images2} />
-            <div className="text-red-700">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
-              </p>
-            </div>
-            <div className="mt-10 text-red-700">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-red-700 px-8 rounded-md font-now-alt-medium py-4">
-                Read more
-              </Link>
-            </div>
-          </div>
-          <div className="mx-auto w-full max-w-full">
-            <Carousel images={images3} />
-            <div className="text-red-700">
-              <h3 className="mt-4 text-4xl font-semibold">Quality Education</h3>
-              <p className="mt-6 text-xl">
-                Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on
-              </p>
-            </div>
-            <div className="mt-10 text-red-700">
-              <Link href="#" className="border-2 text-xl hover:cursor-pointer border-red-700 px-8 rounded-md font-now-alt-medium py-4">
-                Read more
-              </Link>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
+    </div>
     </>
   );
 }

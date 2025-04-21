@@ -46,7 +46,7 @@ export default function MyVideo({ className }: {className:any}) {
 
   return (
     <>
-      <div className={`max-w-screen-2xl mx-auto px-4 sm:px-10 md:px-20  gap-2 my-16 ${className}`}>
+      <div className={`max-w-screen-2xl px-4 lg:px-20 mx-auto gap-2 my-16 ${className}`}>
         {videos.map((item, index) => (
           <div
             key={index}

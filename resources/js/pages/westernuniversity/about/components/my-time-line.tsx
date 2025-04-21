@@ -1,74 +1,145 @@
 const timelineData = [
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
-    { title: 'Event Title', image: '/assets/demo-images/02TopBackground/12 Student Council.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.' },
+    { title: '2003', image: '/assets/demo-images/02TimelineIcons/2003.jpg',
+      short1:'Western International School ',
+      description: 'The first Western campus was located in Toul Kourk District and was established on 1 September, 2003, with 262 enrolled Grade 1-12 students. The school ' },
+      { title: '2004', image: '/assets/demo-images/02TimelineIcons/2004.jpg',
+        short1:'K-East Campus (Toul Kork District)',
+        description: 'WIS First Kindergarten Campus ' },
+      { title: '2005', image: '/assets/demo-images/02TimelineIcons/2005.jpg',
+        short1:'Boeungtrabek 1 Campus',
+      },
+      { title: '2006', image: '/assets/demo-images/02TimelineIcons/2006.jpg',
+        short1:'Plaza Campus (Toul Kork District)',
+        description: 'Siem Reap Campus The first Western campus branch outside of Phnom Penh'
+      },
+      { title: '2007', image: '/assets/demo-images/02TimelineIcons/2007.jpg',
+        short1:'De Castle Campus (Toul Kork District)',
+      },
+      { title: '2008', image: '/assets/demo-images/02TimelineIcons/2008.jpg',
+        short1:'TV9 Campus',
+      },
+      { title: '2009', image: '/assets/demo-images/02TimelineIcons/2009.jpg',
+        short1:'K-West Campus',
+      },
+      { title: '2010', image: '/assets/demo-images/02TimelineIcons/2010.jpg',
+        short1:'K-South Campus, East Campus & North Campus',
+      },
+      { title: '2011', image: '/assets/demo-images/02TimelineIcons/2011.jpg',
+        short1:'Antenna Campus',
+      },
+      { title: '2012', image: '/assets/demo-images/02TimelineIcons/2012.jpg',
+        short1:'Northwest Campus & Southwest Campus (Sensok District)',
+      },
+      { title: '2013', image: '/assets/demo-images/02TimelineIcons/2013.jpg',
+        short1:'Takhmao Campus (Kandal District)',
+      },
+      { title: '2014', image: '/assets/demo-images/02TimelineIcons/2014.jpg',
+        short1:'Sunway Campus',
+      },
+      { title: '2015', image: '/assets/demo-images/02TimelineIcons/2015.jpg',
+        short1:'Southwest 2A (Sensok District)',
+        
+      },
+      { title: '2016', image: '/assets/demo-images/02TimelineIcons/2016.jpg',
+        short1:'Boeung Chhouk (Sensok District)',
+        description: 'Sihanoukville Campus (Sihanoukville Province)'
+
+      },
+      { title: '2017', image: '/assets/demo-images/02TimelineIcons/2017.jpg',
+        short1:'Southwest 2B (Sensok District) ',
+        short2:'Beoungtrabek 2 (Chamkarmorn District)',
+      },
+      { title: '2018', image: '/assets/demo-images/02TimelineIcons/2018.jpg',
+        short1:'Doung Ngeap ',
+        short2:'(Sensok District)',
+      },
+      { title: '2019', image: '/assets/demo-images/02TimelineIcons/2019.jpg',
+        short1:'Stadium Main Campus & Toul Sangke Campus',
+      },
+      { title: '2020', image: '/assets/demo-images/02TimelineIcons/2020.jpg',
+        short1:'Chamka Doung Campus',
+      },
+      { title: '2021', image: '/assets/demo-images/02TimelineIcons/2021.jpg',
+        short1:'Boeung Kak Campus',
+      },
+      { title: '2022', image: '/assets/demo-images/02TimelineIcons/2022.jpg',
+        short1:'Chak Angre Campus',
+      },
+      { title: '2023', image: '/assets/demo-images/02TimelineIcons/2023.jpg',
+        short1:'Veal Sbov Campus',
+      },
   ];
   
   const MyTimeLine = () => {
     return (
-      <div className="font-now-alt-regular container mx-auto px-4 py-8">
-        <p className="font-now-alt-bold my-10 text-center text-5xl text-red-700">TimeLine</p>
-        <div className="wrap relative overflow-hidden">
-          <div className="border-2-2 border-opacity-20 absolute left-1/2 h-full border border-red-700"></div>
-  
-          {timelineData.map((event, index) => {
-            const isLeft = index % 2 === 0;
-            return (
-              <div
-                key={index}
-                className={`mb-8 flex w-full items-center justify-between ${
-                  isLeft ? 'flex-row-reverse left-timeline' : 'right-timeline'
-                }`}
-              >
-                <div className="order-1 w-5/12"></div>
-                <div className="z-20 order-1 flex h-12 w-12 items-center rounded-full bg-red-800 shadow-xl">
-                  <h1 className="mx-auto text-lg font-semibold text-white">{index + 1}</h1>
-                </div>
-                <div
-                  className={`order-1 grid lg:flex lg:flex-row gap-4 items-center justify-between w-5/12 rounded-2xl bg-gray-900 shadow-xl ${
-                    isLeft ? 'px-6 py-4' : 'px-4 py-4'
-                  }`}
-                >
-                  {isLeft ? (
-                    <>
-                      <div>
-                        <h3 className="mb-3 text-xl font-bold text-white">{event.title}</h3>
-                        <p className="leading-tight text-white">{event.description}</p>
-                      </div>
-                      <div className="w-full h-full xl:w-5/6">
-                        <img
-                          src={event.image}
-                          alt={`Timeline event ${index + 1}`}
-                          className="aspect-square h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="w-full h-full xl:w-5/6">
-                        <img
-                          src={event.image}
-                          alt={`Timeline event ${index + 1}`}
-                          className="aspect-square h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="mb-3 text-xl font-bold text-white">{event.title}</h3>
-                        <p className="leading-tight text-white">{event.description}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
+      <div className="container mx-auto px-4 py-16 font-now-alt-regular">
+      <h2 className="text-center text-4xl sm:text-5xl font-now-alt-bold text-red-700 mb-16">
+        TimeLine
+      </h2>
+
+      <div className="relative wrap overflow-hidden">
+        {/* Middle Line */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-4 border-red-700/50"></div>
+
+        {timelineData.map((event, index) => {
+          const isLeft = index % 2 === 0;
+
+          return (
+            <div
+              key={index}
+              className={`mb-20 flex flex-col lg:flex-row items-center justify-between w-full relative ${
+                isLeft ? 'lg:flex-row-reverse' : ''
+              }`}
+            >
+              {/* Spacer */}
+              <div className="hidden lg:block w-5/12"></div>
+
+              {/* Timeline Dot */}
+              <div className="z-20 flex items-center justify-center w-12 h-12 rounded-full bg-red-800 shadow-xl absolute lg:static left-1/2 transform -translate-x-1/2 lg:translate-x-0">
+                <span className="text-white font-bold">{index + 1}</span>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Content Box */}
+              <div className="w-full lg:w-5/12 mt-10 lg:mt-0 bg-gray-900 rounded-2xl shadow-xl px-6 py-6 lg:px-8 lg:py-6 flex flex-col lg:flex-row gap-6">
+                {isLeft ? (
+                  <>
+                    <div className="text-white flex-1">
+                      <h3 className="text-xl font-bold mb-1">{event.title}</h3>
+                      <p className="text-lg font-semibold mb-2">{event.short1}</p>
+                      <p className="text-lg font-semibold mb-2">{event.short2}</p>
+                      <p className="text-sm leading-relaxed">{event.description}</p>
+                    </div>
+                    <div className="flex-1 ">
+                      <img
+                        src={event.image}
+                        alt={`Timeline ${event.title}`}
+                        className="w-full  aspect-square object-cover rounded-2xl"
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex-1 ">
+                      <img
+                        src={event.image}
+                        alt={`Timeline ${event.title}`}
+                        className="w-full aspect-square object-cover rounded-2xl"
+                      />
+                    </div>
+                    <div className="text-white flex-1">
+                      <h3 className="text-xl font-bold mb-1">{event.title}</h3>
+                      <p className="text-lg font-semibold mb-2">{event.short1}</p>
+                      <p className="text-lg font-semibold mb-2">{event.short2}</p>
+                      <p className="text-sm leading-relaxed">{event.description}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
+    </div>
     );
   };
   

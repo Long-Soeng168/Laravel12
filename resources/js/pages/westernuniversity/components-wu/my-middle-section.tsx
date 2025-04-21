@@ -37,7 +37,7 @@ const MyMiddleSection = () => {
                     <p className="text-gray-500 text-sm">June 3, 2022</p>
                 </div>
             </div>
-            <a href="#" className="inline-flex shadow-md items-center mt-6 px-6 py-3 bg-[#e31c24] border-2 border-[#2c318a] rounded-md text-white hover:text-[#2c318a] font-semibold hover:bg-gray-100 transition">
+            <a href="#" className="inline-flex shadow-md items-center mt-6 px-6 py-3 bg-[#e31c24] border-2 border-[#2c318a] rounded-md text-white hover:text-[#244494] font-semibold hover:bg-gray-100 transition">
             View All Courses
         </a>
         </div>

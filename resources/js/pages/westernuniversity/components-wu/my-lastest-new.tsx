@@ -169,7 +169,7 @@ const MyLastestNew = () => {
                         </div>
                     </div>
                 </div>
-                <a href="#" className="inline-flex shadow-md items-center mt-6 px-6 py-3 bg-[#e31c24] rounded-md text-white hover:text-[#2c318a] font-semibold hover:bg-gray-100 transition">
+                <a href="#" className="inline-flex shadow-md items-center mt-6 px-6 py-3 bg-[#e31c24] rounded-md text-white hover:text-[#244494] font-semibold hover:bg-gray-100 transition">
             View All Courses
         </a>
             </div>
