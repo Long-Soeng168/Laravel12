@@ -12,8 +12,22 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PostController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+
+class PostController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:post view', only: ['index', 'show']),
+            new Middleware('permission:post create', only: ['create', 'store']),
+            new Middleware('permission:post update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:post delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
+
     public function index(Request $request)
     {
         $search = $request->input('search', '');
