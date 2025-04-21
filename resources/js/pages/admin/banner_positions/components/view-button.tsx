@@ -10,7 +10,7 @@ const ViewButton = ({ item }: { item: any }) => {
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
-                <MyTooltipButton variant="ghost" title="Edit" side="bottom" className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
+                <MyTooltipButton variant="ghost" title="View" side="bottom" className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
                     <ScanEyeIcon />
                 </MyTooltipButton>
             </DialogTrigger>
