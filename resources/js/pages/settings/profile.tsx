@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { Loader2Icon } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -23,6 +24,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 interface ProfileForm {
     name: string;
     email: string;
+    phone: string;
+    gender: string;
     image: any;
 }
 
@@ -32,7 +35,9 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
         name: auth.user.name,
         email: auth.user.email,
-        image: auth.user.image,
+        phone: auth.user.phone || '',
+        gender: auth.user.gender || '',
+        image: null,
     });
 
     const submit: FormEventHandler = (e) => {
@@ -84,6 +89,38 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                             <InputError className="mt-2" message={errors.email} />
                         </div>
+
+                        <div className="grid gap-2">
+                            <Label htmlFor="phone">Phone</Label>
+
+                            <Input
+                                id="phone"
+                                className="mt-1 block w-full"
+                                value={data.phone}
+                                onChange={(e) => setData('phone', e.target.value)}
+                                autoComplete="phone"
+                                placeholder="Phone"
+                            />
+
+                            <InputError className="mt-2" message={errors.name} />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="gender">Gender</Label>
+
+                            <Select value={data.gender} onValueChange={(value) => setData('gender', value)}>
+                                <SelectTrigger id="gender" className="w-full">
+                                    <SelectValue placeholder="Select gender" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="male">Male</SelectItem>
+                                    <SelectItem value="female">Female</SelectItem>
+                                    <SelectItem value="other">Other</SelectItem>
+                                </SelectContent>
+                            </Select>
+
+                            <InputError className="mt-2" message={errors.name} />
+                        </div>
+
                         <div className="grid gap-2">
                             <Label htmlFor="image">Image</Label>
 

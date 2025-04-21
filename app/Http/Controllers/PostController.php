@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\PostImage;
+use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -51,6 +52,7 @@ class PostController extends Controller
         return Inertia::render('admin/posts/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -117,6 +119,7 @@ class PostController extends Controller
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $post->load('images'),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
             'readOnly' => true,
         ]);
     }
@@ -131,6 +134,7 @@ class PostController extends Controller
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $post->load('images'),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
         ]);
     }
 

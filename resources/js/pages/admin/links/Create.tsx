@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm as inertiaUseForm } from '@inertiajs/react';
+import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { CloudUpload, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -59,6 +59,7 @@ export default function Create({
     });
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
+    const { types } = usePage().props;
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         // toast(
@@ -184,32 +185,34 @@ export default function Create({
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
-                        <FormField
-                            control={form.control}
-                            name="type"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Type</FormLabel>
-                                    <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select Type" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="social_media">Social Media</SelectItem>
-                                            <SelectItem value="contact">Contact</SelectItem>
-                                            <SelectItem value="menu">Menu</SelectItem>
-                                            <SelectItem value="footer">Footer</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
+                    {types ? (
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Type</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Type" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {types.map((typeObject) => (
+                                                    <SelectItem value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                ))}
+                                                {/* <SelectItem value="link">Link</SelectItem> */}
+                                            </SelectContent>
+                                        </Select>
+                                        <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
+                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    ) : null}
                     <div className="col-span-6">
                         <FormField
                             control={form.control}

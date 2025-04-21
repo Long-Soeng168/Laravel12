@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\BannerImage;
 use App\Models\BannerPosition;
 use App\Models\Link;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -59,6 +60,7 @@ class BannerController extends Controller
         return Inertia::render('admin/banners/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'bannerPositions' => BannerPosition::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'banner'])->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -173,6 +175,7 @@ class BannerController extends Controller
             'editData' => $banner->load('images'),
             'parentData' => $parentData,
             'bannerPositions' => BannerPosition::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'banner'])->orderBy('id', 'desc')->get(),
         ]);
     }
 

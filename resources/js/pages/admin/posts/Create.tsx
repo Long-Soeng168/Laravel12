@@ -51,7 +51,7 @@ export default function Create() {
     };
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { postCategories, editData, links, readOnly } = usePage().props;
+    const { postCategories, types, editData, links, readOnly } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
@@ -315,30 +315,34 @@ export default function Create() {
                             </span>
                         </div>
 
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="type"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Type</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select Type" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                <SelectItem value="content">Content</SelectItem>
-                                                <SelectItem value="link">Link</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
-                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
+                        {types ? (
+                            <div className="col-span-6">
+                                <FormField
+                                    control={form.control}
+                                    name="type"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Type</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select Type" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {types.map((typeObject) => (
+                                                        <SelectItem value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                    ))}
+                                                    {/* <SelectItem value="link">Link</SelectItem> */}
+                                                </SelectContent>
+                                            </Select>
+                                            <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
+                                            <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        ) : null}
                     </div>
 
                     <div className="grid grid-cols-12 gap-4">

@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Page;
 use App\Models\PageImage;
 use App\Models\PagePosition;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -58,6 +59,7 @@ class PageController extends Controller
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'parentData' => $parentData,
             'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'page'])->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -127,6 +129,7 @@ class PageController extends Controller
             'editData' => $page->load('images'),
             'parentData' => $parentData,
             'pagePositions' => PagePosition::all(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'page'])->orderBy('id', 'desc')->get(),
             'readOnly' => true,
         ]);
     }
@@ -145,6 +148,7 @@ class PageController extends Controller
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $page->load('images'),
             'parentData' => $parentData,
+            'types' => Type::where(['status' => 'active', 'type_of' => 'page'])->orderBy('id', 'desc')->get(),
             'pagePositions' => PagePosition::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }

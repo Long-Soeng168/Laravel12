@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
 use App\Models\Link;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -36,6 +37,7 @@ class LinkController extends Controller
 
         return Inertia::render('admin/links/Index', [
             'tableData' => $tableData,
+            'types' => Type::where(['status' => 'active', 'type_of' => 'link'])->orderBy('id', 'desc')->get(),
         ]);
     }
 

@@ -39,7 +39,7 @@ export default function Create() {
     // ===== Start Our Code =====
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { editData, readOnly, bannerPositions, links } = usePage().props;
+    const { editData, types, readOnly, bannerPositions, links } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [fileVideos, setFileVideos] = useState<File[] | null>(null);
@@ -208,7 +208,7 @@ export default function Create() {
                                                 onValueChange={(value) => {
                                                     field.onChange(value);
                                                     !editData?.id &&
-                                                    form.setValue('link', links?.find((link: any) => link.id.toString() == value)?.link);
+                                                        form.setValue('link', links?.find((link: any) => link.id.toString() == value)?.link);
                                                 }}
                                                 defaultValue={field.value}
                                             >
@@ -366,31 +366,33 @@ export default function Create() {
                         </div>
                     </div>
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="type"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Type</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select Type" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                <SelectItem value="image">Image (Single Image)</SelectItem>
-                                                <SelectItem value="multi_images">Images (Multiple Images)</SelectItem>
-                                                <SelectItem value="video">Video</SelectItem>
-                                                <SelectItem value="embed">Embed</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
+                        {types ? (
+                            <div className="col-span-6">
+                                <FormField
+                                    control={form.control}
+                                    name="type"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Type</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select Type" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {types.map((typeObject) => (
+                                                        <SelectItem value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                    ))}
+                                                    {/* <SelectItem value="link">Link</SelectItem> */}
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        ) : null}
                     </div>
                     <FormField
                         control={form.control}
