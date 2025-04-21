@@ -12,8 +12,20 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class BannerController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class BannerController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:banner view', only: ['index', 'show']),
+            new Middleware('permission:banner create', only: ['create', 'store']),
+            new Middleware('permission:banner update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:banner delete', only: ['destroy', 'destroy_image', 'remove_banner_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

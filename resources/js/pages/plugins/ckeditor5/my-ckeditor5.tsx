@@ -78,8 +78,9 @@ import {
 } from 'ckeditor5';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
+import usePermission from '@/hooks/use-permission';
 import 'ckeditor5/ckeditor5.css';
-import '../../../../css/app.css';
+import '../../../../css/ckeditor-custom.css';
 import MyFileManager from '../file-manager/MyFileManager';
 
 /**
@@ -88,6 +89,8 @@ import MyFileManager from '../file-manager/MyFileManager';
 const LICENSE_KEY = 'GPL'; // or <YOUR_LICENSE_KEY>.
 
 export default function MyCkeditor5({ data, setData }: { data: string; setData: React.Dispatch<React.SetStateAction<string>> }) {
+    const hasPermission = usePermission();
+
     const uniqueId = useId(); // this is supported in React 18+
     const toolbarContainerId = `ck-toolbar-container-${uniqueId}`;
     const toolbarPlaceHolderId = `ck-toolbar-placeholder-${uniqueId}`;
@@ -423,12 +426,15 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
     // End Handle the CKEditor toolbar and MyFileManager component
 
     return (
-        <div className="prose max-w-none p-2 border-gray-500 border border-dashed rounded  shadow">
+        <div className="prose max-w-none rounded border border-dashed border-gray-500 p-2 shadow">
             <div id={toolbarContainerId} className="relative top-0 border bg-transparent text-sm">
                 {/* Wrap MyFileManager and CKEditor toolbar together */}
-                <div className="absolute top-0 right-0">
-                    <MyFileManager toolbarContainerId={toolbarContainerId} handleInsertMedia={handleInsertMedia} />
-                </div>
+                {hasPermission('file_manager view') && (
+                    <div className="absolute top-0 right-0">
+                        <MyFileManager toolbarContainerId={toolbarContainerId} handleInsertMedia={handleInsertMedia} />
+                    </div>
+                )}
+
                 {/* <Button
                     type="button"
                     onClick={() => handleInsertMedia('image', 'https://ckeditor.com/docs/ckeditor5/latest/assets/img/game_boy.jpg')}

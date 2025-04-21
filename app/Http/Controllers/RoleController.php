@@ -7,8 +7,20 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RoleController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class RoleController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:role view', only: ['index', 'show', 'all_roles']),
+            new Middleware('permission:role create', only: ['create', 'store']),
+            new Middleware('permission:role update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:role delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     public function all_roles()
     {
         return response()->json(Role::all());

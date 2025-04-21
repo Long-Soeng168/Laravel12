@@ -1,5 +1,6 @@
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
+import usePermission from '@/hooks/use-permission';
 import { cn } from '@/lib/utils';
 import { DownloadCloudIcon, FileIcon, ViewIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -93,6 +94,7 @@ const extensionColors = {
 };
 
 const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'image' | 'file', url: string, fileName?: string) => void }) => {
+    const hasPermission = usePermission();
     const [selectedImage, setSelectedImage] = useState('');
     const [isOpenViewImages, setIsOpenViewImages] = useState(false);
     const { fileTableData, setIsOpenFileManager } = useFileManager();
@@ -159,23 +161,29 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
                             )}
 
                             <div className="absolute top-0 right-0 flex gap-1 p-1 transition-all duration-300 group-hover:flex lg:hidden">
-                                <DeleteFileButton key={item.id} deletePath="/api/file_manager/files/" id={item.id} />
-                                <MyTooltipButton
-                                    onClick={() => {
-                                        if (item.mime_type.startsWith('image/')) {
-                                            setSelectedImage(`/${item.path}/${item.name}`);
-                                            setIsOpenViewImages(true);
-                                        } else {
-                                            window.open(`/${item.path}/${item.name}`, '_blank');
-                                        }
-                                    }}
-                                    size="icon"
-                                    title={item.mime_type.startsWith('image/') ? 'View Image' : 'Dowlonad File'}
-                                    className="bg-muted/60 h-8 w-8 p-0"
-                                >
-                                    {item.mime_type.startsWith('image/') ? <ViewIcon /> : <DownloadCloudIcon />}
-                                </MyTooltipButton>
-                                <CopyFileUrl url={`${window.location.origin}/${item.path}/${item.name}`} />
+                                {hasPermission('file_manager delete') && (
+                                    <DeleteFileButton key={item.id} deletePath="/api/file_manager/files/" id={item.id} />
+                                )}
+                                {hasPermission('file_manager view') && (
+                                    <>
+                                        <MyTooltipButton
+                                            onClick={() => {
+                                                if (item.mime_type.startsWith('image/')) {
+                                                    setSelectedImage(`/${item.path}/${item.name}`);
+                                                    setIsOpenViewImages(true);
+                                                } else {
+                                                    window.open(`/${item.path}/${item.name}`, '_blank');
+                                                }
+                                            }}
+                                            size="icon"
+                                            title={item.mime_type.startsWith('image/') ? 'View Image' : 'Dowlonad File'}
+                                            className="bg-muted/60 h-8 w-8 p-0"
+                                        >
+                                            {item.mime_type.startsWith('image/') ? <ViewIcon /> : <DownloadCloudIcon />}
+                                        </MyTooltipButton>
+                                        <CopyFileUrl url={`${window.location.origin}/${item.path}/${item.name}`} />
+                                    </>
+                                )}
                             </div>
                             {/* {item.mime_type.startsWith('image/') && (
                                 <div className="absolute bottom-1 left-1 max-w-full gap-1 rounded-tr-md rounded-bl-md bg-white px-2 text-xs whitespace-nowrap text-black transition-all duration-300 group-hover:flex">

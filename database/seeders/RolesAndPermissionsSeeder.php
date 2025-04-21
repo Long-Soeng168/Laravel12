@@ -30,9 +30,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Application Info
         Permission::firstOrCreate(['name' => 'application_info view']);
-        Permission::firstOrCreate(['name' => 'application_info create']);
         Permission::firstOrCreate(['name' => 'application_info update']);
-        Permission::firstOrCreate(['name' => 'application_info delete']);
 
         // Post
         Permission::firstOrCreate(['name' => 'post view']);
@@ -65,6 +63,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'role delete']);
 
          // permission
+         Permission::firstOrCreate(['name' => 'permission view']);
          Permission::firstOrCreate(['name' => 'permission create']);
          Permission::firstOrCreate(['name' => 'permission update']);
          Permission::firstOrCreate(['name' => 'permission delete']);
@@ -74,6 +73,11 @@ class RolesAndPermissionsSeeder extends Seeder
          Permission::firstOrCreate(['name' => 'type create']);
          Permission::firstOrCreate(['name' => 'type update']);
          Permission::firstOrCreate(['name' => 'type delete']);
+
+         // type
+         Permission::firstOrCreate(['name' => 'file_manager view']);
+         Permission::firstOrCreate(['name' => 'file_manager create']);
+         Permission::firstOrCreate(['name' => 'file_manager delete']);
 
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);

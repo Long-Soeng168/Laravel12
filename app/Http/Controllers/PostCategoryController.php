@@ -9,8 +9,20 @@ use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PostCategoryController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class PostCategoryController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:post view', only: ['index', 'show', 'all_page_categories']),
+            new Middleware('permission:post create', only: ['create', 'store']),
+            new Middleware('permission:post update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:post delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -116,22 +128,6 @@ class PostCategoryController extends Controller
         PostCategory::create($validated);
 
         return redirect()->back()->with('success', 'Post category created successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(PostCategory $postCategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PostCategory $postCategory)
-    {
-        //
     }
 
     /**

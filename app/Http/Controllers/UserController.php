@@ -8,8 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class UserController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class UserController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:user view', only: ['index', 'show']),
+            new Middleware('permission:user create', only: ['create', 'store']),
+            new Middleware('permission:user update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:user delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     public function index(Request $request)
     {
         $search = $request->input('search', '');

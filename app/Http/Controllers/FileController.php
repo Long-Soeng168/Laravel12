@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FileHelper;
 use App\Helpers\ImageHelper;
-use App\Http\Requests\StoreFileRequest;
-use App\Http\Requests\UpdateFileRequest;
 use App\Models\File as FileModel;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use PDO;
 
-class FileController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class FileController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:file_manager view', only: ['index', 'show']),
+            new Middleware('permission:file_manager create', only: ['create', 'store']),
+            new Middleware('permission:file_manager delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -94,15 +102,7 @@ class FileController extends Controller
         $tableData = $query->paginate(perPage: 24)->onEachSide(1);
 
         return response()->json($tableData);
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+    } 
     /**
      * Store a newly created resource in storage.
      */
@@ -197,31 +197,7 @@ class FileController extends Controller
         }
 
         return redirect()->back()->with('success', 'All files uploaded successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(FileModel $file)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(FileModel $file)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFileRequest $request, FileModel $file)
-    {
-        //
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.

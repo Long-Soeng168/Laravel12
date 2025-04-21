@@ -14,19 +14,19 @@ export default function Page() {
     const [data, setData] = useState(sampleData);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Tabs defaultValue="followers" className="w-full max-w-full lg:p-4">
+            <Tabs defaultValue="editor" className="w-full max-w-full lg:p-4">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="followers">Editor</TabsTrigger>
-                    <TabsTrigger value="following">Preview</TabsTrigger>
+                    <TabsTrigger value="editor">Editor</TabsTrigger>
+                    <TabsTrigger value="preview">Preview</TabsTrigger>
                 </TabsList>
 
                 <div className="mt-2 rounded-md">
-                    <TabsContent value="followers" className="z-[100]">
+                    <TabsContent value="editor" className="z-[100]">
                         <div className="mx-auto flex h-full max-w-6xl items-center justify-center py-2">
                             <MyCkeditor5 data={data} setData={setData} />
                         </div>
                     </TabsContent>
-                    <TabsContent value="following" className="prose ck-content max-w-none">
+                    <TabsContent value="preview" className="prose ck-content max-w-none">
                         <div dangerouslySetInnerHTML={{ __html: data }} />
                     </TabsContent>
                 </div>
@@ -82,26 +82,28 @@ const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6
 </p>
 <figure class="table">
     <table>
+        <thead>
+            <tr>
+                <th>
+                    Console
+                </th>
+                <th>
+                    Production dates
+                </th>
+                <th>
+                    Pieces sold (2021)
+                </th>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-                <td style="background-color:hsl(0, 0%, 60%);">
-                    <span style="color:hsl(60,75%,60%);">Console</span>
-                </td>
-                <td style="background-color:hsl(0, 0%, 60%);">
-                    <span style="color:hsl(60,75%,60%);">Production dates</span>
-                </td>
-                <td style="background-color:hsl(0, 0%, 60%);">
-                    <span style="color:hsl(60,75%,60%);">Pieces sold (2021)</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     Game &amp; Watch
                 </td>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     1980-1991, 2020-2021
                 </td>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     44 million
                 </td>
             </tr>
@@ -113,17 +115,17 @@ const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6
                     1989-2010
                 </td>
                 <td>
-                    <span style="color:hsl(0,75%,60%);">201 million</span> <sup>1</sup>
+                    201 million <sup>1</sup>
                 </td>
             </tr>
             <tr>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     Nintendo DS
                 </td>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     2011-2020
                 </td>
-                <td style="background-color:hsl(0, 0%, 90%);">
+                <td>
                     76 million <sup>2</sup>
                 </td>
             </tr>
@@ -139,10 +141,10 @@ const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6
                 </td>
             </tr>
             <tr>
-                <td style="background-color:hsl(0, 0%, 90%);" colspan="3">
-                    <span style="font-size:10px;"><sup>1 </sup>119 million Game Boy and Game Boy Color variants, 82 million Game Boy Advance variants.</span><br>
-                    <span style="font-size:10px;"><sup>2</sup> Including all versions: DS, DSi, 2DS, 3DS, and New 2DS/3DS variants.</span><br>
-                    <span style="font-size:10px;"><sup>3</sup> As of early 2024.</span>
+                <td colspan="3">
+                    <span style="font-size:10px;">1 - 119 million Game Boy and Game Boy Color variants, 82 million Game Boy Advance variants.</span><br>
+                    <span style="font-size:10px;">2 - Including all versions: DS, DSi, 2DS, 3DS, and New 2DS/3DS variants.</span><br>
+                    <span style="font-size:10px;">3 - As of early 2024.</span>
                 </td>
             </tr>
         </tbody>

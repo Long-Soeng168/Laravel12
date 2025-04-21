@@ -9,10 +9,20 @@ use Inertia\Inertia;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-
-class PostViewController extends Controller
+class PostViewController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:post view', only: ['index', 'show', 'all_page_categories', 'export']),
+            new Middleware('permission:post create', only: ['create', 'store']),
+            new Middleware('permission:post update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:post delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     public function index(Request $request)
     {
         $search = $request->input('search', '');

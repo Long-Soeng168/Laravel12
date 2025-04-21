@@ -7,9 +7,20 @@ use App\Models\PagePosition;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class PagePositionController extends Controller
+class PagePositionController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:page view', only: ['index', 'show']),
+            new Middleware('permission:page create', only: ['create', 'store']),
+            new Middleware('permission:page update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:page delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

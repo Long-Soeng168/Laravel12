@@ -9,8 +9,20 @@ use App\Models\Heading;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class HeadingController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class HeadingController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:heading view', only: ['index', 'show']),
+            new Middleware('permission:heading create', only: ['create', 'store']),
+            new Middleware('permission:heading update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:heading delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

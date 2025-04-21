@@ -2,6 +2,7 @@ import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import usePermission from '@/hooks/use-permission';
 import { FoldersIcon, RotateCw, XIcon } from 'lucide-react';
 import * as React from 'react';
 import ActionDropdown from './components/action-dropdown';
@@ -22,6 +23,8 @@ export function MyFileManagerDialog({
     handleInsertMedia?: (type: 'image' | 'file', url: string, fileName?: string) => void;
     toolbarContainerId?: string;
 }) {
+    const hasPermission = usePermission();
+
     const [openUploadFileDialog, setOpenUploadFileDialog] = React.useState(false);
     const [openAddFolderDialog, setOpenAddFolderDialog] = React.useState(false);
     React.useEffect(() => {
@@ -44,10 +47,13 @@ export function MyFileManagerDialog({
 
     return (
         <>
-            <span>
-                <AddFolder open={openAddFolderDialog} setOpen={setOpenAddFolderDialog} />
-                <AddFiles open={openUploadFileDialog} setOpen={setOpenUploadFileDialog} />
-            </span>
+            {hasPermission('file_manager create') && (
+                <span>
+                    <AddFolder open={openAddFolderDialog} setOpen={setOpenAddFolderDialog} />
+                    <AddFiles open={openUploadFileDialog} setOpen={setOpenUploadFileDialog} />
+                </span>
+            )}
+
             <Dialog modal={true} open={isOpenFileManager}>
                 {/* Start Trigger Dialog Button */}
                 <DialogTrigger asChild>
@@ -65,7 +71,7 @@ export function MyFileManagerDialog({
                 {/* End Trigger Dialog Button */}
 
                 {/* {isOpenFileManager && <div className="fixed inset-0 z-50 bg-black/10" />} */}
-                <DialogContent className="h-[85vh] ring-1 ring-offset-4 ring-primary overflow-hidden p-0 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px]">
+                <DialogContent className="ring-primary dark:ring-offset-1 h-[85vh] overflow-hidden p-0 ring-1 ring-offset-4 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px]">
                     <DialogTitle className="sr-only"></DialogTitle>
                     <DialogDescription className="sr-only"></DialogDescription>
                     <SidebarProvider className="items-start">
@@ -88,10 +94,12 @@ export function MyFileManagerDialog({
 
                                     {/* Start Dialog action top*/}
                                     <div className="flex items-center gap-2 self-start">
-                                        <ActionTop
-                                            setOpenAddFolderDialog={setOpenAddFolderDialog}
-                                            setOpenUploadFileDialog={setOpenUploadFileDialog}
-                                        />
+                                        {hasPermission('file_manager create') && (
+                                            <ActionTop
+                                                setOpenAddFolderDialog={setOpenAddFolderDialog}
+                                                setOpenUploadFileDialog={setOpenUploadFileDialog}
+                                            />
+                                        )}
                                         <span className="h-6 rounded-full border-[1px] bg-gray-400"></span>
                                         <MyTooltipButton title="Refresh" variant={`outline`} size={`icon`} onClick={() => handleRefresh()}>
                                             <RotateCw className="stroke-foreground" />
@@ -123,10 +131,12 @@ export function MyFileManagerDialog({
                                 <SearchInput />
                                 <div className="flex items-center gap-2">
                                     <Filter />
-                                    <ActionDropdown
-                                        setOpenAddFolderDialog={setOpenAddFolderDialog}
-                                        setOpenUploadFileDialog={setOpenUploadFileDialog}
-                                    />
+                                    {hasPermission('file_manager create') && (
+                                        <ActionDropdown
+                                            setOpenAddFolderDialog={setOpenAddFolderDialog}
+                                            setOpenUploadFileDialog={setOpenUploadFileDialog}
+                                        />
+                                    )}
                                 </div>
                             </div>
                             {/* Start Search and Action*/}

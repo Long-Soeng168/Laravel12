@@ -8,9 +8,20 @@ use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ProjectController extends Controller
+class ProjectController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:project view', only: ['index', 'show', 'all_projects']),
+            new Middleware('permission:project create', only: ['create', 'store']),
+            new Middleware('permission:project update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:project delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

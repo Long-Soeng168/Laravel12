@@ -152,11 +152,11 @@ export default function Create() {
                     <p className="ext-muted-foreground mt-6 mb-1 text-sm font-medium">Permissions</p>
                     <div className="mb-6 grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {Object.entries(permissions).map(([key, group], index) => (
-                            <div key={index} className="border-border rounded-xl border bg-white p-4 shadow dark:border-gray-800 dark:bg-gray-950">
+                            <div key={index} className="hover:ring-2 hover:ring-offset-2 ring-primary transition-all duration-300 border-primary rounded-xl border-[1px] p-4">
                                 <div className="mb-3 flex items-center justify-between">
                                     <h2 className="text-foreground text-lg font-semibold capitalize">{key}</h2>
                                     {group.length > 0 && (
-                                        <label className="text-foreground flex items-center gap-2 text-sm">
+                                        <label className="text-foreground cursor-pointer flex items-center gap-2 text-sm">
                                             <input
                                                 type="checkbox"
                                                 className="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500"
@@ -173,7 +173,7 @@ export default function Create() {
                                         {group.map((permission) => (
                                             <label
                                                 key={permission.id}
-                                                className="text-foreground flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm dark:border-gray-700 dark:bg-gray-900"
+                                                className="text-foreground cursor-pointer flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm dark:border-gray-700 dark:bg-gray-900"
                                             >
                                                 <input
                                                     type="checkbox"

@@ -7,8 +7,19 @@ use App\Models\ApplicationInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ApplicationInfoController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class ApplicationInfoController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:application_info view', only: ['index']),
+            new Middleware('permission:application_info update', only: ['update', 'store']),
+        ];
+    }
+
     public function index(){
         return Inertia::render('admin/application_info/Index', [
             'editData' => ApplicationInfo::first(),

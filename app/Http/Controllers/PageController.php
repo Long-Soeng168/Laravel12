@@ -11,8 +11,21 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PageController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class PageController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:page view', only: ['index', 'show']),
+            new Middleware('permission:page create', only: ['create', 'store']),
+            new Middleware('permission:page update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:page delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */

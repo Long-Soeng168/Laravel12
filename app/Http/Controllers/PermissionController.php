@@ -6,8 +6,20 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 
-class PermissionController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class PermissionController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:permission view', only: ['index', 'show']),
+            new Middleware('permission:permission create', only: ['create', 'store']),
+            new Middleware('permission:permission update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:permission delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     public function index(Request $request)
     {
         $search = $request->input('search', '');

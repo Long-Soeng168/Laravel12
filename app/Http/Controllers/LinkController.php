@@ -8,8 +8,20 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class LinkController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class LinkController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:link view', only: ['index', 'show']),
+            new Middleware('permission:link create', only: ['create', 'store']),
+            new Middleware('permission:link update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:link delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
