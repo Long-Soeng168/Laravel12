@@ -593,7 +593,7 @@
     color: #f3f3f3;
     font-size: 1.2rem;
     border-radius: calc(0.4 * var(--m));
-    padding: calc(0.55 * var(--m)) calc(1 * var(--m));
+    padding: calc(0.1 * var(--m)) calc(1 * var(--m));
     display: flex;
     justify-content: center;
     cursor: pointer;

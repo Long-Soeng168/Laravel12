@@ -11,6 +11,7 @@ Route::get('/', function () {
 // === Client ===
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/vectorasoft.php';
+require __DIR__ . '/rule_library.php';
 
 // === Admin ===
 require __DIR__ . '/settings.php';
