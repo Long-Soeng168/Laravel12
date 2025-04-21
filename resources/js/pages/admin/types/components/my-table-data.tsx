@@ -55,6 +55,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> Type
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('label')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> Label
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('type_of')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Type Of
@@ -101,6 +106,7 @@ const MyTableData = () => {
                                     </span>
                                 </TableCell>
                                 <TableCell>{item.type || '---'}</TableCell>
+                                <TableCell>{item.label || '---'}</TableCell>
                                 <TableCell className='capitalize'>{item.type_of || '---'}</TableCell>
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>

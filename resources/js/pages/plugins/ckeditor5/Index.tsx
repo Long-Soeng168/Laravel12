@@ -44,7 +44,7 @@ const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6
 <h3 class="document-subtitle" id="e4e3f661f4eb7ac23958829a3415654d5">
     A countdown of Nintendo handhelds
 </h3>
-<figure class="image image_resized image-style-align-right" style="width:17.33%;">
+<figure class="image image_resized" style="width:27.15%;">
     <img src="https://ckeditor.com/docs/ckeditor5/latest/assets/img/game_boy.jpg" width="384" sizes="100vw">
     <figcaption>
         The Nintendo "flagship" - handheld Game Boy
@@ -148,19 +148,6 @@ const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6
         </tbody>
     </table>
 </figure>
-<h3 class="document-subtitle" id="e2c6b50a4a25cb5d92e0ad0b0b6f6a1a5">
-    Handheld gaming experience
-</h3>
-<blockquote class="side-quote">
-    <p style="text-align:right;">
-        It's dangerous to go alone! Take this.&nbsp;<br>
-        <span style="font-size:18px;"><i>The Legend of Zelda, 1986</i></span>
-    </p>
-</blockquote>
-<p>
-    Games offered by Nintendo include multiple genres, out of which the famous platformer arcade <i>Super Mario</i> <img class="image_resized" style="width:2.3%;" src="https://ckeditor.com/docs/ckeditor5/latest/assets/img/mario.png"> and the adventure role-play <i>Legend of Zelda</i> <img class="image_resized" style="width:2.3%;" src="https://ckeditor.com/docs/ckeditor5/latest/assets/img/link.png"> series are probably the most iconic.
-</p>
-<hr>
 <p>
     Games that can be played on the handheld family include (examples of games listed):
 </p>

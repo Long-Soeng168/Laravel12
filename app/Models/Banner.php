@@ -26,7 +26,7 @@ class Banner extends Model
     }
     public function updated_by()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
+        return $this->belongsTo(User::class, 'updated_by', 'id');
     }
     public function images()
     {

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class TypeController extends Controller
@@ -49,7 +50,15 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'type' => 'required|string|max:255',
+            'type' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('types')->where(function ($query) use ($request) {
+                    return $query->where('type_of', $request->input('type_of'));
+                }),
+            ],
+            'label' => 'required|string|max:255',
             'type_of' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
@@ -77,7 +86,15 @@ class TypeController extends Controller
     public function update(Request $request, Type $type)
     {
         $validated = $request->validate([
-            'type' => 'required|string|max:255',
+            'type' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('types')->where(function ($query) use ($request) {
+                    return $query->where('type_of', $request->input('type_of'));
+                })->ignore($type->id),
+            ],
+            'label' => 'required|string|max:255',
             'type_of' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',

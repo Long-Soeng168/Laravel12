@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('type');
+            $table->string('label');
             $table->string('type_of')->nullable();
             $table->string('short_description', 500)->nullable();
             $table->string('short_description_kh', 500)->nullable();

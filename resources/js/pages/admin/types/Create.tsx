@@ -16,6 +16,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     type: z.string().min(1).max(255),
+    label: z.string().min(1).max(255),
     type_of: z.string().max(255).optional(),
     status: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
@@ -51,6 +52,7 @@ export default function Create({
         resolver: zodResolver(formSchema),
         defaultValues: {
             type: editData?.type || '',
+            label: editData?.label || '',
             type_of: editData?.type_of || '',
             status: editData?.status || 'active',
             short_description: editData?.short_description || '',
@@ -123,7 +125,7 @@ export default function Create({
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-10">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-12">
+                    <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="type"
@@ -134,6 +136,21 @@ export default function Create({
                                         <Input placeholder="Type Name" type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="label"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>label</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Label for display" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.label && <div>{errors.label}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -191,7 +208,7 @@ export default function Create({
                     </div>
                 </div>
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="short_description"
                     render={({ field }) => (
@@ -217,7 +234,7 @@ export default function Create({
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
                     )}
-                />
+                /> */}
 
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
