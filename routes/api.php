@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\LinkController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\HeadingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/heading_api', [HeadingController::class, 'heading_api']);
 Route::get('/links', [LinkController::class, 'index']);
 Route::get('/banners', [BannerController::class, 'index']);
 Route::get('/pages', [PageController::class, 'index']);

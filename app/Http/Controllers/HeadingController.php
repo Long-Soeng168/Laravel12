@@ -48,9 +48,9 @@ class HeadingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function heading_api()
     {
-        //
+        return response()->json(Heading::orderBy('id', 'desc')->first());
     }
 
     /**
