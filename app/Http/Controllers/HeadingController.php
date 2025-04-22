@@ -50,7 +50,7 @@ class HeadingController extends Controller
      */
     public function heading_api()
     {
-        return response()->json(Heading::orderBy('id', 'desc')->first());
+        return response()->json(Heading::where('status', 'active')->orderBy('id', 'desc')->first());
     }
 
     /**
