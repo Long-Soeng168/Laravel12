@@ -120,7 +120,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit">{t('Submit')}</Button>
                     </form>
                 </Form>
             </DialogContent>

@@ -15,7 +15,9 @@ const formSchema = z.object({
     sort_by: z.string().optional(),
 });
 
+import useTranslation from '@/hooks/use-translation';
 export default function MyFilter() {
+    const { t } = useTranslation();
     const status_items = [
         {
             label: 'All',
@@ -37,7 +39,7 @@ export default function MyFilter() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            status: initialQueryParams.get("status") || "", // Ensure it's a string
+            status: initialQueryParams.get('status') || '', // Ensure it's a string
         },
     });
 
@@ -61,7 +63,7 @@ export default function MyFilter() {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormLabel className="flex items-center gap-2">
-                    <FilterIcon /> Filter
+                    <FilterIcon /> {t('Filter')}
                 </FormLabel>
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-6">
@@ -120,9 +122,8 @@ export default function MyFilter() {
                             )}
                         />
                     </div>
-
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">{t('Submit')}</Button>
             </form>
         </Form>
     );

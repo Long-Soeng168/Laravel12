@@ -15,7 +15,10 @@ const formSchema = z.object({
     sort_by: z.string().optional(),
 });
 
+
+import useTranslation from '@/hooks/use-translation';
 export default function MyFilter() {
+    const { t } = useTranslation();
     const status_items = [
         {
             label: 'All',
@@ -64,8 +67,8 @@ export default function MyFilter() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormLabel className="flex items-center gap-2">
-                    <FilterIcon /> Filter
+                 <FormLabel className="flex items-center gap-2">
+                    <FilterIcon /> {t('Filter')}
                 </FormLabel>
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-6">
@@ -126,7 +129,7 @@ export default function MyFilter() {
                     </div>
 
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">{t('Submit')}</Button>
             </form>
         </Form>
     );

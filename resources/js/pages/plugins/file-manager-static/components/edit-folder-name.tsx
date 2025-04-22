@@ -58,7 +58,7 @@ export function EditFolderName({ open, setOpen }: { open: boolean; setOpen: Reac
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">{t('Submit')}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

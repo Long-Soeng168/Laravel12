@@ -243,7 +243,7 @@ export default function MyForm() {
                     )}
                 />
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit">{t('Submit')}</Button>
             </form>
         </Form>
     );

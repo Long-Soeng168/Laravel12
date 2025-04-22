@@ -58,7 +58,7 @@ export function AddFolder({ open, setOpen }: { open: boolean; setOpen: React.Dis
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">{t('Submit')}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
