@@ -66,11 +66,11 @@ export default function Create({
     const { post, data, progress, processing, transform, errors } = inertiaUseForm();
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        toast(
-            <pre className="mt-2 w-[320px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-            </pre>
-          );
+        // toast(
+        //     <pre className="mt-2 w-[320px] rounded-md bg-slate-950 p-4">
+        //       <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+        //     </pre>
+        //   );
         try {
             transform(() => ({
                 ...values,
