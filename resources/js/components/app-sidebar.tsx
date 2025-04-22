@@ -2,201 +2,170 @@ import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { type NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import {
     AppWindowIcon,
     FilePenLineIcon,
     GalleryThumbnailsIcon,
     Heading1Icon,
     InfoIcon,
+    Layers2Icon,
+    LayoutDashboardIcon,
     LayoutGrid,
     LinkIcon,
     ProjectorIcon,
+    ReplaceAllIcon,
     ShapesIcon,
+    ShieldCheckIcon,
+    Tally5Icon,
+    UserCogIcon,
     UsersIcon,
 } from 'lucide-react';
 import AppLogo from './app-logo';
 
 export function AppSidebar() {
-    const hasPermission = usePermission();
-    const { url } = usePage(); // Get current URL path
-
-    const isActive = (path: string) => {
-        return url.startsWith(path);
-    };
-
+    const { t } = useTranslation();
     const mainNavItems: NavItem[] = [
         {
-            title: 'Dashboard',
+            title: t('Dashboard'),
             url: '/dashboard',
-            icon: LayoutGrid,
-            isActive: isActive('/dashboard'),
+            icon: LayoutDashboardIcon,
         },
-        ...(hasPermission('post view')
-            ? [
-                  {
-                      title: 'Post',
-                      url: '/admin/posts',
-                      icon: FilePenLineIcon,
-                      isActive: isActive('/admin/posts') || isActive('/admin/post_categories') || isActive('/admin/post_view_counts'),
-                      subItems: [
-                          {
-                              title: 'Posts',
-                              url: '/admin/posts',
-                              isActive: isActive('/admin/posts'),
-                          },
-                          {
-                              title: 'Categories',
-                              url: '/admin/post_categories',
-                              isActive: isActive('/admin/post_categories'),
-                          },
-                          {
-                              title: 'View Counts',
-                              url: '/admin/post_view_counts',
-                              isActive: isActive('/admin/post_view_counts'),
-                          },
-                      ],
-                  },
-              ]
-            : []),
-        ...(hasPermission('page view')
-            ? [
-                  {
-                      title: 'Pages',
-                      url: '/admin/pages',
-                      icon: AppWindowIcon,
-                      isActive: isActive('/admin/pages') || isActive('/admin/page_positions'),
-                      subItems: [
-                          {
-                              title: 'Pages',
-                              url: '/admin/pages',
-                              isActive: isActive('/admin/pages'),
-                          },
-                          {
-                              title: 'Positions',
-                              url: '/admin/page_positions',
-                              isActive: isActive('/admin/page_positions'),
-                          },
-                      ],
-                  },
-              ]
-            : []),
-        ...(hasPermission('banner view')
-            ? [
-                  {
-                      title: 'Banners',
-                      url: '/admin/banners',
-                      icon: GalleryThumbnailsIcon,
-                      isActive: isActive('/admin/banners') || isActive('/admin/banner_positions'),
-                      subItems: [
-                          {
-                              title: 'Banners',
-                              url: '/admin/banners',
-                              isActive: isActive('/admin/banners'),
-                          },
-                          {
-                              title: 'Positions',
-                              url: '/admin/banner_positions',
-                              isActive: isActive('/admin/banner_positions'),
-                          },
-                      ],
-                  },
-              ]
-            : []),
-        ...(hasPermission('user view')
-            ? [
-                  {
-                      title: 'Users',
-                      url: '/admin/users',
-                      icon: UsersIcon,
-                      isActive: isActive('/admin/users') || isActive('/admin/roles') || isActive('/admin/permissions'),
-                      subItems: [
-                          {
-                              title: 'Users',
-                              url: '/admin/users',
-                              isActive: isActive('/admin/users'),
-                          },
-                          {
-                              title: 'Roles',
-                              url: '/admin/roles',
-                              isActive: isActive('/admin/roles'),
-                          },
-                          {
-                              title: 'Permissions',
-                              url: '/admin/permissions',
-                              isActive: isActive('/admin/permissions'),
-                          },
-                      ],
-                  },
-              ]
-            : []),
-        ...(hasPermission('item view')
-            ? [
-                  {
-                      title: 'Items',
-                      url: '/items',
-                      icon: LayoutGrid,
-                      isActive: isActive('/items'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('project view')
-            ? [
-                  {
-                      title: 'Projects',
-                      url: '/admin/projects',
-                      icon: ProjectorIcon,
-                      isActive: isActive('/admin/projects'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('heading view')
-            ? [
-                  {
-                      title: 'Headings',
-                      url: '/admin/headings',
-                      icon: Heading1Icon,
-                      isActive: isActive('/admin/headings'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('link view')
-            ? [
-                  {
-                      title: 'Links',
-                      url: '/admin/links',
-                      icon: LinkIcon,
-                      isActive: isActive('/admin/links'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('application_info view')
-            ? [
-                  {
-                      title: 'Application Info',
-                      url: '/admin/application_info',
-                      icon: InfoIcon,
-                      isActive: isActive('/admin/application_info'),
-                  },
-              ]
-            : []),
-        ...(hasPermission('type view')
-            ? [
-                  {
-                      title: 'Types',
-                      url: '/admin/types',
-                      icon: ShapesIcon,
-                      isActive: isActive('/admin/types'),
-                  },
-              ]
-            : []),
+        {
+            title: t('Posts'),
+            permission: 'post view',
+            url: '/admin/posts',
+            icon: FilePenLineIcon,
+            subItems: [
+                {
+                    title: t('Posts'),
+                    permission: 'post view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/posts',
+                },
+                {
+                    title: t('Categories'),
+                    permission: 'post view',
+                    icon: Layers2Icon,
+                    url: '/admin/post_categories',
+                },
+                {
+                    title: t('View Counts'),
+                    permission: 'post view',
+                    icon: Tally5Icon,
+                    url: '/admin/post_view_counts',
+                },
+            ],
+        },
+        {
+            title: t('Pages'),
+            permission: 'page view',
+            url: '/admin/pages',
+            icon: AppWindowIcon,
+            subItems: [
+                {
+                    title: t('Pages'),
+                    permission: 'page view',
+                    icon: AppWindowIcon,
+                    url: '/admin/pages',
+                },
+                {
+                    title: t('Positions'),
+                    permission: 'page view',
+                    icon: ReplaceAllIcon,
+                    url: '/admin/page_positions',
+                },
+            ],
+        },
+        {
+            title: t('Banners'),
+            permission: 'banner view',
+            url: '/admin/banners',
+            icon: GalleryThumbnailsIcon,
+            subItems: [
+                {
+                    title: t('Banners'),
+                    permission: 'banner view',
+                    icon: GalleryThumbnailsIcon,
+                    url: '/admin/banners',
+                },
+                {
+                    title: t('Positions'),
+                    permission: 'banner view',
+                    icon: ReplaceAllIcon,
+                    url: '/admin/banner_positions',
+                },
+            ],
+        },
+        {
+            title: t('Users'),
+            permission: 'user view',
+            url: '/admin/users',
+            icon: UsersIcon,
+            subItems: [
+                {
+                    title: t('Users'),
+                    permission: 'user view',
+                    icon: UsersIcon,
+                    url: '/admin/users',
+                },
+                {
+                    title: t('Roles'),
+                    permission: 'role view',
+                    icon: UserCogIcon,
+                    url: '/admin/roles',
+                },
+                {
+                    title: t('Permissions'),
+                    permission: 'permission view',
+                    icon: ShieldCheckIcon,
+                    url: '/admin/permissions',
+                },
+            ],
+        },
+        {
+            title: t('Items'),
+            permission: 'item view',
+            url: '/items',
+            icon: LayoutGrid,
+        },
+        {
+            title: t('Projects'),
+            permission: 'project view',
+            url: '/admin/projects',
+            icon: ProjectorIcon,
+        },
+        {
+            title: t('Headings'),
+            permission: 'heading view',
+            url: '/admin/headings',
+            icon: Heading1Icon,
+        },
+        {
+            title: t('Links'),
+            permission: 'link view',
+            url: '/admin/links',
+            icon: LinkIcon,
+        },
+        {
+            title: t('Application Info'),
+            permission: 'application_info view',
+            url: '/admin/application_info',
+            icon: InfoIcon,
+        },
+        {
+            title: t('Types'),
+            permission: 'type view',
+            url: '/admin/types',
+            icon: ShapesIcon,
+        },
     ];
 
     const footerNavItems: NavItem[] = [
         {
-            title: 'Sample Content',
+            title: t('Sample Content'),
             url: '/admin/ckeditor5',
             icon: FilePenLineIcon,
         },

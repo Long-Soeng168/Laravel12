@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\ApplicationInfo;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -53,6 +54,9 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+
+            'locale' => session('locale'),
+            'can_switch_language' => config('app.can_switch_language'),
 
             'application_info' => ApplicationInfo::first(),
 

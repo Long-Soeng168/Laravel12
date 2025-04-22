@@ -2,8 +2,9 @@ import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSep
 import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type User } from '@/types';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { LogOut, Settings } from 'lucide-react';
+import SwitchLanguageTab from './switch-language-tab';
 import ToggleModeTab from './toggle-mode-tab';
 
 interface UserMenuContentProps {
@@ -12,6 +13,7 @@ interface UserMenuContentProps {
 
 export function UserMenuContent({ user }: UserMenuContentProps) {
     const cleanup = useMobileNavigation();
+    const { can_switch_language } = usePage().props;
 
     return (
         <>
@@ -21,7 +23,12 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
                 </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {/* Dark Mode Switch */}
             <ToggleModeTab />
+            {/* Swithc Language */}
+            {/* <SwitchLanguageAdmin /> */}
+            {can_switch_language && <SwitchLanguageTab />}
+
             <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
                     <Link className="block w-full" href={route('profile.edit')} as="button" prefetch onClick={cleanup}>

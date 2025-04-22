@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'can_switch_language' => env('CAN_SWITCH_LANGUAGE', true),
 
     /*
     |--------------------------------------------------------------------------

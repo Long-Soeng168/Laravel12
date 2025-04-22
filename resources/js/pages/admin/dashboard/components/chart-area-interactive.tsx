@@ -1,8 +1,10 @@
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
+import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+import { SquareArrowOutUpRight } from 'lucide-react';
 const chartData = [
     { date: 'January', total: 186 },
     { date: 'February', total: 305 },
@@ -29,11 +31,18 @@ export function ChartAreaInteractive() {
         <>
             <Card>
                 <CardHeader>
-                    <CardTitle>Post views count</CardTitle>
+                    <CardTitle className='flex items-center gap-2'>
+                        Post views count
+                        <Link prefetch href={`/admin/post_view_counts`}>
+                            <MyTooltipButton variant='ghost' title="View All">
+                                <SquareArrowOutUpRight />
+                            </MyTooltipButton>
+                        </Link>
+                    </CardTitle>
                     <CardDescription>Showing total visitors for the last 7 dates</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <ChartContainer config={chartConfig}>
+                    <ChartContainer className='h-[220px] w-full' config={chartConfig}>
                         <AreaChart
                             accessibilityLayer
                             data={formattedData}

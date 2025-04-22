@@ -8,6 +8,16 @@ Route::get('/', function () {
    return redirect('/dashboard');
 })->name('home');
 
+// Switch Language
+Route::get('/lang/{locale}', function ($locale) {
+   if (!in_array($locale, ['en', 'kh'])) {
+       abort(404);
+   }
+   session(['locale' => $locale]);
+   return redirect()->back();
+});
+
+
 // === Client ===
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/vectorasoft.php';

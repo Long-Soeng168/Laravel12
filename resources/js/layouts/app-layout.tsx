@@ -1,7 +1,8 @@
 import { Toaster } from '@/components/ui/sonner';
+import useTranslation from '@/hooks/use-translation';
 import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import { type BreadcrumbItem } from '@/types';
-import { type ReactNode } from 'react'; 
+import { type ReactNode } from 'react';
 
 interface AppLayoutProps {
     children: ReactNode;
@@ -9,9 +10,10 @@ interface AppLayoutProps {
 }
 
 const AppLayout = ({ children, breadcrumbs, ...props }: AppLayoutProps) => {
+    const { currentLocale } = useTranslation();
     return (
         <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-            <div className="p-2">{children}</div>
+            <div className={`p-2 ${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>{children}</div>
             <Toaster />
         </AppLayoutTemplate>
     );

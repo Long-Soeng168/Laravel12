@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker, DropdownProps } from "react-day-picker"
+import useTranslation from "@/hooks/use-translation"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 export const khmerLocale = {
@@ -31,9 +32,10 @@ export const khmerLocale = {
 };
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+  const  {currentLocale}=useTranslation();
   return (
     <DayPicker
-      // locale={khmerLocale}
+      locale={currentLocale === 'kh' ? khmerLocale : null}
       // timezone='Asia/Bangkok'
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}

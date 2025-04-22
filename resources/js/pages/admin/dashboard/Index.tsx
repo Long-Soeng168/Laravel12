@@ -3,6 +3,7 @@ import { ChartAreaInteractive } from './components/chart-area-interactive';
 import SectionCards from './components/section-cards';
 
 export default function Page() {
+
     return (
         <AppLayout>
             <div className="flex flex-1 flex-col">
