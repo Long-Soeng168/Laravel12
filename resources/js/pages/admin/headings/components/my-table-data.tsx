@@ -37,21 +37,21 @@ const MyTableData = () => {
                         <TableRow>
                             <TableHead className="w-[50px]">No</TableHead>
                             <TableHead className="text-left">Action</TableHead>
-                            <TableHead onClick={() => handleSort('code')}>
+                            {/* <TableHead onClick={() => handleSort('code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Code
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            {/* <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Title Khmer
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Status
@@ -92,9 +92,9 @@ const MyTableData = () => {
                                         <EditButton item={item} />
                                     </span>
                                 </TableCell>
-                                <TableCell>{item.code || '---'}</TableCell>
+                                {/* <TableCell>{item.code || '---'}</TableCell> */}
                                 <TableCell>{item.title || '---'}</TableCell>
-                                <TableCell>{item.title_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.title_kh || '---'}</TableCell> */}
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>
                                     <MyUpdateStatusButton

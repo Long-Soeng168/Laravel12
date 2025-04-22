@@ -15,9 +15,9 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 const formSchema = z.object({
-    title: z.string().min(1).min(1).max(255),
-    title_kh: z.string().min(1).min(1).max(255).optional(),
-    code: z.string().min(1).max(255),
+    title: z.string().min(1).min(1).max(1000),
+    title_kh: z.string().max(255).optional(),
+    code: z.string().max(255).optional(),
     status: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
     short_description_kh: z.string().max(500).optional(),
@@ -105,8 +105,8 @@ export default function Create({
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-10">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
-                        <FormField
+                    {/* <div className="col-span-12">
+                        <Textauto
                             control={form.control}
                             name="title"
                             render={({ field }) => (
@@ -119,9 +119,9 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
 
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="title_kh"
@@ -135,11 +135,23 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
-
+                <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Title</FormLabel>
+                            <FormControl>
+                                <AutosizeTextarea placeholder="Title" className="resize-none" {...field} />
+                            </FormControl>
+                            <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
+                        </FormItem>
+                    )}
+                />
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="code"
@@ -153,7 +165,7 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
 
                     <div className="col-span-6">
                         <FormField
@@ -180,21 +192,9 @@ export default function Create({
                     </div>
                 </div>
 
-                <FormField
-                    control={form.control}
-                    name="short_description"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Short Description</FormLabel>
-                            <FormControl>
-                                <AutosizeTextarea placeholder="Put your Short Description" className="resize-none" {...field} />
-                            </FormControl>
-                            <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
-                        </FormItem>
-                    )}
-                />
+               
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="short_description_kh"
                     render={({ field }) => (
@@ -206,7 +206,7 @@ export default function Create({
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
                     )}
-                />
+                /> */}
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
 
