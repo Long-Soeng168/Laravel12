@@ -19,7 +19,7 @@ const EditButton = ({ item }: { item: any }) => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>Edit Position</DialogTitle>
+                    <DialogTitle>Edit Heading</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} setIsOpen={setIsOpen} />
                 </DialogHeader>

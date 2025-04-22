@@ -20,7 +20,7 @@ const ViewButton = ({ item }: { item: any }) => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>View Position</DialogTitle>
+                    <DialogTitle>View Heading</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create readOnly={true} editData={item} setIsOpen={setIsOpen} />
                 </DialogHeader>

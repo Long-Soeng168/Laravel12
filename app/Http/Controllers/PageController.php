@@ -101,7 +101,7 @@ class PageController extends Controller
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 800);
                     PageImage::create([
                         'image' => $created_image_name,
                         'page_id' => $created_project->id,
@@ -190,7 +190,7 @@ class PageController extends Controller
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/pages', 800);
                     PageImage::create([
                         'image' => $created_image_name,
                         'page_id' => $page->id,

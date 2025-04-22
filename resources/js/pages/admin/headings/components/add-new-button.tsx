@@ -17,7 +17,7 @@ const AddNewButton = () => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>Create Position</DialogTitle>
+                    <DialogTitle>Create Heading</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create setIsOpen={setIsOpen} />
                 </DialogHeader>
