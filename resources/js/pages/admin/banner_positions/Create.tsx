@@ -16,7 +16,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     name: z.string().min(1).min(1).max(255),
-    name_kh: z.string().min(1).min(1).max(255).optional(),
+    name_kh: z.string().max(255).optional(),
     code: z.string().min(1).max(255),
     status: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
@@ -66,11 +66,11 @@ export default function Create({
     const { post, data, progress, processing, transform, errors } = inertiaUseForm();
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // toast(
-        //     <pre className="mt-2 w-[320px] rounded-md bg-slate-950 p-4">
-        //       <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        //     </pre>
-        //   );
+        toast(
+            <pre className="mt-2 w-[320px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+            </pre>
+          );
         try {
             transform(() => ({
                 ...values,
@@ -348,7 +348,6 @@ export default function Create({
                 /> */}
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
-
                 {!readOnly && (
                     <Button disabled={processing} type="submit">
                         {processing && (
