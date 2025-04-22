@@ -30,10 +30,10 @@ export function ChartAreaInteractive() {
             <Card>
                 <CardHeader>
                     <CardTitle>Post views count</CardTitle>
-                    <CardDescription>Showing total visitors for the last 7 dates</CardDescription>
+                    <CardDescription>Showing total visitors for the last 30 dates</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <ChartContainer config={chartConfig}>
+                    <ChartContainer className='h-[220px] w-full' config={chartConfig}>
                         <AreaChart
                             accessibilityLayer
                             data={formattedData}
