@@ -1,7 +1,17 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+} from '@/components/ui/resizable';
+import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from '@/components/ui/tabs';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MyCkeditor5 from './my-ckeditor5';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -10,8 +20,24 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/admin/ckeditor5',
     },
 ];
+
 export default function Page() {
     const [data, setData] = useState(sampleData);
+    const panelRef = useRef<HTMLDivElement>(null);
+    const [panelWidth, setPanelWidth] = useState(0);
+
+    useEffect(() => {
+        if (!panelRef.current) return;
+
+        const observer = new ResizeObserver(([entry]) => {
+            setPanelWidth(Math.round(entry.contentRect.width));
+        });
+
+        observer.observe(panelRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Tabs defaultValue="editor" className="w-full max-w-full lg:p-4">
@@ -26,14 +52,27 @@ export default function Page() {
                             <MyCkeditor5 data={data} setData={setData} />
                         </div>
                     </TabsContent>
-                    <TabsContent value="preview" className="prose ck-content max-w-none">
-                        <div dangerouslySetInnerHTML={{ __html: data }} />
-                    </TabsContent>
+
+                    <ResizablePanelGroup direction="horizontal">
+                        <ResizablePanel defaultSize={100}>
+                            <div ref={panelRef}>
+                                <TabsContent value="preview" className="prose ck-content max-w-none">
+                                    <div className="mb-4 text-sm text-muted-foreground">
+                                        Viewport width: <strong className='text-primary'>{panelWidth}px</strong>
+                                    </div>
+                                    <div dangerouslySetInnerHTML={{ __html: data }} />
+                                </TabsContent>
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle withHandle />
+                        <ResizablePanel defaultSize={0}></ResizablePanel>
+                    </ResizablePanelGroup>
                 </div>
             </Tabs>
         </AppLayout>
     );
 }
+
 
 const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6206a">
     Handheld emperor
