@@ -18,6 +18,23 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('image')->nullable();
             $table->string('type')->nullable();
+            $table->string('status')->nullable();
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
+
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
+
+
             $table->timestamps();
         });
     }
@@ -27,6 +44,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('links', function (Blueprint $table) {
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+        });
         Schema::dropIfExists('links');
     }
 };

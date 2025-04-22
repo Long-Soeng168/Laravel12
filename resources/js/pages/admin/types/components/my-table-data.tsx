@@ -10,9 +10,11 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
+import useTranslation from '@/hooks/use-translation';
 
 const MyTableData = () => {
     const hasPermission = usePermission();
+    const { t } = useTranslation();
 
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
@@ -48,46 +50,46 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">No</TableHead>
-                            <TableHead className="text-left">Action</TableHead>
+                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Type
+                                    <ArrowUpDown size={16} /> {t('Type')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('label')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Label
+                                    <ArrowUpDown size={16} /> {t('Label')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('type_of')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Type Of
+                                    <ArrowUpDown size={16} /> {t('Type Of')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Status
+                                    <ArrowUpDown size={16} /> {t('Status')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Created At
+                                    <ArrowUpDown size={16} /> {t('Created at')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_by')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Created By
+                                    <ArrowUpDown size={16} /> {t('Created by')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('updated_at')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Updated At
+                                    <ArrowUpDown size={16} /> {t('Updated at')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('updated_by')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Updated By
+                                    <ArrowUpDown size={16} /> {t('Updated by')}
                                 </span>
                             </TableHead>
                         </TableRow>

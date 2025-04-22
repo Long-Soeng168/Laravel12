@@ -2,23 +2,25 @@ import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import AddNewButton from './components/add-new-button';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Banners',
-        href: '/admin/banners',
-    },
-    {
-        title: 'Positions',
-        href: '/admin/banner_positions',
-    },
-];
 const Index = () => {
+    const { t } = useTranslation();
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Banners'),
+            href: '/admin/banners',
+        },
+        {
+            title: t('Positions'),
+            href: '/admin/banner_positions',
+        },
+    ];
     const hasPermission = usePermission();
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

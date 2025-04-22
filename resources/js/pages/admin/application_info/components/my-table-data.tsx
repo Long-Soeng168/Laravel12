@@ -1,16 +1,18 @@
 import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
+import MyNoData from '@/components/my-no-data';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import useTranslation from '@/hooks/use-translation';
 import { router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
-import MyNoData from '@/components/my-no-data';
 
 const MyTableData = () => {
     const { tableData } = usePage().props;
+    const { t } = useTranslation();
 
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -33,7 +35,6 @@ const MyTableData = () => {
     const [isOpenViewImages, setIsOpenViewImages] = useState(false);
     return (
         <>
-
             <ScrollArea className="w-full rounded-md border">
                 <MyImageGallery
                     imagePath="/assets/images/website_info/"
@@ -44,9 +45,9 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">No</TableHead>
-                            <TableHead className="text-left">Action</TableHead>
-                            <TableHead>Image</TableHead>
+                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="text-left">{t('Action')}</TableHead>
+                            <TableHead>{t('Image')}</TableHead>
 
                             <TableHead onClick={() => handleSort('address')}>
                                 <span className="flex cursor-pointer items-center">
@@ -55,7 +56,7 @@ const MyTableData = () => {
                             </TableHead>
                             <TableHead onClick={() => handleSort('phone')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Phone
+                                    <ArrowUpDown size={16} /> {t('Phone Number')}
                                 </span>
                             </TableHead>
                             <TableHead>Email</TableHead>
@@ -107,25 +108,25 @@ const MyTableData = () => {
                                     <TableCell>{item.phone || '---'}</TableCell>
                                     <TableCell>{item.email || '---'}</TableCell>
                                     <TableCell>{item.copyright || '---'}</TableCell>
-                                    <TableHead>Created At</TableHead>
-                                    <TableHead>Last Updated</TableHead>
+                                    <TableHead>{t('Created at')}</TableHead>
+                                    <TableHead>{t('Updated at')}</TableHead>
 
                                     <TableCell>
                                         {item.created_at
                                             ? new Date(item.created_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                     <TableCell>
                                         {item.updated_at
                                             ? new Date(item.updated_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                 </TableRow>
@@ -136,9 +137,7 @@ const MyTableData = () => {
 
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-            {tableData?.length < 1 && (
-                <MyNoData />
-            )}
+            {tableData?.length < 1 && <MyNoData />}
         </>
     );
 };

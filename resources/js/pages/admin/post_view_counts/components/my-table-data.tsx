@@ -1,16 +1,15 @@
-import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
+import { ArrowUpDown, ScanEyeIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
-    const hasPermission = usePermission();
+    const { t } = useTranslation();
 
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
@@ -45,15 +44,15 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">No</TableHead>
-                            <TableHead className="text-left">Action</TableHead>
+                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead onClick={() => handleSort('view_date')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> View Date
+                                    <ArrowUpDown size={16} /> {t('View Date')}
                                 </span>
                             </TableHead>
-                            <TableHead className="text-left">Post</TableHead>
-                            <TableHead className="text-left"> View counts</TableHead>
+                            <TableHead className="text-left">{t('Post')}</TableHead>
+                            <TableHead className="text-left"> {t('View Counts')}</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>

@@ -10,9 +10,11 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
+import useTranslation from '@/hooks/use-translation';
 
 const MyTableData = () => {
     const hasPermission = usePermission();
+    const { t } = useTranslation();
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname; // Get dynamic path
@@ -47,48 +49,48 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">No</TableHead>
-                            <TableHead className="text-left">Action</TableHead>
-                            <TableHead>Image</TableHead>
+                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="text-left">{t('Action')}</TableHead>
+                            <TableHead>{t('Image')}</TableHead>
                             <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Name
+                                    <ArrowUpDown size={16} /> {t('Name')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('email')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Email
+                                    <ArrowUpDown size={16} /> {t('Email')}
                                 </span>
                             </TableHead>
-                            <TableHead>Role(s)</TableHead>
+                            <TableHead>{t('Role')}</TableHead>
                             <TableHead onClick={() => handleSort('phone')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Phone
+                                    <ArrowUpDown size={16} /> {t('Phone Number')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('gender')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Gender
+                                    <ArrowUpDown size={16} /> {t('Gender')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_at')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Created At
+                                    <ArrowUpDown size={16} /> {t('Created at')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('created_by')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Created By
+                                    <ArrowUpDown size={16} /> {t('Created by')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('updated_at')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Updated At
+                                    <ArrowUpDown size={16} /> {t('Updated at')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('updated_by')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Updated By
+                                    <ArrowUpDown size={16} /> {t('Updated by')}
                                 </span>
                             </TableHead>
                         </TableRow>

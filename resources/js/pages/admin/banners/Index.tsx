@@ -7,14 +7,16 @@ import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
+import useTranslation from '@/hooks/use-translation';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Banners',
-        href: '/admin/banners',
-    },
-];
 const Index = () => {
+    const {t} = useTranslation();
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Banners'),
+            href: '/admin/banners',
+        },
+    ];
     const hasPermission = usePermission();
 
     return (

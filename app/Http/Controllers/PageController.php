@@ -190,7 +190,6 @@ class PageController extends Controller implements HasMiddleware
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
 
         $image_files = $request->file('images');

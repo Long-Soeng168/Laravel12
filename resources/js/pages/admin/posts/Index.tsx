@@ -3,19 +3,22 @@ import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Posts',
-        href: '/admin/posts',
-    },
-];
+
 const Index = () => {
     const hasPermission = usePermission();
+    const { t } = useTranslation();
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Posts'),
+            href: '/admin/posts',
+        },
+    ];
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex max-w-[100vw] flex-wrap items-center justify-end gap-2">

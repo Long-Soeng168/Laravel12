@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Link, usePage } from '@inertiajs/react';
 import { SquareArrowOutUpRight } from 'lucide-react';
+import useTranslation from '@/hooks/use-translation';
 const chartData = [
     { date: 'January', total: 186 },
     { date: 'February', total: 305 },
@@ -22,6 +23,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
+    const { t } = useTranslation();
     const { post_daily_views_data, featureDatas } = usePage().props;
     const formattedData = (post_daily_views_data || []).map((item) => ({
         date: item.date,
@@ -31,18 +33,18 @@ export function ChartAreaInteractive() {
         <>
             <Card>
                 <CardHeader>
-                    <CardTitle className='flex items-center gap-2'>
-                        Post views count
+                    <CardTitle className="flex items-center gap-2">
+                        {t('Post views count')}
                         <Link prefetch href={`/admin/post_view_counts`}>
-                            <MyTooltipButton variant='ghost' title="View All">
+                            <MyTooltipButton variant="ghost" title="View All">
                                 <SquareArrowOutUpRight />
                             </MyTooltipButton>
                         </Link>
                     </CardTitle>
-                    <CardDescription>Showing total visitors for the last 7 dates</CardDescription>
+                    <CardDescription>{t("Visitors from the past 7 days")}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <ChartContainer className='h-[220px] w-full' config={chartConfig}>
+                    <ChartContainer className="h-[220px] w-full" config={chartConfig}>
                         <AreaChart
                             accessibilityLayer
                             data={formattedData}
@@ -57,8 +59,8 @@ export function ChartAreaInteractive() {
                             <Area dataKey="total" type="natural" fill="var(--color-total)" fillOpacity={0.4} stroke="var(--color-total)" />
                         </AreaChart>
                     </ChartContainer>
-                    <CardFooter className="flex-col items-start gap-2 text-sm">
-                        <div className="flex gap-2 leading-none font-medium">Total Views up to date : {featureDatas?.totalPostViews} views</div>
+                    <CardFooter className="flex-col items-start gap-2 px-0 text-sm">
+                        <div>{t('Total Views up to date')} : {featureDatas?.totalPostViews} {t('Views')}</div>
                     </CardFooter>
                 </CardContent>
             </Card>

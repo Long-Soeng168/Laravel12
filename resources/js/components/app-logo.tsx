@@ -6,7 +6,7 @@ export default function AppLogo() {
     const { application_info } = usePage().props;
     const { currentLocale } = useTranslation();
     return (
-        <>
+        <div className="flex items-center">
             <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md bg-white">
                 {application_info?.image ? (
                     <img
@@ -19,10 +19,10 @@ export default function AppLogo() {
                 )}
             </div>
             <div className="ml-1 grid flex-1 text-left text-sm">
-                <span className="mb-0.5 truncate leading-none font-semibold">
-                    {currentLocale == 'kh' ? application_info?.name_kh : application_info?.name || 'Dashboard'}
+                <span className={`mb-0 truncate ${currentLocale == 'kh' ? 'font-koulen-regular' : 'font-semibold'}`}>
+                    {(currentLocale === 'kh' ? application_info?.name_kh : application_info?.name) || 'Dashboard'}
                 </span>
             </div>
-        </>
+        </div>
     );
 }

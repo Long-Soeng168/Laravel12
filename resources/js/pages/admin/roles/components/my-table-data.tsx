@@ -4,10 +4,12 @@ import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
 
 const MyTableData = () => {
+    const { t } = useTranslation();
     const hasPermission = usePermission();
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
@@ -33,15 +35,15 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">No</TableHead>
-                            <TableHead className="text-left">Action</TableHead>
+                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> Name
+                                    <ArrowUpDown size={16} /> {t('Name')}
                                 </span>
                             </TableHead>
-                            <TableHead>Created At</TableHead>
-                            <TableHead>Updated At</TableHead>
+                            <TableHead>{t('Created at')}</TableHead>
+                            <TableHead>{t('Updated at')}</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>

@@ -8,14 +8,16 @@ import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
 import { MyExportButton } from '@/components/my-export-button';
 import { MyImportButton } from '@/components/my-import-button';
+import useTranslation from '@/hooks/use-translation';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Projects',
-        href: '/admin/projects',
-    },
-];
 const Index = () => {
+    const {t} = useTranslation();
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Projects'),
+            href: '/admin/projects',
+        },
+    ];
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex max-w-[100vw] flex-wrap items-center justify-end gap-2">

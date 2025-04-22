@@ -175,7 +175,6 @@ class PostController extends Controller implements HasMiddleware
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
         $validated['post_date'] = Carbon::parse($validated['post_date'])->setTimezone('Asia/Bangkok')->startOfDay()->toDateString();
         // $validated['post_date'] = Carbon::parse($validated['post_date'])->addDay()->toDateString();

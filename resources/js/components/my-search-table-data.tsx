@@ -1,11 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useTranslation from '@/hooks/use-translation';
 import { router } from '@inertiajs/react';
 import debounce from 'debounce';
 import { SearchIcon } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
 export function MySearchTableData() {
+    const { t } = useTranslation();
+
     const initialQueryParams = new URLSearchParams(window.location.search);
     const [search, setSearch] = useState(initialQueryParams.get('search') || '');
     const currentPath = window.location.pathname; // Get dynamic path
@@ -26,15 +29,16 @@ export function MySearchTableData() {
             <Input
                 defaultValue={search}
                 type="search"
+                autoComplete="search"
                 onChange={(e) => {
                     setSearch(e.target.value);
                     handleSearch(e.target.value);
                 }}
                 className="ml-0.5 min-w-xs rounded-sm border-none shadow-none"
-                placeholder="Search..."
+                placeholder={`${t('Search')}...`}
             />
             <Button variant="outline" type="submit" onClick={() => handleSearch(search)}>
-                <SearchIcon className="[&_svg]:size-2" /> <span className='hidden lg:inline'>Search</span>
+                <SearchIcon className="[&_svg]:size-2" /> <span className="hidden lg:inline">{t('Search')}</span>
             </Button>
         </div>
     );

@@ -2,8 +2,7 @@ import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
 import { Button } from '@/components/ui/button';
-import { CalendarDatePicker } from '@/components/ui/calendar-date-picker';
-import usePermission from '@/hooks/use-permission';
+import { CalendarDatePicker } from '@/components/ui/calendar-date-picker'; 
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
@@ -11,20 +10,21 @@ import { EyeIcon, FileUpIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import MyTableData from './components/my-table-data';
+import useTranslation from '@/hooks/use-translation';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Posts',
-        href: '/admin/posts',
-    },
-    {
-        title: 'View Counts',
-        href: '/admin/post_view_counts',
-    },
-];
 
 const Index = () => {
-    const hasPermission = usePermission();
+    const {t} = useTranslation();
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Posts'),
+            href: '/admin/posts',
+        },
+        {
+            title: t('View Counts'),
+            href: '/admin/post_view_counts',
+        },
+    ]; 
     const urlParams = new URLSearchParams(window.location.search);
     const { get, progress, processing, transform, errors } = inertiaUseForm();
 
