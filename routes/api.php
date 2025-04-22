@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/heading_api', [HeadingController::class, 'heading_api']);
+Route::get('/activate_autoplay_banner', [BannerController::class, 'activate_autoplay_banner']);
 Route::get('/links', [LinkController::class, 'index']);
 Route::get('/banners', [BannerController::class, 'index']);
 Route::get('/pages', [PageController::class, 'index']);

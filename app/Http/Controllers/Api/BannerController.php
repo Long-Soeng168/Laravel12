@@ -4,10 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\BannerPosition;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
+    public function activate_autoplay_banner()
+    {
+        $is_true = BannerPosition::where('code', 'ACTIVATE_AUTOPLAY_BANNER')->where('status', 'active')->first();
+        if ($is_true) {
+            return response()->json(['status' => 'success']);
+        } else {
+            return response()->json(['status' => 'error']);
+        }
+    }
     public function index(Request $request)
     {
         $search = $request->input('search', '');
@@ -19,7 +29,7 @@ class BannerController extends Controller
 
         $query = Banner::query();
 
-        $query->with( 'images');
+        $query->with('images');
 
         if ($type) {
             $query->where('type', $type);
