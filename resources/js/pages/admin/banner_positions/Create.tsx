@@ -6,6 +6,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { CloudUpload, Loader, Paperclip } from 'lucide-react';
@@ -35,6 +36,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
     const [filesBanner, setFilesBanner] = useState<File[] | null>(null);
 
@@ -134,9 +136,9 @@ export default function Create({
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel>{t('Name')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Name" type="text" {...field} />
+                                        <Input placeholder={t("Name")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                 </FormItem>
@@ -150,9 +152,9 @@ export default function Create({
                             name="name_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name Khmer</FormLabel>
+                                    <FormLabel>{t('Name Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="ឈ្មោះ" type="text" {...field} />
+                                        <Input placeholder={t("Name Khmer")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.name_kh && <div>{errors.name_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -168,7 +170,7 @@ export default function Create({
                             name="code"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Unique Code</FormLabel>
+                                    <FormLabel>{t('Unique Code')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: TOP_HOMEPAGE" type="text" {...field} />
                                     </FormControl>
@@ -184,7 +186,7 @@ export default function Create({
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -192,8 +194,8 @@ export default function Create({
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
+                                            <SelectItem value="active">{t('Active')}</SelectItem>
+                                            <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -208,9 +210,9 @@ export default function Create({
                     name="short_description"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description</FormLabel>
+                            <FormLabel>{t('Short Description')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your Short Description" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                         </FormItem>
@@ -222,9 +224,9 @@ export default function Create({
                     name="short_description_kh"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description Khmer</FormLabel>
+                            <FormLabel>{t('Short Description Khmer')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your short description khmer" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
@@ -236,7 +238,7 @@ export default function Create({
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Image</FormLabel>
+                            <FormLabel>{t('Image')}</FormLabel>
                             <FormControl>
                                 <FileUploader
                                     value={files}
@@ -248,8 +250,8 @@ export default function Create({
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -271,7 +273,7 @@ export default function Create({
                             {/* Initial Image */}
                             {editData?.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                     <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-5">
                                         <span
                                             key={editData?.image}
@@ -295,7 +297,7 @@ export default function Create({
                     name="banner"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Banner</FormLabel>
+                            <FormLabel>{t('Banner')}</FormLabel>
                             <FormControl>
                                 <FileUploader
                                     value={filesBanner}
@@ -307,8 +309,8 @@ export default function Create({
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -330,7 +332,7 @@ export default function Create({
                             {/* Initial Image */}
                             {editData?.banner && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Banner.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Banner')}</FormDescription>
                                     <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
                                         <span
                                             key={editData?.banner}
@@ -358,7 +360,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                        {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
             </form>

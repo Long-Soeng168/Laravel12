@@ -77,7 +77,7 @@ const Index = () => {
                             <div className="inline-block rounded-xl border p-1">
                                 <Button variant="outline" className="text-primary">
                                     <EyeIcon />
-                                    Total : <strong className="font-bold">{totalViews}</strong> views
+                                    {t('Total')} : <strong className="font-bold">{totalViews}</strong> {t('Views')}
                                 </Button>
                             </div>
                             <div className="inline-block rounded-xl border p-1">
@@ -95,7 +95,7 @@ const Index = () => {
                                 <input type="hidden" name="to_date" value={selectedDateRange.to.toISOString()} />
                                 <input type="hidden" name="search" value={urlParams.get('search')?.toString()} />
                                 <Button type="submit">
-                                    <FileUpIcon /> Export
+                                    <FileUpIcon /> {t('Export')}
                                 </Button>
                             </form>
                         </div>

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
@@ -27,6 +28,7 @@ const formSchema = z.object({
 });
 
 export default function Show({ item }: { item: any }) {
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -111,7 +113,7 @@ export default function Show({ item }: { item: any }) {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
                                         <Input autoFocus placeholder="New Title" type="text" {...field} />
                                     </FormControl>
@@ -127,7 +129,7 @@ export default function Show({ item }: { item: any }) {
                             name="title_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title Khmer</FormLabel>
+                                    <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ចំណងជើងថ្មី" type="text" {...field} />
                                     </FormControl>
@@ -145,7 +147,7 @@ export default function Show({ item }: { item: any }) {
                             name="code"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Code</FormLabel>
+                                    <FormLabel>{t('Unique Code')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: P0001" type="text" {...field} />
                                     </FormControl>
@@ -162,11 +164,11 @@ export default function Show({ item }: { item: any }) {
                             name="order_index"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Order Index</FormLabel>
+                                    <FormLabel>{t('Order Index')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: 1" type="number" {...field} />
                                     </FormControl>
-                                    <FormDescription>Lower number is priority (default = 1)</FormDescription>
+                                    <FormDescription>{t('Lower number is priority - default = 1')}</FormDescription>
                                     <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                 </FormItem>
                             )}
@@ -181,7 +183,7 @@ export default function Show({ item }: { item: any }) {
                             name="parent_code"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col">
-                                    <FormLabel>Parent</FormLabel>
+                                    <FormLabel>{t('Parent')}</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
@@ -201,7 +203,7 @@ export default function Show({ item }: { item: any }) {
                                             <Command>
                                                 <CommandInput placeholder="Search category..." />
                                                 <CommandList>
-                                                    <CommandEmpty>No category found.</CommandEmpty>
+                                                    <CommandEmpty>{t('No data')}</CommandEmpty>
                                                     <CommandGroup>
                                                         {parentsTableData
                                                             .filter((parent_item) => parent_item.id !== item.id) // Skip current item
@@ -240,7 +242,7 @@ export default function Show({ item }: { item: any }) {
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -249,8 +251,8 @@ export default function Show({ item }: { item: any }) {
                                         </FormControl>
                                         <SelectContent>
                                             <SelectItem value="pending">Pending</SelectItem>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
+                                            <SelectItem value="active">{t('Active')}</SelectItem>
+                                            <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -304,7 +306,7 @@ export default function Show({ item }: { item: any }) {
                             <Loader />
                         </span>
                     )}
-                    {processing ? 'Submiting...' : 'Submit'}
+                   {processing ? t('Submitting') : t('Submit')}
                 </Button>
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />} */}
             </form>

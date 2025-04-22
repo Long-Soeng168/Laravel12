@@ -5,6 +5,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { CloudUpload, Loader } from 'lucide-react';
@@ -31,6 +32,7 @@ const formSchema = z.object({
 
 export default function Create() {
     const hasPermission = usePermission();
+    const { t } = useTranslation();
 
     const [files, setFiles] = useState<File[] | null>(null);
     const { editData } = usePage().props;
@@ -130,9 +132,9 @@ export default function Create() {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel>{t('Name')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Application Name" type="text" {...field} />
+                                        <Input placeholder={t('Name')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                 </FormItem>
@@ -145,9 +147,9 @@ export default function Create() {
                             name="name_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name (Khmer)</FormLabel>
+                                    <FormLabel>{t('Name Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Application Name (Khmer)" type="text" {...field} />
+                                        <Input placeholder={t('Name Khmer')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.name_kh && <div>{errors.name_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -160,9 +162,9 @@ export default function Create() {
                     name="address"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Address</FormLabel>
+                            <FormLabel>{t('Address')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Address" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t('Address')} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.address && <div>{errors.address}</div>}</FormMessage>
                         </FormItem>
@@ -173,9 +175,9 @@ export default function Create() {
                     name="address_kh"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Address (Khmer)</FormLabel>
+                            <FormLabel>{t('Address Khmer')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Address Khmer" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t('Address Khmer')} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.address_kh && <div>{errors.address_kh}</div>}</FormMessage>
                         </FormItem>
@@ -188,9 +190,9 @@ export default function Create() {
                             name="phone"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Phone Number</FormLabel>
+                                    <FormLabel>{t('Phone Number')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Phone Number" type="text" {...field} />
+                                        <Input placeholder={t('Phone Number')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.phone && <div>{errors.phone}</div>}</FormMessage>
                                 </FormItem>
@@ -203,9 +205,9 @@ export default function Create() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Your Email</FormLabel>
+                                    <FormLabel>{t('Email')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Your Email" type="text" {...field} />
+                                        <Input placeholder={t('Email')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.email && <div>{errors.email}</div>}</FormMessage>
                                 </FormItem>
@@ -221,9 +223,9 @@ export default function Create() {
                             name="working_hours"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Working Hours</FormLabel>
+                                    <FormLabel>{t('Working Hours')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Your Time working" type="text" {...field} />
+                                        <Input placeholder={t('Working Hours')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.working_hours && <div>{errors.working_hours}</div>}</FormMessage>
                                 </FormItem>
@@ -236,9 +238,9 @@ export default function Create() {
                             name="working_hours_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Working Hours (Khmer)</FormLabel>
+                                    <FormLabel>{t('Working Hours Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Your Time working" type="text" {...field} />
+                                        <Input placeholder={t('Working Hours Khmer')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.working_hours_kh && <div>{errors.working_hours_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -253,9 +255,9 @@ export default function Create() {
                             name="working_days"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Working Days</FormLabel>
+                                    <FormLabel>{t('Working Days')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Your working days" type="text" {...field} />
+                                        <Input placeholder={t('Working Days')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.working_days && <div>{errors.working_days}</div>}</FormMessage>
                                 </FormItem>
@@ -268,9 +270,9 @@ export default function Create() {
                             name="working_days_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Working Days (Khmer)</FormLabel>
+                                    <FormLabel>{t('Working Days Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Your working days (khmer)" type="text" {...field} />
+                                        <Input placeholder={t('Working Days Khmer')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.working_days_kh && <div>{errors.working_days_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -285,9 +287,9 @@ export default function Create() {
                             name="copyright"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Copy Right</FormLabel>
+                                    <FormLabel>{t('Copyright')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Copy Right" type="text" {...field} />
+                                        <Input placeholder={t('Copyright')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.copyright && <div>{errors.copyright}</div>}</FormMessage>
                                 </FormItem>
@@ -300,9 +302,9 @@ export default function Create() {
                             name="copyright_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Copy Right (Khmer)</FormLabel>
+                                    <FormLabel>{t('Copyright Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Copy Right" type="text" {...field} />
+                                        <Input placeholder={t('Copyright Khmer')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.copyright_kh && <div>{errors.copyright_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -316,15 +318,15 @@ export default function Create() {
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Select Image (logo)</FormLabel>
+                            <FormLabel>{t('Select Logo')}</FormLabel>
                             <FormControl>
                                 <FileUploader value={files} onValueChange={setFiles} dropzoneOptions={dropZoneConfig} className="relative p-1">
                                     <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -351,7 +353,7 @@ export default function Create() {
                             {/* Initial Image */}
                             {editData?.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Image (Logo).</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Logo')}</FormDescription>
                                     <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-5">
                                         <span
                                             key={editData?.image}
@@ -377,7 +379,7 @@ export default function Create() {
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                        {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
             </form>

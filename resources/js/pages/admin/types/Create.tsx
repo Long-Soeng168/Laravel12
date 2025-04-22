@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { Loader } from 'lucide-react';
@@ -33,6 +34,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
     const hasPermission = usePermission();
     const [files, setFiles] = useState<File[] | null>(null);
     const [filesBanner, setFilesBanner] = useState<File[] | null>(null);
@@ -131,9 +133,9 @@ export default function Create({
                             name="type"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Type</FormLabel>
+                                     <FormLabel>{t('Type')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Type Name" type="text" {...field} />
+                                        <Input placeholder={t('Name')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
                                 </FormItem>
@@ -146,9 +148,9 @@ export default function Create({
                             name="label"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>label</FormLabel>
+                                    <FormLabel>{t('Label')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Label for display" type="text" {...field} />
+                                        <Input placeholder={t('Label')} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.label && <div>{errors.label}</div>}</FormMessage>
                                 </FormItem>
@@ -164,18 +166,18 @@ export default function Create({
                             name="type_of"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Type Of</FormLabel>
+                                    <FormLabel>{t('Type Of')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select type_of" />
+                                                <SelectValue placeholder={t('Select')} />
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            {hasPermission('page view') && <SelectItem value="page">Page</SelectItem>}
-                                            {hasPermission('post view') && <SelectItem value="post">Post</SelectItem>}
-                                            {hasPermission('banner view') && <SelectItem value="banner">Banner</SelectItem>}
-                                            {hasPermission('link view') && <SelectItem value="link">Link</SelectItem>}
+                                            {hasPermission('page view') && <SelectItem value="page">{t('Page')}</SelectItem>}
+                                            {hasPermission('post view') && <SelectItem value="post">{t('Post')}</SelectItem>}
+                                            {hasPermission('banner view') && <SelectItem value="banner">{t('Banner')}</SelectItem>}
+                                            {hasPermission('link view') && <SelectItem value="link">{t('Link')}</SelectItem>}
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.type_of && <div>{errors.type_of}</div>}</FormMessage>
@@ -189,7 +191,7 @@ export default function Create({
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -197,8 +199,8 @@ export default function Create({
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
+                                            <SelectItem value="active">{t('Active')}</SelectItem>
+                                            <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -213,9 +215,9 @@ export default function Create({
                     name="short_description"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description</FormLabel>
+                            <FormLabel>{t('Short Description')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your Short Description" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                         </FormItem>
@@ -227,9 +229,9 @@ export default function Create({
                     name="short_description_kh"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description Khmer</FormLabel>
+                            <FormLabel>{t('Short Description Khmer')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your short description khmer" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
@@ -246,7 +248,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                       {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
             </form>

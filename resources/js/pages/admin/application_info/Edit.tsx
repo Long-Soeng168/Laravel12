@@ -3,6 +3,7 @@ import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import axios from 'axios';
@@ -14,14 +15,15 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     address: z.string().min(1).max(255),
-       phone: z.string().max(255).optional(),
-       opening_hours: z.string().max(255).optional(),
-       email: z.string().optional(),
-       copyright: z.string().optional(),
-       image: z.string().optional(),
+    phone: z.string().max(255).optional(),
+    opening_hours: z.string().max(255).optional(),
+    email: z.string().optional(),
+    copyright: z.string().optional(),
+    image: z.string().optional(),
 });
 
 export default function Edit({ item }: { item: any }) {
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -105,7 +107,7 @@ export default function Edit({ item }: { item: any }) {
                             name="address"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
                                         <Input autoFocus placeholder="New address" type="text" {...field} />
                                     </FormControl>
@@ -116,7 +118,7 @@ export default function Edit({ item }: { item: any }) {
                     </div>
 
                     <div className="col-span-6">
-                    <FormField
+                        <FormField
                             control={form.control}
                             name="phone"
                             render={({ field }) => (
@@ -148,7 +150,7 @@ export default function Edit({ item }: { item: any }) {
                         />
                     </div>
                     <div className="col-span-6">
-                    <FormField
+                        <FormField
                             control={form.control}
                             name="opening_hours"
                             render={({ field }) => (
@@ -162,7 +164,6 @@ export default function Edit({ item }: { item: any }) {
                             )}
                         />
                     </div>
-
                 </div>
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-12">
@@ -181,7 +182,6 @@ export default function Edit({ item }: { item: any }) {
                             )}
                         />
                     </div>
-
                 </div>
 
                 <FormField
@@ -189,15 +189,15 @@ export default function Edit({ item }: { item: any }) {
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Select Images</FormLabel>
+                            <FormLabel>{t('Select Images')}</FormLabel>
                             <FormControl>
                                 <FileUploader value={files} onValueChange={setFiles} dropzoneOptions={dropZoneConfig} className="relative p-1">
                                     <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -223,7 +223,7 @@ export default function Edit({ item }: { item: any }) {
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
                             {item.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                     <div className="grid w-full grid-cols-1 gap-2 rounded-md lg:grid-cols-3">
                                         <span className="group bg-background relative aspect-square h-auto w-full overflow-hidden rounded-md border p-0">
                                             <img
@@ -256,7 +256,7 @@ export default function Edit({ item }: { item: any }) {
                             <Loader />
                         </span>
                     )}
-                    {processing ? 'Submiting...' : 'Submit'}
+                   {processing ? t('Submitting') : t('Submit')}
                 </Button>
             </form>
         </Form>

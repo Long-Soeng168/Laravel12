@@ -98,7 +98,7 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
 .ck-content {
     line-height: 1.6;
     word-break: break-word;
-} 
+}
 
 .ck-content img.image_resized {
     display: inline;
@@ -228,8 +228,6 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
 
 /* End CK Editor */
 
-
-
 /* ================================
    CKEditor 5 Dark Mode
    ================================ */
@@ -249,6 +247,12 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
 .dark .ck-content i,
 .dark .ck-content ol,
 .dark .ck-content ul {
+    color: white !important;
+}
+
+.dark .ck.ck-list-styles-list,
+.dark .ck.ck-color-selector {
+    background-color: #444 !important;
     color: white !important;
 }
 
@@ -348,7 +352,7 @@ a.ck.ck-button:not(.ck-disabled):hover {
 .dark .dark .ck.ck-style-panel .ck-style-grid .ck-style-grid__button:not(.ck-disabled) {
     background-color: #2a2a2a !important;
     color: #777 !important;
-} 
+}
 
 /* Default dark appearance */
 .dark .ck.ck-style-panel {

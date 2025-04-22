@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +19,7 @@ const formSchema = z.object({
 
 export default function Create() {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
     const dropZoneConfig = {
         maxFiles: 100,
         maxSize: 1024 * 1024 * 2, // 2MB
@@ -139,7 +141,7 @@ export default function Create() {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Name</FormLabel>
+                                        <FormLabel>{t('Name')}</FormLabel>
                                         <FormControl>
                                             <Input disabled={readOnly === true} placeholder="Role Name" type="text" {...field} />
                                         </FormControl>
@@ -256,7 +258,7 @@ export default function Create() {
                                     <Loader />
                                 </span>
                             )}
-                            {processing ? 'Submiting...' : 'Submit'}
+                           {processing ? t('Submitting') : t('Submit')}
                         </Button>
                     )}
                 </form>

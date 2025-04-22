@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useTranslation from "@/hooks/use-translation";
 
 const months = [
   "January",
@@ -262,33 +263,34 @@ export const CalendarDatePicker = React.forwardRef<
       (_, i) => today.getFullYear() - yearsRange / 2 + i
     );
 
+    const {t} = useTranslation();
     const dateRanges = [
-      { label: "Today", start: today, end: today },
-      { label: "Yesterday", start: subDays(today, 1), end: subDays(today, 1) },
+      { label: t("Today"), start: today, end: today },
+      { label: t("Yesterday"), start: subDays(today, 1), end: subDays(today, 1) },
       {
-        label: "This Week",
+        label: t("This Week"),
         start: startOfWeek(today, { weekStartsOn: 1 }),
         end: endOfWeek(today, { weekStartsOn: 1 }),
       },
       {
-        label: "Last Week",
+        label: t("Last Week"),
         start: subDays(startOfWeek(today, { weekStartsOn: 1 }), 7),
         end: subDays(endOfWeek(today, { weekStartsOn: 1 }), 7),
       },
-      { label: "Last 7 Days", start: subDays(today, 6), end: today },
+      { label: t("Last 7 Days"), start: subDays(today, 6), end: today },
       {
-        label: "This Month",
+        label: t("This Month"),
         start: startOfMonth(today),
         end: endOfMonth(today),
       },
       {
-        label: "Last Month",
+        label: t("Last Month"),
         start: startOfMonth(subDays(today, today.getDate())),
         end: endOfMonth(subDays(today, today.getDate())),
       },
-      { label: "This Year", start: startOfYear(today), end: endOfYear(today) },
+      { label: t("This Year"), start: startOfYear(today), end: endOfYear(today) },
       {
-        label: "Last Year",
+        label: t("Last Year"),
         start: startOfYear(subDays(today, 365)),
         end: endOfYear(subDays(today, 365)),
       },

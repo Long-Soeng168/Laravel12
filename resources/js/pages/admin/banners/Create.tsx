@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
 import { BreadcrumbItem } from '@/types';
@@ -36,6 +37,7 @@ const formSchema = z.object({
 });
 
 export default function Create() {
+    const { t } = useTranslation();
     // ===== Start Our Code =====
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
@@ -143,9 +145,9 @@ export default function Create() {
                                 name="title"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Title</FormLabel>
+                                        <FormLabel>{t('Title')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Title" type="text" {...field} />
+                                             <Input placeholder={t("Title")} type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
                                     </FormItem>
@@ -159,9 +161,9 @@ export default function Create() {
                                 name="title_kh"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Title Khmer</FormLabel>
+                                        <FormLabel>{t('Title Khmer')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Title Khmer" type="text" {...field} />
+                                           <Input placeholder={t("Title Khmer")} type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.title_kh && <div>{errors.title_kh}</div>}</FormMessage>
                                     </FormItem>
@@ -174,9 +176,9 @@ export default function Create() {
                         name="short_description"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Short Description</FormLabel>
+                                <FormLabel>{t('Short Description')}</FormLabel>
                                 <FormControl>
-                                    <AutosizeTextarea placeholder="Short Description" className="resize-none" {...field} />
+                                    <AutosizeTextarea placeholder={t("Short Description")} className="resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                             </FormItem>
@@ -187,9 +189,9 @@ export default function Create() {
                         name="short_description_kh"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Short Description Khmer</FormLabel>
+                                <FormLabel>{t('Short Description Khmer')}</FormLabel>
                                 <FormControl>
-                                    <AutosizeTextarea placeholder="Short Description Khmer" className="resize-none" {...field} />
+                                   <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
@@ -203,7 +205,7 @@ export default function Create() {
                                     name="source"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Source</FormLabel>
+                                           <FormLabel>{t('Source')}</FormLabel>
                                             <Select
                                                 onValueChange={(value) => {
                                                     field.onChange(value);
@@ -214,7 +216,7 @@ export default function Create() {
                                             >
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Select" />
+                                                        <SelectValue placeholder={t("Select")} />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -243,11 +245,11 @@ export default function Create() {
                                     name="link"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Link</FormLabel>
+                                            <FormLabel>{t('Link')}</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="Link to external content" type="text" {...field} />
+                                                <Input placeholder={t("Link")} type="text" {...field} />
                                             </FormControl>
-                                            <FormDescription>For external content you can put link here.</FormDescription>
+                                           
                                             <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
                                         </FormItem>
                                     )}
@@ -261,7 +263,7 @@ export default function Create() {
                                 name="position_code"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel>Position Page</FormLabel>
+                                        <FormLabel>{t('Position')}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>
                                                 <FormControl>
@@ -272,16 +274,16 @@ export default function Create() {
                                                     >
                                                         {field.value
                                                             ? bannerPositions?.find((position) => position.code === field.value)?.name
-                                                            : 'Select position'}
+                                                            : t('Select')}
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
                                             <PopoverContent className="p-0">
                                                 <Command>
-                                                    <CommandInput placeholder="Search position..." />
+                                                    <CommandInput placeholder={t('Search')} />
                                                     <CommandList>
-                                                        <CommandEmpty>No position found.</CommandEmpty>
+                                                        <CommandEmpty>{t('No data')}</CommandEmpty>
                                                         <CommandGroup>
                                                             <CommandItem
                                                                 value=""
@@ -292,7 +294,7 @@ export default function Create() {
                                                                 <Check
                                                                     className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
                                                                 />
-                                                                Select Position
+                                                                {t('Select')}
                                                             </CommandItem>
                                                             {bannerPositions?.map((position) => (
                                                                 <CommandItem
@@ -316,7 +318,7 @@ export default function Create() {
                                                 </Command>
                                             </PopoverContent>
                                         </Popover>
-                                        <FormDescription>Select the position where this page will show.</FormDescription>
+                                        <FormDescription>{t('Select the position where this item will show.')}</FormDescription>
                                         <FormMessage>{errors.position_code && <div>{errors.position_code}</div>}</FormMessage>
                                     </FormItem>
                                 )}
@@ -330,11 +332,11 @@ export default function Create() {
                                 name="order_index"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Order Index</FormLabel>
+                                        <FormLabel>{t('Order Index')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Order Index" type="number" {...field} />
+                                            <Input placeholder={t('Order Index')} type="number" {...field} />
                                         </FormControl>
-                                        <FormDescription>Less number is priority (Default 1)</FormDescription>
+                                        <FormDescription>{t('Lower number is priority - default = 1')}</FormDescription>
                                         <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                     </FormItem>
                                 )}
@@ -347,7 +349,7 @@ export default function Create() {
                                 name="status"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Status</FormLabel>
+                                        <FormLabel>{t('Status')}</FormLabel>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
@@ -355,8 +357,8 @@ export default function Create() {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="active">Active</SelectItem>
-                                                <SelectItem value="inactive">Inactive</SelectItem>
+                                                <SelectItem value="active">{t('Active')}</SelectItem>
+                                                <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -373,11 +375,11 @@ export default function Create() {
                                     name="type"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Type</FormLabel>
+                                             <FormLabel>{t('Type')}</FormLabel>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Select Type" />
+                                                        <SelectValue placeholder={t("Select Type")} />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -401,7 +403,7 @@ export default function Create() {
                             <FormItem>
                                 <FormLabel className="flex items-center gap-1">
                                     <ImagesIcon size={18} />
-                                    Select Image(s)
+                                    {t('Select Images')}
                                 </FormLabel>
 
                                 <FormControl>
@@ -425,8 +427,8 @@ export default function Create() {
                                             <div className="flex w-full flex-col items-center justify-center p-8">
                                                 <CloudUpload className="h-10 w-10 text-gray-500" />
                                                 <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                    <span className="font-semibold">Click to upload</span>
-                                                    &nbsp; or drag and drop
+                                                     <span className="font-semibold">{t('Click to upload')}</span>
+                                                    &nbsp; {t('or drag and drop')}
                                                 </p>
                                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                             </div>
@@ -453,7 +455,7 @@ export default function Create() {
                                 {/* Initial Image */}
                                 {editData?.image && (
                                     <div className="mt-4 p-1">
-                                        <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                        <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                         <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
                                             <span
                                                 key={editData?.image}
@@ -473,7 +475,7 @@ export default function Create() {
                                 )}
                                 {editData?.images?.length > 0 && (
                                     <div className="mt-4 p-1">
-                                        <FormDescription className="mb-2">Uploaded Image(s).</FormDescription>
+                                        <FormDescription className="mb-2">{t('Uploaded Images')}</FormDescription>
                                         <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-6">
                                             {editData.images.map((imageObject) => (
                                                 <>
@@ -535,7 +537,7 @@ export default function Create() {
                                                     <CloudUpload className="h-10 w-10 text-gray-500" />
                                                     <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
                                                         <span className="font-semibold">Click to upload videos</span>
-                                                        &nbsp; or drag and drop
+                                                        &nbsp; {t('or drag and drop')}
                                                     </p>
                                                     <p className="text-xs text-gray-500 dark:text-gray-400">MP4 (max 50MB)</p>
                                                 </div>
@@ -596,7 +598,7 @@ export default function Create() {
                                     <Loader />
                                 </span>
                             )}
-                            {processing ? 'Submiting...' : 'Submit'}
+                           {processing ? t('Submitting') : t('Submit')}
                         </Button>
                     )}
                 </form>

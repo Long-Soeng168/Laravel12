@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
@@ -27,6 +28,7 @@ const formSchema = z.object({
 });
 
 export default function Create() {
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -117,7 +119,7 @@ export default function Create() {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
                                         <Input autoFocus placeholder="New Title" type="text" {...field} />
                                     </FormControl>
@@ -133,7 +135,7 @@ export default function Create() {
                             name="title_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title Khmer</FormLabel>
+                                    <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ចំណងជើងថ្មី" type="text" {...field} />
                                     </FormControl>
@@ -151,7 +153,7 @@ export default function Create() {
                             name="code"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Code</FormLabel>
+                                    <FormLabel>{t('Unique Code')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: P0001" type="text" {...field} />
                                     </FormControl>
@@ -168,11 +170,11 @@ export default function Create() {
                             name="order_index"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Order Index</FormLabel>
+                                    <FormLabel>{t('Order Index')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: 1" type="number" {...field} />
                                     </FormControl>
-                                    <FormDescription>Lower number is priority (default = 1)</FormDescription>
+                                    <FormDescription>{t('Lower number is priority - default = 1')}</FormDescription>
                                     <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                 </FormItem>
                             )}
@@ -187,7 +189,7 @@ export default function Create() {
                             name="parent_code"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col">
-                                    <FormLabel>Parent</FormLabel>
+                                    <FormLabel>{t('Parent')}</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
@@ -198,16 +200,16 @@ export default function Create() {
                                                 >
                                                     {field.value
                                                         ? parentsTableData.find((item) => item.code === field.value)?.title
-                                                        : 'Select parent'}
+                                                        : t('Select')}
                                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                 </Button>
                                             </FormControl>
                                         </PopoverTrigger>
                                         <PopoverContent className="w-[200px] p-0">
                                             <Command>
-                                                <CommandInput placeholder="Search parent..." />
+                                                <CommandInput placeholder={t("Search")} />
                                                 <CommandList>
-                                                    <CommandEmpty>No parent found.</CommandEmpty>
+                                                    <CommandEmpty>{t('No data')}</CommandEmpty>
                                                     <CommandGroup>
                                                         {parentsTableData.map((item) => (
                                                             <CommandItem
@@ -231,7 +233,7 @@ export default function Create() {
                                             </Command>
                                         </PopoverContent>
                                     </Popover>
-                                    <FormDescription>Select the parent this item belongs to.</FormDescription>
+                                    <FormDescription>{t('Select the parent this item belongs to.')}</FormDescription>
                                     <FormMessage>{errors.parent_code && <div>{errors.parent_code}</div>}</FormMessage>
                                 </FormItem>
                             )}
@@ -244,7 +246,7 @@ export default function Create() {
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -253,8 +255,8 @@ export default function Create() {
                                         </FormControl>
                                         <SelectContent>
                                             <SelectItem value="pending">Pending</SelectItem>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
+                                            <SelectItem value="active">{t('Active')}</SelectItem>
+                                            <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -269,15 +271,15 @@ export default function Create() {
                     name="images"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Select Images</FormLabel>
+                            <FormLabel>{t('Select Images')}</FormLabel>
                             <FormControl>
                                 <FileUploader value={files} onValueChange={setFiles} dropzoneOptions={dropZoneConfig} className="relative p-1">
                                     <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -311,7 +313,7 @@ export default function Create() {
                             <Loader />
                         </span>
                     )}
-                    {processing ? 'Submiting...' : 'Submit'}
+                   {processing ? t('Submitting') : t('Submit')}
                 </Button>
             </form>
         </Form>

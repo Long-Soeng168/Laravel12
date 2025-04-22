@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
@@ -25,6 +26,7 @@ const formSchema = z.object({
 });
 
 export default function Show({ item }: { item: any }) {
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -107,7 +109,7 @@ export default function Show({ item }: { item: any }) {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
                                         <Input autoFocus placeholder="New Title" type="text" {...field} />
                                     </FormControl>
@@ -123,7 +125,7 @@ export default function Show({ item }: { item: any }) {
                             name="title_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title Khmer</FormLabel>
+                                    <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ចំណងជើងថ្មី" type="text" {...field} />
                                     </FormControl>
@@ -141,7 +143,7 @@ export default function Show({ item }: { item: any }) {
                             name="link"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Code</FormLabel>
+                                    <FormLabel>{t('Unique Code')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: https//..." type="text" {...field} />
                                     </FormControl>
@@ -161,7 +163,7 @@ export default function Show({ item }: { item: any }) {
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select Type" />
+                                                <SelectValue placeholder={t("Select Type")} />
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
@@ -182,15 +184,15 @@ export default function Show({ item }: { item: any }) {
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Select Images</FormLabel>
+                            <FormLabel>{t('Select Images')}</FormLabel>
                             <FormControl>
                                 <FileUploader value={files} onValueChange={setFiles} dropzoneOptions={dropZoneConfig} className="relative p-1">
                                     <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -216,7 +218,7 @@ export default function Show({ item }: { item: any }) {
                             <FormMessage>{errors.image && <div>{errors.image}</div>}</FormMessage>
                             {item.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                     <div className="grid w-full grid-cols-1 gap-2 rounded-md lg:grid-cols-3">
                                         <span className="group bg-background relative aspect-square h-auto w-full overflow-hidden rounded-md border p-0">
                                             <img
@@ -248,7 +250,7 @@ export default function Show({ item }: { item: any }) {
                             <Loader />
                         </span>
                     )}
-                    {processing ? 'Submiting...' : 'Submit'}
+                   {processing ? t('Submitting') : t('Submit')}
                 </Button>
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
             </form>

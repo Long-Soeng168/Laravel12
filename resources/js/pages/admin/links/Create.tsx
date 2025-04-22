@@ -5,6 +5,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { CloudUpload, Loader } from 'lucide-react';
@@ -33,6 +34,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -127,7 +129,7 @@ export default function Create({
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
                                         <Input autoFocus placeholder="New Title" type="text" {...field} />
                                     </FormControl>
@@ -143,7 +145,7 @@ export default function Create({
                             name="title_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title Khmer</FormLabel>
+                                    <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ចំណងជើងថ្មី" type="text" {...field} />
                                     </FormControl>
@@ -161,7 +163,7 @@ export default function Create({
                             name="link"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Link</FormLabel>
+                                    <FormLabel>{t('Link')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: https://..." type="text" {...field} />
                                     </FormControl>
@@ -176,7 +178,7 @@ export default function Create({
                             name="order_index"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Order Index</FormLabel>
+                                    <FormLabel>{t('Order Index')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="default: 1" type="text" {...field} />
                                     </FormControl>
@@ -192,7 +194,7 @@ export default function Create({
                                 name="type"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Type</FormLabel>
+                                         <FormLabel>{t('Type')}</FormLabel>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
@@ -206,7 +208,7 @@ export default function Create({
                                                 {/* <SelectItem value="link">Link</SelectItem> */}
                                             </SelectContent>
                                         </Select>
-                                        <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
+                                        <FormDescription>{t('Choose type (Link) for external content and fill Link input.')}</FormDescription>
                                         <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
                                     </FormItem>
                                 )}
@@ -219,7 +221,7 @@ export default function Create({
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -243,15 +245,15 @@ export default function Create({
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Select Images</FormLabel>
+                            <FormLabel>{t('Select Images')}</FormLabel>
                             <FormControl>
                                 <FileUploader value={files} onValueChange={setFiles} dropzoneOptions={dropZoneConfig} className="relative p-1">
                                     <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -278,7 +280,7 @@ export default function Create({
 
                             {editData?.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded image.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                     <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
                                         <span
                                             key={editData?.image}
@@ -307,7 +309,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                       {processing ? t('Submiting') : t('Submit')}
                     </Button>
                 )}
             </form>

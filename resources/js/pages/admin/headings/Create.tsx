@@ -6,6 +6,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { CloudUpload, Loader, Paperclip } from 'lucide-react';
@@ -33,6 +34,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -111,9 +113,9 @@ export default function Create({
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Title" type="text" {...field} />
+                                         <Input placeholder={t("Title")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
                                 </FormItem>
@@ -127,9 +129,9 @@ export default function Create({
                             name="title_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title Khmer</FormLabel>
+                                    <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Title Khmer" type="text" {...field} />
+                                       <Input placeholder={t("Title Khmer")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.title_kh && <div>{errors.title_kh}</div>}</FormMessage>
                                 </FormItem>
@@ -145,7 +147,7 @@ export default function Create({
                             name="code"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Unique Code</FormLabel>
+                                    <FormLabel>{t('Unique Code')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ex: TOPNAV" type="text" {...field} />
                                     </FormControl>
@@ -161,7 +163,7 @@ export default function Create({
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -169,8 +171,8 @@ export default function Create({
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
+                                            <SelectItem value="active">{t('Active')}</SelectItem>
+                                            <SelectItem value="inactive">{t('Inactive')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
@@ -185,9 +187,9 @@ export default function Create({
                     name="short_description"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description</FormLabel>
+                            <FormLabel>{t('Short Description')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your Short Description" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                         </FormItem>
@@ -199,9 +201,9 @@ export default function Create({
                     name="short_description_kh"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description Khmer</FormLabel>
+                            <FormLabel>{t('Short Description Khmer')}</FormLabel>
                             <FormControl>
-                                <AutosizeTextarea placeholder="Put your short description khmer" className="resize-none" {...field} />
+                                <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
                             </FormControl>
                             <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                         </FormItem>
@@ -217,7 +219,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                       {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
             </form>

@@ -12,11 +12,13 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
 import { useFileManager } from '../hooks/FileManagerContext';
+import useTranslation from '@/hooks/use-translation';
 
 const formSchema = z.object({
     name: z.string().min(1).max(255),
 });
 export function AddFolder({ open, setOpen }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const {t} = useTranslation();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     });
@@ -137,7 +139,7 @@ export function AddFolder({ open, setOpen }: { open: boolean; setOpen: React.Dis
                                             <Loader />
                                         </span>
                                     )}
-                                    {processing ? 'Submiting...' : 'Submit'}
+                                   {processing ? t('Submitting') : t('Submit')}
                                 </Button>
                             </form>
                         </Form>

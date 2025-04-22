@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { Loader } from 'lucide-react';
@@ -24,7 +25,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
-
+    const { t } = useTranslation();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -97,7 +98,7 @@ export default function Create({
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel>{t('Name')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Permission Name" type="text" {...field} />
                                     </FormControl>
@@ -118,7 +119,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                        {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
             </form>

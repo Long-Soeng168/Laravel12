@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { CloudUpload, Loader, Paperclip } from 'lucide-react';
@@ -17,6 +18,7 @@ const formSchema = z.object({
     filse: z.string().optional(),
 });
 export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
 
     const dropZoneConfig = {
@@ -168,8 +170,8 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                                 <div className="flex w-full flex-col items-center justify-center p-8">
                                                     <CloudUpload className="h-10 w-10 text-gray-500" />
                                                     <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                        <span className="font-semibold">Click to upload</span>
-                                                        &nbsp; or drag and drop
+                                                         <span className="font-semibold">{t('Click to upload')}</span>
+                                                        &nbsp; {t('or drag and drop')}
                                                     </p>
                                                     <p className="text-center text-xs text-gray-500 dark:text-gray-400">
                                                         {/* <strong>Allowed</strong> : PDF, DOC, DOCX, XLS, XLSX, TXT, CSV, ZIP, RAR, MP3, WAV, MP4, WEBM, SVG,
@@ -200,7 +202,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                     <Loader />
                                 </span>
                             )}
-                            {processing ? 'Submiting...' : 'Submit'}
+                            {processing ? t('Submitting') : t('Submit')}
                         </Button>
                     </form>
                 </Form>

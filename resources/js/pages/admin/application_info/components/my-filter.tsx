@@ -74,7 +74,7 @@ export default function MyFilter() {
                             name="status"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col">
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel>{t('Status')}</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>

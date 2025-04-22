@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { PasswordInput } from '@/components/ui/password-input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import axios from 'axios';
@@ -38,6 +39,7 @@ export default function Create({
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     // ===== Start Our Code =====
+    const { t } = useTranslation();
     const [files, setFiles] = useState<File[] | null>(null);
     const [filesBanner, setFilesBanner] = useState<File[] | null>(null);
 
@@ -156,9 +158,9 @@ export default function Create({
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel>{t('Name')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Name" type="text" {...field} />
+                                        <Input placeholder={t("Name")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                 </FormItem>
@@ -172,9 +174,9 @@ export default function Create({
                             name="phone"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Phone</FormLabel>
+                                    <FormLabel>{t('Phone Number')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Phone Number" type="number" {...field} />
+                                        <Input placeholder={t('Phone Number')} type="number" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.phone && <div>{errors.phone}</div>}</FormMessage>
                                 </FormItem>
@@ -188,9 +190,9 @@ export default function Create({
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>{t('Email')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Email" type="email" {...field} />
+                                        <Input placeholder={t('Email')} type="email" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.email && <div>{errors.email}</div>}</FormMessage>
                                 </FormItem>
@@ -204,17 +206,17 @@ export default function Create({
                             name="gender"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Gender</FormLabel>
+                                    <FormLabel>{t('Gender')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select Gender" />
+                                                <SelectValue placeholder={t('Gender')} />
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="male">Male</SelectItem>
-                                            <SelectItem value="female">Female</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
+                                            <SelectItem value="male">{t('Male')}</SelectItem>
+                                            <SelectItem value="female">{t('Female')}</SelectItem>
+                                            <SelectItem value="other">{t('Other')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage>{errors.gender && <div>{errors.gender}</div>}</FormMessage>
@@ -228,9 +230,9 @@ export default function Create({
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>{t('Password')}</FormLabel>
                                     <FormControl>
-                                        <PasswordInput placeholder="Password" {...field} />
+                                        <PasswordInput placeholder={t('Password')} {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.password && <div>{errors.password}</div>}</FormMessage>
                                 </FormItem>
@@ -243,9 +245,9 @@ export default function Create({
                             name="password_confirmation"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
+                                    <FormLabel>{t('Confirm Password')}</FormLabel>
                                     <FormControl>
-                                        <PasswordInput placeholder="Confirm Password" {...field} />
+                                        <PasswordInput placeholder={t('Confirm Password')} {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.password_confirmation && <div>{errors.password_confirmation}</div>}</FormMessage>
                                 </FormItem>
@@ -255,7 +257,7 @@ export default function Create({
                 </div>
                 {roles.length > 0 && (
                     <div>
-                        <Label className="font-semibold">Roles</Label>
+                        <Label className="font-semibold">{t('Roles')}</Label>
                         <div className="mt-2 flex flex-wrap items-center gap-6">
                             {roles.map(({ name }) => {
                                 const selectedRoles = form.watch('roles') || [];
@@ -288,7 +290,7 @@ export default function Create({
                     name="image"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Image</FormLabel>
+                            <FormLabel>{t('Image')}</FormLabel>
                             <FormControl>
                                 <FileUploader
                                     value={files}
@@ -300,8 +302,8 @@ export default function Create({
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                                &nbsp; or drag and drop
+                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                         </div>
@@ -323,7 +325,7 @@ export default function Create({
                             {/* Initial Image */}
                             {editData?.image && (
                                 <div className="mt-4 p-1">
-                                    <FormDescription className="mb-2">Uploaded Image.</FormDescription>
+                                    <FormDescription className="mb-2">{t('Uploaded Image')}</FormDescription>
                                     <div className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-5">
                                         <span
                                             key={editData?.image}
@@ -352,10 +354,9 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Submiting...' : 'Submit'}
+                        {processing ? t('Submitting') : t('Submit')}
                     </Button>
                 )}
-
             </form>
         </Form>
     );
