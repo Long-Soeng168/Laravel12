@@ -474,7 +474,7 @@ export default function Create() {
                             />
                         </div>
                     </div>
-                    {/* <FormField
+                    <FormField
                         control={form.control}
                         name="images"
                         render={({ field }) => (
@@ -513,7 +513,7 @@ export default function Create() {
                                 <FormMessage>{errors.images && <div>{errors.images}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    /> */}
+                    />
                     {/* Initial Image */}
                     {editData?.images?.length > 0 && (
                         <div className="mt-4 p-1">

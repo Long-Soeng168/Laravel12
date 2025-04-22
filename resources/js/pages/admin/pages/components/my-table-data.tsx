@@ -48,7 +48,7 @@ const MyTableData = () => {
                         <TableRow>
                             <TableHead className="w-[50px]">No</TableHead>
                             <TableHead className="text-left">Action</TableHead>
-                            {/* <TableHead>Image(s)</TableHead> */}
+                            <TableHead>Image(s)</TableHead>
                             {/* <TableHead>Link</TableHead> */}
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
@@ -140,7 +140,7 @@ const MyTableData = () => {
                                         )}
                                     </span>
                                 </TableCell>
-                                {/* <TableCell>
+                                <TableCell>
                                     {item.images[0] ? (
                                         <button
                                             onClick={() => {
@@ -166,7 +166,7 @@ const MyTableData = () => {
                                             className="size-10 object-contain"
                                         />
                                     )}
-                                </TableCell> */}
+                                </TableCell>
                                 {/* <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
