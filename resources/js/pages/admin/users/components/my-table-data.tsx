@@ -139,8 +139,8 @@ const MyTableData = () => {
                                     {item?.roles?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
                                             {item?.roles?.map((role: any) => (
-                                                <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-sky-400 to-indigo-600 p-[2px]">
-                                                    <Badge className="bg-background hover:bg-background text-foreground rounded-full border-none">
+                                                <div className="flex overflow-hidden items-center justify-center rounded-full bg-gradient-to-r from-sky-400 to-indigo-600 p-[2px]">
+                                                    <Badge className="bg-background overflow-hidden hover:bg-background text-foreground rounded-full border-none">
                                                         {role.name}
                                                     </Badge>
                                                 </div>
