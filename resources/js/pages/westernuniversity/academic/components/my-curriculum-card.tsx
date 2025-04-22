@@ -5,7 +5,7 @@ export function MyCurriculumCard() {
     {
       title: 'Quality Education',
       description:
-        'Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on',
+        'Access to quality teachers; Use of quality learning materials and professional development; Quality education is education that focuses on.',
       image: 'assets/demo-images/Quotes1.jpg',
     },
     {
@@ -23,29 +23,36 @@ export function MyCurriculumCard() {
   ];
 
   return (
-    <div className="mx-auto mb-10 max-w-screen-2xl px-4 sm:px-10 py-8 sm:py-12 md:px-20">
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
-        {cards.map((card, index) => (
-          <div key={index} className="w-full">
-            <img
-              src={card.image}
-              alt={card.title}
-              className="mb-5 sm:mb-6 w-full aspect-[4/5] object-cover bg-muted rounded-2xl"
-            />
-            <div className="text-gray-600">
-              <h3 className="mt-4 text-4xl font-semibold">{card.title}</h3>
-              <p className="mt-6 text-xl">{card.description}</p>
+    <div className="bg-gray-100 py-16">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="hover:shadow-lg transition-shadow duration-300 rounded-2xl overflow-hidden"
+            >
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full aspect-[4/5] object-cover rounded-2xl"
+              />
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-gray-700">{card.title}</h3>
+                <p className="mt-4 text-gray-600 text-base leading-relaxed">
+                  {card.description}
+                </p>
+                <div className="mt-8">
+                  <Link
+                    href="#"
+                    className="inline-block border-2 border-gray-700 text-gray-700 text-base font-medium px-8 py-3 rounded-md hover:bg-gray-700 hover:text-white transition-colors duration-200"
+                  >
+                    Read more
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="mt-10 text-gray-600">
-              <Link
-                href="#"
-                className="border-2 text-xl border-gray-600 px-8 rounded-md font-now-alt-medium py-4 hover:cursor-pointer"
-              >
-                Read more
-              </Link>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

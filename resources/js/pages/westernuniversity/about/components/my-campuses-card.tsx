@@ -81,13 +81,13 @@ const features = [
             {features.map((feature) => (
               <div key={feature.title} className="flex  flex-col  rounded-2xl text-start bg-white p-4">
                 <img src={feature.image} className="mb-5 sm:mb-6 w-full  aspect-[4/5] object-cover  bg-muted rounded-2xl" />
-                <span className="text-2xl font-semibold tracking-tight">
+                <span className="text-2xl text-[#393939] tracking-tight">
                   {feature.title}
                 </span>
-                <p className="mt-2 max-w-[25ch] text-muted-foreground text-[17px]">
+                <p className="mt-4 text-[#444444] max-w-[25ch] text-[17px]">
                   {feature.description}
                 </p>
-                <p className="mt-2 max-w-[25ch] text-muted-foreground text-[17px]">
+                <p className="mt-4 text-[#444444] max-w-[25ch] text-[17px]">
                   Tel: {feature.phone}
                 </p>
               </div>

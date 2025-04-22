@@ -16,6 +16,12 @@ Route::get('/school_facilities', function () {
 Route::get('/campuses', function () {
     return Inertia::render('westernuniversity/about/Campuses');
 })->name('campuses');
+Route::get('/detail/{id}', function ($id) {
+    return Inertia::render('westernuniversity/about/Detail', [
+        'id' => $id,
+    ]);
+})->name('detail');
+
 
 // Academic
 Route::get('/curriculum', function () {

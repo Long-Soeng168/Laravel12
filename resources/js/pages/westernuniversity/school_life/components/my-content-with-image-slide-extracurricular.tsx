@@ -21,7 +21,7 @@ const Carousel = ({ images }) => {
             <div className="flex">
                 {images.map((item) => (
                     <div key={item.id} className="flex-[0_0_100%]">
-                        <Card className="aspect-[4/5] w-full border-0 py-0">
+                        <Card className="aspect-[4/5] rounded-2xl w-full border-0 py-0">
                             <img src={item.image} alt={item.alt} className="h-full w-full rounded-2xl object-cover" />
                         </Card>
                         <div className="mt-5 flex transform justify-center space-x-2">
@@ -56,7 +56,7 @@ const Carousel1 = ({ images }) => {
           <div className="flex">
               {images.map((item) => (
                   <div key={item.id} className="flex-[0_0_100%]">
-                      <Card className="aspect-video w-full border-0 py-0">
+                      <Card className="aspect-video rounded-2xl w-full border-0 py-0">
                           <img src={item.image} alt={item.alt} className="h-full w-full rounded-2xl object-cover" />
                       </Card>
                       <div className="mt-5 flex transform justify-center space-x-2">
@@ -159,7 +159,7 @@ export function MyContentWithSlideExtracurricular() {
                         totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
                     </p>
                 </div>
-                <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
+                <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2 xl:grid-cols-3">
                     <div className="mx-auto w-full max-w-full">
                         <Carousel images={images1} />
                         <div className="text-white">
@@ -169,7 +169,7 @@ export function MyContentWithSlideExtracurricular() {
                                 education that focuses on
                             </p>
                         </div>
-                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer">
+                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                                 Read more
                             </Link>
                     </div>
@@ -182,7 +182,7 @@ export function MyContentWithSlideExtracurricular() {
                                 education that focuses on
                             </p>
                         </div>
-                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer">
+                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                                 Read more
                             </Link>
                     </div>
@@ -195,12 +195,12 @@ export function MyContentWithSlideExtracurricular() {
                                 education that focuses on
                             </p>
                         </div>
-                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer">
+                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                                 Read more
                             </Link>
                     </div>
                 </div>
-                <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 mt-10">
+                <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2 mt-10">
                     <div className="mx-auto w-full max-w-full">
                         <Carousel1  images={images1} />
                         <div className="text-white">
@@ -210,7 +210,7 @@ export function MyContentWithSlideExtracurricular() {
                                 education that focuses on
                             </p>
                         </div>
-                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer">
+                        <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                                 Read more
                             </Link>
                     </div>
@@ -223,7 +223,7 @@ export function MyContentWithSlideExtracurricular() {
                                 education that focuses on
                             </p>
                         </div>
-                            <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer">
+                            <Link href="#" className="mt-10 w-full block text-center text-white font-now-alt-medium rounded-md border-2 border-white px-8 py-4 text-xl hover:cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                                 Read more
                             </Link>
                     </div>

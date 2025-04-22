@@ -25,7 +25,7 @@ const MySubject = () => {
 
     const renderItems = (items: typeof faq, offset: number = 0) =>
         items.map(({ question, answer }, index) => (
-            <AccordionItem key={question} value={`question-${index + offset}`} className="mt-4 rounded-2xl border-b-0 bg-green-900">
+            <AccordionItem key={question} value={`question-${index + offset}`} className="mt-4 rounded-2xl border-b-0 bg-[#3a573a]">
                 <AccordionPrimitive.Header className="flex gap-4">
                     <AccordionPrimitive.Trigger
                         className={cn(
@@ -53,7 +53,7 @@ const MySubject = () => {
     return (
         <div className="flex min-h-screen items-center justify-center px-6 py-12">
             <div className="w-full max-w-screen-xl">
-                <h2 className="text-center text-4xl !leading-[1.15] font-bold tracking-tight md:text-5xl">Frequently Asked Questions</h2>
+                <h2 className="text-center text-4xl !leading-[1.15] text-blue-900 tracking-tight md:text-5xl">Subjects</h2>
                 <div className="mt-6 grid w-full gap-x-10 md:grid-cols-2">
                     <Accordion type="single" collapsible value={leftAccordionValue} onValueChange={setLeftAccordionValue} className="w-full">
                         {renderItems(faq.slice(0, 5), 0)}

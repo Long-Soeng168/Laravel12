@@ -3,16 +3,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { useEffect, useState } from 'react';
 
 const MyCurricullum = () => {
-    const features = [
-        {
-            category: 'Marketing and Sales',
-            title: 'Collect and enrich leads your way',
-            details:
-                'Take control over how and when to follow up with your leads. Store and reference leads in multiple tables and, from there, automatically send them personalized emails.',
-            tutorialLink: '#',
-        },
-    ];
-
     const images = [
         { id: '1', image: '/assets/demo-images/02TopBackground/02 School Facilities.jpg', alt: 'Slide 1' },
         { id: '3', image: '/assets/demo-images/02TopBackground/04 Curriculum.jpg', alt: 'Slide 3' },
@@ -54,7 +44,7 @@ const MyCurricullum = () => {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-5xl text-start text-blue-800">
+                <div className="max-w-5xl text-start text-blue-900">
                     <p className="mt-6 text-[17px] md:text-2xl ">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima. Ut
                         ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem

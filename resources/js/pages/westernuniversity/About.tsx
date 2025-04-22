@@ -3,11 +3,11 @@ import MyEnroll from './components-wu/my-enroll';
 import MyHeroBottom from './components-wu/my-hero-bottom';
 import MyHeroSection from './components-wu/my-hero-section';
 import MyStats from './components-wu/my-stats';
-import MyVideo from './components-wu/my-video';
 import { MyContentWithSlide } from './components-wu/my-content-with-image-slide';
 
 import MyLayoutWestern from './layout/layout';
 import MyTopMenu from './components-wu/my-top-menu';
+import MyVideo from './components-wu/my-video';
 
 const About = () => {
     return (
@@ -32,7 +32,7 @@ const About = () => {
             {/*End Header */}
             <MyHeroSection />
             <MyStats />
-            <MyVideo />
+            <MyVideo/>
             <MyContentWithSlide/>
             <MyHeroBottom />
             <MyEnroll />

@@ -1,15 +1,15 @@
 const MyTable = () => {
     return (
-        <div className="mx-auto max-w-screen-xl md:mt-16">
-                <h2 className="mb-4 text-center text-2xl">School Fees</h2>
+        <div className="mx-auto max-w-screen-xl mt-10 md:mt-16">
+                <h2 className="mb-4 text-center text-[#234090] text-5xl">School Fees</h2>
 
             <div className=" overflow-auto bg-white p-8 ">
-                <h2 className="mb-4 text-center text-2xl">School List</h2>
+                <h2 className="mb-4 text-center text-[#234090] text-3xl">School List</h2>
                 <div className="relative overflow-auto">
                     <div className="overflow-x-auto rounded-lg">
                         <table className="mb-20 min-w-full border-collapse border border-green-900 bg-white">
                             <thead>
-                                <tr className="bg-[#191465f3] text-center text-xs font-thin text-white md:text-sm">
+                                <tr className="bg-[#302891] text-center text-xs font-thin text-white md:text-sm">
                                     <th className="border-r border-gray-300 p-10">
                                         <span className="block">ID</span>
                                     </th>
@@ -31,7 +31,7 @@ const MyTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">01</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 1</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Beginner</td>
@@ -39,7 +39,7 @@ const MyTable = () => {
                                     <td className="border border-gray-300 p-2 md:p-4">Class 1</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Beginner</td>
                                 </tr>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">02</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 2</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Intermediate</td>
@@ -47,7 +47,7 @@ const MyTable = () => {
                                     <td className="border border-gray-300 p-2 md:p-4">Class 2</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Intermediate</td>
                                 </tr>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">03</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 3</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Advanced</td>
@@ -62,13 +62,13 @@ const MyTable = () => {
                 </div>
             </div>
             <div className=" overflow-auto bg-white p-8 ">
-                <h2 className="mb-4 text-center text-2xl">Grade 4-12</h2>
+                <h2 className="mb-4 text-center text-[#234090] text-3xl">Grade 4-12</h2>
 
                 <div className="relative overflow-auto">
                     <div className="overflow-x-auto rounded-lg">
                     <table className="mb-20 min-w-full border-collapse border border-green-900 bg-white">
                             <thead>
-                                <tr className="bg-[#191465f3] text-center text-xs font-thin text-white md:text-sm">
+                                <tr className="bg-[#302891] text-center text-xs font-thin text-white md:text-sm">
                                     <th className="border-r border-gray-300 p-10">
                                         <span className="block">ID</span>
                                     </th>
@@ -90,7 +90,7 @@ const MyTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">01</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 1</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Beginner</td>
@@ -98,7 +98,7 @@ const MyTable = () => {
                                     <td className="border border-gray-300 p-2 md:p-4">Class 1</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Beginner</td>
                                 </tr>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">02</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 2</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Intermediate</td>
@@ -106,7 +106,7 @@ const MyTable = () => {
                                     <td className="border border-gray-300 p-2 md:p-4">Class 2</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Intermediate</td>
                                 </tr>
-                                <tr className="text-center text-xs text-gray-800 md:text-sm">
+                                <tr className="text-center text-xs text-[#302891] md:text-sm">
                                     <td className="border border-gray-300 p-2 md:p-4">03</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Class 3</td>
                                     <td className="border border-gray-300 p-2 md:p-4">Advanced</td>

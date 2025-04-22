@@ -3,20 +3,20 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { useEffect, useState } from 'react';
 
 const MyOutreachPrograms = () => {
-    const features = [
-        {
-            category: 'Marketing and Sales',
-            title: 'Collect and enrich leads your way',
-            details:
-                'Take control over how and when to follow up with your leads. Store and reference leads in multiple tables and, from there, automatically send them personalized emails.',
-            tutorialLink: '#',
-        },
-    ];
-
     const images = [
-        { id: '1', image: '/assets/demo-images/02TopBackground/02 School Facilities.jpg', alt: 'Slide 1' },
-        { id: '3', image: '/assets/demo-images/02TopBackground/04 Curriculum.jpg', alt: 'Slide 3' },
-        { id: '4', image: '/assets/demo-images/02TopBackground/03Campuses.jpg', alt: 'Slide 4' },
+        { id: '1', image: '/assets/demo-images/02TimeLineIcons/2021.jpg', alt: 'Slide 1' },
+        { id: '3', image: '/assets/demo-images/02TimeLineIcons/2022.jpg', alt: 'Slide 3' },
+        { id: '4', image: '/assets/demo-images/02TimeLineIcons/2023.jpg', alt: 'Slide 4' },
+    ];
+    const images1 = [
+        { id: '1', image: '/assets/demo-images/02TimeLineIcons/2018.jpg', alt: 'Slide 1' },
+        { id: '3', image: '/assets/demo-images/02TimeLineIcons/2019.jpg', alt: 'Slide 3' },
+        { id: '4', image: '/assets/demo-images/02TimeLineIcons/2015.jpg', alt: 'Slide 4' },
+    ];
+    const images2 = [
+        { id: '1', image: '/assets/demo-images/02TimeLineIcons/2010.jpg', alt: 'Slide 1' },
+        { id: '3', image: '/assets/demo-images/02TimeLineIcons/2011.jpg', alt: 'Slide 3' },
+        { id: '4', image: '/assets/demo-images/02TimeLineIcons/2012.jpg', alt: 'Slide 4' },
     ];
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -30,126 +30,141 @@ const MyOutreachPrograms = () => {
     }, [emblaApi]);
 
     return (
-        <div >
-            <div className="mx-auto my-16 max-w-5xl text-start text-green-800">
-                <p className="mt-6 text-[17px] md:text-2xl">
+        <div>
+            {/* Introduction */}
+            <div className="mx-auto my-16 max-w-6xl text-start">
+                <p className="text-lg text-green-900 md:text-xl">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima. Ut
-                    ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem
-                    totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt qae fugiat?
+                    ducimus hic aut reiciendis quos quod.
                 </p>
             </div>
-            <div className="bg-gray-200 pb-16">
-                <div className="flex min-h-screen w-full flex-col items-center justify-center gap-10 px-6 pt-16">
-                    <div className="relative">
-                        <div className="bg-accent mx-auto w-full max-w-screen-xl overflow-hidden rounded-xl" ref={emblaRef}>
-                            <div className="embla__container flex">
-                                {images.map((item, index) => (
-                                    <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={index}>
-                                        <img src={item.image} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
-                                    </div>
-                                ))}
+            <div className="mx-auto max-w-screen-2xl bg-gray-200 px-4 py-20 lg:px-20">
+                    {/* item1 */}
+                    <div>
+                        {/* Carousel */}
+                        <div className="relative mb-16">
+                            <div ref={emblaRef} className="overflow-hidden rounded-xl shadow-lg">
+                                <div className="embla__container flex">
+                                    {images.map((item, index) => (
+                                        <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={item.id}>
+                                            <img src={item.image} alt={item.alt} className="h-full w-full object-cover" />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Dot Navigation */}
-                            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-10">
-                                {images?.map((_, index) => (
+                            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-6">
+                                {images.map((_, index) => (
                                     <button
                                         key={index}
-                                        className={`h-2 w-2 rounded-full transition sm:h-3 sm:w-3 ${index === selectedIndex ? 'bg-gray-600' : 'border'}`}
+                                        className={`h-3 w-3 rounded-full border border-gray-400 transition ${
+                                            index === selectedIndex ? 'bg-gray-400' : 'bg-gray-100'
+                                        }`}
                                         onClick={() => emblaApi && emblaApi.scrollTo(index)}
                                     />
                                 ))}
                             </div>
                         </div>
+
+                        {/* Vision Section */}
+                        <div className="mx-auto max-w-6xl text-center md:text-left mb-16">
+                            <h3 className="mb-6 text-3xl md:text-4xl">Our Vision</h3>
+                            <p className="mb-4 text-lg md:text-xl">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat
+                                minima. Ut ducimus hic aut reiciendis quos quod.
+                            </p>
+                            <p className="text-lg md:text-xl">
+                                Cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem totam corrupti, dolore vero
+                                architecto voluptate officia voluptatibus aspernatur sunt quae fugiat.
+                            </p>
+                        </div>
                     </div>
-                    <div className="max-w-5xl text-start text-gray-900">
-                        <h1 className="mt-6 text-4xl !leading-[1.2] font-bold tracking-tight sm:text-5xl md:text-5xl">Our Vision</h1>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                    </div>
-                </div>
-                <div className="flex min-h-screen w-full flex-col items-center justify-center gap-10 px-6 pt-16">
-                    <div className="relative">
-                        <div className="bg-accent mx-auto w-full max-w-screen-xl overflow-hidden rounded-xl" ref={emblaRef}>
-                            <div className="embla__container flex">
-                                {images.map((item, index) => (
-                                    <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={index}>
-                                        <img src={item.image} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
-                                    </div>
-                                ))}
+                    {/*End item1 */}
+                      {/* item1 */}
+                      <div>
+                        {/* Carousel */}
+                        <div className="relative mb-16">
+                            <div ref={emblaRef} className="overflow-hidden rounded-xl shadow-lg">
+                                <div className="embla__container flex">
+                                    {images1.map((item, index) => (
+                                        <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={item.id}>
+                                            <img src={item.image} alt={item.alt} className="h-full w-full object-cover" />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Dot Navigation */}
-                            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-10">
-                                {images?.map((_, index) => (
+                            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-6">
+                                {images1.map((_, index) => (
                                     <button
                                         key={index}
-                                        className={`h-2 w-2 rounded-full transition sm:h-3 sm:w-3 ${index === selectedIndex ? 'bg-gray-600' : 'border'}`}
+                                        className={`h-3 w-3 rounded-full border border-gray-400 transition ${
+                                            index === selectedIndex ? 'bg-gray-400' : 'bg-gray-100'
+                                        }`}
                                         onClick={() => emblaApi && emblaApi.scrollTo(index)}
                                     />
                                 ))}
                             </div>
                         </div>
+
+                        {/* Vision Section */}
+                        <div className="mx-auto max-w-6xl text-center md:text-left mb-16">
+                            <h3 className="mb-6 text-3xl md:text-4xl">Our Vision</h3>
+                            <p className="mb-4 text-lg md:text-xl">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat
+                                minima. Ut ducimus hic aut reiciendis quos quod.
+                            </p>
+                            <p className="text-lg md:text-xl">
+                                Cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem totam corrupti, dolore vero
+                                architecto voluptate officia voluptatibus aspernatur sunt quae fugiat.
+                            </p>
+                        </div>
                     </div>
-                    <div className="max-w-5xl text-start text-gray-900">
-                        <h1 className="mt-6 text-4xl !leading-[1.2] font-bold tracking-tight sm:text-5xl md:text-5xl">Our Vision</h1>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                    </div>
-                </div>
-                <div className="flex min-h-screen w-full flex-col items-center justify-center gap-10 px-6 pt-16">
-                    <div className="relative">
-                        <div className="bg-accent mx-auto w-full max-w-screen-xl overflow-hidden rounded-xl" ref={emblaRef}>
-                            <div className="embla__container flex">
-                                {images.map((item, index) => (
-                                    <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={index}>
-                                        <img src={item.image} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
-                                    </div>
-                                ))}
+                    {/*End item1 */}
+                      {/* item1 */}
+                      <div>
+                        {/* Carousel */}
+                        <div className="relative mb-16">
+                            <div ref={emblaRef} className="overflow-hidden rounded-xl shadow-lg">
+                                <div className="embla__container flex">
+                                    {images2.map((item, index) => (
+                                        <div className="embla__slide aspect-[21/9] flex-[0_0_100%]" key={item.id}>
+                                            <img src={item.image} alt={item.alt} className="h-full w-full object-cover" />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Dot Navigation */}
-                            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-10">
-                                {images?.map((_, index) => (
+                            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2 sm:-bottom-6">
+                                {images2.map((_, index) => (
                                     <button
                                         key={index}
-                                        className={`h-2 w-2 rounded-full transition sm:h-3 sm:w-3 ${index === selectedIndex ? 'bg-gray-600' : 'border'}`}
+                                        className={`h-3 w-3 rounded-full border border-gray-400 transition ${
+                                            index === selectedIndex ? 'bg-gray-400' : 'bg-gray-100'
+                                        }`}
                                         onClick={() => emblaApi && emblaApi.scrollTo(index)}
                                     />
                                 ))}
                             </div>
                         </div>
+
+                        {/* Vision Section */}
+                        <div className="mx-auto max-w-6xl text-center md:text-left mb-16">
+                            <h3 className="mb-6 text-3xl md:text-4xl">Our Vision</h3>
+                            <p className="mb-4 text-lg md:text-xl">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat
+                                minima. Ut ducimus hic aut reiciendis quos quod.
+                            </p>
+                            <p className="text-lg md:text-xl">
+                                Cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem totam corrupti, dolore vero
+                                architecto voluptate officia voluptatibus aspernatur sunt quae fugiat.
+                            </p>
+                        </div>
                     </div>
-                    <div className="max-w-5xl text-start text-gray-900">
-                        <h1 className="mt-6 text-4xl !leading-[1.2] font-bold tracking-tight sm:text-5xl md:text-5xl">Our Vision</h1>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                        <p className="mt-6 text-[17px] md:text-2xl">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima.
-                            Ut ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus
-                            exercitationem totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
-                        </p>
-                    </div>
-                </div>
+                    {/*End item1 */}
             </div>
         </div>
     );

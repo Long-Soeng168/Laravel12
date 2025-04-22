@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
-import { ArrowRight } from "lucide-react";
 
 const features = [
   {
@@ -9,7 +7,7 @@ const features = [
     details:
       "Take control over how and when to follow up with your leads. Store and reference leads in multiple tables and, from there, automatically send them personalized emails.",
     tutorialLink: "#",
-    image: "/assets/demo-images/02TopBackground/02 School Facilities.jpg",
+    image: "/assets/demo-images/02TimelineIcons/2022.jpg",
   },
   {
     category: "Project Management",
@@ -17,7 +15,7 @@ const features = [
     details:
       "Organize tasks, deadlines, and team collaboration in one place. Use customizable boards to manage projects efficiently and automate routine updates.",
     tutorialLink: "#",
-    image: "/assets/demo-images/02TopBackground/02 School Facilities.jpg",
+    image: "/assets/demo-images/02TimelineIcons/2021.jpg",
   },
   {
     category: "Customer Support",
@@ -25,7 +23,7 @@ const features = [
     details:
       "Track and resolve customer queries faster with an integrated ticketing system. Set priorities, automate follow-ups, and enhance satisfaction with personalized responses.",
     tutorialLink: "#",
-    image: "/assets/demo-images/02TopBackground/02 School Facilities.jpg",
+    image: "/assets/demo-images/02TimelineIcons/2023.jpg",
   },
   {
     category: "Team Collaboration",
@@ -33,7 +31,7 @@ const features = [
     details:
       "Simplify communication and align team efforts with shared boards and real-time updates. Enable transparent goal tracking and instant feedback for better results.",
     tutorialLink: "#",
-    image: "/assets/demo-images/02TopBackground/02 School Facilities.jpg",
+    image: "/assets/demo-images/02TimelineIcons/2003.jpg",
   },
   {
     category: "Product Development",
@@ -41,54 +39,62 @@ const features = [
     details:
       "Bring your product ideas to life by managing prototypes, feedback, and iterations in one place. Collaborate with your team to refine features and release with confidence.",
     tutorialLink: "#",
-    image: "/assets/demo-images/02TopBackground/02 School Facilities.jpg",
+    image: "/assets/demo-images/02TimelineIcons/2003.jpg",
   },
 ];
 
 const colors = [
-  { color: "bg-gray-700", text: "text-white", border: "border-white" },
-  { color: "bg-gray-200", text: "text-gray-500", border: "border-red-500" },
-  { color: "bg-green-900", text: "text-white", border: "border-white" },
-  { color: "bg-gray-200", text: "text-blue-900",border: "border-blue-800" },
-  { color: "bg-blue-900", text: "text-white", border: "border-white" },
+  { color: "bg-[#393939]", text: "text-white", border: "border-white" },
+  { color: "bg-[#dee4ed]", text: "text-gray-800", border: "border-gray-800" },
+  { color: "bg-[#3a573a]", text: "text-white", border: "border-white" },
+  { color: "bg-[#e8edf5]", text: "text-blue-900", border: "border-blue-800" },
+  { color: "bg-[#234090]", text: "text-white", border: "border-white" },
 ];
 
 const MyProgramsFeature = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-screen-xl w-full py-10 px-6">
-        <div className="mt-8 md:mt-16 w-full mx-auto space-y-20">
-          {features.map((feature, index) => {
-            const color = colors[index % colors.length]; // Rotate if more features than colors
-            return (
-              <div
-                key={feature.category}
-                className={`flex flex-col md:flex-row items-center gap-x-10 gap-y-6 md:odd:flex-row-reverse rounded-4xl p-6 ${color.color}`}
-              >
-                <div className="basis-1/2 shrink-0">
-                  <h4 className={`my-3 text-3xl font-semibold tracking-tight ${color.text}`}>
-                    {feature.title}
-                  </h4>
-                  <p className={`text-[17px] ${color.text}`}>
-                    {feature.details}
-                  </p>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className={`border-2 text-xl hover:cursor-pointer mt-6 rounded-xl min-w-40 ont-now-alt-medium px-8 py-6 ${color.border}   hover:opacity-90`}
+    <div className="bg-gray-50 py-16">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        {features.map((feature, index) => {
+          const color = colors[index % colors.length];
+          return (
+            <div
+              key={feature.category}
+              className={`flex flex-col md:flex-row ${
+                index % 2 === 1 ? "md:flex-row-reverse" : ""
+              } items-center gap-10 p-6 rounded-3xl shadow-sm ${color.color}`}
+            >
+              {/* Text */}
+              <div className="md:w-1/2">
+                <h4 className={`text-2xl md:text-3xl font-semibold mb-4 ${color.text}`}>
+                  {feature.title}
+                </h4>
+                <p className={`text-base md:text-lg leading-relaxed ${color.text}`}>
+                  {feature.details}
+                </p>
+                <div className="mt-8">
+                  <Link
+                    href={feature.tutorialLink}
+                    className={`inline-block border-2 ${color.border} ${color.text} text-base font-medium px-6 py-2 rounded-md transition hover:shadow-md hover:-translate-y-1 duration-200`}
                   >
-                    <Link href={feature.tutorialLink} className={`${color.text}`}>
-                      Learn More 
-                    </Link>
-                  </Button>
-                </div>
-                <div className="w-full aspect-[6/4]">
-                  <img src={feature.image} className="rounded-4xl" alt={feature.title} />
+                    Read more
+                  </Link>
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Image */}
+              <div className="w-full md:w-1/2">
+                <div className="aspect-[6/4] w-full overflow-hidden rounded-2xl">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

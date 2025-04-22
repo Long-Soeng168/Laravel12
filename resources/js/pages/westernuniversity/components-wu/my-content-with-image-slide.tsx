@@ -219,8 +219,8 @@ export function MyContentWithSlide() {
             </div>
             <div className="mt-auto px-4 pb-6 pt-4">
               <Link
-                href="#"
-                className={`inline-block border-2 ${item.borderColor} ${item.textColor} text-base sm:text-lg px-6 py-3 rounded-md font-now-alt-medium hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all duration-200`}
+                href={`/detail/${1}`}
+                className={`inline-block border-2 ${item.borderColor} ${item.textColor} text-base sm:text-lg px-6 py-3 rounded-md hover:-translate-y-1 transition-all duration-200`}
               >
                 Read more
               </Link>
