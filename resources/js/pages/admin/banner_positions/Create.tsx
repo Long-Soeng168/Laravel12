@@ -53,7 +53,7 @@ export default function Create({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: editData?.name || '',
-            name_kh: editData?.name_kh || '',
+            name_kh: editData?.name_kh || 'name_kh',
             code: editData?.code || '',
             status: editData?.status || 'active',
             short_description: editData?.short_description || '',
