@@ -30,7 +30,7 @@ export function ChartAreaInteractive() {
             <Card>
                 <CardHeader>
                     <CardTitle>Post views count</CardTitle>
-                    <CardDescription>Showing total visitors for the last 30 dates</CardDescription>
+                    <CardDescription>Showing total visitors for the last 30 days</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <ChartContainer className='h-[220px] w-full' config={chartConfig}>
