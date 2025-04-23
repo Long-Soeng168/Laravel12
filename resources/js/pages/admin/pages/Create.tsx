@@ -16,7 +16,7 @@ import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
@@ -52,8 +52,9 @@ export default function Create() {
     };
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { parentData,types, pagePositions, editData, readOnly, links } = usePage().props;
+    const { parentData, types, pagePositions, editData, readOnly, links } = usePage().props;
 
+    const [disableCodeField, setdisableCodeField] = useState(false);
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
     const [long_description_kh, setLong_description_kh] = useState(editData?.long_description_kh || '');
@@ -76,6 +77,10 @@ export default function Create() {
             position_code: editData?.position_code?.toString() || '',
         },
     });
+
+    useEffect(() => {
+        editData?.code && setdisableCodeField(true);
+    }, []);
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
@@ -154,7 +159,7 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-12">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="code"
@@ -162,7 +167,12 @@ export default function Create() {
                                     <FormItem>
                                         <FormLabel>{t('Unique Code')}</FormLabel>
                                         <FormControl>
-                                             <Input disabled={editData?.id} placeholder={t("Code")} type="text" {...field} />
+                                            <Input
+                                                disabled={disableCodeField}
+                                                placeholder={t('Code')}
+                                                type="text"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
                                     </FormItem>
@@ -179,7 +189,7 @@ export default function Create() {
                                     <FormItem>
                                         <FormLabel>{t('Title')}</FormLabel>
                                         <FormControl>
-                                             <Input placeholder={t("Title")} type="text" {...field} />
+                                            <Input placeholder={t('Title')} type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
                                     </FormItem>
@@ -195,7 +205,7 @@ export default function Create() {
                                     <FormItem>
                                         <FormLabel>{t('Title Khmer')}</FormLabel>
                                         <FormControl>
-                                           <Input placeholder={t("Title Khmer")} type="text" {...field} />
+                                            <Input placeholder={t('Title Khmer')} type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.title_kh && <div>{errors.title_kh}</div>}</FormMessage>
                                     </FormItem>
@@ -211,7 +221,7 @@ export default function Create() {
                             <FormItem>
                                 <FormLabel>{t('Short Description')}</FormLabel>
                                 <FormControl>
-                                    <AutosizeTextarea placeholder={t("Short Description")} className="resize-none" {...field} />
+                                    <AutosizeTextarea placeholder={t('Short Description')} className="resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                             </FormItem>
@@ -225,7 +235,7 @@ export default function Create() {
                             <FormItem>
                                 <FormLabel>{t('Short Description Khmer')}</FormLabel>
                                 <FormControl>
-                                   <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
+                                    <AutosizeTextarea placeholder={t('Short Description Khmer')} className="resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
@@ -240,7 +250,7 @@ export default function Create() {
                                     name="source"
                                     render={({ field }) => (
                                         <FormItem>
-                                           <FormLabel>{t('Source')}</FormLabel>
+                                            <FormLabel>{t('Source')}</FormLabel>
                                             <Select
                                                 onValueChange={(value) => {
                                                     field.onChange(value);
@@ -251,7 +261,7 @@ export default function Create() {
                                             >
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder={t("Select")} />
+                                                        <SelectValue placeholder={t('Select')} />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -282,7 +292,7 @@ export default function Create() {
                                         <FormItem>
                                             <FormLabel>{t('Link')}</FormLabel>
                                             <FormControl>
-                                                <Input placeholder={t("Link")} type="text" {...field} />
+                                                <Input placeholder={t('Link')} type="text" {...field} />
                                             </FormControl>
                                             <FormDescription>{t('For external content you can put link here.')}</FormDescription>
                                             <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
@@ -299,16 +309,18 @@ export default function Create() {
                                     name="type"
                                     render={({ field }) => (
                                         <FormItem key={field.value}>
-                                             <FormLabel>{t('Type')}</FormLabel>
+                                            <FormLabel>{t('Type')}</FormLabel>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder={t("Select Type")} />
+                                                        <SelectValue placeholder={t('Select Type')} />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
                                                     {types.map((typeObject) => (
-                                                        <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                        <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>
+                                                            {typeObject.label}
+                                                        </SelectItem>
                                                     ))}
                                                     {/* <SelectItem value="link">Link</SelectItem> */}
                                                 </SelectContent>
@@ -381,16 +393,14 @@ export default function Create() {
                                                         role="combobox"
                                                         className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
                                                     >
-                                                        {field.value
-                                                            ? parentData?.find((parent) => parent.id == field.value)?.title
-                                                            : t('Select')}
+                                                        {field.value ? parentData?.find((parent) => parent.id == field.value)?.title : t('Select')}
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
                                             <PopoverContent className="p-0">
                                                 <Command>
-                                                    <CommandInput placeholder={t("Search")} />
+                                                    <CommandInput placeholder={t('Search')} />
                                                     <CommandList>
                                                         <CommandEmpty>{t('No data')}</CommandEmpty>
                                                         <CommandGroup>
@@ -440,7 +450,7 @@ export default function Create() {
                                 name="position_code"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col" key={field.value}>
-                                         <FormLabel>{t('Position')}</FormLabel>
+                                        <FormLabel>{t('Position')}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>
                                                 <FormControl>
@@ -514,7 +524,7 @@ export default function Create() {
                                             <div className="flex w-full flex-col items-center justify-center p-8">
                                                 <CloudUpload className="h-10 w-10 text-gray-500" />
                                                 <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                     <span className="font-semibold">{t('Click to upload')}</span>
+                                                    <span className="font-semibold">{t('Click to upload')}</span>
                                                     &nbsp; {t('or drag and drop')}
                                                 </p>
                                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
@@ -593,7 +603,7 @@ export default function Create() {
                                     <Loader />
                                 </span>
                             )}
-                           {processing ? t('Submitting') : t('Submit')}
+                            {processing ? t('Submitting') : t('Submit')}
                         </Button>
                     )}
                 </form>
