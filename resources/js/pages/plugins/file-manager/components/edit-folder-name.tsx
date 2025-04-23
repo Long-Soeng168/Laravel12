@@ -25,7 +25,7 @@ export function EditFolderName({ open, setOpen }: { open: boolean; setOpen: Reac
             </TooltipProvider> */}
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit Folder Name</DialogTitle>
+                    <DialogTitle>{t('Edit')}</DialogTitle>
                     <DialogDescription className="flex">
                         <span className="mr-1 font-semibold whitespace-nowrap">Path : </span>
                         <Breadcrumb>

@@ -5,7 +5,9 @@ import { FilterIcon } from 'lucide-react';
 import { useState } from 'react';
 import MyFilter from './my-filter';
 
+import useTranslation from '@/hooks/use-translation';
 export function MyFilterButton() {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const queryParams = new URLSearchParams(window.location.search);
 
@@ -31,7 +33,7 @@ export function MyFilterButton() {
                         </DialogTrigger>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                        <p>Filter</p>
+                        <p>{t('Filter')}</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>

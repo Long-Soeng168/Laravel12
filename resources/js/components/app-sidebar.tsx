@@ -26,7 +26,7 @@ import {
 import AppLogo from './app-logo';
 
 export function AppSidebar() {
-    const { t } = useTranslation();
+    const { t, currentLocale } = useTranslation();
     const mainNavItems: NavItem[] = [
         {
             title: t('Dashboard'),
@@ -176,7 +176,7 @@ export function AppSidebar() {
         // },
     ];
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar collapsible="icon" variant="inset" className={`${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>

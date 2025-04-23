@@ -5,12 +5,14 @@ import { ScanEyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 
+import useTranslation from '@/hooks/use-translation';
 const ViewButton = ({ item }: { item: any }) => {
+    const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
-                <MyTooltipButton variant="ghost" title="View" side="bottom" className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
+                <MyTooltipButton variant="ghost" title={t('Show')} side="bottom" className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
                     <ScanEyeIcon />
                 </MyTooltipButton>
             </DialogTrigger>
@@ -20,7 +22,7 @@ const ViewButton = ({ item }: { item: any }) => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>View Position</DialogTitle>
+                    <DialogTitle>{t('Show')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create readOnly={true} editData={item} setIsOpen={setIsOpen} />
                 </DialogHeader>

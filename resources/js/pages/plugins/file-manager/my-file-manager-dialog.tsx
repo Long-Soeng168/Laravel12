@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { FoldersIcon, RotateCw, XIcon } from 'lucide-react';
 import * as React from 'react';
 import ActionDropdown from './components/action-dropdown';
@@ -23,6 +24,7 @@ export function MyFileManagerDialog({
     handleInsertMedia?: (type: 'image' | 'file', url: string, fileName?: string) => void;
     toolbarContainerId?: string;
 }) {
+    const { t } = useTranslation();
     const hasPermission = usePermission();
 
     const [openUploadFileDialog, setOpenUploadFileDialog] = React.useState(false);
@@ -64,14 +66,14 @@ export function MyFileManagerDialog({
                     >
                         <span className="flex items-center gap-2">
                             <FoldersIcon />
-                            <span className="hidden font-semibold lg:inline">File Manager</span>
+                            <span className="hidden font-semibold lg:inline">{t('File Manager')}</span>
                         </span>
                     </button>
                 </DialogTrigger>
                 {/* End Trigger Dialog Button */}
 
                 {/* {isOpenFileManager && <div className="fixed inset-0 z-50 bg-black/10" />} */}
-                <DialogContent className="ring-primary dark:ring-offset-1 h-[85vh] overflow-hidden p-0 ring-1 ring-offset-4 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px]">
+                <DialogContent className="ring-primary h-[85vh] overflow-hidden p-0 ring-1 ring-offset-4 md:max-h-[800px] md:max-w-[800px] lg:max-w-[900px] dark:ring-offset-1">
                     <DialogTitle className="sr-only"></DialogTitle>
                     <DialogDescription className="sr-only"></DialogDescription>
                     <SidebarProvider className="items-start">
@@ -101,11 +103,11 @@ export function MyFileManagerDialog({
                                             />
                                         )}
                                         <span className="h-6 rounded-full border-[1px] bg-gray-400"></span>
-                                        <MyTooltipButton title="Refresh" variant={`outline`} size={`icon`} onClick={() => handleRefresh()}>
+                                        <MyTooltipButton title={t("Refresh")} variant={`outline`} size={`icon`} onClick={() => handleRefresh()}>
                                             <RotateCw className="stroke-foreground" />
                                         </MyTooltipButton>
                                         <MyTooltipButton
-                                            title="Close"
+                                            title={t("Close")}
                                             variant={`outline`}
                                             size={`icon`}
                                             onClick={() => {

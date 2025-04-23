@@ -56,7 +56,7 @@ const MyTableData = () => {
                                     <span className="flex h-full items-center justify-start">
                                         {hasPermission('role view') && (
                                             <Link href={`/admin/roles/${item.id}`}>
-                                                <MyTooltipButton title="View" side="bottom" variant="ghost">
+                                                <MyTooltipButton title={t('Show')} side="bottom" variant="ghost">
                                                     <ScanEyeIcon />
                                                 </MyTooltipButton>
                                             </Link>
@@ -65,7 +65,7 @@ const MyTableData = () => {
 
                                         {hasPermission('role update') && (
                                             <Link href={`/admin/roles/${item.id}/edit`}>
-                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                <MyTooltipButton title={t('Edit')} side="bottom" variant="ghost">
                                                     <EditIcon />
                                                 </MyTooltipButton>
                                             </Link>

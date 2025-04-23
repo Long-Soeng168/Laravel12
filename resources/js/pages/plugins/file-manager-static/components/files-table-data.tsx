@@ -1,10 +1,12 @@
 import { MyTooltipButton } from '@/components/my-tooltip-button';
+import useTranslation from '@/hooks/use-translation';
 import { CopyIcon, FileIcon, ViewIcon } from 'lucide-react';
 import { useState } from 'react';
-import { ViewImage } from './view-image';
 import { Pagination } from './pagination';
+import { ViewImage } from './view-image';
 
 const FileTableData = () => {
+    const { t } = useTranslation();
     const [selectedImages, setSelectedImages] = useState('');
     const [isOpenViewImages, setIsOpenViewImages] = useState(false);
 
@@ -32,7 +34,7 @@ const FileTableData = () => {
                                         setIsOpenViewImages(true);
                                     }}
                                     size="icon"
-                                    title="View File"
+                                    title={t('Show')}
                                     className="bg-muted/60 h-8 w-8 p-0"
                                 >
                                     <ViewIcon />
@@ -66,7 +68,7 @@ const FileTableData = () => {
                                         setIsOpenViewImages(true);
                                     }}
                                     size="icon"
-                                    title="View File"
+                                    title={t('Show')}
                                     className="bg-muted/60 h-8 w-8 p-0"
                                 >
                                     <ViewIcon />

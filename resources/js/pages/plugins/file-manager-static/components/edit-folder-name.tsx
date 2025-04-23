@@ -1,12 +1,13 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { FolderIcon, FolderPlusIcon } from 'lucide-react';
+import useTranslation from '@/hooks/use-translation';
+import { FolderIcon } from 'lucide-react';
 
 export function EditFolderName({ open, setOpen }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const { t } = useTranslation();
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             {/* <TooltipProvider>
@@ -25,7 +26,7 @@ export function EditFolderName({ open, setOpen }: { open: boolean; setOpen: Reac
             </TooltipProvider> */}
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit Folder Name</DialogTitle>
+                    <DialogTitle>{t('Edit')}</DialogTitle>
                     <DialogDescription className="flex">
                         <span className="mr-1 font-semibold whitespace-nowrap">Path : </span>
                         <Breadcrumb>

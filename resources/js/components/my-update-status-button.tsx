@@ -1,14 +1,7 @@
 import { Button } from '@/components/ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import useTranslation from '@/hooks/use-translation';
 import { useForm } from '@inertiajs/react';
 import { LoaderIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -37,6 +30,7 @@ const statusVariantsText: Record<string, string> = {
 };
 
 const MyUpdateStatusButton = ({ id, pathName, currentStatus, statuses }: UpdateStatusButtonProps) => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const { post, data, processing, errors } = useForm();
 
@@ -65,25 +59,21 @@ const MyUpdateStatusButton = ({ id, pathName, currentStatus, statuses }: UpdateS
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <DialogTrigger className="cursor-pointer" asChild>
-                            <Button
-                                variant="outline"
-                                className={`${statusVariantsText[currentStatus]} capitalize`}
-                                size="sm"
-                            >
+                            <Button variant="outline" className={`${statusVariantsText[currentStatus]} capitalize`} size="sm">
                                 {currentStatus}
                             </Button>
                         </DialogTrigger>
                     </TooltipTrigger>
                     <TooltipContent side="left">
-                        <p>Update Status</p>
+                        <p>{t('Update Status')}</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
 
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Are you sure?</DialogTitle>
-                    <DialogDescription>This action will update the record status.</DialogDescription>
+                    <DialogTitle>{t('Are you sure?')}</DialogTitle>
+                    <DialogDescription>{t('This action will update the record status.')}</DialogDescription>
                     {errors.status && <span className="text-destructive">{errors.status}</span>}
                 </DialogHeader>
                 <DialogFooter className="space-y-2 sm:space-y-0" key={currentStatus}>

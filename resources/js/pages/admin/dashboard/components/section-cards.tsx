@@ -1,7 +1,7 @@
 import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
-import { AppWindowIcon, FilePenLineIcon, GalleryThumbnailsIcon, LinkIcon, UsersIcon, Waypoints } from 'lucide-react';
+import { AppWindowIcon, FilePenLineIcon, GalleryThumbnailsIcon, Heading1Icon, LinkIcon, ProjectorIcon, ShieldCheckIcon, UsersIcon, Waypoints } from 'lucide-react';
 
 const SectionCards = () => {
     const hasPermission = usePermission();
@@ -24,6 +24,13 @@ const SectionCards = () => {
             permission: 'page view',
         },
         {
+            icon: ProjectorIcon,
+            title: t('Projects'),
+            total_records: `${featureDatas?.project_counts}`,
+            link: '/admin/projects',
+            permission: 'project view',
+        },
+        {
             icon: LinkIcon,
             title: t('Links'),
             total_records: `${featureDatas?.link_counts}`,
@@ -38,6 +45,13 @@ const SectionCards = () => {
             permission: 'banner view',
         },
         {
+            icon: Heading1Icon,
+            title: t('Headings'),
+            total_records: `${featureDatas?.heading_counts}`,
+            link: '/admin/headings',
+            permission: 'heading view',
+        },
+        {
             icon: UsersIcon,
             title: t('Users'),
             total_records: `${featureDatas?.user_counts}`,
@@ -47,9 +61,16 @@ const SectionCards = () => {
         {
             icon: Waypoints,
             title: t('Roles'),
-            total_records: `${featureDatas?.user_counts}`,
+            total_records: `${featureDatas?.role_counts}`,
             link: '/admin/roles',
             permission: 'role view',
+        },
+        {
+            icon: ShieldCheckIcon,
+            title: t('Permissions'),
+            total_records: `${featureDatas?.permission_counts}`,
+            link: '/admin/permissions',
+            permission: 'permission view',
         },
     ];
 

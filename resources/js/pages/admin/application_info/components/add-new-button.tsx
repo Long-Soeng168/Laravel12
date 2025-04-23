@@ -4,15 +4,17 @@ import { Plus, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 
+import useTranslation from '@/hooks/use-translation';
 const AddNewButton = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
-                <span className="border-primary rounded-xl border p-1 transition-all duration-300 hover:rounded-lg hover:border-white hover:p-0 hover:m-1 ">
+                <span className="border-primary rounded-xl border p-1 transition-all duration-300 hover:m-1 hover:rounded-lg hover:border-white hover:p-0">
                     <Button onClick={() => setIsOpen(true)}>
                         <Plus />
-                        Add New
+                        {t('Add New')}
                     </Button>
                 </span>
             </DialogTrigger>
@@ -24,7 +26,7 @@ const AddNewButton = () => {
                 </Button>
 
                 <DialogHeader>
-                    <DialogTitle>Create Projects</DialogTitle>
+                    <DialogTitle>{t('Create')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create />
                 </DialogHeader>

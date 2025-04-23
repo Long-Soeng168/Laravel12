@@ -6,8 +6,8 @@ import { HTMLAttributes } from 'react';
 export default function SwitchLanguageTab({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {
     const { t, currentLocale } = useTranslation();
     const tabs: { value: string; icon: string; label: string }[] = [
-        { value: 'kh', icon: '/assets/icons/khmer.png', label: 'Khmer' },
-        { value: 'en', icon: '/assets/icons/english.png', label: 'English' },
+        { value: 'kh', icon: '/assets/icons/khmer.png', label: t('Khmer') },
+        { value: 'en', icon: '/assets/icons/english.png', label: t('English') },
     ];
 
     return (

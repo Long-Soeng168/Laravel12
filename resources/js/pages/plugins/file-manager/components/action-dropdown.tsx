@@ -9,12 +9,14 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import useTranslation from '@/hooks/use-translation';
 import { useForm as inertiaUseForm } from '@inertiajs/react';
 import { FilePlus2Icon, FolderCogIcon, FolderPlusIcon, FolderXIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useFileManager } from '../hooks/FileManagerContext';
 
 const ActionDropdown = ({ setOpenUploadFileDialog, setOpenAddFolderDialog }) => {
+    const { t } = useTranslation();
     const { currentFolder, setCurrentFolder, setPage } = useFileManager();
 
     const { delete: destroy, progress, processing, errors } = inertiaUseForm();
@@ -60,20 +62,20 @@ const ActionDropdown = ({ setOpenUploadFileDialog, setOpenAddFolderDialog }) => 
             <DropdownMenuTrigger asChild>
                 <span className="rounded-xl border p-1">
                     <Button variant="outline" size="icon">
-                        <FolderCogIcon className='stroke-foreground/60' />
+                        <FolderCogIcon className="stroke-foreground/60" />
                     </Button>
                 </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[200px]">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuLabel>{t('Action')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem onClick={() => setOpenUploadFileDialog(true)}>
-                        <FilePlus2Icon className='stroke-primary' /> Upload Files
+                        <FilePlus2Icon className="stroke-primary" /> {t('Upload Files')}
                         <DropdownMenuShortcut>⌘u</DropdownMenuShortcut>
                     </DropdownMenuItem>
 
                     <DropdownMenuItem onClick={() => setOpenAddFolderDialog(true)}>
-                        <FolderPlusIcon className='stroke-yellow-500'/> Add Sub-Folder
+                        <FolderPlusIcon className="stroke-yellow-500" /> {t('Add Sub-Folder')}
                         <DropdownMenuShortcut>⌘i</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     {/* <DropdownMenuItem onClick={() => setOpenEditFolderNameDialog(true)}>
@@ -83,7 +85,7 @@ const ActionDropdown = ({ setOpenUploadFileDialog, setOpenAddFolderDialog }) => 
                                                 </DropdownMenuItem> */}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => handleDeleteCurrentFolder()} className="text-red-600">
-                        <FolderXIcon className='stroke-red-600' /> Delete Folder
+                        <FolderXIcon className="stroke-red-600" /> {t('Delete Current Folder')}
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
             </DropdownMenuContent>

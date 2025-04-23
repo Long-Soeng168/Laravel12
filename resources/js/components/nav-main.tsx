@@ -9,17 +9,19 @@ import {
     SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronRight } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 export function NavMain({ items = [] }: { items: NavItem[] }) {
+    const { t } = useTranslation();
     const page = usePage();
     const hasPermission = usePermission();
     return (
         <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel>Menu</SidebarGroupLabel>
+            <SidebarGroupLabel>{t('Menu')}</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => {
                     if (item.permission && !hasPermission(item.permission)) return null;
@@ -35,9 +37,9 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                                 <CollapsibleTrigger asChild>
                                     <div className="flex w-full items-center">
                                         <Link href={item.url} prefetch className="flex flex-1">
-                                            <SidebarMenuButton className='cursor-pointer'>
+                                            <SidebarMenuButton className="cursor-pointer">
                                                 {item.icon && <item.icon />}
-                                                <span>{item.title}</span>
+                                                <span className="leading-[2]">{item.title}</span>
                                             </SidebarMenuButton>
                                         </Link>
 
@@ -54,8 +56,8 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                                                 <SidebarMenuSubItem key={subItem.title}>
                                                     <SidebarMenuSubButton isActive={subItem.url === page.url} asChild>
                                                         <Link href={subItem.url} prefetch="hover">
-                                                            {subItem.icon && <subItem.icon className='stroke-primary' />}
-                                                            <span>{subItem.title}</span>
+                                                            {subItem.icon && <subItem.icon className="stroke-primary" />}
+                                                            <span className="leading-[2]">{subItem.title}</span>
                                                         </Link>
                                                     </SidebarMenuSubButton>
                                                 </SidebarMenuSubItem>
@@ -70,7 +72,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                             <SidebarMenuButton asChild isActive={item.url === page.url} tooltip={{ children: item.title }}>
                                 <Link href={item.url} prefetch>
                                     {item.icon && <item.icon />}
-                                    <span>{item.title}</span>
+                                    <span className="leading-[2]">{item.title}</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>

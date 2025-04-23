@@ -36,7 +36,7 @@ export function ChartAreaInteractive() {
                     <CardTitle className="flex items-center gap-2">
                         {t('Post views count')}
                         <Link prefetch href={`/admin/post_view_counts`}>
-                            <MyTooltipButton variant="ghost" title="View All">
+                            <MyTooltipButton variant="ghost" title={t('Show')}>
                                 <SquareArrowOutUpRight />
                             </MyTooltipButton>
                         </Link>

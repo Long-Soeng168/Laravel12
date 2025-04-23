@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import useTranslation from '@/hooks/use-translation';
 import { RotateCw } from 'lucide-react';
 
 export function MyRefreshButton() {
+    const { t } = useTranslation();
     const currentPath = window.location.pathname;
 
     return (
@@ -18,7 +20,7 @@ export function MyRefreshButton() {
                     </span>
                 </TooltipTrigger>
                 <TooltipContent side="bottom">
-                    <p>Refresh Page</p>
+                    <p>{t('Refresh')} {t('Page')}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

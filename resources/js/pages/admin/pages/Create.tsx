@@ -135,10 +135,10 @@ export default function Create() {
         }
     }
 
-    const currentBreadcrumb = readOnly ? 'Show' : editData ? 'Edit' : 'Create';
+    const currentBreadcrumb = readOnly ? t('Show') : editData ? t('Edit') : t('Create');
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: 'Pages',
+            title: t('Pages'),
             href: '/admin/pages',
         },
         {

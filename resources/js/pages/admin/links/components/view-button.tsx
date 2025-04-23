@@ -5,7 +5,9 @@ import { ScanEyeIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 
+import useTranslation from '@/hooks/use-translation';
 const ViewButton = ({ item }: { item: any }) => {
+    const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
@@ -19,7 +21,7 @@ const ViewButton = ({ item }: { item: any }) => {
                         </DialogTrigger>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                        <p>View</p>
+                        <p>{t('View')}</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
@@ -29,7 +31,7 @@ const ViewButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>View Link</DialogTitle>
+                    <DialogTitle>{t('Show')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} readOnly={true} setIsOpen={setIsOpen} />
                 </DialogHeader>

@@ -9,17 +9,11 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { Loader2Icon } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Profile settings',
-        href: '/settings/profile',
-    },
-];
 
 interface ProfileForm {
     name: string;
@@ -30,6 +24,7 @@ interface ProfileForm {
 }
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
+    const { t } = useTranslation();
     const { auth } = usePage<SharedData>().props;
 
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
@@ -48,17 +43,24 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
         });
     };
 
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Profile settings'),
+            href: '/settings/profile',
+        },
+    ];
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Profile settings" />
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Profile information" description="Update your name and email address" />
+                    <HeadingSmall title={t("Profile information")} description={t("Update your name and email address")} />
 
                     <form onSubmit={submit} className="space-y-6">
                         <div className="grid gap-2">
-                            <Label htmlFor="name">Name</Label>
+                            <Label htmlFor="name">{t('Name')}</Label>
 
                             <Input
                                 id="name"
@@ -67,14 +69,14 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 onChange={(e) => setData('name', e.target.value)}
                                 required
                                 autoComplete="name"
-                                placeholder="Full name"
+                                placeholder={t('Name')}
                             />
 
                             <InputError className="mt-2" message={errors.name} />
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email address</Label>
+                            <Label htmlFor="email">{t('Email')}</Label>
 
                             <Input
                                 id="email"
@@ -84,14 +86,14 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 onChange={(e) => setData('email', e.target.value)}
                                 required
                                 autoComplete="username"
-                                placeholder="Email address"
+                                placeholder={t('Email')}
                             />
 
                             <InputError className="mt-2" message={errors.email} />
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="phone">Phone</Label>
+                            <Label htmlFor="phone">{t('Phone Number')}</Label>
 
                             <Input
                                 id="phone"
@@ -99,22 +101,22 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 value={data.phone}
                                 onChange={(e) => setData('phone', e.target.value)}
                                 autoComplete="phone"
-                                placeholder="Phone"
+                                placeholder={t('Phone Number')}
                             />
 
                             <InputError className="mt-2" message={errors.name} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="gender">Gender</Label>
+                            <Label htmlFor="gender">{t('Gender')}</Label>
 
                             <Select value={data.gender} onValueChange={(value) => setData('gender', value)}>
                                 <SelectTrigger id="gender" className="w-full">
-                                    <SelectValue placeholder="Select gender" />
+                                    <SelectValue placeholder={t('Select')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="male">Male</SelectItem>
-                                    <SelectItem value="female">Female</SelectItem>
-                                    <SelectItem value="other">Other</SelectItem>
+                                    <SelectItem value="male">{t('Male')}</SelectItem>
+                                    <SelectItem value="female">{t('Female')}</SelectItem>
+                                    <SelectItem value="other">{t('Other')}</SelectItem>
                                 </SelectContent>
                             </Select>
 
@@ -122,7 +124,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="image">Image</Label>
+                            <Label htmlFor="image">{t('Image')}</Label>
 
                             <Input
                                 id="image"
@@ -163,7 +165,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                         <Loader2Icon />
                                     </span>
                                 )}
-                                Save
+                                {t('Submit')}
                             </Button>
 
                             <Transition
@@ -173,7 +175,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 leave="transition ease-in-out"
                                 leaveTo="opacity-0"
                             >
-                                <p className="text-sm text-green-600">Saved</p>
+                                <p className="text-sm text-green-600">{t('Saved')}</p>
                             </Transition>
                         </div>
                     </form>

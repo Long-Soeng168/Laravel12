@@ -124,7 +124,7 @@ const MyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <Link href={`/admin/banners/${item.id}`}>
-                                            <MyTooltipButton title="View" side="bottom" variant="ghost">
+                                            <MyTooltipButton title={t('Show')} side="bottom" variant="ghost">
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
@@ -132,7 +132,7 @@ const MyTableData = () => {
                                         {hasPermission('banner delete') && <DeleteButton deletePath="/admin/banners/" id={item.id} />}
                                         {hasPermission('banner update') && (
                                             <Link href={`/admin/banners/${item.id}/edit`}>
-                                                <MyTooltipButton title="Edit" side="bottom" variant="ghost">
+                                                <MyTooltipButton title={t('Edit')} side="bottom" variant="ghost">
                                                     <EditIcon />
                                                 </MyTooltipButton>
                                             </Link>

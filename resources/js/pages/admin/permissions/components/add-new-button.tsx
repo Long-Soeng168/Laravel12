@@ -3,8 +3,9 @@ import MyDialogCloseButton from '@/components/my-dialog-close-button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useState } from 'react';
 import Create from '../Create';
-
+import useTranslation from '@/hooks/use-translation';
 const AddNewButton = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
@@ -17,7 +18,7 @@ const AddNewButton = () => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>Create Permissions</DialogTitle>
+                    <DialogTitle>{t('Create')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create setIsOpen={setIsOpen} />
                 </DialogHeader>

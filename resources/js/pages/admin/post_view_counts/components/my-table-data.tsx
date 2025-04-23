@@ -64,7 +64,7 @@ const MyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <Link href={`/admin/posts/${item.post_id}`}>
-                                            <MyTooltipButton title="View Post" side="bottom" variant="ghost">
+                                            <MyTooltipButton title={t('Show')} side="bottom" variant="ghost">
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>

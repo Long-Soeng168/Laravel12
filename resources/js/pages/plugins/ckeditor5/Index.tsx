@@ -1,27 +1,13 @@
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from '@/components/ui/resizable';
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from '@/components/ui/tabs';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 import MyCkeditor5 from './my-ckeditor5';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Sample Content',
-        href: '/admin/ckeditor5',
-    },
-];
-
 export default function Page() {
+    const { t, currentLocale } = useTranslation();
     const [data, setData] = useState(sampleData);
     const panelRef = useRef<HTMLDivElement>(null);
     const [panelWidth, setPanelWidth] = useState(0);
@@ -38,12 +24,19 @@ export default function Page() {
         return () => observer.disconnect();
     }, []);
 
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: t('Sample Content'),
+            href: '/admin/ckeditor5',
+        },
+    ];
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Tabs defaultValue="editor" className="w-full max-w-full lg:p-4">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="editor">Editor</TabsTrigger>
-                    <TabsTrigger value="preview">Preview</TabsTrigger>
+                    <TabsTrigger value="editor">{t('Editor')}</TabsTrigger>
+                    <TabsTrigger value="preview">{t('Preview')}</TabsTrigger>
                 </TabsList>
 
                 <div className="mt-2 rounded-md">
@@ -57,8 +50,10 @@ export default function Page() {
                         <ResizablePanel defaultSize={100}>
                             <div ref={panelRef}>
                                 <TabsContent value="preview" className="prose ck-content max-w-none">
-                                    <div className="mb-4 text-sm text-muted-foreground">
-                                        Viewport width: <strong className='text-primary'>{panelWidth}px</strong>
+                                    <div
+                                        className={`text-muted-foreground mb-4 text-base ${currentLocale == 'kh' ? 'font-koulen-regular leading-[2]' : 'font-semibold'}`}
+                                    >
+                                        {t('Viewport width')}: <span className="text-primary font-poppins-regular">{panelWidth} px</span>
                                     </div>
                                     <div dangerouslySetInnerHTML={{ __html: data }} />
                                 </TabsContent>
@@ -72,7 +67,6 @@ export default function Page() {
         </AppLayout>
     );
 }
-
 
 const sampleData = `<h2 class="document-title" id="ee5902976f4e49a36d08e025ae4a6206a">
     Handheld emperor

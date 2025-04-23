@@ -5,12 +5,14 @@ import { EditIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 
+import useTranslation from '@/hooks/use-translation';
 const EditButton = ({ item }: { item: any }) => {
+    const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
-                <MyTooltipButton variant="ghost" title='Edit' side='bottom' className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
+                <MyTooltipButton variant="ghost" title={t('Edit')} side='bottom' className="text-foreground" size="icon" onClick={() => setIsOpen(true)}>
                     <EditIcon />
                 </MyTooltipButton>
             </DialogTrigger>
@@ -19,7 +21,7 @@ const EditButton = ({ item }: { item: any }) => {
                 <MyDialogCloseButton onClick={() => setIsOpen(false)} />
 
                 <DialogHeader>
-                    <DialogTitle>Edit Position</DialogTitle>
+                    <DialogTitle>{t('Edit')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} setIsOpen={setIsOpen} />
                 </DialogHeader>

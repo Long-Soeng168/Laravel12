@@ -1,12 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import useTranslation from '@/hooks/use-translation';
 import { useForm } from '@inertiajs/react';
 import { Loader, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
 const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const { delete: destroy, processing } = useForm();
 
@@ -45,21 +47,21 @@ const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) =>
                         </DialogTrigger>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                        <p>Delete</p>
+                        <p>{t('Delete')}</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
 
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Are you sure?</DialogTitle>
+                    <DialogTitle>{t('Are you sure?')}</DialogTitle>
                     <DialogDescription>
-                        This action cannot be undone. This will permanently delete and remove its data from the servers.
+                        {t('This action cannot be undone. This will permanently delete and remove its data from the servers.')}
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
                     <Button onClick={() => setIsOpen(false)} disabled={processing} variant="secondary">
-                        Cancel
+                        {t('Cancel')}
                     </Button>
                     <Button
                         onClick={handleDelete}
@@ -73,7 +75,7 @@ const DeleteButton = ({ deletePath, id }: { deletePath: string; id: number }) =>
                                 <Loader />
                             </span>
                         )}
-                        {processing ? 'Deleting...' : 'Delete'}
+                        {processing ? t('Deleting') : t('Delete')}
                     </Button>
                 </DialogFooter>
             </DialogContent>

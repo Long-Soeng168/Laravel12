@@ -83,7 +83,7 @@ export function AddFolder({ open, setOpen }: { open: boolean; setOpen: React.Dis
             </TooltipProvider> */}
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Create Folder</DialogTitle>
+                    <DialogTitle>{('Create Folder')}</DialogTitle>
                     <DialogDescription className="flex">
                         <span className="mr-1 font-semibold whitespace-nowrap">Path : </span>
                         <Breadcrumb>

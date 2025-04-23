@@ -4,8 +4,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { EditIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Edit from '../Edit';
-
+import useTranslation from '@/hooks/use-translation';
 const EditButton = ({ item }: { item: any }) => {
+    const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
@@ -19,7 +20,7 @@ const EditButton = ({ item }: { item: any }) => {
                         </DialogTrigger>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                        <p>Edit</p>
+                        <p>{t('Edit')}</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
@@ -29,7 +30,7 @@ const EditButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>Edit Project</DialogTitle>
+                    <DialogTitle>{t('Edit')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Edit item={item} />
                 </DialogHeader>

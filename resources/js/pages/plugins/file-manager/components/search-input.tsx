@@ -1,16 +1,17 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useTranslation from '@/hooks/use-translation';
 import { SearchIcon } from 'lucide-react';
 import { useEffect } from 'react';
 import { useFileManager } from '../hooks/FileManagerContext';
 
 export default function SearchInput() {
-    const { getFileData,setPage, search, setSearch } = useFileManager();
+    const { t } = useTranslation();
+    const { getFileData, setPage, search, setSearch } = useFileManager();
 
     useEffect(() => {
         const delayDebounce = setTimeout(() => {
-            setPage(1),
-            getFileData();
+            setPage(1), getFileData();
         }, 500); // debounce time in ms
 
         return () => clearTimeout(delayDebounce); // cleanup
@@ -25,10 +26,10 @@ export default function SearchInput() {
                     setSearch(e.target.value);
                 }}
                 className="ml-0.5 min-w-auto rounded-sm border-none shadow-none"
-                placeholder="Search..."
+                placeholder={t("Search")}
             />
             <Button variant="outline" type="submit" onClick={() => getFileData()}>
-                <SearchIcon className="[&_svg]:size-2" /> <span className='hidden lg:inline'>Search</span>
+                <SearchIcon className="[&_svg]:size-2" /> <span className="hidden lg:inline">{t('Search')}</span>
             </Button>
         </div>
     );

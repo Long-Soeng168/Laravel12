@@ -3,8 +3,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
-
+import useTranslation from '@/hooks/use-translation';
 const AddNewButton = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog modal={false} open={isOpen}>
@@ -24,7 +25,7 @@ const AddNewButton = () => {
                 </Button>
 
                 <DialogHeader>
-                    <DialogTitle>Create Projects</DialogTitle>
+                    <DialogTitle>{t('Create')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create />
                 </DialogHeader>

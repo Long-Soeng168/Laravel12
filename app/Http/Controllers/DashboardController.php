@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Heading;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostDailyView;
+use App\Models\Project;
 use App\Models\User;
 use DB;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -30,6 +33,10 @@ class DashboardController extends Controller
         $link_counts = Link::count();
         $banner_counts = Banner::count();
         $user_counts = User::count();
+        $role_counts = Role::count();
+        $permission_counts = Permission::count();
+        $heading_counts = Heading::count();
+        $project_counts = Project::count();
 
         // dd($post_daily_views);
         return Inertia::render('admin/dashboard/Index', [
@@ -41,6 +48,10 @@ class DashboardController extends Controller
                 'link_counts' => $link_counts,
                 'banner_counts' => $banner_counts,
                 'user_counts' => $user_counts,
+                'role_counts' => $role_counts,
+                'permission_counts' => $permission_counts,
+                'heading_counts' => $heading_counts,
+                'project_counts' => $project_counts,
             ]
         ]);
     }
