@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
+// Default Homepage
 Route::get('/', function () {
    // return Inertia::render('LaravelDefaultPage');
    return redirect('/dashboard');
@@ -19,6 +19,7 @@ Route::get('/lang/{locale}', function ($locale) {
 
 
 // === Client ===
+// require __DIR__ . '/nokor_tech.php';
 require __DIR__ . '/westec.php';
 // require __DIR__ . '/vectorasoft.php';
 // require __DIR__ . '/rule_library.php';
