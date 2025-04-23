@@ -185,7 +185,7 @@ export default function Create({
                             control={form.control}
                             name="status"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem key={field.value}>
                                     <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>

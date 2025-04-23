@@ -82,7 +82,7 @@ export default function MyExportForm() {
                     control={form.control}
                     name="status"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem key={field.value}>
                             <FormLabel>{t('Status')}</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>

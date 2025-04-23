@@ -132,7 +132,7 @@ export default function Create({
                             control={form.control}
                             name="type"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem key={field.value}>
                                      <FormLabel>{t('Type')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder={t('Name')} type="text" {...field} />
@@ -165,7 +165,7 @@ export default function Create({
                             control={form.control}
                             name="type_of"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem key={field.value}>
                                     <FormLabel>{t('Type Of')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
@@ -190,7 +190,7 @@ export default function Create({
                             control={form.control}
                             name="status"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem key={field.value}>
                                     <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>

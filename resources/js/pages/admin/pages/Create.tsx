@@ -279,7 +279,7 @@ export default function Create() {
                                     control={form.control}
                                     name="type"
                                     render={({ field }) => (
-                                        <FormItem>
+                                        <FormItem key={field.value}>
                                              <FormLabel>{t('Type')}</FormLabel>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
@@ -326,7 +326,7 @@ export default function Create() {
                                 control={form.control}
                                 name="status"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem key={field.value}>
                                         <FormLabel>{t('Status')}</FormLabel>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
@@ -352,7 +352,7 @@ export default function Create() {
                                 control={form.control}
                                 name="parent_id"
                                 render={({ field }) => (
-                                    <FormItem className="flex flex-col">
+                                    <FormItem className="flex flex-col" key={field.value}>
                                         <FormLabel>{t('Parent Page')}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>
@@ -420,7 +420,7 @@ export default function Create() {
                                 control={form.control}
                                 name="position_code"
                                 render={({ field }) => (
-                                    <FormItem className="flex flex-col">
+                                    <FormItem className="flex flex-col" key={field.value}>
                                          <FormLabel>{t('Position')}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>

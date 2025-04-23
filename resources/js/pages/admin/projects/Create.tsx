@@ -188,7 +188,7 @@ export default function Create() {
                             control={form.control}
                             name="parent_code"
                             render={({ field }) => (
-                                <FormItem className="flex flex-col">
+                                <FormItem className="flex flex-col" key={field.value}>
                                     <FormLabel>{t('Parent')}</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
@@ -245,7 +245,7 @@ export default function Create() {
                             control={form.control}
                             name="status"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem key={field.value}>
                                     <FormLabel>{t('Status')}</FormLabel>
                                     <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
