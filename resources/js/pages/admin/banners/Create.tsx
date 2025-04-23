@@ -384,7 +384,7 @@ export default function Create() {
                                                 </FormControl>
                                                 <SelectContent>
                                                     {types.map((typeObject) => (
-                                                        <SelectItem value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                        <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>{typeObject.label}</SelectItem>
                                                     ))}
                                                     {/* <SelectItem value="link">Link</SelectItem> */}
                                                 </SelectContent>
