@@ -82,6 +82,7 @@ class PageController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255|unique:pages,code',
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
@@ -173,6 +174,7 @@ class PageController extends Controller implements HasMiddleware
     {
         // dd($request->all());
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255|unique:pages,code,' . $page->id,
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',

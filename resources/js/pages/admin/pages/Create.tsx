@@ -23,6 +23,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     title: z.string().min(1).max(255),
+    code: z.string().max(255).optional(),
     title_kh: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
     short_description_kh: z.string().max(500).optional(),
@@ -62,6 +63,7 @@ export default function Create() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: editData?.title || '',
+            code: editData?.code || '',
             title_kh: editData?.title_kh || '',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
@@ -151,6 +153,23 @@ export default function Create() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
+                    <div className="grid grid-cols-12 gap-4">
+                    <div className="col-span-12">
+                            <FormField
+                                control={form.control}
+                                name="code"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Unique Code')}</FormLabel>
+                                        <FormControl>
+                                             <Input disabled={editData?.id} placeholder={t("Code")} type="text" {...field} />
+                                        </FormControl>
+                                        <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField

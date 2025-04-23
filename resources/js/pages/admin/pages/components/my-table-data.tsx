@@ -52,12 +52,13 @@ const MyTableData = () => {
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
                             <TableHead>{t('Link')}</TableHead>
+                            <TableHead>{t('Code')}</TableHead>
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title')}
                                 </span>
                             </TableHead>
-                           <TableHead onClick={() => handleSort('title_kh')}>
+                            <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title Khmer')}
                                 </span>
@@ -190,6 +191,7 @@ const MyTableData = () => {
                                         '---'
                                     )}
                                 </TableCell>
+                                <TableCell>{item.code || '---'}</TableCell>
                                 <TableCell>{item.title || '---'}</TableCell>
                                 <TableCell>{item.title_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>

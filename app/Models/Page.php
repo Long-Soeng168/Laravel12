@@ -23,6 +23,10 @@ class Page extends Model
     {
         return $this->belongsTo(Page::class, 'parent_id', 'id');
     }
+    public function children()
+    {
+        return $this->hasMany(Page::class, 'parent_id', 'id');
+    }
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
