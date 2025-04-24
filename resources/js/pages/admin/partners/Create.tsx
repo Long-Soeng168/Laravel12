@@ -18,7 +18,7 @@ const formSchema = z.object({
     name: z.string().min(1).max(255),
     name_kh: z.string().max(255).optional(),
     phone: z.string().max(255).optional(),
-    link: z.string().url().max(255),
+    link: z.string().max(255).optional(),
     image: z.string().optional(),
 
 });

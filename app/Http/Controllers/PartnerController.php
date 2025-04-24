@@ -52,10 +52,10 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:partners,name',
             'name_kh' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'link' => 'url|max:255',
+            'link' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -111,10 +111,10 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:partners,name,' . $partner->id,
             'name_kh' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'link' => 'url|max:255',
+            'link' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $validated['updated_by'] = $request->user()->id;
@@ -153,7 +153,7 @@ class PartnerController extends Controller
     {
         // Delete image if exists
         if ($partner->image) {
-                ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+            ImageHelper::deleteImage($partner->image, 'assets/images/partners');
         }
 
         $partner->delete();
