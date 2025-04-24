@@ -237,7 +237,7 @@ export default function Create({
                                             className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/links/thumb/' + editData?.image}
+                                                src={'/assets/images/partners/thumb/' + editData?.image}
                                                 alt={editData?.image}
                                                 className="h-full w-full object-contain"
                                             />

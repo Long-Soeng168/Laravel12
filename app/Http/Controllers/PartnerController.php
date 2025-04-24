@@ -132,6 +132,10 @@ class PartnerController extends Controller
             try {
                 $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
                 $validated['image'] = $created_image_name;
+
+                if ($partner->image && $created_image_name) {
+                    ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+                }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
@@ -149,7 +153,7 @@ class PartnerController extends Controller
     {
         // Delete image if exists
         if ($partner->image) {
-            Storage::disk('public')->delete($partner->image);
+                ImageHelper::deleteImage($partner->image, 'assets/images/partners');
         }
 
         $partner->delete();
