@@ -15,13 +15,12 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 const formSchema = z.object({
-    title: z.string().min(1).max(255),
-    title_kh: z.string().max(255).optional(),
-    link: z.string().max(255).optional(),
-    type: z.string().optional(),
-    order_index: z.string().optional(),
-    status: z.string().optional(),
+    name: z.string().min(1).max(255),
+    name_kh: z.string().max(255).optional(),
+    phone: z.string().max(255).optional(),
+    link: z.string().url().max(255),
     image: z.string().optional(),
+
 });
 
 export default function Create({
@@ -51,8 +50,8 @@ export default function Create({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: editData?.title || '',
-            title_kh: editData?.title_kh || '',
+            name: editData?.name || '',
+            name_kh: editData?.name_kh || '',
             link: editData?.link || '',
             type: editData?.type || 'social_media',
             order_index: editData?.order_index?.toString() || '',
@@ -145,7 +144,7 @@ export default function Create({
                             name="name_kh"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{t('Title Khmer')}</FormLabel>
+                                    <FormLabel>{t('name Khmer')}</FormLabel>
                                     <FormControl>
                                         <Input placeholder="ឈ្មោះថ្មី" type="text" {...field} />
                                     </FormControl>
@@ -156,7 +155,25 @@ export default function Create({
                     </div>
                 </div>
 
+
                 <div className="grid grid-cols-12 gap-4">
+
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Phone')}</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="ex: 012345678" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.phone && <div>{errors.phone}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
                     <div className="col-span-6">
                         <FormField
                             control={form.control}
@@ -172,74 +189,7 @@ export default function Create({
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
-                        <FormField
-                            control={form.control}
-                            name="order_index"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t('Order Index')}</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="default: 1" type="text" {...field} />
-                                    </FormControl>
-                                    <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    {types ? (
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="type"
-                                render={({ field }) => (
-                                    <FormItem>
-                                         <FormLabel>{t('Type')}</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select Type" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {types.map((typeObject) => (
-                                                    <SelectItem value={typeObject.type}>{typeObject.label}</SelectItem>
-                                                ))}
-                                                {/* <SelectItem value="link">Link</SelectItem> */}
-                                            </SelectContent>
-                                        </Select>
-                                        <FormDescription>{t('Choose type (Link) for external content and fill Link input.')}</FormDescription>
-                                        <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                    ) : null}
-                    <div className="col-span-6">
-                        <FormField
-                            control={form.control}
-                            name="status"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t('Status')}</FormLabel>
-                                    <Select key={field.value} onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select Status" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
                 </div>
-
                 <FormField
                     control={form.control}
                     name="image"
@@ -252,7 +202,7 @@ export default function Create({
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                <span className="font-semibold">{t('Click to upload')}</span>
                                                 &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
@@ -309,7 +259,7 @@ export default function Create({
                                 <Loader />
                             </span>
                         )}
-                       {processing ? t('Submiting') : t('Submit')}
+                        {processing ? t('Submiting') : t('Submit')}
                     </Button>
                 )}
             </form>

@@ -40,7 +40,7 @@ const MyTableData = () => {
         <>
             <ScrollArea className="w-full rounded-md border">
                 <MyImageGallery
-                    imagePath="/assets/images/links/"
+                    imagePath="/assets/images/partners/"
                     selectedImages={selectedImages}
                     isOpenViewImages={isOpenViewImages}
                     setIsOpenViewImages={setIsOpenViewImages}
@@ -100,7 +100,7 @@ const MyTableData = () => {
                                                 className="cursor-pointer"
                                             >
                                                 <img
-                                                    src={`/assets/images/links/thumb/` + item.image}
+                                                    src={`/assets/images/partners/thumb/` + item.image}
                                                     width={100}
                                                     height={100}
                                                     alt=""

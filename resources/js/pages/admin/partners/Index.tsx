@@ -29,7 +29,7 @@ const Index = () => {
                     {/* <MyExportButton />
                     <MyImportButton /> */}
                     {
-                    // hasPermission('link create') &&
+                    hasPermission('link create') &&
                     <AddNewButton />}
                 </div>
             </div>

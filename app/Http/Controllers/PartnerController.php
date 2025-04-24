@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageHelper;
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -30,7 +32,7 @@ class PartnerController extends Controller
         $query->orderBy($sortBy, $sortDirection);
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
-        // dd($tableData);
+
         return Inertia::render('admin/partners/Index', [
             'tableData' => $tableData,
         ]);
@@ -47,20 +49,35 @@ class PartnerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePartnerRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'link' => 'url|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
         $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
 
-        $imageFile = $request->file('image');
+        $image_file = $request->file('image');
         unset($validated['image']);
 
-        $validated = array_filter($validated, fn($value) => !is_null($value) && $value !== '');
+        foreach ($validated as $key => $value) {
+            if ($value === null || $value === '') {
+                unset($validated[$key]);
+            }
+        }
 
-        if ($imageFile) {
-            $imageName = $imageFile->store('partners', 'public'); // Or use ImageHelper
-            $validated['image'] = $imageName;
+        if ($image_file) {
+            try {
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $validated['image'] = $created_image_name;
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
+            }
         }
 
         Partner::create($validated);
@@ -73,7 +90,9 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        //
+        return Inertia::render('admin/partners/Show', [
+            'partner' => $partner
+        ]);
     }
 
     /**
@@ -81,15 +100,46 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        //
+        return Inertia::render('admin/partners/Edit', [
+            'partner' => $partner
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePartnerRequest $request, Partner $partner)
+    public function update(Request $request, Partner $partner)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'link' => 'url|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $validated['updated_by'] = $request->user()->id;
+
+        $image_file = $request->file('image');
+        unset($validated['image']);
+
+        foreach ($validated as $key => $value) {
+            if ($value === null || $value === '') {
+                unset($validated[$key]);
+            }
+        }
+
+        if ($image_file) {
+            try {
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $validated['image'] = $created_image_name;
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
+            }
+        }
+
+        $partner->update($validated);
+
+        return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
     }
 
     /**
@@ -97,6 +147,13 @@ class PartnerController extends Controller
      */
     public function destroy(Partner $partner)
     {
-        //
+        // Delete image if exists
+        if ($partner->image) {
+            Storage::disk('public')->delete($partner->image);
+        }
+
+        $partner->delete();
+
+        return redirect()->route('partners.index')->with('success', 'Partner deleted successfully!');
     }
 }
