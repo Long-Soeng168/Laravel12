@@ -1,15 +1,16 @@
 import { MySlide } from '@/components/my-slide';
-import MyFeature from './components/my-feature';
-import { MyHeroSection } from './components/my-hero-section';
 import WestecLayout from './layout/layout';
+import { SolutionSection } from './components/solutions-section';
 import { HeroSection } from './components/hero-section';
 import { ContactSection } from './components/contact-section';
 
-const Index = () => {
+const Solutions = () => {
     return (
         <WestecLayout>
             <MySlide />
-            <HeroSection />
+
+            <SolutionSection />
+
             <HeroSection />
 
             <ContactSection />
@@ -18,14 +19,8 @@ const Index = () => {
             <HeroSection />
 
             <ContactSection />
-
-            {/* <MyHeroSection /> */}
-            {/* <MyBottomContent /> */}
-            {/* <MyBoosters /> */}
-            {/* <MyPartner /> */}
-            {/* <MyFeature /> */}
         </WestecLayout>
     );
 };
 
-export default Index;
+export default Solutions;

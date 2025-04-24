@@ -12,7 +12,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/solutions', function () {
-    return Inertia::render('westec/SolutionsPage');
+    return Inertia::render('westec/Solutions');
 })->name('solutions');
 
 Route::get('/detail/{id}', function ($id) {
