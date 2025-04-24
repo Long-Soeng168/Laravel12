@@ -11,7 +11,7 @@ const Index = () => {
         <WestecLayout>
             <MySlide />
             <MyHeroSection />
-            <MyBottomContent />
+            {/* <MyBottomContent /> */}
             <MyBoosters />
             <MyPartner />
             <div>

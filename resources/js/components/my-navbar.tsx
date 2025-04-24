@@ -1,25 +1,17 @@
 import { cn } from '@/lib/utils';
+import { MyLanguageSelector } from '@/pages/westec/components/my-select-language';
 import { useState } from 'react';
 import { HoveredLink, Menu, MenuItem, ProductItem } from './ui/navbar-menu';
-import { MyLanguageSelector } from '@/pages/westec/components/my-select-language';
-
-
-export function MyNavbar() {
-    return (
-        <>
-            <div className="relative flex w-full items-center justify-center">
-                <Navbar className="top-0" />
-            </div>
-        </>
-    );
-}
-
-function Navbar({ className }: { className?: string }) {
+ 
+export function MyNavbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
     return (
         <>
-            <div className={cn(' fixed inset-x-0 top-10 z-50 mx-auto max-w-[4000px]', className)}>
-                <div>
+            <div className={cn(' max-w-[2000px] mx-auto', className)}>
+                <div className="flex justify-between items-center bg-white h-full py-8">
+                    <a href="/" className="w-50 px-10">
+                        <img src="/assets/westec/images/logo.png" />
+                    </a>
                     <Menu setActive={setActive}>
                         <MenuItem setActive={setActive} active={active} item="About Us">
                             <div className="flex flex-col space-y-4 text-sm">
@@ -47,7 +39,7 @@ function Navbar({ className }: { className?: string }) {
                                     title="Commercial & Residential Equipments"
                                     href="#"
                                     src="/assets/demo-images/85.png"
-                                description="Never write from scratch agaisen. Go from idea to blog in minutes."
+                                    description="Never write from scratch agaisen. Go from idea to blog in minutes."
                                 />
                                 <ProductItem
                                     title="IT Solutions"
@@ -90,7 +82,7 @@ function Navbar({ className }: { className?: string }) {
                             </div>
                         </MenuItem>
                         <div>
-                            <MyLanguageSelector/>
+                            <MyLanguageSelector />
                         </div>
                     </Menu>
                 </div>

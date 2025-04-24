@@ -1,106 +1,26 @@
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Link } from '@inertiajs/react';
 
 export function MyHeroSection() {
     return (
         <>
-            {/* First Hero Section */}
-            <div
-                className="relative mx-auto flex aspect-[21/7] w-full flex-col"
-                style={{
-                    backgroundImage: "url('/assets/demo-images/Artboard2.jpg')",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            >
-                <div className="grid h-full w-full grid-cols-2 gap-4">
-                    {/* Left Section */}
-                    <div className="flex flex-col p-4 text-start sm:p-8 md:p-12 md:text-left lg:grid-cols-2">
-                        <h1 className="font-proxima-nova-bold text-2xl leading-[30px] text-white md:mb-4 md:text-3xl md:leading-[30px] lg:text-[40px] lg:leading-[50px]">
-                            Security And Safety Solutions
-                        </h1>
-                        <p className="font-proxima-nova-regular text-xl text-white capitalize">
-                            We deliver advanced security and safety solutions that go beyond protection—offering peace of mind.
-                        </p>
-                    </div>
-
-                    {/* Right Section - Feature Icons */}
-                    <div className="mt-auto flex w-full flex-col items-end justify-end p-4">
-                        <div className="flex flex-wrap justify-end gap-4 pr-8 pb-4">
-                            {[
-                                { img: 'access-control.png', label: 'Access Control System' },
-                                { img: 'access-control.png', label: 'Time Attendance System' },
-                                { img: 'fire-alarm.png', label: 'Fire Alarm' },
-                                { img: 'instrution-alarm.png', label: 'Intrusion Alarm' },
-                            ].map((item, index) => (
-                                <Link
-                                    key={index}
-                                    href="#"
-                                    className="flex h-28 w-28 flex-col items-center bg-teal-700/50 p-2 transition-transform duration-300 hover:scale-110"
-                                >
-                                    <img src={`/assets/images/${item.img}`} className="h-14 w-14 object-cover" alt={`${item.label} Icon`} />
-                                    <p className="line-clamp-2 text-center text-sm text-white">{item.label}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Second content */}
-            <div
-                className="relative mx-auto flex aspect-[21/7] w-full flex-col"
-                style={{
-                    backgroundImage: "url('/assets/demo-images/Artboard3.jpg')",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            >
-                <div className="grid h-full w-full grid-cols-2 gap-4">
-                    {/* Left Section */}
-                    <div className="flex flex-col p-4 text-start sm:p-8 md:p-12 md:text-left lg:grid-cols-2">
-                        <h1 className="font-proxima-nova-bold text-2xl leading-[30px] text-white md:mb-4 md:text-3xl md:leading-[30px] lg:text-[40px] lg:leading-[50px]">
-                            Smart Home And Office Solutions
-                        </h1>
-                        <p className="font-proxima-nova-regular text-xl text-white capitalize">
-                            Our smart home and office solutions seamlessly integrate technology to create intelligent spaces that boost comfort,
-                            security, and productivity with just a tap.
-                        </p>
-                    </div>
-
-                    {/* Right Section - Feature Icons */}
-                    <div className="flex flex-col items-end justify-end p-4">
-                        <div className="grid grid-cols-2 gap-4 pr-8 pb-4 md:grid-cols-2">
-                            {[
-                                { img: 'smart-home.png', label: 'Smart Home Automation System' },
-                                { img: 'solar.png', label: 'Smart Solar Energy System' },
-                            ].map((item, index) => (
-                                <Link
-                                    key={index}
-                                    href="#"
-                                    className="flex h-32 w-32 flex-col items-center bg-teal-700/50 p-2 transition-transform duration-300 hover:scale-110"
-                                >
-                                    <img src={`/assets/images/${item.img}`} className="h-16 w-16 object-cover" alt={`${item.label} Icon`} />
-                                    <p className="mt-2 line-clamp-2 text-center text-sm text-white">{item.label}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {newFunction()}
+            {newFunction()}
+            
 
             {/* Contact */}
             <div
-                className="relative mx-auto flex aspect-[21/5] w-full flex-col bg-[#008080]"
+                className="relative mx-auto flex px-10 py-20 w-full flex-col bg-[#008080]"
                 // style={{
                 //     backgroundImage: "url('/assets/demo-images/Artboard3.jpg')",
                 //     backgroundSize: 'cover',
                 //     backgroundPosition: 'center',
                 // }}
             >
-                <div className="grid h-full w-full grid-cols-2 items-center justify-end gap-4 p-4 text-end">
+                <div className="grid h-full w-full grid-cols-2 items-center justify-end gap-4 text-end">
                     {/* Left Section */}
                     <div></div>
-                    <div className="flex flex-col items-end pr-8 pb-4 md:text-left">
+                    <div className="flex flex-col items-end text-left">
                         <h1 className="font-proxima-nova-bold max-w-[80%] text-end text-2xl leading-[30px] text-white md:mb-4 md:text-3xl md:leading-[30px] lg:text-[39px] lg:leading-[50px]">
                             Smarter solutions start here! Find out what Westec can do for you.
                         </h1>
@@ -113,6 +33,54 @@ export function MyHeroSection() {
                     </div>
                 </div>
             </div>
+
+            {newFunction()}
+            {newFunction()}
+
         </>
     );
+
+    function newFunction() {
+        return <div className="relative bg-black">
+            <img src="/assets/demo-images/Artboard2.jpg" className="w-full" alt="" />
+            <div className="left-0 absolute top-0 ">
+                <div className="flex flex-col text-start p-10 md:text-left lg:grid-cols-2">
+                    <h1 className="font-proxima-nova-bold text-lg leading-[30px] text-white md:mb-4 md:text-3xl md:leading-[30px] lg:text-[40px] lg:leading-[50px]">
+                        Security And Safety Solutions
+                    </h1>
+                    <p className="font-proxima-nova-regular text-sm lg:text-2xl text-white capitalize lg:max-w-[55%]">
+                        We deliver advanced security and safety solutions that go beyond protection—offering peace of mind.
+                    </p>
+                </div>
+            </div>
+            <div className="absolute right-0 bottom-0 left-0 ">
+                <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex w-full flex-nowrap justify-end gap-4 px-10 py-4">
+                        {[
+                            { img: 'support-maintenance.png', label: 'Support & Maintenance ICT' },
+                            { img: 'network.png', label: 'Internet Support' },
+                            { img: 'web-design.png', label: 'Website Design' },
+                            { img: 'network.png', label: 'Network Monitoring' },
+                            { img: 'monitoring1.png', label: 'Network Installation' },
+                            { img: 'sytem-install.png', label: 'Server Installation' },
+                            { img: 'stock.png', label: 'Stock Inventory & HelpDesk Software' },
+                            { img: 'pickup.png', label: 'Pickup & Drop-off Logistics Platform' },
+                            { img: 'sams.png', label: 'School Application and Management System (SAMS)' },
+                            { img: 'support-system.png', label: 'Support Systems' },
+                        ].map((item, index) => (
+                            <Link
+                                key={index}
+                                href="#"
+                                className="flex size-16 lg:size-[124px] flex-col items-center justify-center bg-teal-700/50 transition-transform duration-300 hover:scale-110"
+                            >
+                                <img src={`/assets/demo-images/${item.img}`} className="size-[35px] lg:size-[50px] object-cover" alt={`${item.label} Icon`} />
+                                <p className="mt-2 line-clamp-3 text-center text-[11px] whitespace-normal text-white">{item.label}</p>
+                            </Link>
+                        ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" className='h-2' />
+                </ScrollArea>
+            </div>
+        </div>;
+    }
 }
