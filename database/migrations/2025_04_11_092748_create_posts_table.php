@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title')->index();
+            $table->string('title', 500)->index();
             $table->string('title_kh')->nullable();
             $table->string('short_description', 500)->nullable();
             $table->string('short_description_kh', 500)->nullable();

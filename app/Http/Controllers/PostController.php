@@ -60,7 +60,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:500',
             'post_date' => 'required|date',
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
@@ -141,7 +141,7 @@ class PostController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:500',
             'post_date' => 'nullable',
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
