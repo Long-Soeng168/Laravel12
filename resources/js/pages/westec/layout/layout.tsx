@@ -6,7 +6,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const MyLayout = ({ children }: LayoutProps) => {
+const WestecLayout = ({ children }: LayoutProps) => {
   return (
     <>
       {/* Header */}
@@ -22,4 +22,4 @@ const MyLayout = ({ children }: LayoutProps) => {
   );
 };
 
-export default MyLayout;
+export default WestecLayout;

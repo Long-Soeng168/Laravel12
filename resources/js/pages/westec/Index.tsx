@@ -4,11 +4,11 @@ import MyBoosters from './components/my-boosters';
 import { MyBottomContent } from './components/my-bottom-content';
 import MyFeature from './components/my-feature';
 import { MyHeroSection } from './components/my-hero-section';
-import MyLayout from './layout/layout';
+import WestecLayout from './layout/layout';
 
 const Index = () => {
     return (
-        <MyLayout>
+        <WestecLayout>
             <MySlide />
             <MyHeroSection />
             <MyBottomContent />
@@ -17,7 +17,7 @@ const Index = () => {
             <div>
                 <MyFeature />
             </div>
-        </MyLayout>
+        </WestecLayout>
     );
 };
 

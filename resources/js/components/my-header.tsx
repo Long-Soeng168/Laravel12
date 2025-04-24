@@ -10,7 +10,7 @@ const MyHeader = () => {
                 <div className="flex max-w-2xl mx-auto items-center justify-between px-4 sm:px-8 md:px-12">
                     {/* Logo */}
                     <a href="/" className="text-primary hover:text-secondary flex w-50 items-center">
-                        <img src="assets/images/logo.png" />
+                        <img src="/assets/westec/images/logo.png" alt='' />
                     </a>
 
                     {/* Mobile Menu Button */}
