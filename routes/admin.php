@@ -8,6 +8,7 @@ use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
@@ -59,6 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/links/{link}/update', [LinkController::class, 'update']);
     Route::post('admin/links/{link}/update_status', [LinkController::class, 'update_status']);
 
+    // Partners Route
+    Route::resource('admin/partners', PartnerController::class);
+    Route::post('admin/partners/{partner}/update', [PartnerController::class, 'update']);
+    Route::post('admin/partners/{partner}/update_status', [PartnerController::class, 'update_status']);
+
+
     // Project Route
     Route::resource('admin/projects', ProjectController::class);
     Route::post('admin/projects/{project}/update', [ProjectController::class, 'update']);
@@ -78,7 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/posts/images/{image}', [PostController::class, 'destroy_image']);
     Route::get('admin/post_view_counts', [PostViewController::class, 'index']);
     Route::get('admin/post_view_counts/export', [PostViewController::class, 'export']);
-    
+
     // Page Position Route
     Route::resource('admin/page_positions', PagePositionController::class);
     Route::post('admin/page_positions/{pagePosition}/update', [PagePositionController::class, 'update']);
@@ -105,7 +112,7 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/headings/{heading}/update', [HeadingController::class, 'update']);
     Route::post('admin/headings/{heading}/update_status', [HeadingController::class, 'update_status']);
 
-    // Roles & Permissions & User Route 
+    // Roles & Permissions & User Route
     Route::resource('admin/permissions', PermissionController::class);
     Route::resource('admin/roles', RoleController::class);
     Route::get('admin/all_roles', [RoleController::class, 'all_roles']);

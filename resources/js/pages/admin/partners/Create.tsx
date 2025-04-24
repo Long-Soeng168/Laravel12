@@ -75,7 +75,7 @@ export default function Create({
                 image: files ? files[0] : null,
             }));
             if (editData?.id) {
-                post('/admin/links/' + editData.id + '/update', {
+                post('/admin/partners/' + editData.id + '/update', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -92,7 +92,7 @@ export default function Create({
                     },
                 });
             } else {
-                post('/admin/links', {
+                post('/admin/partners', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
@@ -126,14 +126,14 @@ export default function Create({
                     <div className="col-span-6">
                         <FormField
                             control={form.control}
-                            name="title"
+                            name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{t('Title')}</FormLabel>
+                                    <FormLabel>{t('Name')}</FormLabel>
                                     <FormControl>
-                                        <Input autoFocus placeholder="New Title" type="text" {...field} />
+                                        <Input autoFocus placeholder="New Name" type="text" {...field} />
                                     </FormControl>
-                                    <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
+                                    <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -142,14 +142,14 @@ export default function Create({
                     <div className="col-span-6">
                         <FormField
                             control={form.control}
-                            name="title_kh"
+                            name="name_kh"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="ចំណងជើងថ្មី" type="text" {...field} />
+                                        <Input placeholder="ឈ្មោះថ្មី" type="text" {...field} />
                                     </FormControl>
-                                    <FormMessage>{errors.title_kh && <div>{errors.title_kh}</div>}</FormMessage>
+                                    <FormMessage>{errors.name_kh && <div>{errors.name_kh}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />

@@ -52,25 +52,24 @@ const MyTableData = () => {
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
 
-                            <TableHead onClick={() => handleSort('title')}>
+                            <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Title')}
+                                    <ArrowUpDown size={16} /> {t('Name')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            <TableHead onClick={() => handleSort('name_kh')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Title Khmer')}
+                                    <ArrowUpDown size={16} /> {t('Name Khmer')}
                                 </span>
                             </TableHead>
-                            <TableHead>{t('Link')}</TableHead>
-                            <TableHead onClick={() => handleSort('type')}>
+                            <TableHead onClick={() => handleSort('phone')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Type')}
+                                    <ArrowUpDown size={16} /> {t('Phone Number')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('status')}>
+                            <TableHead onClick={() => handleSort('link')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Status')}
+                                    <ArrowUpDown size={16} /> {t('Link')}
                                 </span>
                             </TableHead>
                             <TableHead>{t('Created at')}</TableHead>
@@ -87,7 +86,7 @@ const MyTableData = () => {
                                     <TableCell>
                                         <span className="flex h-full items-center justify-start">
                                             <ViewButton item={item} />
-                                            {hasPermission('link delete') && <DeleteButton deletePath="/admin/links/" id={item.id} />}
+                                            {hasPermission('link delete') && <DeleteButton deletePath="/admin/partners/" id={item.id} />}
                                             {hasPermission('link update') && <EditButton item={item} />}
                                         </span>
                                     </TableCell>
@@ -118,11 +117,12 @@ const MyTableData = () => {
                                             />
                                         )}
                                     </TableCell>
-                                    <TableCell>{item.title || '---'}</TableCell>
-                                    <TableCell>{item.title_kh || '---'}</TableCell>
+                                    <TableCell>{item.name || '---'}</TableCell>
+                                    <TableCell>{item.name_kh || '---'}</TableCell>
+                                    <TableCell>{item.phone || '---'}</TableCell>
                                     <TableCell>{item.link || '---'}</TableCell>
-                                    <TableCell>{item.type || '---'}</TableCell>
-                                    <TableCell>
+                                    {/* <TableCell>{item.image || '---'}</TableCell> */}
+                                    {/* <TableCell>
                                         {hasPermission('link update') ? (
                                             <MyUpdateStatusButton
                                                 id={item.id}
@@ -133,7 +133,7 @@ const MyTableData = () => {
                                         ) : (
                                             <span className="capitalize">{item.status}</span>
                                         )}
-                                    </TableCell>
+                                    </TableCell> */}
 
                                     <TableCell>
                                         {item.created_at

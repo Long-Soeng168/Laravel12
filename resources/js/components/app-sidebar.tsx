@@ -138,6 +138,12 @@ export function AppSidebar() {
             icon: ProjectorIcon,
         },
         {
+            title: t('Partners'),
+            // permission: 'project view',
+            url: '/admin/partners',
+            icon: ProjectorIcon,
+        },
+        {
             title: t('Headings'),
             permission: 'heading view',
             url: '/admin/headings',
