@@ -144,6 +144,12 @@ export function AppSidebar() {
             icon: ProjectorIcon,
         },
         {
+            title: t('Item Brands'),
+            // permission: 'project view',
+            url: '/admin/item_brands',
+            icon: ProjectorIcon,
+        },
+        {
             title: t('Headings'),
             permission: 'heading view',
             url: '/admin/headings',
