@@ -188,7 +188,10 @@ const MyTableData = () => {
                                         '---'
                                     )}
                                 </TableCell>
-                                <TableCell>{item.title || '---'}</TableCell>
+                                <TableCell>
+                                    <div dangerouslySetInnerHTML={{ __html: item.title || '---' }} />
+                                    {/* {item.title || '---'} */}
+                                </TableCell>
                                 {/* <TableCell>{item.title_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell> */}
@@ -201,7 +204,7 @@ const MyTableData = () => {
                                             statuses={['active', 'inactive']}
                                         />
                                     ) : (
-                                        <span className='capitalize'>{item.status}</span>
+                                        <span className="capitalize">{item.status}</span>
                                     )}
                                 </TableCell>
                                 <TableCell>{item.category?.name || '---'}</TableCell>

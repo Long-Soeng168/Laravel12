@@ -23,7 +23,7 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 const formSchema = z.object({
-    title: z.string().min(1).min(1).max(255),
+    title: z.string().min(0).max(255).optional(),
     title_kh: z.string().min(0).max(255).optional(),
     short_description: z.string().min(0).max(500).optional(),
     short_description_kh: z.string().min(0).max(500).optional(),
@@ -54,6 +54,7 @@ export default function Create() {
     const { postCategories, editData, links, readOnly } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
+    const [title, settitle] = useState(editData?.title || '');
     const [long_description, setLong_description] = useState(editData?.long_description || '');
     const [long_description_kh, setLong_description_kh] = useState(editData?.long_description_kh || '');
     const [editorKey, setEditorKey] = useState(0);
@@ -85,6 +86,7 @@ export default function Create() {
             // return;
             transform(() => ({
                 ...values,
+                title: title,
                 long_description: long_description,
                 long_description_kh: long_description_kh,
                 images: files || null,
@@ -112,6 +114,7 @@ export default function Create() {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
+                        settitle('');
                         setLong_description('');
                         setLong_description_kh('');
                         setEditorKey((prev) => prev + 1);
@@ -202,7 +205,8 @@ export default function Create() {
                                     <FormItem>
                                         <FormLabel>Title</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Title" type="text" {...field} />
+                                            {/* <Input placeholder="Title" type="text" {...field} /> */}
+                                            <MyCkeditor5 data={title} setData={settitle} />
                                         </FormControl>
                                         <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
                                     </FormItem>
