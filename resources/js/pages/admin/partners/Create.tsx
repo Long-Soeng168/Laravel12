@@ -52,10 +52,9 @@ export default function Create({
         defaultValues: {
             name: editData?.name || '',
             name_kh: editData?.name_kh || '',
+            phone: editData?.phone || '',
             link: editData?.link || '',
-            type: editData?.type || 'social_media',
-            order_index: editData?.order_index?.toString() || '',
-            status: editData?.status || 'active',
+            image: editData?.image || '',
         },
     });
 
