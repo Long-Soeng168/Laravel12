@@ -1,4 +1,4 @@
-'use client';
+
 
 import { Accordion, AccordionContent, AccordionItem } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';

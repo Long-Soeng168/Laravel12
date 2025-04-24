@@ -1,4 +1,4 @@
-'use client';
+
 import { Card } from '@/components/ui/card';
 import { Link } from '@inertiajs/react';
 import Autoplay from 'embla-carousel-autoplay';
