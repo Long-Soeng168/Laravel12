@@ -319,7 +319,7 @@ export default function Create() {
                             </span>
                         </div>
 
-                        {/* <div className="col-span-6">
+                        <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="type"
@@ -334,7 +334,7 @@ export default function Create() {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectItem value="content">Content</SelectItem>
-                                                <SelectItem value="link">Link</SelectItem>
+                                                <SelectItem value="video">Video</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
@@ -342,7 +342,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div> */}
+                        </div>
 
                         <div className="col-span-6">
                             <FormField
