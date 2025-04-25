@@ -1,29 +1,72 @@
-import { MySlide } from '@/components/my-slide';
-import MyFeature from './components/my-feature';
-import { MyHeroSection } from './components/my-hero-section';
-import WestecLayout from './layout/layout';
-import { HeroSection } from './components/hero-section';
+import { MyPartner } from '@/components/my-partner';
+import MySlide from '@/components/my-slide';
+import BlogsList from './components/blogs-list';
 import { ContactSection } from './components/contact-section';
-
+import { FeatureSection } from './components/feature-section';
+import MyBoosters from './components/my-boosters';
+import WestecLayout from './layout/layout';
+const images = [
+    {
+        id: '1',
+        image: '/assets/westec/images/banner1.jpeg',
+        alt: 'image 1',
+        short: 'Safety and security don’t just happen; <strong>CCTV</strong> is an investment in protection',
+        bg: '#273896',
+    },
+    {
+        id: '2',
+        image: '/assets/westec/images/banner2.jpeg',
+        alt: 'image 2',
+        short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
+        bg: '#008080',
+    },
+    {
+        id: '3',
+        image: '/assets/westec/images/banner3.jpeg',
+        alt: 'image 3',
+        short: 'Peace of mind begins with protection—<strong>Intrusion Alarms</strong> ensure you sleep soundly.',
+        bg: '#36454f',
+    },
+    {
+        id: '4',
+        image: '/assets/westec/images/banner4.jpeg',
+        alt: 'image 4',
+        short: 'The sun never send a bill—<strong>Smart Solar Energy System</strong> turn its power savings.',
+        bg: '#008080',
+    },
+    {
+        id: '5',
+        image: '/assets/westec/images/banner2.jpeg',
+        alt: 'image 5',
+        short: 'A smart home isn"t just about convenice—it"s about control.Automate your world with a <strong>Smart Home Automation System</strong>.',
+        bg: '#273896',
+    },
+];
 const Index = () => {
     return (
         <WestecLayout>
-            <MySlide />
-            <HeroSection />
-            <HeroSection />
+            <MySlide images={images} />
+            <FeatureSection defaultDropDown={false} />
+            <FeatureSection defaultDropDown={false} />
 
             <ContactSection />
 
-            <HeroSection />
-            <HeroSection />
+            <FeatureSection defaultDropDown={false} />
+            <FeatureSection defaultDropDown={false} />
 
             <ContactSection />
 
-            {/* <MyHeroSection /> */}
-            {/* <MyBottomContent /> */}
-            {/* <MyBoosters /> */}
-            {/* <MyPartner /> */}
+            <MyBoosters />
+            <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Partners</h1>
+            <MyPartner />
+
             {/* <MyFeature /> */}
+            <BlogsList />
+
+            <div className="mt-16">
+                <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Clientele</h1>
+                <MyPartner />
+            </div>
         </WestecLayout>
     );
 };

@@ -1,21 +1,23 @@
-import MyFooter from "@/components/my-footer";
-import MyHeader from "@/components/my-header";
-import { ReactNode } from "react";
+import MyFooter from '@/components/my-footer';
+import { MyNavbar } from '@/components/my-navbar';
+import { ReactNode } from 'react';
 
 interface LayoutProps {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 const WestecLayout = ({ children }: LayoutProps) => {
-  return (
-    <>
-      <MyHeader/>
+    return (
+        <>
+            <header className="sticky top-0 z-50">
+                <MyNavbar />
+            </header>
 
-      <main className="min-h-screen background max-w-[2000px] mx-auto">{children}</main>
+            <main className="mx-auto min-h-screen max-w-[2000px]">{children}</main>
 
-      <MyFooter/>
-    </>
-  );
+            <MyFooter />
+        </>
+    );
 };
 
 export default WestecLayout;

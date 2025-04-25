@@ -1,10 +1,10 @@
 const MyFooter = () => {
     return (
         <>
-            <footer className="font-proxima-nova-regular py-10 text-black">
-                <div className="grid max-w-[2000px] grid-cols-1 px-4 sm:px-16 md:grid-cols-4">
+            <footer className="font-proxima-nova-regular py-10 mt-20 text-black">
+                <div className="grid max-w-[2000px] grid-cols-1  mx-auto px-4 lg:px-16 lg:grid-cols-4 gap-8">
                     {/* Contact Section */}
-                    <div className="grid grid-cols-1">
+                    <div className="grid grid-cols-1 w-full">
                         <img src="/assets/westec/images/Logo.png" alt="Angkor Wildlife & Aquarium" className="mb-4 w-48" />
                         <div className="text-sm leading-relaxed text-gray-500 md:text-base">
                             <p>
@@ -17,10 +17,10 @@ const MyFooter = () => {
 
                             <div className="mt-8">
                                 <div className="flex">
-                                    <p className="w-40">Mobile Phone</p>:<p className="ml-2">+855 12 269 661</p>
+                                    <p className="w-28 lg:w-32">Mobile Phone</p>:<p className="ml-2">+855 12 269 661</p>
                                 </div>
                                 <div className="flex">
-                                    <p className="w-40">Landline Phone</p>:
+                                    <p className="w-28 lg:w-32">Landline Phone</p>:
                                     <p className="ml-2">
                                         +855 16 991 580
                                         <br /> +855 23 882 580
@@ -29,10 +29,10 @@ const MyFooter = () => {
                             </div>
 
                             <div className="mt-8 flex">
-                                <p className="w-40">Email</p>:<p className="ml-2">contact@westec.com</p>
+                                <p className="w-28 lg:w-32">Email</p>:<p className="ml-2">contact@westec.com</p>
                             </div>
                             <div className="mt-8 flex">
-                                <p className="w-40">Office Hours</p>:
+                                <p className="w-28 lg:w-32">Office Hours</p>:
                                 <p className="ml-2">
                                     8:00AM - 5:00PM <br /> Monday - Saturday
                                 </p>
@@ -41,11 +41,11 @@ const MyFooter = () => {
                     </div>
 
                     {/* Footer Links Section */}
-                    <div className="ml-12 md:col-span-3">
-                        <div className="flex justify-between gap-6 text-sm text-gray-500">
+                    <div className="md:col-span-3 w-full">
+                        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 text-sm text-gray-500">
                             {/* About Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-xl text-white">About Us</h3>
+                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">About Us</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>What is Westec?</li>
                                     <li>Mission & Vision</li>
@@ -56,7 +56,7 @@ const MyFooter = () => {
 
                             {/* Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-xl text-white">Solutions</h3>
+                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Solutions</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
@@ -66,7 +66,7 @@ const MyFooter = () => {
                             </div>
                             {/*Feature Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-xl text-white">Featured Solutions</h3>
+                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Featured Solutions</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
@@ -77,7 +77,7 @@ const MyFooter = () => {
 
                             {/* Case Studies */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-xl text-white">Case studies</h3>
+                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Case studies</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Banking</li>
                                     <li>Embassy</li>
@@ -90,10 +90,10 @@ const MyFooter = () => {
                         </div>
 
                         {/* Social & Chat Sections */}
-                        <div className="mt-16 flex gap-6">
+                        <div className="mt-16 flex flex-wrap gap-6 w-full">
                             {/* Follow Us */}
-                            <div className="flex-1">
-                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-xl text-white">Follow Us!</h3>
+                            <div className="w-full sm:flex-1">
+                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-base text-white">Follow Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'facebook', alt: 'Facebook' },
@@ -114,7 +114,7 @@ const MyFooter = () => {
 
                             {/* Chat With Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-xl text-white">Chat With Us!</h3>
+                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-base text-white">Chat With Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'talk', alt: 'Talk' },

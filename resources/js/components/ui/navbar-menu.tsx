@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { motion } from "motion/react";
 import { Link } from "@inertiajs/react";
@@ -25,11 +24,11 @@ export const MenuItem = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative ">
+    <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.a
           href={item.toLowerCase() === "about us" ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
         transition={{ duration: 0.3 }}
-        className="bg-[#008080] px-4 py-1 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
+        className="bg-true-primary text-base px-5 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
       >
         {item}  <ChevronUp className="h-4 w-4 text-white dark:text-gray-300 transition-transform duration-300 rotate-180" />
       </motion.a>
@@ -40,15 +39,15 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-full">
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                className="bg-true-primary/80 backdrop-blur-sm overflow-hidden shadow-xl"
               >
                 <motion.div
                   layout // layout ensures smooth animation
-                  className="w-max h-full p-4 font-proxima-nova-bold "
+                  className="h-full p-2 font-proxima-nova-bold w-full"
                 >
                   {children}
                 </motion.div>
@@ -72,7 +71,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative dark:bg-black dark:border-white/[0.2] flex justify-between items-center space-x-2"
+      className="relative dark:bg-black  flex justify-between items-center space-x-2"
     >
         <div className="flex justify-between text-xs items-center space-x-2 ">
         {children}
@@ -118,7 +117,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 max-w-32 dark:text-neutral-200 hover:text-[#273896] "
+      className="text-white text-[13px] max-w-32 hover:underline "
     >
       {children}
     </Link>

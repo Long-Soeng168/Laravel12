@@ -1,69 +1,89 @@
-
-import { Card } from '@/components/ui/card';
-import Autoplay from 'embla-carousel-autoplay';
-import useEmblaCarousel from 'embla-carousel-react';
-import { useEffect, useState } from 'react';
+import { InfiniteMovingCards } from '@/pages/westec/components/ui/infinite-moving-cards';
 
 export function MyPartner() {
-    const images = [
-        {
-            id: '1',
-            image: '/assets/demo-images/partner1.png',
-            alt: 'Slide 1',
-            short: 'Safety and security don’t just happen; <strong>CCTV</strong> is an investment in protection',
-            bg: '#273896',
-        },
-        {
-            id: '2',
-            image: '/assets/demo-images/partner2.png',
-            alt: 'Slide 2',
-            short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
-            bg: '#008080',
-        },
-    ];
-
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
-
-    useEffect(() => {
-        if (!emblaApi) return;
-        const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-        emblaApi.on('select', onSelect);
-        onSelect();
-    }, [emblaApi]);
-
     return (
-        <>
-            <h1 className="inline-block mx-auto pt-4 px-4 sm:pt-8 sm:px-8 md:pt-12 md:px-12 border-t-2 w-full border-[#273892] bg-white text-2xl font-semibold text-[#273892]">Solution Boosters</h1>
-            <div className="relative mx-auto w-full max-w-full ">
-                {/* Carousel */}
-                <div className="overflow-hidden" ref={emblaRef}>
-                    <div className="flex">
-                        {images?.map((item) => (
-                            <div key={item.id} className="flex-[0_0_100%]">
-                                <Card className="relative h-48 w-full rounded-none py-0">
-                                    <img src={item.image} alt={item.alt} className="h-48 w-full object-cover" />
-                                    {/* <div className="absolute top-0 left-0 bottom-0 h-full w-[30%]" style={{ background: item.bg }}>
-                                    <div className="mx-auto flex justify-center items-center max-w-screen-lg sm:max-w-screen-xl md:max-w-screen-2xl h-full px-4 sm:px-8 md:px-12">
-                                        <h3 className="max-w-full text-sm text-white sm:text-lg md:text-2xl xl:text-2xl font-proxima-nova-regular" dangerouslySetInnerHTML={{ __html: item.short }} />
-                                    </div>
-                                </div> */}
-                                </Card>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                {/* Dot Navigation */}
-                {/* <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 transform space-x-2 sm:bottom-4">
-                    {images?.map((_, index) => (
-                        <button
-                            key={index}
-                            className={`h-2 w-2 rounded-full transition sm:h-3 sm:w-3 ${index === selectedIndex ? 'bg-[#273896]' : 'bg-gray-300'}`}
-                            onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                        />
-                    ))}
-                </div> */}
+        <div>
+            <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-md antialiased">
+                <InfiniteMovingCards items={testimonials} direction="left" speed="slow" />
             </div>
-        </>
+        </div>
     );
 }
+
+const testimonials = [
+    {
+        quote: 'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.',
+        name: 'Charles Dickens',
+        title: 'A Tale of Two Cities',
+    },
+    {
+        quote: "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+        name: 'William Shakespeare',
+        title: 'Hamlet',
+    },
+    {
+        quote: 'All that we see or seem is but a dream within a dream.',
+        name: 'Edgar Allan Poe',
+        title: 'A Dream Within a Dream',
+    },
+    {
+        quote: 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',
+        name: 'Jane Austen',
+        title: 'Pride and Prejudice',
+    },
+    {
+        quote: 'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
+        name: 'Herman Melville',
+        title: 'Moby-Dick',
+    },
+    {
+        quote: 'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.',
+        name: 'Charles Dickens',
+        title: 'A Tale of Two Cities',
+    },
+    {
+        quote: "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+        name: 'William Shakespeare',
+        title: 'Hamlet',
+    },
+    {
+        quote: 'All that we see or seem is but a dream within a dream.',
+        name: 'Edgar Allan Poe',
+        title: 'A Dream Within a Dream',
+    },
+    {
+        quote: 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',
+        name: 'Jane Austen',
+        title: 'Pride and Prejudice',
+    },
+    {
+        quote: 'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
+        name: 'Herman Melville',
+        title: 'Moby-Dick',
+    },
+    {
+        quote: 'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.',
+        name: 'Charles Dickens',
+        title: 'A Tale of Two Cities',
+    },
+    {
+        quote: "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+        name: 'William Shakespeare',
+        title: 'Hamlet',
+    },
+    {
+        quote: 'All that we see or seem is but a dream within a dream.',
+        name: 'Edgar Allan Poe',
+        title: 'A Dream Within a Dream',
+    },
+    {
+        quote: 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',
+        name: 'Jane Austen',
+        title: 'Pride and Prejudice',
+    },
+    {
+        quote: 'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
+        name: 'Herman Melville',
+        title: 'Moby-Dick',
+    },
+];
