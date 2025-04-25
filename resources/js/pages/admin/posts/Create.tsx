@@ -334,10 +334,10 @@ export default function Create() {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectItem value="content">Content</SelectItem>
-                                                <SelectItem value="video">Video</SelectItem>
+                                                <SelectItem value="video">Video (Youtube Video Link)</SelectItem>
                                             </SelectContent>
                                         </Select>
-                                        <FormDescription>Choose type (Link) for external content and fill Link input</FormDescription>
+                                        <FormDescription>Choose type (Video) for video content and fill Link input</FormDescription>
                                         <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
                                     </FormItem>
                                 )}
