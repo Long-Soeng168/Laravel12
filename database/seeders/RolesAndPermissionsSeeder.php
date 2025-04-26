@@ -74,10 +74,41 @@ class RolesAndPermissionsSeeder extends Seeder
          Permission::firstOrCreate(['name' => 'type update']);
          Permission::firstOrCreate(['name' => 'type delete']);
 
-         // type
+         // File Manager
          Permission::firstOrCreate(['name' => 'file_manager view']);
          Permission::firstOrCreate(['name' => 'file_manager create']);
          Permission::firstOrCreate(['name' => 'file_manager delete']);
+
+         // Item
+         Permission::firstOrCreate(['name' => 'item view']);
+         Permission::firstOrCreate(['name' => 'item create']);
+         Permission::firstOrCreate(['name' => 'item update']);
+         Permission::firstOrCreate(['name' => 'item delete']);
+         // Shop
+         Permission::firstOrCreate(['name' => 'shop view']);
+         Permission::firstOrCreate(['name' => 'shop create']);
+         Permission::firstOrCreate(['name' => 'shop update']);
+         Permission::firstOrCreate(['name' => 'shop delete']);
+         // Garage
+         Permission::firstOrCreate(['name' => 'garage view']);
+         Permission::firstOrCreate(['name' => 'garage create']);
+         Permission::firstOrCreate(['name' => 'garage update']);
+         Permission::firstOrCreate(['name' => 'garage delete']);
+         // DTC
+         Permission::firstOrCreate(['name' => 'dtc view']);
+         Permission::firstOrCreate(['name' => 'dtc create']);
+         Permission::firstOrCreate(['name' => 'dtc update']);
+         Permission::firstOrCreate(['name' => 'dtc delete']);
+         // Video
+         Permission::firstOrCreate(['name' => 'video view']);
+         Permission::firstOrCreate(['name' => 'video create']);
+         Permission::firstOrCreate(['name' => 'video update']);
+         Permission::firstOrCreate(['name' => 'video delete']);
+         // Partner
+         Permission::firstOrCreate(['name' => 'partner view']);
+         Permission::firstOrCreate(['name' => 'partner create']);
+         Permission::firstOrCreate(['name' => 'partner update']);
+         Permission::firstOrCreate(['name' => 'partner delete']);
 
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);

@@ -34,6 +34,50 @@ export function AppSidebar() {
             icon: LayoutDashboardIcon,
         },
         {
+            title: t('Items'),
+            permission: 'item view',
+            url: '/admin/items',
+            icon: FilePenLineIcon,
+            subItems: [
+                {
+                    title: t('Items'),
+                    permission: 'item view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/items',
+                },
+                {
+                    title: t('Categories'),
+                    permission: 'item view',
+                    icon: Layers2Icon,
+                    url: '/admin/item_categories',
+                },
+                {
+                    title: t('Brands'),
+                    permission: 'item view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/item_brands',
+                },
+                {
+                    title: t('Models'),
+                    permission: 'item view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/item_models',
+                },
+                {
+                    title: t('Body Type'),
+                    permission: 'item view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/item_body_types',
+                },
+                {
+                    title: t('View Counts'),
+                    permission: 'item view',
+                    icon: Tally5Icon,
+                    url: '/admin/item_view_counts',
+                },
+            ],
+        },
+        {
             title: t('Posts'),
             permission: 'post view',
             url: '/admin/posts',
@@ -58,6 +102,30 @@ export function AppSidebar() {
                     url: '/admin/post_view_counts',
                 },
             ],
+        },
+        {
+            title: t('DTC'),
+            permission: 'dtc view',
+            url: '/dtc',
+            icon: LayoutGrid,
+        },
+        {
+            title: t('Shops'),
+            permission: 'shop view',
+            url: '/shops',
+            icon: LayoutGrid,
+        },
+        {
+            title: t('Garages'),
+            permission: 'garage view',
+            url: '/garages',
+            icon: LayoutGrid,
+        },
+        {
+            title: t('Videos'),
+            permission: 'video view',
+            url: '/videos',
+            icon: LayoutGrid,
         },
         {
             title: t('Pages'),
@@ -126,12 +194,6 @@ export function AppSidebar() {
             ],
         },
         {
-            title: t('Items'),
-            permission: 'item view',
-            url: '/items',
-            icon: LayoutGrid,
-        },
-        {
             title: t('Projects'),
             permission: 'project view',
             url: '/admin/projects',
@@ -139,14 +201,8 @@ export function AppSidebar() {
         },
         {
             title: t('Partners'),
-            // permission: 'project view',
+            permission: 'partner view',
             url: '/admin/partners',
-            icon: ProjectorIcon,
-        },
-        {
-            title: t('Item Brands'),
-            // permission: 'project view',
-            url: '/admin/item_brands',
             icon: ProjectorIcon,
         },
         {
