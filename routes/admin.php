@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HeadingController;
+use App\Http\Controllers\ItemBrandController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
@@ -64,6 +65,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/partners', PartnerController::class);
     Route::post('admin/partners/{partner}/update', [PartnerController::class, 'update']);
     Route::post('admin/partners/{partner}/update_status', [PartnerController::class, 'update_status']);
+
+    // Item Brands Route
+    Route::resource('admin/item_brands', ItemBrandController::class);
+    Route::post('admin/item_brands/{item_brand}/update', [ItemBrandController::class, 'update']);
+    Route::post('admin/item_brands/{item_brand}/update_status', [ItemBrandController::class, 'update_status']);
 
 
     // Project Route
