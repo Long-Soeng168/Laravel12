@@ -55,10 +55,17 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                                             return (
                                                 <SidebarMenuSubItem key={subItem.title}>
                                                     <SidebarMenuSubButton isActive={subItem.url === page.url} asChild>
-                                                        <Link href={subItem.url} prefetch="hover">
-                                                            {subItem.icon && <subItem.icon className="stroke-primary" />}
-                                                            <span className="leading-[2]">{subItem.title}</span>
-                                                        </Link>
+                                                        {subItem.external_url && subItem.url == '' ? (
+                                                            <a href={subItem.url} target="_blank">
+                                                                {subItem.icon && <subItem.icon className="stroke-primary" />}
+                                                                <span className="leading-[2]">{subItem.title}</span>
+                                                            </a>
+                                                        ) : (
+                                                            <Link href={subItem.url} prefetch="hover">
+                                                                {subItem.icon && <subItem.icon className="stroke-primary" />}
+                                                                <span className="leading-[2]">{subItem.title}</span>
+                                                            </Link>
+                                                        )}
                                                     </SidebarMenuSubButton>
                                                 </SidebarMenuSubItem>
                                             );
@@ -70,10 +77,17 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                     ) : (
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton asChild isActive={item.url === page.url} tooltip={{ children: item.title }}>
-                                <Link href={item.url} prefetch>
-                                    {item.icon && <item.icon />}
-                                    <span className="leading-[2]">{item.title}</span>
-                                </Link>
+                                {item.external_url && item.url == '' ? (
+                                    <a href={item.external_url} target="_blank">
+                                        {item.icon && <item.icon />}
+                                        <span className="leading-[2]">{item.title}</span>
+                                    </a>
+                                ) : (
+                                    <Link href={item.url} prefetch>
+                                        {item.icon && <item.icon />}
+                                        <span className="leading-[2]">{item.title}</span>
+                                    </Link>
+                                )}
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     );

@@ -3,14 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Http\Requests\StoreItemBrandRequest;
-use App\Http\Requests\UpdateItemBrandRequest;
 use App\Models\ItemBrand;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ItemBrandController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class ItemBrandController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:item view', only: ['index', 'show']),
+            new Middleware('permission:item create', only: ['create', 'store']),
+            new Middleware('permission:item update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:item delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -144,6 +154,18 @@ class ItemBrandController extends Controller
         $itemBrand->update($validated);
 
         return redirect()->route('item_brands.index')->with('success', 'Item Brand updated successfully!');
+    }
+
+    public function update_status(Request $request, ItemBrand $item_brand)
+    {
+        $request->validate([
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $item_brand->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
     }
 
     /**

@@ -72,6 +72,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Link')}
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('status')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Status')}
+                                </span>
+                            </TableHead>
                             <TableHead>{t('Created at')}</TableHead>
                             <TableHead>{t('Updated at')}</TableHead>
                         </TableRow>
@@ -86,8 +91,8 @@ const MyTableData = () => {
                                     <TableCell>
                                         <span className="flex h-full items-center justify-start">
                                             <ViewButton item={item} />
-                                            {hasPermission('link delete') && <DeleteButton deletePath="/admin/partners/" id={item.id} />}
-                                            {hasPermission('link update') && <EditButton item={item} />}
+                                            {hasPermission('partner delete') && <DeleteButton deletePath="/admin/partners/" id={item.id} />}
+                                            {hasPermission('partner update') && <EditButton item={item} />}
                                         </span>
                                     </TableCell>
                                     <TableCell>
@@ -122,18 +127,18 @@ const MyTableData = () => {
                                     <TableCell>{item.phone || '---'}</TableCell>
                                     <TableCell>{item.link || '---'}</TableCell>
                                     {/* <TableCell>{item.image || '---'}</TableCell> */}
-                                    {/* <TableCell>
-                                        {hasPermission('link update') ? (
+                                    <TableCell>
+                                        {hasPermission('partner update') ? (
                                             <MyUpdateStatusButton
                                                 id={item.id}
-                                                pathName="/admin/links"
+                                                pathName="/admin/partners"
                                                 currentStatus={item.status}
                                                 statuses={['active', 'inactive']}
                                             />
                                         ) : (
                                             <span className="capitalize">{item.status}</span>
                                         )}
-                                    </TableCell> */}
+                                    </TableCell>
 
                                     <TableCell>
                                         {item.created_at

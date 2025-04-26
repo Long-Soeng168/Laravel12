@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Http\Requests\StorePartnerRequest;
-use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Storage;
 
-class PartnerController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+class PartnerController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:partner view', only: ['index', 'show']),
+            new Middleware('permission:partner create', only: ['create', 'store']),
+            new Middleware('permission:partner update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:partner delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -144,6 +153,18 @@ class PartnerController extends Controller
         $partner->update($validated);
 
         return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+    }
+
+    public function update_status(Request $request, Partner $partner)
+    {
+        $request->validate([
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $partner->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
     }
 
     /**

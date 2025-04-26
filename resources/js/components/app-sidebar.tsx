@@ -7,21 +7,29 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
     AppWindowIcon,
+    BookmarkCheckIcon,
+    CarIcon,
     FilePenLineIcon,
+    FilesIcon,
     GalleryThumbnailsIcon,
+    HandshakeIcon,
     Heading1Icon,
     InfoIcon,
     Layers2Icon,
     LayoutDashboardIcon,
-    LayoutGrid,
     LinkIcon,
+    ListTodoIcon,
     ProjectorIcon,
     ReplaceAllIcon,
     ShapesIcon,
     ShieldCheckIcon,
+    StoreIcon,
+    TagsIcon,
     Tally5Icon,
+    TvMinimalPlayIcon,
     UserCogIcon,
     UsersIcon,
+    WarehouseIcon,
 } from 'lucide-react';
 import AppLogo from './app-logo';
 
@@ -30,6 +38,7 @@ export function AppSidebar() {
     const mainNavItems: NavItem[] = [
         {
             title: t('Dashboard'),
+            permission: '',
             url: '/dashboard',
             icon: LayoutDashboardIcon,
         },
@@ -37,12 +46,12 @@ export function AppSidebar() {
             title: t('Items'),
             permission: 'item view',
             url: '/admin/items',
-            icon: FilePenLineIcon,
+            icon: ListTodoIcon,
             subItems: [
                 {
                     title: t('Items'),
                     permission: 'item view',
-                    icon: FilePenLineIcon,
+                    icon: ListTodoIcon,
                     url: '/admin/items',
                 },
                 {
@@ -54,19 +63,19 @@ export function AppSidebar() {
                 {
                     title: t('Brands'),
                     permission: 'item view',
-                    icon: FilePenLineIcon,
+                    icon: TagsIcon,
                     url: '/admin/item_brands',
                 },
                 {
                     title: t('Models'),
                     permission: 'item view',
-                    icon: FilePenLineIcon,
+                    icon: BookmarkCheckIcon,
                     url: '/admin/item_models',
                 },
                 {
                     title: t('Body Type'),
                     permission: 'item view',
-                    icon: FilePenLineIcon,
+                    icon: ShapesIcon,
                     url: '/admin/item_body_types',
                 },
                 {
@@ -76,6 +85,37 @@ export function AppSidebar() {
                     url: '/admin/item_view_counts',
                 },
             ],
+        },
+        {
+            title: t('DTC'),
+            permission: 'dtc view',
+            url: '/dtc',
+            icon: CarIcon,
+        },
+        {
+            title: t('Shops'),
+            permission: 'shop view',
+            url: '/shops',
+            icon: StoreIcon,
+        },
+        {
+            title: t('Garages'),
+            permission: 'garage view',
+            url: '/garages',
+            icon: WarehouseIcon,
+        },
+        {
+            title: t('Videos'),
+            permission: 'video view',
+            url: '/videos',
+            icon: TvMinimalPlayIcon,
+        },
+        {
+            title: t('Documents'),
+            permission: 'document view',
+            url: '',
+            external_url: 'https://ata-filesystem.kampu.solutions/',
+            icon: FilesIcon,
         },
         {
             title: t('Posts'),
@@ -102,30 +142,6 @@ export function AppSidebar() {
                     url: '/admin/post_view_counts',
                 },
             ],
-        },
-        {
-            title: t('DTC'),
-            permission: 'dtc view',
-            url: '/dtc',
-            icon: LayoutGrid,
-        },
-        {
-            title: t('Shops'),
-            permission: 'shop view',
-            url: '/shops',
-            icon: LayoutGrid,
-        },
-        {
-            title: t('Garages'),
-            permission: 'garage view',
-            url: '/garages',
-            icon: LayoutGrid,
-        },
-        {
-            title: t('Videos'),
-            permission: 'video view',
-            url: '/videos',
-            icon: LayoutGrid,
         },
         {
             title: t('Pages'),
@@ -203,7 +219,7 @@ export function AppSidebar() {
             title: t('Partners'),
             permission: 'partner view',
             url: '/admin/partners',
-            icon: ProjectorIcon,
+            icon: HandshakeIcon,
         },
         {
             title: t('Headings'),
@@ -233,6 +249,7 @@ export function AppSidebar() {
 
     const footerNavItems: NavItem[] = [
         {
+            permission: '',
             title: t('Sample Content'),
             url: '/admin/ckeditor5',
             icon: FilePenLineIcon,

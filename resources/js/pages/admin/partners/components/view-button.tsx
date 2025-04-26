@@ -1,12 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import useTranslation from '@/hooks/use-translation';
 import { ScanEyeIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 
 const ViewButton = ({ item }: { item: any }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { t } = useTranslation();
     return (
         <Dialog modal={false} open={isOpen}>
             <TooltipProvider delayDuration={300}>
@@ -29,7 +31,7 @@ const ViewButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>View Link</DialogTitle>
+                    <DialogTitle>{t('View')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} readOnly={true} setIsOpen={setIsOpen} />
                 </DialogHeader>

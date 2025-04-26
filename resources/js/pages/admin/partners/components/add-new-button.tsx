@@ -4,9 +4,11 @@ import { Plus, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
 import MyAddNewButton from '@/components/my-add-new-button';
+import useTranslation from '@/hooks/use-translation';
 
 const AddNewButton = () => {
     const [isOpen, setIsOpen] = useState(false);
+     const { t } = useTranslation();
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
@@ -20,7 +22,7 @@ const AddNewButton = () => {
                 </Button>
 
                 <DialogHeader>
-                    <DialogTitle>Create Partner</DialogTitle>
+                    <DialogTitle>{t('Create')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create setIsOpen={setIsOpen}/>
                 </DialogHeader>

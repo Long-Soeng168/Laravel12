@@ -4,9 +4,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { EditIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import Create from '../Create';
+import useTranslation from '@/hooks/use-translation';
 
 const EditButton = ({ item }: { item: any }) => {
     const [isOpen, setIsOpen] = useState(false);
+     const { t } = useTranslation();
     return (
         <Dialog modal={false} open={isOpen}>
             <DialogTrigger asChild>
@@ -20,7 +22,7 @@ const EditButton = ({ item }: { item: any }) => {
                     <XIcon />
                 </Button>
                 <DialogHeader>
-                    <DialogTitle>Edit Link</DialogTitle>
+                    <DialogTitle>{t('Edit')}</DialogTitle>
                     <DialogDescription className="hidden"></DialogDescription>
                     <Create editData={item} setIsOpen={setIsOpen}/>
                 </DialogHeader>
