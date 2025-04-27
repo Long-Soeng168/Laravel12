@@ -111,6 +111,16 @@ class RolesAndPermissionsSeeder extends Seeder
          Permission::firstOrCreate(['name' => 'partner create']);
          Permission::firstOrCreate(['name' => 'partner update']);
          Permission::firstOrCreate(['name' => 'partner delete']);
+         // Course
+         Permission::firstOrCreate(['name' => 'course view']);
+         Permission::firstOrCreate(['name' => 'course create']);
+         Permission::firstOrCreate(['name' => 'course update']);
+         Permission::firstOrCreate(['name' => 'course delete']);
+         // Phone_company
+         Permission::firstOrCreate(['name' => 'phone_company view']);
+         Permission::firstOrCreate(['name' => 'phone_company create']);
+         Permission::firstOrCreate(['name' => 'phone_company update']);
+         Permission::firstOrCreate(['name' => 'phone_company delete']);
 
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);

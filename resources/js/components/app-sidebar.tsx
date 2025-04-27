@@ -89,7 +89,7 @@ export function AppSidebar() {
         {
             title: t('DTC'),
             permission: 'dtc view',
-            url: '/admin/dtc',
+            url: '/admin/dtcs',
             icon: CarIcon,
         },
         {
@@ -237,19 +237,13 @@ export function AppSidebar() {
         },
         {
             title: t('Phone Companies'),
-            permission: 'partner view',
+            permission: 'phone_company view',
             url: '/admin/phone_companies',
             icon: HandshakeIcon,
         },
         {
-            title: t('Dtc Codes'),
-            permission: 'partner view',
-            url: '/admin/dtcs',
-            icon: HandshakeIcon,
-        },
-        {
             title: t('Courses'),
-            permission: 'partner view',
+            permission: 'course view',
             url: '/admin/courses',
             icon: HandshakeIcon,
         },
