@@ -3,9 +3,11 @@
 use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\GaragePostController;
+use App\Http\Controllers\DtcController;
 use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\ItemBodyTypeController;
 use App\Http\Controllers\ItemBrandController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PhoneCompanyController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostViewController;
@@ -75,6 +78,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/partners', PartnerController::class);
     Route::post('admin/partners/{partner}/update', [PartnerController::class, 'update']);
     Route::post('admin/partners/{partner}/update_status', [PartnerController::class, 'update_status']);
+
+    // Phone Company Route
+    Route::resource('admin/phone_companies', PhoneCompanyController::class);
+    Route::post('admin/phone_companies/{phone_company}/update', [PhoneCompanyController::class, 'update']);
+    Route::post('admin/phone_companies/{phone_company}/update_status', [PhoneCompanyController::class, 'update_status']);
+
+    // Dtc Route
+    Route::resource('admin/dtcs', DtcController::class);
+    Route::post('admin/dtcs/{dtc}/update', [DtcController::class, 'update']);
+    Route::post('admin/dtcs/{dtc}/update_status', [DtcController::class, 'update_status']);
+
+    // Courses Route
+    Route::resource('admin/courses', CourseController::class);
+    Route::post('admin/courses/{course}/update', [CourseController::class, 'update']);
+    Route::post('admin/courses/{course}/update_status', [CourseController::class, 'update_status']);
 
     // Item Brands Route
     Route::resource('admin/item_brands', ItemBrandController::class);

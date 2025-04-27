@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Models\Partner;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class PartnerController extends Controller implements HasMiddleware
+class CourseController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -30,11 +32,13 @@ class PartnerController extends Controller implements HasMiddleware
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
 
-        $query = Partner::query();
+        $query = Course::query();
 
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
-                $sub_query->where('name', 'LIKE', "%{$search}%");
+                $sub_query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                    ->orWhere('price', 'LIKE', "%{$search}%");
             });
         }
 
@@ -42,7 +46,7 @@ class PartnerController extends Controller implements HasMiddleware
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/partners/Index', [
+        return Inertia::render('admin/courses/Index', [
             'tableData' => $tableData,
         ]);
     }
@@ -52,7 +56,7 @@ class PartnerController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        return Inertia::render('admin/partners/Create');
+        return Inertia::render('admin/courses/Create');
     }
 
     /**
@@ -61,11 +65,15 @@ class PartnerController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:partners,name',
-            'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
-            'link' => 'nullable|max:255',
+            'title' => 'required|string|max:255|unique:courses,title',
+            'title_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|numeric|min:0',
+            'short_description' => 'nullable|string',
+            'short_description_kh' => 'nullable|string',
+            'status' => 'nullable|string|in:active,inactive',
+            'start_at' => 'nullable|date',
+            'end_at' => 'nullable|date|after_or_equal:start_at',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -82,49 +90,54 @@ class PartnerController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/courses', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        Partner::create($validated);
+        Course::create($validated);
 
-        return redirect()->route('partners.index')->with('success', 'Partner created successfully!');
+        return redirect()->route('courses.index')->with('success', 'Course created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Partner $partner)
+    public function show(Course $course)
     {
-        return Inertia::render('admin/partners/Show', [
-            'partner' => $partner
+        return Inertia::render('admin/courses/Show', [
+            'course' => $course
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Partner $partner)
+    public function edit(Course $course)
     {
-        return Inertia::render('admin/partners/Edit', [
-            'partner' => $partner
+        return Inertia::render('admin/courses/Edit', [
+            'course' => $course
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:partners,code,' . $partner->id,
-            'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
-            'link' => 'nullable|max:255',
+            'title' => 'required|string|max:255|unique:courses,title,' . $course->id,
+            'title_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|numeric|min:0',
+            'short_description' => 'nullable|string',
+            'short_description_kh' => 'nullable|string',
+            'status' => 'nullable|string|in:active,inactive',
+            'start_at' => 'nullable|date',
+            'end_at' => 'nullable|date|after_or_equal:start_at',
+
         ]);
         $validated['updated_by'] = $request->user()->id;
 
@@ -139,28 +152,27 @@ class PartnerController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/courses', 600);
                 $validated['image'] = $created_image_name;
 
-                if ($partner->image && $created_image_name) {
-                    ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+                if ($course->image && $created_image_name) {
+                    ImageHelper::deleteImage($course->image, 'assets/images/courses');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
+        $course->update($validated);
 
-        $partner->update($validated);
-
-        return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+        return redirect()->route('courses.index')->with('success', 'Course updated successfully!');
     }
 
-    public function update_status(Request $request, Partner $partner)
+    public function update_status(Request $request, Course $course)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $partner->update([
+        $course->update([
             'status' => $request->status,
         ]);
 
@@ -170,15 +182,14 @@ class PartnerController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Partner $partner)
+    public function destroy(Course $course)
     {
         // Delete image if exists
-        if ($partner->image) {
-            ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+        if ($course->image) {
+            ImageHelper::deleteImage($course->image, 'assets/images/courses');
         }
+        $course->delete();
 
-        $partner->delete();
-
-        return redirect()->route('partners.index')->with('success', 'Partner deleted successfully!');
+        return redirect()->route('courses.index')->with('success', 'Course deleted successfully!');
     }
 }

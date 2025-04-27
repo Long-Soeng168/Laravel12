@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Models\Partner;
+use App\Http\Requests\StorePhoneCompanyRequest;
+use App\Http\Requests\UpdatePhoneCompanyRequest;
+use App\Models\PhoneCompany;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class PartnerController extends Controller implements HasMiddleware
+class PhoneCompanyController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -30,11 +32,13 @@ class PartnerController extends Controller implements HasMiddleware
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
 
-        $query = Partner::query();
+        $query = PhoneCompany::query();
 
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
-                $sub_query->where('name', 'LIKE', "%{$search}%");
+                $sub_query->where('code', 'LIKE', "%{$search}%")
+                    ->orWhere('company', 'LIKE', "%{$search}%")
+                    ->orWhere('status', 'LIKE', "%{$search}%");
             });
         }
 
@@ -42,7 +46,7 @@ class PartnerController extends Controller implements HasMiddleware
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/partners/Index', [
+        return Inertia::render('admin/phone_companies/Index', [
             'tableData' => $tableData,
         ]);
     }
@@ -52,7 +56,7 @@ class PartnerController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        return Inertia::render('admin/partners/Create');
+        return Inertia::render('admin/phone_companies/Create');
     }
 
     /**
@@ -61,11 +65,10 @@ class PartnerController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:partners,name',
-            'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
-            'link' => 'nullable|max:255',
+            'code' => 'required|string|max:255|unique:phone_companies,code',
+            'company' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'nullable|string|in:active,inactive',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -82,49 +85,49 @@ class PartnerController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/phone_companies', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        Partner::create($validated);
+        PhoneCompany::create($validated);
 
-        return redirect()->route('partners.index')->with('success', 'Partner created successfully!');
+        return redirect()->route('phone_companies.index')->with('success', 'Phone Company created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Partner $partner)
+    public function show(PhoneCompany $phone_company)
     {
-        return Inertia::render('admin/partners/Show', [
-            'partner' => $partner
+        return Inertia::render('admin/phone_companies/Show', [
+            'phone_company' => $phone_company
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Partner $partner)
+    public function edit(PhoneCompany $phone_company)
     {
-        return Inertia::render('admin/partners/Edit', [
-            'partner' => $partner
+        return Inertia::render('admin/phone_companies/Edit', [
+            'phone_company' => $phone_company
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, PhoneCompany $phone_company)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:partners,code,' . $partner->id,
-            'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
-            'link' => 'nullable|max:255',
+            'code' => 'required|string|max:255|unique:phone_companies,code,' . $phone_company->id,
+            'company' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'nullable|string|in:active,inactive',
+
         ]);
         $validated['updated_by'] = $request->user()->id;
 
@@ -139,28 +142,27 @@ class PartnerController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/partners', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/phone_companies', 600);
                 $validated['image'] = $created_image_name;
 
-                if ($partner->image && $created_image_name) {
-                    ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+                if ($phone_company->image && $created_image_name) {
+                    ImageHelper::deleteImage($phone_company->image, 'assets/images/phone_companies');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
+        $phone_company->update($validated);
 
-        $partner->update($validated);
-
-        return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+        return redirect()->route('phone_companies.index')->with('success', 'Phone Company updated successfully!');
     }
 
-    public function update_status(Request $request, Partner $partner)
+    public function update_status(Request $request, PhoneCompany $phone_company)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $partner->update([
+        $phone_company->update([
             'status' => $request->status,
         ]);
 
@@ -170,15 +172,14 @@ class PartnerController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Partner $partner)
+    public function destroy(PhoneCompany $phone_company)
     {
         // Delete image if exists
-        if ($partner->image) {
-            ImageHelper::deleteImage($partner->image, 'assets/images/partners');
+        if ($phone_company->image) {
+            ImageHelper::deleteImage($phone_company->image, 'assets/images/phone_companies');
         }
+        $phone_company->delete();
 
-        $partner->delete();
-
-        return redirect()->route('partners.index')->with('success', 'Partner deleted successfully!');
+        return redirect()->route('phone_companies.index')->with('success', 'Phone Company deleted successfully!');
     }
 }

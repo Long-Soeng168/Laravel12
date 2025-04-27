@@ -236,6 +236,24 @@ export function AppSidebar() {
             icon: HandshakeIcon,
         },
         {
+            title: t('Phone Companies'),
+            permission: 'partner view',
+            url: '/admin/phone_companies',
+            icon: HandshakeIcon,
+        },
+        {
+            title: t('Dtc Codes'),
+            permission: 'partner view',
+            url: '/admin/dtcs',
+            icon: HandshakeIcon,
+        },
+        {
+            title: t('Courses'),
+            permission: 'partner view',
+            url: '/admin/courses',
+            icon: HandshakeIcon,
+        },
+        {
             title: t('Headings'),
             permission: 'heading view',
             url: '/admin/headings',
