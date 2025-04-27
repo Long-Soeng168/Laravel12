@@ -228,6 +228,12 @@ export function AppSidebar() {
             icon: HandshakeIcon,
         },
         {
+            title: t('Dtc Codes'),
+            permission: 'partner view',
+            url: '/admin/dtcs',
+            icon: HandshakeIcon,
+        },
+        {
             title: t('Headings'),
             permission: 'heading view',
             url: '/admin/headings',
