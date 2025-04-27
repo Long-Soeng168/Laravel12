@@ -251,7 +251,7 @@ export default function Create({
                                                 </FormControl>
                                             </PopoverTrigger>
 
-                                            <PopoverContent className="w-[200px] p-0">
+                                            <PopoverContent className="w-[350px] p-0">
                                                 <Command>
                                                     <CommandInput placeholder={t('Search')} />
                                                     <CommandList>
