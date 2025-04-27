@@ -11,13 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_brands', function (Blueprint $table) {
+        Schema::create('item_models', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string("code")->unique();
             $table->string("name");
             $table->string("name_kh")->nullable();
             $table->string("image")->nullable();
+            $table->string("status")->nullable()->default('active');
+
+            $table->string("brand_code")->nullable();
+            $table->foreign('brand_code')
+                ->references('code')
+                ->on('item_brands')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')
@@ -42,12 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Drop foreign key before dropping the table
-        Schema::table('item_brands', function (Blueprint $table) {
-            $table->dropForeign(['created_by']);
-            $table->dropForeign(['updated_by']);
-        });
-
-        Schema::dropIfExists('item_brands');
+        Schema::dropIfExists('item_models');
     }
 };

@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Http\Requests\StorePostCategoryRequest;
-use App\Http\Requests\UpdatePostCategoryRequest;
-use App\Models\PostCategory;
+use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class PostCategoryController extends Controller implements HasMiddleware
+class ItemCategoryController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:post view', only: ['index', 'show', 'all_page_categories']),
-            new Middleware('permission:post create', only: ['create', 'store']),
-            new Middleware('permission:post update', only: ['edit', 'update', 'update_status']),
-            new Middleware('permission:post delete', only: ['destroy', 'destroy_image']),
+            new Middleware('permission:item view', only: ['index', 'show', 'all_item_categories']),
+            new Middleware('permission:item create', only: ['create', 'store']),
+            new Middleware('permission:item update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:item delete', only: ['destroy', 'destroy_image']),
         ];
     }
     /**
@@ -33,7 +31,7 @@ class PostCategoryController extends Controller implements HasMiddleware
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
 
-        $query = PostCategory::query();
+        $query = ItemCategory::query();
 
         $query->with('created_by', 'updated_by');
 
@@ -52,14 +50,14 @@ class PostCategoryController extends Controller implements HasMiddleware
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/post_categories/Index', [
+        return Inertia::render('admin/item_categories/Index', [
             'tableData' => $tableData,
         ]);
     }
 
-    public function all_page_categories()
+    public function all_item_categories()
     {
-        $query = PostCategory::query();
+        $query = ItemCategory::query();
 
         $tableData = $query->where('status', 'active')->orderBy('id', 'desc')->get();
 
@@ -69,7 +67,7 @@ class PostCategoryController extends Controller implements HasMiddleware
     /**
      * Show the form for creating a new resource.
      */
-    
+
     public function create()
     {
         //
@@ -83,7 +81,7 @@ class PostCategoryController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'code' => 'required|string|max:255|unique:post_categories,code',
+            'code' => 'required|string|max:255|unique:item_categories,code',
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
             'parent_code' => 'nullable|string|max:255',
@@ -110,7 +108,7 @@ class PostCategoryController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/post_categories', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_categories', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -118,27 +116,27 @@ class PostCategoryController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/post_categories', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/item_categories', 900);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        PostCategory::create($validated);
+        ItemCategory::create($validated);
 
-        return redirect()->back()->with('success', 'Post category created successfully!');
+        return redirect()->back()->with('success', 'Category created successfully!');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PostCategory $post_category)
+    public function update(Request $request, ItemCategory $item_category)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'code' => 'required|string|max:255|unique:post_categories,code,' . $post_category->id,
+            'code' => 'required|string|max:255|unique:item_categories,code,' . $item_category->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
             'parent_code' => 'nullable|string|max:255',
@@ -163,11 +161,11 @@ class PostCategoryController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/post_categories', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_categories', 600);
                 $validated['image'] = $created_image_name;
 
-                if ($post_category->image && $created_image_name) {
-                    ImageHelper::deleteImage($post_category->image, 'assets/images/post_categories');
+                if ($item_category->image && $created_image_name) {
+                    ImageHelper::deleteImage($item_category->image, 'assets/images/item_categories');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -175,30 +173,30 @@ class PostCategoryController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/post_categories', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/item_categories', 900);
                 $validated['banner'] = $created_image_name;
 
-                if ($post_category->banner && $created_image_name) {
-                    ImageHelper::deleteImage($post_category->banner, 'assets/images/post_categories');
+                if ($item_category->banner && $created_image_name) {
+                    ImageHelper::deleteImage($item_category->banner, 'assets/images/item_categories');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        $post_category->update($validated);
+        $item_category->update($validated);
 
 
         return redirect()->back()->with('success', 'Category updated successfully!');
     }
 
 
-    public function update_status(Request $request, PostCategory $post_category)
+    public function update_status(Request $request, ItemCategory $item_category)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $post_category->update([
+        $item_category->update([
             'status' => $request->status,
         ]);
 
@@ -208,15 +206,15 @@ class PostCategoryController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PostCategory $post_category)
+    public function destroy(ItemCategory $item_category)
     {
-        if ($post_category->image) {
-            ImageHelper::deleteImage($post_category->image, 'assets/images/post_categories');
+        if ($item_category->image) {
+            ImageHelper::deleteImage($item_category->image, 'assets/images/item_categories');
         }
-        if ($post_category->banner) {
-            ImageHelper::deleteImage($post_category->banner, 'assets/images/post_categories');
+        if ($item_category->banner) {
+            ImageHelper::deleteImage($item_category->banner, 'assets/images/item_categories');
         }
-        $post_category->delete();
+        $item_category->delete();
         return redirect()->back()->with('success', 'Category deleted successfully.');
     }
 }

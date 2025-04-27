@@ -17,8 +17,8 @@ const Index = () => {
             href: '/admin/items',
         },
         {
-            title: t('Brands'),
-            href: '/admin/item_brands',
+            title: t('Body Types'),
+            href: '/admin/item_body_types',
         },
     ];
     const hasPermission = usePermission();

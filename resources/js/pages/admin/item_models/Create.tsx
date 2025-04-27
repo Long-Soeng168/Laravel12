@@ -16,7 +16,8 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     code: z.string().min(1).max(255),
-    name: z.string().min(1).max(255).optional(),
+    name: z.string().max(255).optional(),
+    brand_code: z.string().max(255).optional(),
     name_kh: z.string().max(255).optional(),
     image: z.string().optional(),
 });
@@ -49,6 +50,7 @@ export default function Create({
         resolver: zodResolver(formSchema),
         defaultValues: {
             code: editData?.code || '',
+            brand_code: editData?.brand_code || '',
             name: editData?.name || '',
             name_kh: editData?.name_kh || '',
             image: editData?.image || '',
@@ -56,7 +58,7 @@ export default function Create({
     });
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { types } = usePage().props;
+    const { itemBrands } = usePage().props;
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         // toast(
@@ -70,7 +72,7 @@ export default function Create({
                 image: files ? files[0] : null,
             }));
             if (editData?.id) {
-                post('/admin/item_brands/' + editData.id + '/update', {
+                post('/admin/item_models/' + editData.id + '/update', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -87,7 +89,7 @@ export default function Create({
                     },
                 });
             } else {
-                post('/admin/item_brands', {
+                post('/admin/item_models', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
@@ -164,6 +166,36 @@ export default function Create({
                             )}
                         />
                     </div>
+
+                    {itemBrands ? (
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="brand_code"
+                                render={({ field }) => (
+                                    <FormItem key={field.value}>
+                                        <FormLabel>{t('Brand')}</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder={t("Select")} />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {itemBrands.map((brandObject: any) => (
+                                                    <SelectItem key={brandObject.id + brandObject.name} value={brandObject.code}>
+                                                        {brandObject.name}
+                                                    </SelectItem>
+                                                ))}
+                                                {/* <SelectItem value="link">Link</SelectItem> */}
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.brand_code && <div>{errors.brand_code}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    ) : null}
                 </div>
                 <FormField
                     control={form.control}
@@ -212,7 +244,7 @@ export default function Create({
                                             className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/item_brands/thumb/' + editData?.image}
+                                                src={'/assets/images/item_models/thumb/' + editData?.image}
                                                 alt={editData?.image}
                                                 className="h-full w-full object-contain"
                                             />

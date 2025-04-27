@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
 use App\Models\ItemBrand;
+use App\Models\ItemModel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ItemBrandController extends Controller implements HasMiddleware
+class ItemModelController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -30,7 +31,7 @@ class ItemBrandController extends Controller implements HasMiddleware
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
 
-        $query = ItemBrand::query();
+        $query = ItemModel::query();
 
         if ($search) {
             $query->where(function ($subQuery) use ($search) {
@@ -45,8 +46,9 @@ class ItemBrandController extends Controller implements HasMiddleware
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/item_brands/Index', [
+        return Inertia::render('admin/item_models/Index', [
             'tableData' => $tableData,
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id','desc')->get(),
         ]);
     }
 
@@ -55,7 +57,7 @@ class ItemBrandController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        return Inertia::render('admin/item_brands/Create');
+        return Inertia::render('admin/item_models/Create');
     }
 
     /**
@@ -64,7 +66,8 @@ class ItemBrandController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'code' => 'required|string|max:255|unique:item_brands,code',
+            'code' => 'required|string|max:255|unique:item_models,code',
+            'brand_code' => 'nullable|string|max:255|exists:item_brands,code',
             'name' => 'nullable|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -84,45 +87,46 @@ class ItemBrandController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_brands', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_models', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        ItemBrand::create($validated);
+        ItemModel::create($validated);
 
-        return redirect()->route('item_brands.index')->with('success', 'Item Brand created successfully!');
+        return redirect()->route('item_models.index')->with('success', 'Model created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ItemBrand $item_brand)
+    public function show(ItemModel $item_model)
     {
-        return Inertia::render('admin/item_brands/Show', [
-            'itemBrand' => $item_brand
+        return Inertia::render('admin/item_models/Show', [
+            'itemBrand' => $item_model
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ItemBrand $item_brand)
+    public function edit(ItemModel $item_model)
     {
-        return Inertia::render('admin/item_brands/Edit', [
-            'itemBrand' => $item_brand
+        return Inertia::render('admin/item_models/Edit', [
+            'itemBrand' => $item_model
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ItemBrand $item_brand)
+    public function update(Request $request, ItemModel $item_model)
     {
         $validated = $request->validate([
-            'code' => 'required|string|max:255|unique:item_brands,code,' . $item_brand->id,
+            'code' => 'required|string|max:255|unique:item_models,code,' . $item_model->id,
+            'brand_code' => 'nullable|string|max:255|exists:item_brands,code',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -140,28 +144,28 @@ class ItemBrandController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_brands', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_models', 600);
                 $validated['image'] = $created_image_name;
 
-                if ($item_brand->image && $created_image_name) {
-                    ImageHelper::deleteImage($item_brand->image, 'assets/images/item_brands');
+                if ($item_model->image && $created_image_name) {
+                    ImageHelper::deleteImage($item_model->image, 'assets/images/item_models');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        $item_brand->update($validated);
+        $item_model->update($validated);
 
-        return redirect()->route('item_brands.index')->with('success', 'Item Brand updated successfully!');
+        return redirect()->route('item_models.index')->with('success', 'Model updated successfully!');
     }
 
-    public function update_status(Request $request, ItemBrand $item_brand)
+    public function update_status(Request $request, ItemModel $item_model)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $item_brand->update([
+        $item_model->update([
             'status' => $request->status,
         ]);
 
@@ -171,15 +175,15 @@ class ItemBrandController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ItemBrand $item_brand)
+    public function destroy(ItemModel $item_model)
     {
         // Delete image if exists
-        if ($item_brand->image) {
-            ImageHelper::deleteImage($item_brand->image, 'assets/images/item_brands');
+        if ($item_model->image) {
+            ImageHelper::deleteImage($item_model->image, 'assets/images/item_models');
         }
 
-        $item_brand->delete();
+        $item_model->delete();
 
-        return redirect()->route('item_brands.index')->with('success', 'Item Brand deleted successfully!');//
+        return redirect()->route('item_models.index')->with('success', 'Model deleted successfully!');//
     }
 }

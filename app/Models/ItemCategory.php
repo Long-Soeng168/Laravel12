@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostCategory extends Model
+class ItemCategory extends Model
 {
-    /** @use HasFactory<\Database\Factories\PostCategoryFactory> */
+    /** @use HasFactory<\Database\Factories\ItemCategoryFactory> */
     use HasFactory;
     protected $guarded = [];
     public function created_by()
@@ -20,9 +20,9 @@ class PostCategory extends Model
     }
 
     public function children(){
-        return $this->hasMany(PostCategory::class,'parent_code','code');
+        return $this->hasMany(ItemCategory::class,'parent_code','code');
     }
     public function parent(){
-        return $this->belongsTo(PostCategory::class,'parent_code','code');
+        return $this->belongsTo(ItemCategory::class,'parent_code','code');
     }
 }

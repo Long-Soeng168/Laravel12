@@ -26,6 +26,8 @@ class User extends Authenticatable
         'image',
         'gender',
         'phone',
+        'shop_id',
+        'status',
         'created_by',
         'updated_by',
     ];
@@ -60,5 +62,9 @@ class User extends Authenticatable
     public function updated_by()
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
     }
 }

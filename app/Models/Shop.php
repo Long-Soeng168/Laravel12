@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostCategory extends Model
+class Shop extends Model
 {
-    /** @use HasFactory<\Database\Factories\PostCategoryFactory> */
+    /** @use HasFactory<\Database\Factories\ShopFactory> */
     use HasFactory;
     protected $guarded = [];
     public function created_by()
@@ -18,11 +18,8 @@ class PostCategory extends Model
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
-
-    public function children(){
-        return $this->hasMany(PostCategory::class,'parent_code','code');
-    }
-    public function parent(){
-        return $this->belongsTo(PostCategory::class,'parent_code','code');
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_user_id', 'id');
     }
 }

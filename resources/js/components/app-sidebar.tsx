@@ -73,7 +73,7 @@ export function AppSidebar() {
                     url: '/admin/item_models',
                 },
                 {
-                    title: t('Body Type'),
+                    title: t('Body Types'),
                     permission: 'item view',
                     icon: ShapesIcon,
                     url: '/admin/item_body_types',
@@ -89,25 +89,25 @@ export function AppSidebar() {
         {
             title: t('DTC'),
             permission: 'dtc view',
-            url: '/dtc',
+            url: '/admin/dtc',
             icon: CarIcon,
         },
         {
             title: t('Shops'),
             permission: 'shop view',
-            url: '/shops',
+            url: '/admin/shops',
             icon: StoreIcon,
         },
         {
             title: t('Garages'),
             permission: 'garage view',
-            url: '/garages',
+            url: '/admin/garages',
             icon: WarehouseIcon,
         },
         {
             title: t('Videos'),
             permission: 'video view',
-            url: '/videos',
+            url: '/admin/videos',
             icon: TvMinimalPlayIcon,
         },
         {

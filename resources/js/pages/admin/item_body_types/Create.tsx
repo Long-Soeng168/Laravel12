@@ -4,7 +4,6 @@ import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
@@ -16,7 +15,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     code: z.string().min(1).max(255),
-    name: z.string().min(1).max(255).optional(),
+    name: z.string().max(255).optional(),
     name_kh: z.string().max(255).optional(),
     image: z.string().optional(),
 });
@@ -70,7 +69,7 @@ export default function Create({
                 image: files ? files[0] : null,
             }));
             if (editData?.id) {
-                post('/admin/item_brands/' + editData.id + '/update', {
+                post('/admin/item_body_types/' + editData.id + '/update', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -87,7 +86,7 @@ export default function Create({
                     },
                 });
             } else {
-                post('/admin/item_brands', {
+                post('/admin/item_body_types', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
@@ -212,7 +211,7 @@ export default function Create({
                                             className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                         >
                                             <img
-                                                src={'/assets/images/item_brands/thumb/' + editData?.image}
+                                                src={'/assets/images/item_body_types/thumb/' + editData?.image}
                                                 alt={editData?.image}
                                                 className="h-full w-full object-contain"
                                             />

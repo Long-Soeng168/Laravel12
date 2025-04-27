@@ -41,6 +41,7 @@ class UserController extends Controller implements HasMiddleware
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%")
                     ->orWhere('email', 'LIKE', "%{$search}%");
             });
         }
@@ -68,6 +69,8 @@ class UserController extends Controller implements HasMiddleware
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'roles' => 'nullable|array'
         ]);
+        // dd($validated );
+
 
         try {
             // Add creator and updater
@@ -104,7 +107,7 @@ class UserController extends Controller implements HasMiddleware
                 $user->syncRoles('User');
             }
 
-            return redirect()->back()->with('success', 'User updated successfully!');
+            return redirect()->back()->with('success', 'User create successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to create user: ' . $e->getMessage());
         }

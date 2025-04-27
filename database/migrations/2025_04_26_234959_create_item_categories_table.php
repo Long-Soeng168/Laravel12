@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_categories', function (Blueprint $table) {
+        Schema::create('item_categories', function (Blueprint $table) {
             $table->id();
+
 
             $table->string('name');
             $table->string('name_kh')->nullable();
@@ -41,29 +42,27 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('post_categories', function (Blueprint $table) {
+        Schema::table('item_categories', function (Blueprint $table) {
             $table->string('parent_code')->nullable();
             $table->foreign('parent_code')
                 ->references('code')
-                ->on('post_categories')
+                ->on('item_categories')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
     }
-
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('post_categories', function (Blueprint $table) {
+        Schema::table('item_categories', function (Blueprint $table) {
             $table->dropForeign(['parent_code']);
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);
         });
-        
-        Schema::dropIfExists('post_categories');
+
+        Schema::dropIfExists('item_categories');
     }
 };
