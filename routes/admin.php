@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GarageController;
+use App\Http\Controllers\GaragePostController;
 use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\ItemBodyTypeController;
 use App\Http\Controllers\ItemBrandController;
@@ -24,7 +25,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Models\PostDailyView;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -88,23 +88,29 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/item_body_types', ItemBodyTypeController::class);
     Route::post('admin/item_body_types/{item_body_type}/update', [ItemBodyTypeController::class, 'update']);
     Route::post('admin/item_body_types/{item_body_type}/update_status', [ItemBodyTypeController::class, 'update_status']);
-     // Item Category Route
-     Route::resource('admin/item_categories', ItemCategoryController::class);
-     Route::post('admin/item_categories/{item_category}/update', [ItemCategoryController::class, 'update']);
-     Route::get('admin/all_item_categories', [ItemCategoryController::class, 'all_item_categories']);
-     Route::post('admin/item_categories/{item_category}/update_status', [ItemCategoryController::class, 'update_status']);
-     
-     // Shop Route
-     Route::resource('admin/shops', ShopController::class);
-     Route::post('admin/shops/{shop}/update', [ShopController::class, 'update']);
-     Route::get('admin/all_shops', [ShopController::class, 'all_shops']);
-     Route::post('admin/shops/{shop}/update_status', [ShopController::class, 'update_status']);
-     // Shop Route
-     Route::resource('admin/garages', GarageController::class);
-     Route::post('admin/garages/{garage}/update', [GarageController::class, 'update']);
-     Route::get('admin/all_garages', [GarageController::class, 'all_garages']);
-     Route::post('admin/garages/{garage}/update_status', [GarageController::class, 'update_status']);
+    // Item Category Route
+    Route::resource('admin/item_categories', ItemCategoryController::class);
+    Route::post('admin/item_categories/{item_category}/update', [ItemCategoryController::class, 'update']);
+    Route::get('admin/all_item_categories', [ItemCategoryController::class, 'all_item_categories']);
+    Route::post('admin/item_categories/{item_category}/update_status', [ItemCategoryController::class, 'update_status']);
 
+    // Shop Route
+    Route::resource('admin/shops', ShopController::class);
+    Route::post('admin/shops/{shop}/update', [ShopController::class, 'update']);
+    Route::get('admin/all_shops', [ShopController::class, 'all_shops']);
+    Route::post('admin/shops/{shop}/update_status', [ShopController::class, 'update_status']);
+    // Garage Route
+    Route::resource('admin/garages', GarageController::class);
+    Route::post('admin/garages/{garage}/update', [GarageController::class, 'update']);
+    Route::get('admin/all_garages', [GarageController::class, 'all_garages']);
+    Route::post('admin/garages/{garage}/update_status', [GarageController::class, 'update_status']);
+    // Garage Post Route
+    Route::resource('admin/garage_posts', GaragePostController::class);
+    Route::post('admin/garage_posts/{garage_post}/update', [GaragePostController::class, 'update']);
+    Route::post('admin/garage_posts/{garage_post}/update_status', [GaragePostController::class, 'update_status']);
+    Route::delete('admin/garage_posts/images/{image}', [GaragePostController::class, 'destroy_image']);
+    Route::get('admin/garage_post_view_counts', [PostViewController::class, 'index']);
+    Route::get('admin/garage_post_view_counts/export', [PostViewController::class, 'export']);
 
     // Project Route
     Route::resource('admin/projects', ProjectController::class);
