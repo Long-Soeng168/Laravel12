@@ -234,6 +234,12 @@ export function AppSidebar() {
             icon: HandshakeIcon,
         },
         {
+            title: t('Courses'),
+            permission: 'partner view',
+            url: '/admin/courses',
+            icon: HandshakeIcon,
+        },
+        {
             title: t('Headings'),
             permission: 'heading view',
             url: '/admin/headings',

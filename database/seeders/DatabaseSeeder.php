@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\Dtc;
 use App\Models\Folder;
 use App\Models\ItemBrand;
@@ -37,5 +38,6 @@ class DatabaseSeeder extends Seeder
         // ItemBrand::factory(30)->create();
         // PhoneCompany::factory(30)->create();
         // Dtc::factory(30)->create();
+        Course::factory(30)->create();
     }
 }

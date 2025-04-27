@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DtcController;
 use App\Http\Controllers\HeadingController;
@@ -77,6 +78,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/dtcs', DtcController::class);
     Route::post('admin/dtcs/{dtc}/update', [DtcController::class, 'update']);
     Route::post('admin/dtcs/{dtc}/update_status', [DtcController::class, 'update_status']);
+
+    // Courses Route
+    Route::resource('admin/courses', CourseController::class);
+    Route::post('admin/courses/{course}/update', [CourseController::class, 'update']);
+    Route::post('admin/courses/{course}/update_status', [CourseController::class, 'update_status']);
 
     // Item Brands Route
     Route::resource('admin/item_brands', ItemBrandController::class);
