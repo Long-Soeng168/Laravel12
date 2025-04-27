@@ -69,6 +69,7 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
+            'video_link' => 'nullable|url|max:500',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'long_description' => 'nullable|string',
@@ -158,6 +159,7 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
+            'video_link' => 'nullable|url|max:500',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'long_description' => 'nullable|string',

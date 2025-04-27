@@ -23,6 +23,7 @@ import * as z from 'zod';
 const formSchema = z.object({
     title: z.string().min(1).min(1).max(255),
     title_kh: z.string().min(0).max(255).optional(),
+    video_link: z.string().min(0).max(255).optional(),
     short_description: z.string().min(0).max(500).optional(),
     short_description_kh: z.string().min(0).max(500).optional(),
     link: z.string().min(0).max(255).optional(),
@@ -61,6 +62,7 @@ export default function Create() {
         defaultValues: {
             title: editData?.title || '',
             title_kh: editData?.title_kh || '',
+            video_link: editData?.video_link || '',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
             link: editData?.link || '',
@@ -149,7 +151,7 @@ export default function Create() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
-                    <div className="grid grid-cols-12 gap-4">
+                    <div className="grid grid-cols-12 gap-4 space-y-4">
                         <div className="col-span-12">
                             <FormField
                                 control={form.control}
@@ -161,6 +163,21 @@ export default function Create() {
                                             <Input placeholder="Title" type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-12">
+                            <FormField
+                                control={form.control}
+                                name="video_link"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Youtube Video Link</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="video_link" type="text" {...field} />
+                                        </FormControl>
+                                        <FormMessage>{errors.video_link && <div>{errors.video_link}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
