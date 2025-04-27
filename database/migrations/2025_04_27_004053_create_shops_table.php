@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->string('location', 500)->nullable();
             $table->string('status')->nullable()->default('active');
             $table->string('short_description', 500)->nullable();
