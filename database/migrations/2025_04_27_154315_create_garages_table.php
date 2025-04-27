@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('garages', function (Blueprint $table) {
             $table->id();
 
             $table->string('name');
@@ -57,12 +57,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('shops', function (Blueprint $table) {
+        Schema::table('garages', function (Blueprint $table) {
             $table->dropForeign(['owner_user_id']);
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);
         });
 
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('garages');
     }
 };

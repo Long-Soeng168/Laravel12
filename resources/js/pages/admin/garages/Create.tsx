@@ -92,7 +92,7 @@ export default function Create({
                 banner: filesBanner ? filesBanner[0] : null,
             }));
             if (editData?.id) {
-                post('/admin/shops/' + editData?.id + '/update', {
+                post('/admin/garages/' + editData?.id + '/update', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
@@ -110,7 +110,7 @@ export default function Create({
                     },
                 });
             } else {
-                post('/admin/shops', {
+                post('/admin/garages', {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         form.reset();
@@ -141,8 +141,8 @@ export default function Create({
     const currentBreadcrumb = readOnly ? t('Show') : editData ? t('Edit') : t('Create');
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('Shops'),
-            href: '/admin/shops',
+            title: t('Garages'),
+            href: '/admin/garages',
         },
         {
             title: currentBreadcrumb,
@@ -387,7 +387,7 @@ export default function Create({
                                                 className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                             >
                                                 <img
-                                                    src={'/assets/images/shops/thumb/' + editData?.logo}
+                                                    src={'/assets/images/garages/thumb/' + editData?.logo}
                                                     alt={editData?.logo}
                                                     className="h-full w-full object-contain"
                                                 />
@@ -444,7 +444,7 @@ export default function Create({
                                                 className="group bg-background relative aspect-video h-auto w-full overflow-hidden rounded-md border p-0"
                                             >
                                                 <img
-                                                    src={'/assets/images/shops/thumb/' + editData?.banner}
+                                                    src={'/assets/images/garages/thumb/' + editData?.banner}
                                                     alt={editData?.banner}
                                                     className="h-full w-full object-contain"
                                                 />

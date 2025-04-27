@@ -27,6 +27,7 @@ class User extends Authenticatable
         'gender',
         'phone',
         'shop_id',
+        'garage_id',
         'status',
         'created_by',
         'updated_by',
@@ -66,5 +67,9 @@ class User extends Authenticatable
     public function shop()
     {
         return $this->belongsTo(Shop::class, 'shop_id', 'id');
+    }
+    public function garage()
+    {
+        return $this->belongsTo(Garage::class, 'garage_id', 'id');
     }
 }

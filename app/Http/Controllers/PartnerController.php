@@ -63,7 +63,7 @@ class PartnerController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:partners,name',
             'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'link' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -122,7 +122,7 @@ class PartnerController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:partners,name,' . $partner->id,
             'name_kh' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'link' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

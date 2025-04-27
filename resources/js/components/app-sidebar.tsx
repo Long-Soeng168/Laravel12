@@ -103,6 +103,20 @@ export function AppSidebar() {
             permission: 'garage view',
             url: '/admin/garages',
             icon: WarehouseIcon,
+            subItems: [
+                {
+                    title: t('Garages'),
+                    permission: 'garage view',
+                    url: '/admin/garages',
+                    icon: WarehouseIcon,
+                },
+                {
+                    title: t('Posts'),
+                    permission: 'garage view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/garage_posts',
+                },
+            ],
         },
         {
             title: t('Videos'),

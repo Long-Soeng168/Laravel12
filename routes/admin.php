@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GarageController;
 use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\ItemBodyTypeController;
 use App\Http\Controllers\ItemBrandController;
@@ -98,6 +99,11 @@ Route::middleware('auth')->group(function () {
      Route::post('admin/shops/{shop}/update', [ShopController::class, 'update']);
      Route::get('admin/all_shops', [ShopController::class, 'all_shops']);
      Route::post('admin/shops/{shop}/update_status', [ShopController::class, 'update_status']);
+     // Shop Route
+     Route::resource('admin/garages', GarageController::class);
+     Route::post('admin/garages/{garage}/update', [GarageController::class, 'update']);
+     Route::get('admin/all_garages', [GarageController::class, 'all_garages']);
+     Route::post('admin/garages/{garage}/update_status', [GarageController::class, 'update_status']);
 
 
     // Project Route

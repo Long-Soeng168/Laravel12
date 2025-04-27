@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
-use App\Models\Shop;
+use App\Models\Garage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,15 +11,15 @@ use Inertia\Inertia;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ShopController extends Controller implements HasMiddleware
+class GarageController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:shop view', only: ['index', 'show', 'all_shops']),
-            new Middleware('permission:shop create', only: ['create', 'store']),
-            new Middleware('permission:shop update', only: ['edit', 'update', 'update_status']),
-            new Middleware('permission:shop delete', only: ['destroy', 'destroy_image']),
+            new Middleware('permission:garage view', only: ['index', 'show', 'all_garages']),
+            new Middleware('permission:garage create', only: ['create', 'store']),
+            new Middleware('permission:garage update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:garage delete', only: ['destroy', 'destroy_image']),
         ];
     }
     /**
@@ -32,7 +32,7 @@ class ShopController extends Controller implements HasMiddleware
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
 
-        $query = Shop::query();
+        $query = Garage::query();
 
         $query->with('created_by', 'updated_by');
 
@@ -52,14 +52,14 @@ class ShopController extends Controller implements HasMiddleware
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
-        return Inertia::render('admin/shops/Index', [
+        return Inertia::render('admin/garages/Index', [
             'tableData' => $tableData,
         ]);
     }
 
-    public function all_shops()
+    public function all_garages()
     {
-        $query = Shop::query();
+        $query = Garage::query();
 
         $tableData = $query->where('status', 'active')->orderBy('id', 'desc')->get();
 
@@ -70,27 +70,27 @@ class ShopController extends Controller implements HasMiddleware
      * Show the form for creating a new resource.
      */
 
-    public function show(Shop $shop)
+    public function show(Garage $garage)
     {
         $all_users = User::orderBy('id', 'desc')
-            ->where('shop_id', null)
+            ->where('garage_id', null)
             ->get();
         // return ($all_users);
-        // return $shop->load('owner');
-        return Inertia::render('admin/shops/Create', [
-            'editData' => $shop->load('owner'),
+        // return $garage->load('owner');
+        return Inertia::render('admin/garages/Create', [
+            'editData' => $garage->load('owner'),
             'all_users' => $all_users,
             'readOnly' => true,
         ]);
     }
-    public function edit(Shop $shop)
+    public function edit(Garage $garage)
     {
         $all_users = User::orderBy('id', 'desc')
-            ->where('shop_id', null)
+            ->where('garage_id', null)
             ->get();
         // return ($all_users);
-        return Inertia::render('admin/shops/Create', [
-            'editData' => $shop->load('owner'),
+        return Inertia::render('admin/garages/Create', [
+            'editData' => $garage->load('owner'),
             'all_users' => $all_users,
         ]);
     }
@@ -98,10 +98,10 @@ class ShopController extends Controller implements HasMiddleware
     public function create()
     {
         $all_users = User::orderBy('id', 'desc')
-            ->where('shop_id', null)
+            ->where('garage_id', null)
             ->get();
         // return ($all_users);
-        return Inertia::render('admin/shops/Create', [
+        return Inertia::render('admin/garages/Create', [
             'all_users' => $all_users,
         ]);
     }
@@ -143,7 +143,7 @@ class ShopController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/shops', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/garages', 600);
                 $validated['logo'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -151,30 +151,30 @@ class ShopController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/shops', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/garages', 900);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        $shop = Shop::create($validated);
+        $garage = Garage::create($validated);
 
-        if ($shop) {
-            $user = User::where('id', $validated['owner_user_id'])->where('shop_id', null)->first();
+        if ($garage) {
+            $user = User::where('id', $validated['owner_user_id'])->where('garage_id', null)->first();
             if ($user)
                 $user->update([
-                    'shop_id' => $shop->id,
+                    'garage_id' => $garage->id,
                 ]);
         }
 
-        return redirect()->back()->with('success', 'Shop created successfully!');
+        return redirect()->back()->with('success', 'Garage created successfully!');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Shop $shop)
+    public function update(Request $request, Garage $garage)
     {
         $validated = $request->validate([
             'owner_user_id' => 'required|exists:users,id',
@@ -192,9 +192,9 @@ class ShopController extends Controller implements HasMiddleware
 
         $validated['updated_by'] = $request->user()->id;
 
-        if ($validated['owner_user_id'] != $shop->owner_user_id) {
-            User::where('id', $shop->owner_user_id)->update([
-                'shop_id' => null,
+        if ($validated['owner_user_id'] != $garage->owner_user_id) {
+            User::where('id', $garage->owner_user_id)->update([
+                'garage_id' => null,
             ]);
         }
 
@@ -211,11 +211,11 @@ class ShopController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/shops', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/garages', 600);
                 $validated['logo'] = $created_image_name;
 
-                if ($shop->logo && $created_image_name) {
-                    ImageHelper::deleteImage($shop->logo, 'assets/images/shops');
+                if ($garage->logo && $created_image_name) {
+                    ImageHelper::deleteImage($garage->logo, 'assets/images/garages');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -223,38 +223,38 @@ class ShopController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/shops', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/garages', 900);
                 $validated['banner'] = $created_image_name;
 
-                if ($shop->banner && $created_image_name) {
-                    ImageHelper::deleteImage($shop->banner, 'assets/images/shops');
+                if ($garage->banner && $created_image_name) {
+                    ImageHelper::deleteImage($garage->banner, 'assets/images/garages');
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
 
-        $updated_success = $shop->update($validated);
+        $updated_success = $garage->update($validated);
 
         if ($updated_success) {
-            $user = User::where('id', $validated['owner_user_id'])->where('shop_id', null)->first();
+            $user = User::where('id', $validated['owner_user_id'])->where('garage_id', null)->first();
             if ($user)
                 $user->update([
-                    'shop_id' => $shop->id,
+                    'garage_id' => $garage->id,
                 ]);
         }
 
 
-        return redirect()->back()->with('success', 'Shop updated successfully!');
+        return redirect()->back()->with('success', 'Garage updated successfully!');
     }
 
 
-    public function update_status(Request $request, Shop $shop)
+    public function update_status(Request $request, Garage $garage)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $shop->update([
+        $garage->update([
             'status' => $request->status,
         ]);
 
@@ -264,15 +264,15 @@ class ShopController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Shop $shop)
+    public function destroy(Garage $garage)
     {
-        if ($shop->logo) {
-            ImageHelper::deleteImage($shop->logo, 'assets/images/shops');
+        if ($garage->logo) {
+            ImageHelper::deleteImage($garage->logo, 'assets/images/garages');
         }
-        if ($shop->banner) {
-            ImageHelper::deleteImage($shop->banner, 'assets/images/shops');
+        if ($garage->banner) {
+            ImageHelper::deleteImage($garage->banner, 'assets/images/garages');
         }
-        $shop->delete();
-        return redirect()->back()->with('success', 'Shop deleted successfully.');
+        $garage->delete();
+        return redirect()->back()->with('success', 'Garage deleted successfully.');
     }
 }

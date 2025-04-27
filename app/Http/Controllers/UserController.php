@@ -64,7 +64,7 @@ class UserController extends Controller implements HasMiddleware
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|max:255|confirmed', // Laravel auto-validates against confirm_password
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'gender' => 'nullable|string|in:male,female,other',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'roles' => 'nullable|array'
@@ -123,7 +123,7 @@ class UserController extends Controller implements HasMiddleware
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6|max:255|confirmed', // Laravel auto-validates against confirm_password
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'gender' => 'nullable|string|in:male,female,other',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'roles' => 'nullable|array'

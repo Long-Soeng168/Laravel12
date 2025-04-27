@@ -58,6 +58,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Name')}
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('phone')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Phone')}
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('address')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Address')}
@@ -193,6 +198,7 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
+                                <TableCell>{item.phone || '---'}</TableCell>
                                 <TableCell>{item.address || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
