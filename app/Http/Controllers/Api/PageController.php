@@ -44,3 +44,4 @@ class PageController extends Controller
         return response()->json($tableData);
     }
 }
+

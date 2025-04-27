@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Banner;
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -8,13 +10,43 @@ Route::get('/', function () {
     return Inertia::render('westernuniversity/About');
 })->name('home');
 Route::get('/hestory_and_values', function () {
-    return Inertia::render('westernuniversity/about/HestoryAndValues');
+    $ourHistory = Page::where('code', 'OUR_HESTORY')->with('images')->first();
+    $ourVision = Page::where('code', 'OUR_VISION')->with('images')->first();
+    $ourMission = Page::where('code', 'OUR_MISSION')->first();
+    $ourHistoryBanner = Banner::where('position_code', 'HESTORY_AND_VALUES')->first();
+    $timeLine = Page::where('code', 'TIME_LINE')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    $valuesWiscare = Page::where('code', 'VALUES_WISCARE')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+  
+    // return ($ourHistoryBanner);
+    return Inertia::render('westernuniversity/about/HestoryAndValues', [
+        'ourHistory' => $ourHistory,
+        'timeLine' => $timeLine,
+        'ourVision' => $ourVision,
+        'ourMission' => $ourMission,
+        'valuesWiscare' => $valuesWiscare,
+        'ourHistoryBanner' => $ourHistoryBanner,
+
+    ]);
 })->name('hestory_and_values');
 Route::get('/school_facilities', function () {
-    return Inertia::render('westernuniversity/about/SchoolFacilities');
+    $schoolFacilityBanner = Banner::where('position_code', 'SCHOOL_FACILITIES')->first();
+    $schoolFacilities = Page::where('code', 'SCHOOL_FACILITIES')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    return Inertia::render('westernuniversity/about/SchoolFacilities', [
+        'schoolFacilityBanner' => $schoolFacilityBanner,
+        'schoolFacilities' => $schoolFacilities,
+    ]);
 })->name('school_facilities');
 Route::get('/campuses', function () {
-    return Inertia::render('westernuniversity/about/Campuses');
+    $campuseBanner = Banner::where('position_code', 'CAMPUSES')->first();
+    return Inertia::render('westernuniversity/about/Campuses',[
+'campuseBanner' => $campuseBanner,
+    ]);
 })->name('campuses');
 Route::get('/detail/{id}', function ($id) {
     return Inertia::render('westernuniversity/about/Detail', [
@@ -65,7 +97,3 @@ Route::get('/contact', function () {
 Route::get('/careers', function () {
     return Inertia::render('westernuniversity/contact/Careers');
 })->name('careers');
-
-
-
-

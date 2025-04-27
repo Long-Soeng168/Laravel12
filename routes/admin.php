@@ -9,6 +9,7 @@ use App\Http\Controllers\ItemBodyTypeController;
 use App\Http\Controllers\ItemBrandController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemModelController;
+use App\Http\Controllers\ItemColorController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
@@ -49,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::get('items', function () {
         return Inertia::render('admin/items/page');
     });
+
+    Route::resource('admin/item_colors', ItemColorController::class);
+    Route::post('admin/item_colors/{item_colors}/update', [ItemColorController::class, 'update']);
+
 
 
     // Type Route
