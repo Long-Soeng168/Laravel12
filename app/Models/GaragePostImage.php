@@ -9,4 +9,5 @@ class GaragePostImage extends Model
 {
     /** @use HasFactory<\Database\Factories\GaragePostImageFactory> */
     use HasFactory;
+    protected $guarded = [];
 }

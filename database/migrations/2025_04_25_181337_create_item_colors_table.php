@@ -41,7 +41,7 @@ return new class extends Migration
     public function down(): void
     {
         // Drop foreign key before dropping the table
-        Schema::table('banners', function (Blueprint $table) {
+        Schema::table('item_colors', function (Blueprint $table) {
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);
         });

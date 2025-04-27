@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
+use App\Models\Garage;
 use App\Models\Link;
 use App\Models\GaragePost; 
 use App\Models\PostCategory; 
@@ -37,7 +38,7 @@ class GaragePostController extends Controller implements HasMiddleware
 
         $query = GaragePost::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'category', 'source_detail');
+        $query->with('created_by', 'updated_by', 'images');
 
         if ($status) {
             $query->where('status', $status);
@@ -66,6 +67,7 @@ class GaragePostController extends Controller implements HasMiddleware
         return Inertia::render('admin/garage_posts/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'allGarages' => Garage::where('status', 'active')->orderBy('id', 'desc')->get(),
             'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
         ]);
     }
@@ -75,6 +77,7 @@ class GaragePostController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'post_date' => 'required|date',
@@ -85,7 +88,7 @@ class GaragePostController extends Controller implements HasMiddleware
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'source' => 'nullable|string|max:255',
-            'category_code' => 'nullable|string',
+            'garage_id' => 'required|exists:garages,id',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
@@ -106,7 +109,7 @@ class GaragePostController extends Controller implements HasMiddleware
             }
         }
 
-        $created_project = GaragePost::create($validated);
+        $created_post = GaragePost::create($validated);
 
         if ($image_files) {
             try {
@@ -114,7 +117,7 @@ class GaragePostController extends Controller implements HasMiddleware
                     $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/garage_posts', 600);
                     GaragePostImage::create([
                         'image' => $created_image_name,
-                        'post_id' => $created_project->id,
+                        'post_id' => $created_post->id,
                     ]);
                 }
             } catch (\Exception $e) {
@@ -127,11 +130,12 @@ class GaragePostController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-    public function show(GaragePost $post)
+    public function show(GaragePost $garage_post)
     {
         return Inertia::render('admin/garage_posts/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
-            'editData' => $post->load('images'),
+            'editData' => $garage_post->load('images'),
+            'allGarages' => Garage::where('status', 'active')->orderBy('id', 'desc')->get(),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
             'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
             'readOnly' => true,
@@ -142,11 +146,12 @@ class GaragePostController extends Controller implements HasMiddleware
      * Show the form for editing the specified resource.
      */
 
-    public function edit(GaragePost $post)
+    public function edit(GaragePost $garage_post)
     {
         return Inertia::render('admin/garage_posts/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
-            'editData' => $post->load('images'),
+            'editData' => $garage_post->load('images'),
+            'allGarages' => Garage::where('status', 'active')->orderBy('id', 'desc')->get(),
             'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
             'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
         ]);
@@ -155,7 +160,7 @@ class GaragePostController extends Controller implements HasMiddleware
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, GaragePost $garage_post)
     {
         // dd($request->all());
         $validated = $request->validate([
@@ -168,7 +173,7 @@ class GaragePostController extends Controller implements HasMiddleware
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'source' => 'nullable|string|max:255',
-            'category_code' => 'nullable|string',
+            'garage_id' => 'required|exists:garages,id',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
@@ -188,7 +193,7 @@ class GaragePostController extends Controller implements HasMiddleware
             }
         }
 
-        $post->update($validated);
+        $garage_post->update($validated);
 
         if ($image_files) {
             try {
@@ -196,7 +201,7 @@ class GaragePostController extends Controller implements HasMiddleware
                     $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/garage_posts', 600);
                     GaragePostImage::create([
                         'image' => $created_image_name,
-                        'post_id' => $post->id,
+                        'post_id' => $garage_post->id,
                     ]);
                 }
             } catch (\Exception $e) {
@@ -206,12 +211,12 @@ class GaragePostController extends Controller implements HasMiddleware
         return redirect()->back()->with('success', 'Post Updated Successfully!.');
     }
 
-    public function update_status(Request $request, GaragePost $post)
+    public function update_status(Request $request, GaragePost $garage_post)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $post->update([
+        $garage_post->update([
             'status' => $request->status,
         ]);
 
@@ -221,14 +226,14 @@ class GaragePostController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GaragePost $post)
+    public function destroy(GaragePost $garage_post)
     {
-        if (count($post->images) > 0) {
-            foreach ($post->images as $image) {
+        if (count($garage_post->images) > 0) {
+            foreach ($garage_post->images as $image) {
                 ImageHelper::deleteImage($image->image, 'assets/images/garage_posts');
             }
         }
-        $post->delete();
+        $garage_post->delete();
         return redirect()->back()->with('success', 'post deleted successfully.');
     }
 

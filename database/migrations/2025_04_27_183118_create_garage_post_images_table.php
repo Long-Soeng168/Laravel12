@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')
                 ->references('id')
-                ->on('posts')
+                ->on('garage_posts')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
 

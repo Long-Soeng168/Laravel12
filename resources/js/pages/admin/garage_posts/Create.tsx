@@ -12,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
-import MyCkeditor5 from '@/pages/plugins/ckeditor5/my-ckeditor5';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
@@ -31,7 +30,7 @@ const formSchema = z.object({
     link: z.string().max(255).optional(),
     type: z.string().optional(),
     status: z.string().optional(),
-    // parent_id: z.string().optional(),
+    garage_id: z.string(),
     source: z.string().optional(),
     // category_code: z.string().optional(),
     post_date: z.coerce.date(),
@@ -53,7 +52,7 @@ export default function Create() {
     };
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { postCategories, types, editData, links, readOnly } = usePage().props;
+    const { postCategories, allGarages, types, editData, links, readOnly } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
@@ -70,6 +69,7 @@ export default function Create() {
             link: editData?.link || '',
             type: editData?.type || 'content',
             source: editData?.source?.toString() || '',
+            garage_id: editData?.garage_id?.toString() || '',
             status: editData?.status || 'active',
             // category_code: editData?.category_code?.toString() || '',
             post_date: editData?.id ? new Date(editData?.post_date) : new Date(),
@@ -102,6 +102,11 @@ export default function Create() {
                                 description: page.props.flash.success,
                             });
                         }
+                        if (page.props.flash?.error) {
+                            toast.error('Error', {
+                                description: page.props.flash.error,
+                            });
+                        }
                     },
                     onError: (e) => {
                         toast.error('Error', {
@@ -123,6 +128,11 @@ export default function Create() {
                                 description: page.props.flash.success,
                             });
                         }
+                        if (page.props.flash?.error) {
+                            toast.error('Error', {
+                                description: page.props.flash.error,
+                            });
+                        }
                     },
                     onError: (e) => {
                         toast.error('Error', {
@@ -140,7 +150,7 @@ export default function Create() {
     const currentBreadcrumb = readOnly ? t('Show') : editData ? t('Edit') : t('Create');
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('garage_Posts'),
+            title: t('Garage Posts'),
             href: '/admin/garage_posts',
         },
         {
@@ -154,6 +164,78 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="garage_id"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col" key={field.value}>
+                                        <FormLabel>{t('Garage')}</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                                                    >
+                                                        {field.value
+                                                            ? (() => {
+                                                                  const garage = allGarages?.find((garage) => garage.id == field.value);
+                                                                  return garage ? `${garage.name} (${garage.name_kh})` : '';
+                                                              })()
+                                                            : t('Select')}
+
+                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="p-0">
+                                                <Command>
+                                                    <CommandInput placeholder={t('Search')} />
+                                                    <CommandList>
+                                                        <CommandEmpty>{t('No data')}</CommandEmpty>
+                                                        <CommandGroup>
+                                                            <CommandItem
+                                                                value=""
+                                                                onSelect={() => {
+                                                                    form.setValue('garage_id', '');
+                                                                }}
+                                                            >
+                                                                <Check
+                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
+                                                                />
+                                                                {t('Select category')}
+                                                            </CommandItem>
+                                                            {allGarages?.map((garageObject) => (
+                                                                <CommandItem
+                                                                    value={garageObject.name}
+                                                                    key={garageObject.id}
+                                                                    onSelect={() => {
+                                                                        form.setValue('garage_id', garageObject.id.toString());
+                                                                    }}
+                                                                >
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'mr-2 h-4 w-4',
+                                                                            garageObject.id === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                    {garageObject.name} {garageObject.name_kh && `(${garageObject.name_kh})`}
+                                                                </CommandItem>
+                                                            ))}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormDescription>{t('Select the garage where this post belong.')}</FormDescription>
+                                        <FormMessage>{errors.garage_id && <div>{errors.garage_id}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -196,7 +278,7 @@ export default function Create() {
                     </div>
 
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -212,7 +294,7 @@ export default function Create() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="title_kh"
@@ -226,7 +308,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <FormField
@@ -243,7 +325,7 @@ export default function Create() {
                         )}
                     />
 
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="short_description_kh"
                         render={({ field }) => (
@@ -255,10 +337,10 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
-                        <div className="col-span-6 flex space-x-2">
+                        {/* <div className="col-span-6 flex space-x-2">
                             <span>
                                 <FormField
                                     control={form.control}
@@ -315,9 +397,9 @@ export default function Create() {
                                     )}
                                 />
                             </span>
-                        </div>
+                        </div> */}
 
-                        {types ? (
+                        {/* {types ? (
                             <div className="col-span-6">
                                 <FormField
                                     control={form.control}
@@ -335,7 +417,6 @@ export default function Create() {
                                                     {types.map((typeObject) => (
                                                         <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>{typeObject.label}</SelectItem>
                                                     ))}
-                                                    {/* <SelectItem value="link">Link</SelectItem> */}
                                                 </SelectContent>
                                             </Select>
                                             <FormDescription>{t('Choose type (Link) for external content and fill Link input.')}</FormDescription>
@@ -344,11 +425,9 @@ export default function Create() {
                                     )}
                                 />
                             </div>
-                        ) : null}
-                    </div>
+                        ) : null} */}
 
-                    <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="category_code"
@@ -418,7 +497,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
                             <FormField
@@ -456,7 +535,7 @@ export default function Create() {
                                             <div className="flex w-full flex-col items-center justify-center p-8">
                                                 <CloudUpload className="h-10 w-10 text-gray-500" />
                                                 <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                     <span className="font-semibold">{t('Click to upload')}</span>
+                                                    <span className="font-semibold">{t('Click to upload')}</span>
                                                     &nbsp; or drag and drop
                                                 </p>
                                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
@@ -515,7 +594,7 @@ export default function Create() {
                         </div>
                     )}
                     {/* Start Long Description */}
-                    <div key={editorKey} className="space-y-8">
+                    {/* <div key={editorKey} className="space-y-8">
                         <div>
                             <p className="mb-1 text-sm font-medium">{t('Long Description')}</p>
                             <MyCkeditor5 data={long_description} setData={setLong_description} />
@@ -524,7 +603,7 @@ export default function Create() {
                             <p className="mb-1 text-sm font-medium">{t('Long Description Khmer')}</p>
                             <MyCkeditor5 data={long_description_kh} setData={setLong_description_kh} />
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* End Long Description */}
                     {progress && <ProgressWithValue value={progress.percentage} position="start" />}

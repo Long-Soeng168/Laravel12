@@ -52,25 +52,30 @@ const MyTableData = () => {
                             <TableHead className="w-[50px]">{t('No')}</TableHead>
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
-                            <TableHead>{t('Link')}</TableHead>
+                            {/* <TableHead>{t('Link')}</TableHead> */}
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('title_kh')}>
+                            {/* <TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title Khmer')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('short_description')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('short_description_kh')}>
+                            {/* <TableHead onClick={() => handleSort('short_description_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description Khmer')}
+                                </span>
+                            </TableHead> */}
+                            <TableHead onClick={() => handleSort('garage_id')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Garage')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('status')}>
@@ -78,16 +83,16 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Status')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('category_code')}>
+                            {/* <TableHead onClick={() => handleSort('category_code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Category Code')}
                                 </span>
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('type')}>
+                            </TableHead> */}
+                            {/* <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Type')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('total_view_counts')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Total View')}
@@ -170,7 +175,7 @@ const MyTableData = () => {
                                         />
                                     )}
                                 </TableCell>
-                                <TableCell className="text-center">
+                                {/* <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
                                             <MyTooltipButton variant="ghost" title={item.link} className="p-0 hover:bg-transparent">
@@ -190,11 +195,12 @@ const MyTableData = () => {
                                     ) : (
                                         '---'
                                     )}
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell>{item.title || '---'}</TableCell>
-                                <TableCell>{item.title_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.title_kh || '---'}</TableCell> */}
                                 <TableCell>{item.short_description || '---'}</TableCell>
-                                <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.short_description_kh || '---'}</TableCell> */}
+                                <TableCell>{item.garage_id || '---'}</TableCell>
                                 <TableCell>
                                     {hasPermission('post update') ? (
                                         <MyUpdateStatusButton
@@ -207,8 +213,8 @@ const MyTableData = () => {
                                         <span className="capitalize">{item.status}</span>
                                     )}
                                 </TableCell>
-                                <TableCell>{item.category_code || '---'}</TableCell>
-                                <TableCell>{item.type || '---'}</TableCell>
+                                {/* <TableCell>{item.category_code || '---'}</TableCell> */}
+                                {/* <TableCell>{item.type || '---'}</TableCell> */}
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell>

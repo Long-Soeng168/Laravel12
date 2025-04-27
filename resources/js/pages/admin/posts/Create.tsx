@@ -102,6 +102,11 @@ export default function Create() {
                                 description: page.props.flash.success,
                             });
                         }
+                        if (page.props.flash?.error) {
+                            toast.error('Error', {
+                                description: page.props.flash.error,
+                            });
+                        }
                     },
                     onError: (e) => {
                         toast.error('Error', {
@@ -123,6 +128,11 @@ export default function Create() {
                                 description: page.props.flash.success,
                             });
                         }
+                          if (page.props.flash?.error) {
+                                                    toast.error('Error', {
+                                                        description: page.props.flash.error,
+                                                    });
+                                                }
                     },
                     onError: (e) => {
                         toast.error('Error', {

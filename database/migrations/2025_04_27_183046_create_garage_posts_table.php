@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('garage_posts', function (Blueprint $table) {
             $table->id();
 
+            $table->date('post_date')->nullable();
             $table->string('title')->index();
             $table->string('title_kh')->nullable();
             $table->string('short_description', 500)->nullable();
@@ -24,6 +25,13 @@ return new class extends Migration
             $table->string('type')->default('content')->nullable();
             $table->string('status')->default('active')->nullable();
             $table->unsignedBigInteger('total_view_counts')->default(0)->nullable();
+
+            $table->unsignedBigInteger('garage_id')->nullable();
+            $table->foreign('garage_id')
+                ->references('id')
+                ->on('garages')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')
