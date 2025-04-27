@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Folder;
 use App\Models\ItemBrand;
 use App\Models\Partner;
+use App\Models\PhoneCompany;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,7 +32,8 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\Project::factory(30)->create();
         //partner seeder
-        Partner::factory(30)->create();
-        ItemBrand::factory(30)->create();
+        // Partner::factory(30)->create();
+        // ItemBrand::factory(30)->create();
+        // PhoneCompany::factory(30)->create();
     }
 }

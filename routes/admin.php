@@ -11,6 +11,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PhoneCompanyController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostViewController;
@@ -65,6 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/partners', PartnerController::class);
     Route::post('admin/partners/{partner}/update', [PartnerController::class, 'update']);
     Route::post('admin/partners/{partner}/update_status', [PartnerController::class, 'update_status']);
+
+    // Phone Company Route
+    Route::resource('admin/phone_companies', PhoneCompanyController::class);
+    Route::post('admin/phone_companies/{phone_company}/update', [PhoneCompanyController::class, 'update']);
+    Route::post('admin/phone_companies/{phone_company}/update_status', [PhoneCompanyController::class, 'update_status']);
 
     // Item Brands Route
     Route::resource('admin/item_brands', ItemBrandController::class);
