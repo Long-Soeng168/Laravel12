@@ -16,11 +16,13 @@ const About = () => {
     const { video } = usePage().props;
     const { news } = usePage().props;
     const { enrollYourChild } = usePage().props;
+    const { footerACADEMICS } = usePage().props;
+    
     
 
     // console.log(news);
     return (
-        <MyLayoutWestern>
+        <MyLayoutWestern footerACADEMICS={footerACADEMICS}>
             {/* Header */}
             <div className="font-now-alt-medium">
                 <div className="aspect-[21/8] w-full bg-cover bg-center bg-no-repeat"

@@ -2,40 +2,38 @@ import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useEffect, useState } from 'react';
 
-const MyFacilities = ({ schoolFacilities }) => {
+const MyFacilities = ({ schoolFacilities }:{schoolFacilities:any}) => {
     let evenCount = 0;
 
     return (
         <div>
-            {schoolFacilities?.children?.map((item) => {
-                let customBg = 'bg-white text-gray-800'; // default
+            {schoolFacilities?.children?.map((item, index) => {
+    let customBg = 'bg-white text-gray-800'; // default
+    const mod = index % 4;
 
-                if (item.id % 2 === 0) {
-                    evenCount++;
-                    if (evenCount === 1) {
-                        customBg = 'bg-[#22207e] text-white';
-                    } else if (evenCount === 2) {
-                        customBg = 'bg-gradient-to-b from-[#318AF0] to-[#34ACED] text-white';
-                    } else if (evenCount === 3) {
-                        customBg = 'bg-white text-red-500';
-                    } else if (evenCount === 4) {
-                        customBg = 'bg-gray-150 text-gray-800';
-                    }
-                }
+    if (mod === 0) {
+        customBg = 'bg-[#22207e] text-white';
+    } else if (mod === 1) {
+        customBg = 'bg-gradient-to-b from-[#318AF0] to-[#34ACED] text-white';
+    } else if (mod === 2) {
+        customBg = 'bg-white text-red-500';
+    } else if (mod === 3) {
+        customBg = 'bg-gray-150 text-gray-800';
+    }
 
-                return (
-                    <FacilitySection
-                        key={item.code}
-                        item={item}
-                        customBg={customBg}
-                    />
-                );
-            })}
+    return (
+        <FacilitySection
+            key={item.code}
+            item={item}
+            customBg={customBg}
+        />
+    );
+})}
         </div>
     );
 };
 
-const FacilitySection = ({ item, customBg }) => {
+const FacilitySection = ({ item, customBg }:{item:any, customBg:any}) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [emblaRef, emblaApi] = useEmblaCarousel(
         { loop: true },

@@ -1,10 +1,16 @@
 <?php
 
 use App\Models\Banner;
+use App\Models\Link;
 use App\Models\Page;
+use App\Models\Type;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// Route::get('/western_layout123', function(){
+//     return Inertia::render('westernuniversity/layout/layout');
+// });
 
 Route::get('/', function () {
     $homePageBanner = Banner::where('position_code', 'HOME_PAGE')->first();
@@ -21,7 +27,9 @@ Route::get('/', function () {
     $enrollYourChild = Page::where('code', 'HOW_TO_ENROLL_YOUR_CHILD')
     ->with(['children.images']) // Eager load images for children
     ->first();
-    // return($news);
+
+    $footerACADEMICS = Link::where('type', 'ACADEMICS')->first();
+    // return($footerACADEMICS);
 
     return Inertia::render('westernuniversity/About',[
         'homePageBanner' => $homePageBanner,
@@ -30,6 +38,7 @@ Route::get('/', function () {
         'video' => $video,
         'news' => $news,
         'enrollYourChild' => $enrollYourChild,
+        'footerACADEMICS' => $footerACADEMICS,
         
     ]);
 });
@@ -55,17 +64,18 @@ Route::get('/hestory_and_values', function () {
         'ourHistoryBanner' => $ourHistoryBanner,
 
     ]);
-})->name('hestory_and_values');
+});
 Route::get('/school_facilities', function () {
     $schoolFacilityBanner = Banner::where('position_code', 'SCHOOL_FACILITIES')->first();
     $schoolFacilities = Page::where('code', 'SCHOOL_FACILITIES')
     ->with(['children.images']) // Eager load images for children
     ->first();
+    // return($schoolFacilityBanner);
     return Inertia::render('westernuniversity/about/SchoolFacilities', [
         'schoolFacilityBanner' => $schoolFacilityBanner,
         'schoolFacilities' => $schoolFacilities,
     ]);
-})->name('school_facilities');
+});
 Route::get('/campuses', function () {
     $campuseBanner = Banner::where('position_code', 'CAMPUSES')->first();
     return Inertia::render('westernuniversity/about/Campuses',[
@@ -81,8 +91,16 @@ Route::get('/detail/{id}', function ($id) {
 
 // Academic
 Route::get('/curriculum', function () {
-    return Inertia::render('westernuniversity/academic/Curriculum');
-})->name('curriculum');
+    $curriculumBanner = Banner::where('position_code', 'CURRICULUM')->first();
+    $curriculum = Page::where('code', 'CURRICULUM')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    return Inertia::render('westernuniversity/academic/Curriculum',[
+    'curriculumBanner' => $curriculumBanner,
+    'curriculum' => $curriculum,
+
+    ]);
+});
 Route::get('/programs', function () {
     return Inertia::render('westernuniversity/academic/Programs');
 })->name('programs');

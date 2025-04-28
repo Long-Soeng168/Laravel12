@@ -2,33 +2,6 @@ const MyEnroll = ({enrollYourChild}:{enrollYourChild:any}) => (
     <div className="flex items-center justify-center pt-12 pb-16 md:pt-16">
         <div className="mx-auto w-full max-w-screen-2xl px-6 xl:px-0">
             <h2 className="mt-3 text-center text-3xl tracking-tight text-[#244494] md:text-5xl">{enrollYourChild.title}</h2>
-            {/* <div className="mt-14 md:mt-24 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <div className="flex flex-col items-center">
-          <div className=" w-36 flex items-center justify-center text-primary ">
-            <img src="assets/demo-images/photo2.png"/>
-          </div>
-          <h3 className="mt-4 text-blue-800 text-xl">Email</h3>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className=" w-36 flex items-center justify-center text-primary ">
-            <img src="assets/demo-images/photo2.png"/>
-          </div>
-          <h3 className="mt-4 text-blue-800 text-xl">Email</h3>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className=" w-36 flex items-center justify-center text-primary ">
-            <img src="assets/demo-images/photo2.png"/>
-          </div>
-          <h3 className="mt-4 text-blue-800 text-xl">Email</h3>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className=" w-36 flex items-center justify-center text-primary ">
-            <img src="assets/demo-images/photo2.png"/>
-          </div>
-          <h3 className="mt-4 text-blue-800 text-xl">Email</h3>
-        </div>
-        
-      </div> */}
           <div className="mx-auto mt-12 grid max-w-full grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4">
 
       {

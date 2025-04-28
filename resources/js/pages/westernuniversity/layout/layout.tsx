@@ -2,12 +2,16 @@
 import { ReactNode } from "react";
 import MyFooter from "../components-wu/my-footer";
 import MyLanguageSwitcherAndSerchInput from "@/components/my-language-switcher-and-search-input";
+import { usePage } from "@inertiajs/react";
 
 interface LayoutProps {
   children: ReactNode;
+  footerACADEMICS:any
 }
 
-const MyLayoutWestern = ({ children }: LayoutProps) => {
+const MyLayoutWestern = ({ children, footerACADEMICS  }: LayoutProps) => {
+
+  
   return (
     <>
       {/* Header */}
@@ -16,7 +20,7 @@ const MyLayoutWestern = ({ children }: LayoutProps) => {
       {/* End Header */}
       <main className="min-h-screen font-now-alt-medium mx-auto">{children}</main>
       {/* Footer */}
-      <MyFooter/>
+      <MyFooter />
       {/* End Footer */}
     </>
   );

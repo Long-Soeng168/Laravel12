@@ -165,7 +165,7 @@ export default function Create({
                                 <FormItem>
                                     <FormLabel>{t('Link')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="ex: https://..." type="text" {...field} />
+                                        <Input placeholder="" type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
                                 </FormItem>

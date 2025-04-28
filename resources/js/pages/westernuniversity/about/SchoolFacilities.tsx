@@ -6,7 +6,7 @@ import { usePage } from '@inertiajs/react';
 const SchoolFacilities = () => {
     const { schoolFacilityBanner } = usePage().props;
     const { schoolFacilities } = usePage().props;
-    console.log(schoolFacilities)
+    // console.log(schoolFacilities)
     return (
         <MyLayoutWestern>
             <div className="font-now-alt-regular">
@@ -16,7 +16,7 @@ const SchoolFacilities = () => {
                   }}>
                  <MyTopMenu/>
                     <div className="mx-auto flex flex-col h-full w-[55%] items-center justify-center pb-10 text-center">
-                    <p className=" text-white text-2xl xl:text-5xl">{schoolFacilityBanner.title}</p>
+                    <p className=" text-white text-2xl xl:text-5xl">{schoolFacilityBanner?.title}</p>
                 </div>
                 </div>
             </div>
