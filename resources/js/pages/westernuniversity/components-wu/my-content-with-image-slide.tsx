@@ -3,9 +3,10 @@ import { Card } from '@/components/ui/card';
 import { Link } from '@inertiajs/react';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { console } from 'inspector';
 import { useEffect, useState } from 'react';
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images }:{images:any}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
 
@@ -19,13 +20,13 @@ const Carousel = ({ images }) => {
   return (
     <div className="overflow-hidden" ref={emblaRef}>
       <div className="flex">
-        {images.map((item) => (
+        {images?.map((item) => (
           <div key={item.id} className="flex-[0_0_100%]">
             <Card className="aspect-[4/5] w-full border-0 py-0">
-              <img src={item.image} alt={item.alt} className="h-full w-full rounded-2xl object-cover" />
+              <img src={`/assets/images/pages/thumb/${item.image}`} alt={item.alt} className="h-full w-full rounded-2xl object-cover" />
             </Card>
             <div className="mt-5 flex transform justify-center space-x-2">
-              {images.map((_, index) => (
+              {images?.map((_, index) => (
                 <button
                   key={index}
                   className={`h-2 w-2 rounded-full transition sm:h-3 sm:w-3 ${index === selectedIndex ? 'bg-gray-500' : 'bg-gray-200'}`}
@@ -40,7 +41,7 @@ const Carousel = ({ images }) => {
   );
 };
 
-export function MyContentWithSlide() {
+export function MyContentWithSlide( {news}:{news:any} ) {
   const carouselContent = [
     {
       images: [
@@ -197,12 +198,13 @@ export function MyContentWithSlide() {
     
     // Add more items as needed...
   ];
+
   
   return (
     <>
        <div className="mx-auto max-w-screen-2xl px-4 lg:px-20 py-12">
       <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        {carouselContent.map((item, index) => {
+        {news?.children?.map((item, index) => {
           const textColor = index < 3 ? 'text-blue-900' : 'text-red-700';
           const borderColor = index < 3 ? 'border-blue-900' : 'border-red-700';
           return (
@@ -214,7 +216,7 @@ export function MyContentWithSlide() {
               <div className={`flex flex-col px-4 pt-6 pb-4 ${textColor}`}>
                 <h3 className="text-2xl font-semibold text-balance">{item.title}</h3>
                 <p className="mt-4 text-base leading-relaxed line-clamp-3">
-                  {item.description}
+                  {item.short_description}
                 </p>
               </div>
               <div className="mt-auto px-4 pb-6 pt-4">

@@ -7,8 +7,32 @@ use Inertia\Inertia;
 
 
 Route::get('/', function () {
-    return Inertia::render('westernuniversity/About');
-})->name('home');
+    $homePageBanner = Banner::where('position_code', 'HOME_PAGE')->first();
+    $welcomePage = Page::where('code', 'WELCOME_PAGE')->with('images')->first();
+    $statistic = Page::where('code', 'STATISTIC')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    $video = Page::where('code', 'VIDEO')->with('images')->first();
+
+    $news = Page::where('code', 'NEWS')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+
+    $enrollYourChild = Page::where('code', 'HOW_TO_ENROLL_YOUR_CHILD')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    // return($news);
+
+    return Inertia::render('westernuniversity/About',[
+        'homePageBanner' => $homePageBanner,
+        'welcomePage' => $welcomePage,
+        'statistic' => $statistic,
+        'video' => $video,
+        'news' => $news,
+        'enrollYourChild' => $enrollYourChild,
+        
+    ]);
+});
 Route::get('/hestory_and_values', function () {
     $ourHistory = Page::where('code', 'OUR_HESTORY')->with('images')->first();
     $ourVision = Page::where('code', 'OUR_VISION')->with('images')->first();
