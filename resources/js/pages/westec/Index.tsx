@@ -67,10 +67,10 @@ const Index = () => {
 
             {/* <MyFeature /> */}
             <div className="mt-16">
-                <div className="scroll-mt-[100px]" id="news">
+                <div className="scroll-mt-[100px]" id="newsId">
                     <BlogsList />
                 </div>
-                <div className="scroll-mt-[100px]" id="events">
+                <div className="scroll-mt-[100px]" id="eventsId">
                     <EventList />
                 </div>
             </div>
