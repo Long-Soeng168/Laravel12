@@ -91,8 +91,7 @@ export function MyContentWithSlide() {
       ],
       title: 'Caring Environment',
       description: 'The establishment of safe and supportive quality learning environments. A safe and caring school environment is one in which',
-      textColor: 'text-blue-900',
-      borderColor: 'border-blue-900',
+     
     },
     {
       images: [
@@ -143,8 +142,7 @@ export function MyContentWithSlide() {
       ],
       title: 'Leadership',
       description: 'Leadership education enhances communication, critical thinking, and decision-making skills.',
-      textColor: 'text-red-700',
-      borderColor: 'border-red-700',
+
     },
     {
       images: [
@@ -169,8 +167,7 @@ export function MyContentWithSlide() {
       ],
       title: 'Exchange Program (IR)',
       description: 'US Exchange Program is an American cultural exchange where students study and live in a volunteer host family for 1 semester in one of the',
-      textColor: 'text-red-700',
-      borderColor: 'border-red-700',
+
     },
     {
       images: [
@@ -195,9 +192,9 @@ export function MyContentWithSlide() {
       ],
       title: 'Study Tours (IR)',
       description: 'A study tour helps students appreciate their field of study more and it really helps them better realize the interaction between their',
-      textColor: 'text-red-700',
-      borderColor: 'border-red-700',
+
     },
+    
     // Add more items as needed...
   ];
   
@@ -205,28 +202,32 @@ export function MyContentWithSlide() {
     <>
        <div className="mx-auto max-w-screen-2xl px-4 lg:px-20 py-12">
       <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        {carouselContent.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col h-full w-full max-w-full rounded-2xl bg-white transition duration-300 hover:shadow-xl"
-          >
-            <Carousel images={item.images} />
-            <div className={`flex flex-col px-4 pt-6 pb-4 ${item.textColor}`}>
-              <h3 className="text-2xl font-semibold text-balance">{item.title}</h3>
-              <p className="mt-4 text-base leading-relaxed line-clamp-3">
-                {item.description}
-              </p>
+        {carouselContent.map((item, index) => {
+          const textColor = index < 3 ? 'text-blue-900' : 'text-red-700';
+          const borderColor = index < 3 ? 'border-blue-900' : 'border-red-700';
+          return (
+            <div
+              key={index}
+              className="flex flex-col h-full w-full max-w-full rounded-2xl bg-white transition duration-300 hover:shadow-xl"
+            >
+              <Carousel images={item.images} />
+              <div className={`flex flex-col px-4 pt-6 pb-4 ${textColor}`}>
+                <h3 className="text-2xl font-semibold text-balance">{item.title}</h3>
+                <p className="mt-4 text-base leading-relaxed line-clamp-3">
+                  {item.description}
+                </p>
+              </div>
+              <div className="mt-auto px-4 pb-6 pt-4">
+                <Link
+                  href={`/detail/${1}`}
+                  className={`inline-block border-2 ${borderColor} ${textColor} text-base sm:text-lg px-6 py-3 rounded-md hover:-translate-y-1 transition-all duration-200`}
+                >
+                  Read more
+                </Link>
+              </div>
             </div>
-            <div className="mt-auto px-4 pb-6 pt-4">
-              <Link
-                href={`/detail/${1}`}
-                className={`inline-block border-2 ${item.borderColor} ${item.textColor} text-base sm:text-lg px-6 py-3 rounded-md hover:-translate-y-1 transition-all duration-200`}
-              >
-                Read more
-              </Link>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
     </>
