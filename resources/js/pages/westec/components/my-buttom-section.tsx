@@ -1,4 +1,4 @@
-"use client";
+
 import { ImagesSlider } from "@/components/ui/images-slider";
 import { motion } from "motion/react";
 

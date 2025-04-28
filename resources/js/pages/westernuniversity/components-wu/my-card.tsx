@@ -1,7 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { DribbbleIcon, TwitchIcon, TwitterIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { MyContentWithSlide } from "../school_life/components/my-content-with-image-slide1";
 
 const teamMembers = [

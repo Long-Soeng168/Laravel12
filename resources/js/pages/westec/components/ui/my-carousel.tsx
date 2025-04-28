@@ -1,4 +1,3 @@
-"use client"
 import { IconArrowNarrowRight } from "@tabler/icons-react"
 import type React from "react"
 

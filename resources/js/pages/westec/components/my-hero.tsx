@@ -1,4 +1,4 @@
-"use client";
+
 import { WobbleCard } from "@/components/wobble-card";
 import React from "react";
 
