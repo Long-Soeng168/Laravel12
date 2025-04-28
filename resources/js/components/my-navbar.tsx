@@ -23,11 +23,11 @@ export function MyNavbar({ className }: { className?: string }) {
                             <Link href={`/about`}>
                                 <MenuItem setActive={setActive} active={active} item="About Us">
                                     <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/#">What is Westec?</HoveredLink>
-                                        <HoveredLink href="/#">Why Choose Westec?</HoveredLink>
-                                        <HoveredLink href="/#">Vision</HoveredLink>
-                                        <HoveredLink href="/#">Our Commitment</HoveredLink>
-                                        <HoveredLink href="/#">Our Journey</HoveredLink>
+                                        <HoveredLink href="/about">What is Westec?</HoveredLink>
+                                        <HoveredLink href="/about">Why Choose Westec?</HoveredLink>
+                                        <HoveredLink href="/about">Vision</HoveredLink>
+                                        <HoveredLink href="/about">Our Commitment</HoveredLink>
+                                        <HoveredLink href="/about">Our Journey</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
@@ -35,45 +35,62 @@ export function MyNavbar({ className }: { className?: string }) {
                             <Link href={`/solutions`}>
                                 <MenuItem setActive={setActive} active={active} item="Solutions">
                                     <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/web-dev"> Security & Safety Solutions</HoveredLink>
-                                        <HoveredLink href="/interface-design"> Mission & Vision</HoveredLink>
-                                        <HoveredLink href="/seo"> Why Westec</HoveredLink>
-                                        <HoveredLink href="/branding">Sales advantages</HoveredLink>
+                                        <HoveredLink href="/solutions">Security & Safety Solutions</HoveredLink>
+                                        <HoveredLink href="/solutions">Smart Home & Office Solutions</HoveredLink>
+                                        <HoveredLink href="/solutions">Commercial & Residential Equipments</HoveredLink>
+                                        <HoveredLink href="/solutions">IT Solutions</HoveredLink>
+                                        <HoveredLink href="/solutions">Solution Boosters</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
-                            <MenuItem setActive={setActive} active={active} item="Case Studies">
-                                <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/">Banking</HoveredLink>
-                                    <HoveredLink href="/">Microfinance</HoveredLink>
-                                    <HoveredLink href="/">Manufacturing</HoveredLink>
-                                    <HoveredLink href="/">Construction</HoveredLink>
-                                    <HoveredLink href="/">Entertainment</HoveredLink>
-                                </div>
-                            </MenuItem>
-                            <MenuItem setActive={setActive} active={active} item="Partners">
-                                <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/">Our Partners</HoveredLink>
-                                </div>
-                            </MenuItem>
-                            <MenuItem setActive={setActive} active={active} item="Careers">
-                                <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/">Hiring</HoveredLink>
-                                </div>
-                            </MenuItem>
-                            <MenuItem setActive={setActive} active={active} item="News">
-                                <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/">Updated technology news</HoveredLink>
-                                    <HoveredLink href="/">Westec’s news & activities</HoveredLink>
-                                </div>
-                            </MenuItem>
-                            <MenuItem setActive={setActive} active={active} item="Contact Us">
-                                <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/">Contact us detail (phone no. & social platforms)</HoveredLink>
-                                    <HoveredLink href="/">Location (Map)</HoveredLink>
-                                    <HoveredLink href="/">Solution Explorer</HoveredLink>
-                                </div>
-                            </MenuItem>
+                            <Link href={`/case_studies`}>
+                                <MenuItem setActive={setActive} active={active} item="Case Studies">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/case_studies">Banking</HoveredLink>
+                                        <HoveredLink href="/case_studies">Microfinance</HoveredLink>
+                                        <HoveredLink href="/case_studies">Manufacturing</HoveredLink>
+                                        <HoveredLink href="/case_studies">Construction</HoveredLink>
+                                        <HoveredLink href="/case_studies">Entertainment</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/`}>
+                                <MenuItem setActive={setActive} active={active} item="Partners">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/">Our Partners</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/career`}>
+                                <MenuItem setActive={setActive} active={active} item="Career">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/career">Employee Highlight</HoveredLink>
+                                        <HoveredLink href="/career">Career</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/`}>
+                                <MenuItem setActive={setActive} active={active} item="News">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/">News & Updates</HoveredLink>
+                                        <HoveredLink href="/">Events & Promotions</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/contact`}>
+                                <MenuItem setActive={setActive} active={active} item="Contact Us">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/contact">Project Inquiry?</HoveredLink>
+                                        <HoveredLink href="/contact">Get Support?</HoveredLink>
+                                        <HoveredLink href="/contact">Location (Map)</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
                             <div>
                                 <MyLanguageSelector />
                             </div>

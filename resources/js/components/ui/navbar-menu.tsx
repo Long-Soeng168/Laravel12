@@ -26,9 +26,9 @@ export const MenuItem = ({
   return (
     <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.a
-          href={item.toLowerCase() === "about us" ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
+        // href={item.toLowerCase() === "about us" ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
         transition={{ duration: 0.3 }}
-        className="bg-true-primary text-base px-5 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
+        className="bg-true-primary text-sm px-6 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
       >
         {item}  <ChevronUp className="h-4 w-4 text-white dark:text-gray-300 transition-transform duration-300 rotate-180" />
       </motion.a>

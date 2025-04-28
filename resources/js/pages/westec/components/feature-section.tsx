@@ -1,4 +1,5 @@
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { ChevronUp } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 export function FeatureSection({ defaultDropDown = true }: { defaultDropDown?: boolean }) {
@@ -128,6 +129,13 @@ export function FeatureSection({ defaultDropDown = true }: { defaultDropDown?: b
             {selectedData != null && (
                 <div className="relative bg-black">
                     <img src={`${selectedData?.banner} `} className="w-full" alt="" />
+                    <div className="absolute bottom-0 left-0 right-0">
+                        <div className="flex w-full flex-nowrap justify-end px-4 lg:px-14">
+                            <button className="rounded-none" onClick={() => setSelectedData(null)}>
+                                <ChevronUp className='size-16 stroke-1 stroke-white' />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </>

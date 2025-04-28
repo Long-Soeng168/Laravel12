@@ -2,6 +2,7 @@ import { MyPartner } from '@/components/my-partner';
 import MySlide from '@/components/my-slide';
 import BlogsList from './components/blogs-list';
 import { ContactSection } from './components/contact-section';
+import EventList from './components/event-list';
 import { FeatureSection } from './components/feature-section';
 import MyBoosters from './components/my-boosters';
 import WestecLayout from './layout/layout';
@@ -61,7 +62,10 @@ const Index = () => {
             <MyPartner />
 
             {/* <MyFeature /> */}
-            <BlogsList />
+            <div className='mt-16'>
+                <BlogsList />
+                <EventList />
+            </div>
 
             <div className="mt-16">
                 <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Clientele</h1>

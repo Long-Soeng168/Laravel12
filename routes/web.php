@@ -23,7 +23,7 @@ Route::get('/lang/{locale}', function ($locale) {
 require __DIR__ . '/westec.php';
 // require __DIR__ . '/western_university.php'; 
 // require __DIR__ . '/westec.php';
-require __DIR__ . '/western_university.php'; 
+// require __DIR__ . '/western_university.php'; 
 // require __DIR__ . '/vectorasoft.php';
 // require __DIR__ . '/rule_library.php';
 

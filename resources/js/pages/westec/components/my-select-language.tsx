@@ -46,10 +46,10 @@ export function MyLanguageSelector() {
     </Popover> */}
 
             <div className="w-10 aspect-video object-cover">
-                <img src="assets/demo-images/usa.png" className="w-10 h-[26px]" />
+                <img src="assets/demo-images/usa.png" className="w-10 h-full" />
             </div>
             <div className="w-10 aspect-video object-cover">
-                <img src="assets/demo-images/kh.png" className="w-10 h-[26px]" />
+                <img src="assets/demo-images/kh.png" className="w-10 h-full" />
             </div>
         </div>
     );

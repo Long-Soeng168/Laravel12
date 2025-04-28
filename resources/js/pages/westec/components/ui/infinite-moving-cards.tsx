@@ -36,6 +36,18 @@ export const InfiniteMovingCards = ({
                     scrollerRef.current.appendChild(duplicatedItem);
                 }
             });
+            scrollerContent.forEach((item) => {
+                const duplicatedItem = item.cloneNode(true);
+                if (scrollerRef.current) {
+                    scrollerRef.current.appendChild(duplicatedItem);
+                }
+            });
+            scrollerContent.forEach((item) => {
+                const duplicatedItem = item.cloneNode(true);
+                if (scrollerRef.current) {
+                    scrollerRef.current.appendChild(duplicatedItem);
+                }
+            });
 
             getDirection();
             getSpeed();
@@ -79,8 +91,8 @@ export const InfiniteMovingCards = ({
                 )}
             >
                 {items.map((item, idx) => (
-                    <li className="size-[100px]">
-                        <img src='/assets/icons/pc.png' />
+                    <li className="size-[100px] object-contain">
+                        <img src='/assets/icons/pc.png' className='object-contain w-full h-full' />
                     </li>
                 ))}
             </ul>
