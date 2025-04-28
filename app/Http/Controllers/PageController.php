@@ -91,11 +91,11 @@ class PageController extends Controller
         $image_files = $request->file('images');
         unset($validated['images']);
 
-        foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+        // foreach ($validated as $key => $value) {
+        //     if ($value === null || $value === '') {
+        //         unset($validated[$key]);
+        //     }
+        // }
 
         $created_project = Page::create($validated);
 
@@ -159,7 +159,7 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'video_link' => 'nullable|url|max:500',
+            'video_link' => 'nullable|max:500',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'long_description' => 'nullable|string',
@@ -181,11 +181,11 @@ class PageController extends Controller
         $image_files = $request->file('images');
         unset($validated['images']);
 
-        foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+        // foreach ($validated as $key => $value) {
+        //     if ($value === null) {
+        //         unset($validated[$key]);
+        //     }
+        // }
 
         $page->update($validated);
 

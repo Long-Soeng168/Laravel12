@@ -1,5 +1,4 @@
 import DeleteButton from '@/components/delete-button';
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
@@ -16,7 +15,7 @@ import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { format } from 'date-fns';
-import { CalendarIcon, Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
+import { CalendarIcon, Check, ChevronsUpDown, CircleOffIcon, CloudUpload, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -230,7 +229,7 @@ export default function Create() {
                             />
                         </div> */}
                     </div>
-{/* 
+                    {/* 
                     <FormField
                         control={form.control}
                         name="short_description"
@@ -282,6 +281,12 @@ export default function Create() {
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
+                                                    <SelectItem value="0">
+                                                        <span className='size-6 flex justify-center items-center'>
+                                                            <CircleOffIcon size={24} />
+                                                        </span>
+                                                        None
+                                                    </SelectItem>
                                                     {links?.map((link: any) => (
                                                         <SelectItem value={link?.id.toString()}>
                                                             <span>

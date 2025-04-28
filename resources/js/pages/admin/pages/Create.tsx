@@ -1,5 +1,4 @@
 import DeleteButton from '@/components/delete-button';
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
@@ -31,6 +30,7 @@ const formSchema = z.object({
     type: z.string().optional(),
     order_index: z.string().min(0).max(255).optional(),
     status: z.string().optional(),
+    video_link_status: z.string().optional(),
     parent_id: z.string().optional(),
     position_code: z.string().optional(),
 });
@@ -70,6 +70,7 @@ export default function Create() {
             type: editData?.type || 'content',
             order_index: editData?.order_index?.toString() || '',
             status: editData?.status || 'active',
+            video_link_status: editData?.video_link_status || 'active',
             parent_id: editData?.parent_id?.toString() || '',
             position_code: editData?.position_code?.toString() || '',
         },
@@ -167,7 +168,30 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                        <div className="col-span-12">
+                        <div className="col-span-2">
+                            <FormField
+                                control={form.control}
+                                name="video_link_status"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Video Link Status</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="active">Active</SelectItem>
+                                                <SelectItem value="inactive">Inactive</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.video_link_status && <div>{errors.video_link_status}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-10">
                             <FormField
                                 control={form.control}
                                 name="video_link"
@@ -354,7 +378,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div> 
+                        </div>
                         {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}

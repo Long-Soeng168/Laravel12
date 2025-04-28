@@ -41,6 +41,10 @@ class PageController extends Controller
 
         $tableData = $query->where('status', 'active')->first();
 
+        if($tableData->video_link_status =='inactive'){
+            $tableData['video_link'] = '';
+        }
+
         return response()->json($tableData);
     }
 }
