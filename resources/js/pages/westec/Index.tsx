@@ -58,16 +58,24 @@ const Index = () => {
             <ContactSection />
 
             <MyBoosters />
-            <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Partners</h1>
-            <MyPartner />
-
-            {/* <MyFeature /> */}
-            <div className='mt-16'>
-                <BlogsList />
-                <EventList />
+            <h1 className="mb-6 inline-block scroll-mt-[100px] border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16" id="partners">
+                Our Partners
+            </h1>
+            <div>
+                <MyPartner />
             </div>
 
+            {/* <MyFeature /> */}
             <div className="mt-16">
+                <div className="scroll-mt-[100px]" id="news">
+                    <BlogsList />
+                </div>
+                <div className="scroll-mt-[100px]" id="events">
+                    <EventList />
+                </div>
+            </div>
+
+            <div className="mt-16" id="clients">
                 <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Clientele</h1>
                 <MyPartner />
             </div>

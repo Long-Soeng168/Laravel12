@@ -55,10 +55,10 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/`}>
+                            <Link href={`/#partners`}>
                                 <MenuItem setActive={setActive} active={active} item="Partners">
                                     <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/">Our Partners</HoveredLink>
+                                        <HoveredLink href="/#partners">Our Partners</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
@@ -72,11 +72,11 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/`}>
+                            <Link href={`/#news`}>
                                 <MenuItem setActive={setActive} active={active} item="News">
                                     <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/">News & Updates</HoveredLink>
-                                        <HoveredLink href="/">Events & Promotions</HoveredLink>
+                                        <HoveredLink href="/#news">News & Updates</HoveredLink>
+                                        <HoveredLink href="/#events">Events & Promotions</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
