@@ -9,6 +9,7 @@ import {
     AppWindowIcon,
     BookmarkCheckIcon,
     CarIcon,
+    ContactRound,
     FilePenLineIcon,
     FilesIcon,
     GalleryThumbnailsIcon,
@@ -176,6 +177,12 @@ export function AppSidebar() {
                     url: '/admin/page_positions',
                 },
             ],
+        },
+        {
+            title: t('Teams'),
+            permission: '',
+            url: '/admin/teams',
+            icon: ContactRound,
         },
         {
             title: t('Banners'),

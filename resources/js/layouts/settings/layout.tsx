@@ -21,16 +21,21 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
             title: t('Profile'),
             url: '/settings/profile',
             icon: null,
+            permission:'',
         },
         {
             title: t('Password'),
             url: '/settings/password',
             icon: null,
+            permission:'',
+
         },
         {
             title: t('Appearance'),
             url: '/settings/appearance',
             icon: null,
+            permission:'',
+
         },
     ];
     return (

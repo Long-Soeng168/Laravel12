@@ -26,6 +26,7 @@ use App\Http\Controllers\PostViewController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -159,6 +160,11 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/pages/{page}/update', [PageController::class, 'update']);
     Route::post('admin/pages/{page}/update_status', [PageController::class, 'update_status']);
     Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
+
+     // Team Route
+     Route::resource('admin/teams', TeamController::class);
+     Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);
+     Route::post('admin/teams/{team}/update_status', [TeamController::class, 'update_status']);
 
     // Banner Position Route
     Route::resource('admin/banner_positions', BannerPositionController::class);
