@@ -168,7 +168,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                        <div className="col-span-2">
+                        <div className="col-span-12 md:col-span-2">
                             <FormField
                                 control={form.control}
                                 name="video_link_status"
@@ -191,7 +191,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                        <div className="col-span-10">
+                        <div className="col-span-12 md:col-span-10">
                             <FormField
                                 control={form.control}
                                 name="video_link"
