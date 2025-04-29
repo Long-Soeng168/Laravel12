@@ -7,7 +7,6 @@ import { usePage } from '@inertiajs/react';
 const Curriculum = () => {
     const {curriculumBanner} = usePage().props;
     const {curriculum} = usePage().props;
-
     return (
         <MyLayoutWestern>
             <div className="font-now-alt-regular">
