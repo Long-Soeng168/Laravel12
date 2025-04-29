@@ -28,7 +28,7 @@ Route::get('/', function () {
     ->with(['children.images']) // Eager load images for children
     ->first();
 
-    $footerACADEMICS = Link::where('type', 'ACADEMICS')->first();
+    // $footerACADEMICS = Link::where('type', 'ACADEMICS')->first();
     // return($footerACADEMICS);
 
     return Inertia::render('westernuniversity/About',[
@@ -38,7 +38,7 @@ Route::get('/', function () {
         'video' => $video,
         'news' => $news,
         'enrollYourChild' => $enrollYourChild,
-        'footerACADEMICS' => $footerACADEMICS,
+        // 'footerACADEMICS' => $footerACADEMICS,
         
     ]);
 });
