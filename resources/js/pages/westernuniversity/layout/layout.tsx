@@ -9,7 +9,7 @@ interface LayoutProps {
   footerACADEMICS:any
 }
 
-const MyLayoutWestern = ({ children, footerACADEMICS  }: LayoutProps) => {
+const MyLayoutWestern = ({ children  }: LayoutProps) => {
 
   
   return (
