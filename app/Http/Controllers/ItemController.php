@@ -1,0 +1,240 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Helpers\ImageHelper;
+use App\Models\Item;
+use App\Models\Link;
+use App\Models\ItemCategory;
+use App\Models\ItemImage;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+
+class ItemController extends Controller implements HasMiddleware
+{
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:item view', only: ['index', 'show']),
+            new Middleware('permission:item create', only: ['create', 'store']),
+            new Middleware('permission:item update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:item delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search', '');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $status = $request->input('status');
+
+        $query = Item::query();
+
+        $query->with('created_by', 'updated_by', 'images', 'category');
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $query->orderBy($sortBy, $sortDirection);
+
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('name_kh', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $tableData = $query->paginate(perPage: 10)->onEachSide(1);
+
+        return Inertia::render('admin/items/Index', [
+            'tableData' => $tableData,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request)
+    {
+        return Inertia::render('admin/items/Create', [
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
+            'short_description' => 'nullable|string|max:1000',
+            'short_description_kh' => 'nullable|string|max:1000',
+            'long_description' => 'nullable|string',
+            'long_description_kh' => 'nullable|string',
+            'link' => 'nullable|string|max:255',
+            'category_code' => 'nullable|string|exists:item_categories, code',
+            'status' => 'nullable|string|in:active,inactive',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+
+        $validated['created_by'] = $request->user()->id;
+        $validated['updated_by'] = $request->user()->id;
+        // $validated['post_date'] = Carbon::parse($validated['post_date'])->setTimezone('Asia/Bangkok')->startOfDay()->toDateString();
+
+
+        $image_files = $request->file('images');
+        unset($validated['images']);
+
+        foreach ($validated as $key => $value) {
+            if ($value === null || $value === '') {
+                unset($validated[$key]);
+            }
+        }
+
+        $created_project = Item::create($validated);
+
+        if ($image_files) {
+            try {
+                foreach ($image_files as $image) {
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/items', 600);
+                    ItemImage::create([
+                        'image' => $created_image_name,
+                        'item_id' => $created_project->id,
+                    ]);
+                }
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
+            }
+        }
+        return redirect()->back()->with('success', 'Item Created Successfully!.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Item $item)
+    {
+        return Inertia::render('admin/items/Create', [
+            'links' => Link::orderBy('name')->where('status', 'active')->get(),
+            'editData' => $item->load('images'),
+            'postCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
+            'readOnly' => true,
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+
+    public function edit(Item $item)
+    {
+        return Inertia::render('admin/items/Create', [
+            'links' => Link::orderBy('name')->where('status', 'active')->get(),
+            'editData' => $item->load('images'),
+            'postCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Item $item)
+    {
+        // dd($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
+            'short_description' => 'nullable|string|max:1000',
+            'short_description_kh' => 'nullable|string|max:1000',
+            'long_description' => 'nullable|string',
+            'long_description_kh' => 'nullable|string',
+            'link' => 'nullable|string|max:255',
+            'category_code' => 'nullable|string|exists:item_categories, code',
+            'status' => 'nullable|string|in:active,inactive',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+
+        $validated['updated_by'] = $request->user()->id;
+        // $validated['post_date'] = Carbon::parse($validated['post_date'])->setTimezone('Asia/Bangkok')->startOfDay()->toDateString();
+
+        $image_files = $request->file('images');
+        unset($validated['images']);
+
+        foreach ($validated as $key => $value) {
+            if ($value === null || $value === '') {
+                unset($validated[$key]);
+            }
+        }
+
+        $item->update($validated);
+
+        if ($image_files) {
+            try {
+                foreach ($image_files as $image) {
+                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/items', 600);
+                    ItemImage::create([
+                        'image' => $created_image_name,
+                        'item_id' => $item->id,
+                    ]);
+                }
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
+            }
+        }
+        return redirect()->back()->with('success', 'Item Updated Successfully!.');
+    }
+
+    public function update_status(Request $request, Item $item)
+    {
+        $request->validate([
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $item->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Item $item)
+    {
+        if (count($item->images) > 0) {
+            foreach ($item->images as $image) {
+                ImageHelper::deleteImage($image->image, 'assets/images/items');
+            }
+        }
+        $item->delete();
+        return redirect()->back()->with('success', 'Item deleted successfully.');
+    }
+
+    public function destroy_image(ItemImage $image)
+    {
+        // Debugging (Check if model is found)
+        if (!$image) {
+            return redirect()->back()->with('error', 'Image not found.');
+        }
+
+        // Call helper function to delete image
+        ImageHelper::deleteImage($image->image, 'assets/images/items');
+
+        // Delete from DB
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+}

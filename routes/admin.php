@@ -12,6 +12,7 @@ use App\Http\Controllers\HeadingController;
 use App\Http\Controllers\ItemBodyTypeController;
 use App\Http\Controllers\ItemBrandController;
 use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemModelController;
 use App\Http\Controllers\ItemColorController;
 use App\Http\Controllers\LinkController;
@@ -52,9 +53,12 @@ Route::middleware('auth')->group(function () {
     });
 
     // Item Route
-    Route::get('items', function () {
-        return Inertia::render('admin/items/page');
-    });
+    Route::resource('admin/items', ItemController::class);
+    Route::post('admin/items/{item}/update', [ItemController::class, 'update']);
+    Route::post('admin/items/{item}/update_status', [ItemController::class, 'update_status']);
+    Route::delete('admin/items/images/{image}', [ItemController::class, 'destroy_image']);
+    Route::get('admin/item_view_counts', [ItemController::class, 'item_view_counts']);
+    Route::get('admin/item_view_counts/export', [ItemController::class, 'item_view_counts_export']);
 
     Route::resource('admin/item_colors', ItemColorController::class);
     Route::post('admin/item_colors/{item_colors}/update', [ItemColorController::class, 'update']);
@@ -161,10 +165,10 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/pages/{page}/update_status', [PageController::class, 'update_status']);
     Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
 
-     // Team Route
-     Route::resource('admin/teams', TeamController::class);
-     Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);
-     Route::post('admin/teams/{team}/update_status', [TeamController::class, 'update_status']);
+    // Team Route
+    Route::resource('admin/teams', TeamController::class);
+    Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);
+    Route::post('admin/teams/{team}/update_status', [TeamController::class, 'update_status']);
 
     // Banner Position Route
     Route::resource('admin/banner_positions', BannerPositionController::class);

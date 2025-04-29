@@ -60,10 +60,10 @@ const ProductDetailPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-4 border-t p-4">
+                    {/* <div className="mt-4 border-t p-4">
                         <p className="mb-2 text-xl font-semibold text-gray-700">Videos:</p>
                         <MyVideoGallery />
-                    </div>
+                    </div> */}
 
                     <div className="px-2">
                         <Accordion defaultValue="description" type="single" collapsible>
