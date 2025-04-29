@@ -7,7 +7,7 @@ import { ArrowDownCircleIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const faq = [
-    { question: 'K1', answer: 'You can return unused items...' },
+    { question: 'Nursery', answer: 'You can return unused items...' },
     { question: 'K2', answer: 'We accept Visa, MasterCard...' },
     { question: 'K3', answer: 'Please contact our support...' },
     { question: 'K4', answer: 'You can return unused items...' },

@@ -101,18 +101,47 @@ Route::get('/curriculum', function () {
     ]);
 });
 Route::get('/programs', function () {
-    return Inertia::render('westernuniversity/academic/Programs');
+    $programBanner = Banner::where('position_code', 'PROGRAMS')->first();
+    $programs = Page::where('code', 'PROGRAMS')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    // return($programBanner);
+    return Inertia::render('westernuniversity/academic/Programs',[
+        'programBanner' => $programBanner,
+        'programs' => $programs,
+
+    ]);
 })->name('programs');
 Route::get('/schedules_and_subjects', function () {
     return Inertia::render('westernuniversity/academic/ScheduleAndSubjects');
 })->name('schedules_and_subjects');
 
 Route::get('/admissions', function () {
-    return Inertia::render('westernuniversity/admissions/Index');
-})->name('admissions');
+    $admissionBanner = Banner::where('position_code', 'ADMISSIONS')->first();
+    $admission = Page::where('code', 'ADMISSIONS')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    // return($admission);
+        $table = Page::where('code', 'SCHOOL_FEES_TABLE')
+        ->with(['children.images']) // Eager load images for children
+        ->first();
+    return Inertia::render('westernuniversity/admissions/Index',[
+    'admissionBanner' => $admissionBanner,
+    'admission' => $admission,
+    'table' => $table,
+    ]);
+});
 
 Route::get('/activities_and_events', function () {
-    return Inertia::render('westernuniversity/school_life/ActivitiesAndEvents');
+    $banner = Banner::where('position_code', 'SCHOOL_ACTIVITIES_AND_EVENT')->first();
+    $activitiesAndEventsTopData = Page::where('code', 'SCHOOL_ACTIVITIES_AND_EVENT')
+    ->with(['children.images']) // Eager load images for children
+    ->first();
+    return Inertia::render('westernuniversity/school_life/ActivitiesAndEvents',[
+    'banner' => $banner,
+    'activitiesAndEventsTopData' => $activitiesAndEventsTopData,
+
+    ]);
 })->name('activities_and_events');
 
 Route::get('/extracurricular_activities', function () {

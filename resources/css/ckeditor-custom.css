@@ -99,6 +99,9 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     line-height: 1.6;
     word-break: break-word;
 }
+.ck-content th {
+    white-space: nowrap;
+}
 
 .ck-content img.image_resized {
     display: inline;

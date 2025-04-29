@@ -6,7 +6,6 @@ import { usePage } from "@inertiajs/react";
 
 interface LayoutProps {
   children: ReactNode;
-  footerACADEMICS:any
 }
 
 const MyLayoutWestern = ({ children  }: LayoutProps) => {

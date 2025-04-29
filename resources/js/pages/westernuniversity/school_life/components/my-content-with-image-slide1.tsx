@@ -77,7 +77,7 @@ const Carousel1 = ({ images }) => {
 
 
 
-export function MyContentWithSlide() {
+export function MyContentWithSlide({activitiesAndEventsTopData}) {
     const images1 = [
         {
             id: '1',
@@ -153,10 +153,8 @@ export function MyContentWithSlide() {
         <>
             <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-16 bg-gradient-to-b from-[#06053d] to-[#16148e] px-4 py-8 sm:px-10 sm:py-16 md:px-20">
                 <div className="max-w-6xl text-start text-white">
-                    <p className="mt-6 text-[17px] md:text-2xl">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsum officia animi ex similique aliquam fugiat minima. Ut
-                        ducimus hic aut reiciendis quos quod, cupiditate ea voluptas libero perspiciatis obcaecati quia ipsa accusamus exercitationem
-                        totam corrupti, dolore vero architecto voluptate officia voluptatibus aspernatur sunt quae fugiat?
+                    <p className="mt-6 text-[17px] md:text-2xl whitespace-pre-line">
+                        {activitiesAndEventsTopData.short_description}
                     </p>
                 </div>
                 <div className="grid w-full grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2 xl:grid-cols-3">
