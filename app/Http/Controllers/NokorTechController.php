@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApplicationInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class NokorTechController extends Controller
 {
     public function index()
-    {
+    { 
         return Inertia::render("nokor-tech/Index");
     }
 

@@ -157,7 +157,7 @@ const MyTableData = () => {
 
                                     {/* <TableCell>{item.image || '---'}</TableCell> */}
                                     <TableCell>
-                                        {hasPermission('partner update') ? (
+                                        {hasPermission('course update') ? (
                                             <MyUpdateStatusButton
                                                 id={item.id}
                                                 pathName="/admin/courses"

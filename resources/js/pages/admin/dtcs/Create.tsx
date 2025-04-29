@@ -1,4 +1,5 @@
 import MyDialogCancelButton from '@/components/my-dialog-cancel-button';
+import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -133,7 +134,7 @@ export default function Create({
                     />
                 </div>
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="short_description"
@@ -141,7 +142,7 @@ export default function Create({
                                 <FormItem>
                                     <FormLabel>{t('Short Description')}</FormLabel>
                                     <FormControl>
-                                        <textarea
+                                        <AutosizeTextarea
                                             placeholder="Short Description"
                                             rows={3} // 👈 This makes it 3 lines
                                             className="w-full rounded-md border border-gray-300 p-2" // styling like input
@@ -156,7 +157,7 @@ export default function Create({
                         />
                     </div>
 
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="short_description_kh"
@@ -164,7 +165,7 @@ export default function Create({
                                 <FormItem>
                                     <FormLabel>{t('Short Description Khmer')}</FormLabel>
                                     <FormControl>
-                                        <textarea
+                                        <AutosizeTextarea
                                             placeholder="Short Description Khmer"
                                             rows={3} // 👈 This makes it 3 lines
                                             className="w-full rounded-md border border-gray-300 p-2" // styling like input

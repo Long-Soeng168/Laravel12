@@ -2,6 +2,7 @@ import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
+import { usePage } from '@inertiajs/react';
 import { ChartAreaInteractive } from './components/chart-area-interactive';
 import SectionCards from './components/section-cards';
 
@@ -14,6 +15,9 @@ export default function Page() {
             href: '/dashboard',
         },
     ];
+
+    const { auth } = usePage().props;
+    console.log(auth.permissions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex flex-1 flex-col">

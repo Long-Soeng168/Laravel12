@@ -182,7 +182,7 @@ export default function Create() {
                                                         {field.value
                                                             ? (() => {
                                                                   const garage = allGarages?.find((garage) => garage.id == field.value);
-                                                                  return garage ? `${garage.name} (${garage.name_kh})` : '';
+                                                                  return garage ? `${garage.name}` : '';
                                                               })()
                                                             : t('Select')}
 
