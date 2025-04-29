@@ -20,11 +20,15 @@ class PostController extends Controller
         $skipId = $request->input('skipId');
         $category_code = $request->input('category_code');
         $categoryId = $request->input('categoryId');
+        $type = $request->input('type');
 
         $query = Post::query();
 
         $query->with('created_by', 'images', 'category', 'source_detail');
 
+        if ($type) {
+            $query->where('type', $type);
+        }
         if ($status) {
             $query->where('status', $status);
         }
