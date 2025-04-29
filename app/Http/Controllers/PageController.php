@@ -81,6 +81,7 @@ class PageController extends Controller
             'position_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
+            'video_link_status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
@@ -171,6 +172,7 @@ class PageController extends Controller
             'position_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
+            'video_link_status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
