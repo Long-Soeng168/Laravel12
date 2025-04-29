@@ -29,9 +29,9 @@ require __DIR__ . '/cam_active.php';
 // require __DIR__ . '/rule_library.php';
 
 // === Admin ===
-require __DIR__ . '/settings.php';
-require __DIR__ . '/file_manager.php';
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
+// require __DIR__ . '/settings.php';
+// require __DIR__ . '/file_manager.php';
+// require __DIR__ . '/auth.php';
+// require __DIR__ . '/admin.php';
 
 
