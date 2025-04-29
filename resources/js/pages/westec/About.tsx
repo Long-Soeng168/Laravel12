@@ -25,16 +25,16 @@ const About = () => {
             </section>
             <section>
                 <h1 className="text-color px-4 py-4 text-2xl font-semibold sm:px-8 lg:px-16 lg:py-8">Why choose Westec?</h1>
-                <div className="bg-primary grid md:grid-cols-2 lg:grid-cols-3">
-                    {WhyChooseUsCard()}
-                    {WhyChooseUsCard()}
-                    {WhyChooseUsCard()}
-                    {WhyChooseUsCard()}
-                    {WhyChooseUsCard()}
-                    {WhyChooseUsCard()}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3">
+                    <div className='bg-true-primary-three'>{WhyChooseUsCard()}</div>
+                    <div className='bg-true-primary'>{WhyChooseUsCard()}</div>
+                    <div className='bg-true-primary-three'>{WhyChooseUsCard()}</div>
+                    <div className='bg-true-primary'>{WhyChooseUsCard()}</div>
+                    <div className='bg-true-primary-three'>{WhyChooseUsCard()}</div>
+                    <div className='bg-true-primary'>{WhyChooseUsCard()}</div>
                 </div>
             </section>
-            <ContactSection bg="background" />
+            <ContactSection bg="bg-true-primary-two" />
             <section>
                 <h1 className="text-color px-4 py-4 text-2xl font-semibold sm:px-8 lg:px-16 lg:py-8">Vision</h1>
                 <img src="/assets/westec/images/vision-banner.png" className="w-full object-cover" alt="" />
@@ -54,7 +54,7 @@ const About = () => {
         return (
             <div className="card">
                 <div className="card__content transition-transform duration-700">
-                    <div className="card__front flex items-center gap-8 border p-8 text-start text-white">
+                    <div className="card__front flex items-center gap-8 p-8 text-start text-white">
                         <p className="text-7xl font-bold">1</p>
                         <div className="flex w-full flex-col items-center justify-start">
                             <span className="size-24">

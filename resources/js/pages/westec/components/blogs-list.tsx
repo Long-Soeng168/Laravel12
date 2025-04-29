@@ -29,7 +29,7 @@ const BlogsList = () => {
                     <div>
                         <a
                             href="#"
-                            className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-base text-white capitalize transition duration-200 hover:underline"
+                            className="font-proxima-nova-regular bg-primary px-4 py-1 text-base text-white capitalize transition duration-200 hover:underline"
                         >
                             Read More
                         </a>

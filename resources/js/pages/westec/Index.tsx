@@ -50,12 +50,12 @@ const Index = () => {
             <FeatureSection defaultDropDown={false} />
             <FeatureSection defaultDropDown={false} />
 
-            <ContactSection />
+            <ContactSection bg='bg-primary' />
 
             <FeatureSection defaultDropDown={false} />
             <FeatureSection defaultDropDown={false} />
 
-            <ContactSection />
+            <ContactSection bg='bg-primary' />
 
             <MyBoosters />
             <h1 className="mb-6 inline-block scroll-mt-[100px] border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16" id="partners">

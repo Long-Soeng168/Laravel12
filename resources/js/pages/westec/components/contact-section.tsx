@@ -1,4 +1,4 @@
-export function ContactSection({ bg = 'bg-[#008080]', showButton = true }: { bg?: string; showButton?: boolean }) {
+export function ContactSection({ bg = 'bg-primary', showButton = true }: { bg?: string; showButton?: boolean }) {
     return (
         <>
             {/* Contact */}

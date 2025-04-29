@@ -8,7 +8,7 @@ export function MyHeroSection() {
             {newFunction()}
 
             {/* Contact */}
-            <div className="relative mx-auto flex w-full flex-col bg-[#008080] px-10 py-20">
+            <div className="relative mx-auto flex w-full flex-col bg-primary px-10 py-20">
                 <div className="grid h-full w-full grid-cols-2 items-center justify-end gap-4 text-end">
                     {/* Left Section */}
                     <div></div>
@@ -29,7 +29,7 @@ export function MyHeroSection() {
             {newFunction()}
             {newFunction()}
 
-            <div className="relative mx-auto flex w-full flex-col bg-[#008080] px-10 py-20">
+            <div className="relative mx-auto flex w-full flex-col bg-primary px-10 py-20">
                 <div className="grid h-full w-full grid-cols-2 items-center justify-end gap-4 text-end">
                     {/* Left Section */}
                     <div></div>

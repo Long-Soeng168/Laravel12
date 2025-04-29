@@ -45,7 +45,7 @@ const MyFooter = () => {
                         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 text-sm text-gray-500">
                             {/* About Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">About Us</h3>
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">About Us</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>What is Westec?</li>
                                     <li>Mission & Vision</li>
@@ -56,7 +56,7 @@ const MyFooter = () => {
 
                             {/* Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Solutions</h3>
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Solutions</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
@@ -66,7 +66,7 @@ const MyFooter = () => {
                             </div>
                             {/*Feature Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Featured Solutions</h3>
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Featured Solutions</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
@@ -77,7 +77,7 @@ const MyFooter = () => {
 
                             {/* Case Studies */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-[#008080] px-6 py-1 text-center text-base text-white">Case studies</h3>
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Case studies</h3>
                                 <ul className="mt-6 list-disc space-y-1 pl-3">
                                     <li>Banking</li>
                                     <li>Embassy</li>
@@ -93,7 +93,7 @@ const MyFooter = () => {
                         <div className="mt-16 flex flex-wrap gap-6 w-full">
                             {/* Follow Us */}
                             <div className="w-full sm:flex-1">
-                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-base text-white">Follow Us!</h3>
+                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white">Follow Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'facebook', alt: 'Facebook' },
@@ -114,7 +114,7 @@ const MyFooter = () => {
 
                             {/* Chat With Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block bg-[#008080] px-6 py-1 text-base text-white">Chat With Us!</h3>
+                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white">Chat With Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'talk', alt: 'Talk' },

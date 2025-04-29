@@ -101,7 +101,7 @@ export function MyBottomContent() {
 
             {/* Contact */}
             <div
-                className="relative mx-auto flex aspect-[21/5] w-full flex-col bg-[#008080]"
+                className="relative mx-auto flex aspect-[21/5] w-full flex-col bg-primary"
                 // style={{
                 //     backgroundImage: "url('/assets/demo-images/Artboard3.jpg')",
                 //     backgroundSize: 'cover',

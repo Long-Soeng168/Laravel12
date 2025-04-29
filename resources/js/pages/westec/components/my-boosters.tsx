@@ -18,7 +18,7 @@ const MyBoosters = () => {
                 <div className="flex flex-col gap-6">
                     {/* Section Header */}
                     <div>
-                        <h2 className="font-proxima-nova-regular mb-6 inline bg-[#008080] px-4 py-1 text-center text-lg text-white">
+                        <h2 className="font-proxima-nova-regular mb-6 inline bg-primary px-4 py-1 text-center text-lg text-white">
                             Pre-Installation
                         </h2>
                     </div>

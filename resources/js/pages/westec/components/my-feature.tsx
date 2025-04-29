@@ -21,7 +21,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -42,7 +42,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -64,7 +64,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -85,7 +85,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -108,7 +108,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -127,7 +127,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -146,7 +146,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
@@ -165,7 +165,7 @@ const MyFeature = () => {
                         <div className="flex flex-row items-center justify-between px-6 py-3">
                             <a
                                 href="/contact"
-                                className="font-proxima-nova-regular bg-[#008080] px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
+                                className="font-proxima-nova-regular bg-primary px-4 py-1 text-sm text-white capitalize transition duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,128,128)]"
                             >
                                 Read More
                             </a>
