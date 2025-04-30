@@ -42,7 +42,7 @@ export default function ToggleModeSwitch({ className = '' }: { className?: strin
 
   return (
     <div className={cn('flex items-center space-x-2', className)}>
-      <SunMediumIcon className="h-4 w-4 text-black dark:text-white" />
+      {/* <SunMediumIcon className="h-4 w-4 text-black dark:text-white" /> */}
       <Switch
         icon={
           isDark ? (
@@ -54,7 +54,7 @@ export default function ToggleModeSwitch({ className = '' }: { className?: strin
         checked={isDark}
         onCheckedChange={handleToggle}
       />
-      <MoonIcon className="h-4 w-4 text-neutral-400" />
+      {/* <MoonIcon className="h-4 w-4 text-neutral-400" /> */}
     </div>
   );
 }
