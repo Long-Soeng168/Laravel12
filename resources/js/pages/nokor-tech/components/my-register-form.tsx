@@ -1,5 +1,3 @@
-"use client"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,7 +11,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "@inertiajs/react"
 import { useState } from "react"
-import { baseUrl } from "@/app/admin/utils/url"
 
 export function RegisterForm({
   className,
@@ -39,7 +36,7 @@ export function RegisterForm({
 
     // Example of posting the form data to the backend
     try {
-      const response = await fetch(`${baseUrl}/Auth/register`, {
+      const response = await fetch(`/Auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
