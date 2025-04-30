@@ -7,6 +7,9 @@ Route::get('/', function () {
    // return Inertia::render('LaravelDefaultPage');
    return redirect('/dashboard');
 })->name('home');
+Route::get('/privacy', function () {
+   return Inertia::render('Privacy');
+})->name('home');
 
 // === Client ===
 // require __DIR__ . '/westec.php';
