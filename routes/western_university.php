@@ -117,20 +117,23 @@ Route::get('/schedules_and_subjects', function () {
 })->name('schedules_and_subjects');
 
 Route::get('/admissions', function () {
-    $admissionBanner = Banner::where('position_code', 'ADMISSIONS')->first();
-    $admission = Page::where('code', 'ADMISSIONS')
-        ->with(['children.images']) // Eager load images for children
-        ->first();
-    // return($admission);
-    $table = Page::where('code', 'SCHOOL_FEES_TABLE')
-        ->with(['children.images']) // Eager load images for children
-        ->first();
-    return Inertia::render('westernuniversity/admissions/Index', [
-        'admissionBanner' => $admissionBanner,
-        'admission' => $admission,
-        'table' => $table,
-    ]);
+    return 'dd';
 });
+// Route::get('/admissions', function () {
+//     $admissionBanner = Banner::where('position_code', 'ADMISSIONS')->first();
+//     $admission = Page::where('code', 'ADMISSIONS')
+//         ->with(['children.images']) // Eager load images for children
+//         ->first();
+//     // return($admission);
+//     $table = Page::where('code', 'SCHOOL_FEES_TABLE')
+//         ->with(['children.images']) // Eager load images for children
+//         ->first();
+//     return Inertia::render('westernuniversity/admissions/Index', [
+//         'admissionBanner' => $admissionBanner,
+//         'admission' => $admission,
+//         'table' => $table,
+//     ]);
+// });
 
 Route::get('/activities_and_events', function () {
     $banner = Banner::where('position_code', 'SCHOOL_ACTIVITIES_AND_EVENT')->first();
