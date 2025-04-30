@@ -9,4 +9,10 @@ class VideoPlayList extends Model
 {
     /** @use HasFactory<\Database\Factories\VideoPlayListFactory> */
     use HasFactory;
+    protected $guarded = [];
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'playlist_code', 'code');
+    }
 }

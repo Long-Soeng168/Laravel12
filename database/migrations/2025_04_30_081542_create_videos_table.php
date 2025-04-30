@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('video_play_lists', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->string('name_kh')->nullable();
-            $table->decimal('price', 15, 2)->nullable();
+            $table->boolean('is_free')->nullable()->default(false);
+            $table->string('title');
+            $table->string('title_kh')->nullable();
+            $table->string('video_file')->nullable();
             $table->string('image')->nullable();
+            $table->string('playlist_code')->nullable(); // optional if you're using foreign keys with 'code'
             $table->string('status')->nullable()->default('active');
             $table->text('short_description')->nullable();
             $table->text('short_description_kh')->nullable();
+            $table->bigInteger('total_view_counts')->nullable();
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')
@@ -36,6 +38,7 @@ return new class extends Migration
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
+            $table->foreignId('video_play_list_id')->nullable()->constrained('video_play_lists')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -45,12 +48,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Drop foreign key before dropping the table
-        Schema::table('video_play_lists', function (Blueprint $table) {
-            $table->dropForeign(['created_by']);
-            $table->dropForeign(['updated_by']);
-        });
-        // Drop the table
-        Schema::dropIfExists('video_play_lists');
+        Schema::dropIfExists('videos');
     }
 };

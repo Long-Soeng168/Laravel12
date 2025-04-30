@@ -197,5 +197,12 @@
     "Lower number is priority - default = 1": "លេខតូចគឺជាអាទិភាព (លំនាំដើម = 1)",
     "Select the parent this item belongs to.": "ជ្រើសរើសមេរបស់ធាតុមួយនេះ",
     "Select the position where this item will show.": "ជ្រើសរើសទីតាំងដែលធាតុនេះនឹងបង្ហាញ។",
-    "Select the parent page for this page.": "ជ្រើសរើសទំព័រមេសម្រាប់ទំព័រនេះ។"
+    "Select the parent page for this page.": "ជ្រើសរើសទំព័រមេសម្រាប់ទំព័រនេះ។",
+
+    "Free Access": "ចូលប្រើដោយឥតគិតថ្លៃ",
+    "Check to make this video free to access": "ធីកដើម្បីធ្វើឱ្យវីដេអូនេះអាចចូលប្រើដោយឥតគិតថ្លៃ",
+    "Select Access Type": "ជ្រើសរបៀបចូលប្រើ",
+    "Select whether this video is free or requires a subscription": "ជ្រើសថាតើវីដេអូនេះឥតគិតថ្លៃ ឬទាមទារការជាវ",
+    "Requires Subscription": "ទាមទារការជាវ",
+    "Free": "ឥតគិតថ្លៃ"
 }
