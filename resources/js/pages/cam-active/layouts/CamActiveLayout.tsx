@@ -7,7 +7,7 @@ import { Navbar } from '../components/navbar';
 const CamActiveLayout = ({ children }: { children: ReactNode }) => {
     return (
         <>
-            <div className="bg-primary text-white">
+            <div className="bg-true-primary text-white">
                 <div className="mx-auto flex max-w-7xl flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-4 sm:flex-row xl:px-0">
                     {/* Copyright */}
                     <span className="text-white flex items-center gap-2">
