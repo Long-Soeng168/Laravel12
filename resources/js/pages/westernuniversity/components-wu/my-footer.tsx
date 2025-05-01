@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ArrowUpCircleIcon } from 'lucide-react';
 
 const footerSections = [
@@ -80,6 +80,7 @@ const footerSections = [
 ];
 
 const MyFooter = () => {
+    const { application_info } = usePage().props;
     return (
         <div className="font-now-alt-medium relative flex flex-col bg-blue-900 text-white">
             <div className="bg-muted grow" />

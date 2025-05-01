@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 interface FeedbackItem {
@@ -11,7 +10,7 @@ interface FeedbackItem {
 const MyBlogCard: React.FC<FeedbackItem> = ({ image, text, date }) => {
     return (
         <div className="w-full cursor-pointer rounded-md bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <Image
+            <img
                 height={600}
                 width={600}
                 src={image}

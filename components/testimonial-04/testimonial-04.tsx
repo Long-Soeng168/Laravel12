@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Marquee from "@/components/ui/marquee";
-import Link from "next/link";
+import { Link } from "@inertiajs/react";
 import React, { ComponentProps } from "react";
 
 const testimonials = [

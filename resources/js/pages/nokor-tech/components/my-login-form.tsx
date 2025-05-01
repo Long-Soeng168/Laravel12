@@ -1,4 +1,3 @@
-"use client"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -10,9 +9,8 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "next/link"
 import { useState } from "react"
-import { baseUrl } from "@/app/admin/utils/url"
+import { Link } from "@inertiajs/react"
 
 export function LoginForm({
   className,
@@ -28,7 +26,7 @@ export function LoginForm({
     setError("");
 
     try {
-      const response = await fetch(`${baseUrl}/Auth/login`, {
+      const response = await fetch(`/Auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

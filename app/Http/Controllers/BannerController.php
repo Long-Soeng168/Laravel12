@@ -49,7 +49,7 @@ class BannerController extends Controller implements HasMiddleware
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('title', 'LIKE', "%{$search}%")
                     ->orWhere('title_kh', 'LIKE', "%{$search}%")
-                    ->orWhere('code', 'LIKE', "%{$search}%");
+                   ;
             });
         }
 

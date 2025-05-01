@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import React from 'react';
@@ -58,7 +59,7 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
     return (
         <nav
             onMouseLeave={() => setActive(null)} // resets the state
-            className="shadow-input relative flex justify-center space-x-6 rounded-full px-8 py-6  dark:bg-black"
+            className="shadow-input relative flex justify-center space-x-6 rounded-full px-8 py-6"
         >
             {children}
         </nav>
@@ -79,8 +80,8 @@ export const ProductItem = ({ title, description, href, src }: { title: string; 
 
 export const HoveredLink = ({ children, ...rest }: any) => {
     return (
-        <a {...rest} className="text-neutral-700 hover:text-black dark:text-neutral-200">
+        <Link {...rest} className="text-neutral-700 hover:text-black dark:text-neutral-200">
             {children}
-        </a>
+        </Link>
     );
 };

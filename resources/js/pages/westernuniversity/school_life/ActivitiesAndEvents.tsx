@@ -8,7 +8,10 @@ import MyTopMenu from '../components-wu/my-top-menu'
 const ActivitiesAndEvents = () => {
   const { banner } = usePage().props;
   const { activitiesAndEventsTopData } = usePage().props;
+  const { dataPage } = usePage().props;
+  const { activitiesAndEventsBottomData } = usePage().props;
   
+  // console.log (activitiesAndEventsTopData)
   return (
     <MyLayoutWestern>
         <div className="font-now-alt-regular">
@@ -21,7 +24,7 @@ const ActivitiesAndEvents = () => {
                     </div>
                 </div>
          </div>
-         <MyContentWithSlide activitiesAndEventsTopData={activitiesAndEventsTopData}/>
+         <MyContentWithSlide banner={banner} activitiesAndEventsBottomData={activitiesAndEventsBottomData} dataPage={dataPage} activitiesAndEventsTopData={activitiesAndEventsTopData}/>
     </MyLayoutWestern>
   )
 }

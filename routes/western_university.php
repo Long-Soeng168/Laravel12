@@ -1,9 +1,7 @@
 <?php
 
 use App\Models\Banner;
-use App\Models\Link;
 use App\Models\Page;
-use App\Models\Type;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,22 +14,22 @@ Route::get('/', function () {
     $homePageBanner = Banner::where('position_code', 'HOME_PAGE')->first();
     $welcomePage = Page::where('code', 'WELCOME_PAGE')->with('images')->first();
     $statistic = Page::where('code', 'STATISTIC')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
     $video = Page::where('code', 'VIDEO')->with('images')->first();
 
     $news = Page::where('code', 'NEWS')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
 
     $enrollYourChild = Page::where('code', 'HOW_TO_ENROLL_YOUR_CHILD')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
 
     // $footerACADEMICS = Link::where('type', 'ACADEMICS')->first();
     // return($footerACADEMICS);
 
-    return Inertia::render('westernuniversity/About',[
+    return Inertia::render('westernuniversity/About', [
         'homePageBanner' => $homePageBanner,
         'welcomePage' => $welcomePage,
         'statistic' => $statistic,
@@ -39,7 +37,7 @@ Route::get('/', function () {
         'news' => $news,
         'enrollYourChild' => $enrollYourChild,
         // 'footerACADEMICS' => $footerACADEMICS,
-        
+
     ]);
 });
 Route::get('/hestory_and_values', function () {
@@ -48,12 +46,12 @@ Route::get('/hestory_and_values', function () {
     $ourMission = Page::where('code', 'OUR_MISSION')->first();
     $ourHistoryBanner = Banner::where('position_code', 'HESTORY_AND_VALUES')->first();
     $timeLine = Page::where('code', 'TIME_LINE')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
     $valuesWiscare = Page::where('code', 'VALUES_WISCARE')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
-  
+        ->with(['children.images']) // Eager load images for children
+        ->first();
+
     // return ($ourHistoryBanner);
     return Inertia::render('westernuniversity/about/HestoryAndValues', [
         'ourHistory' => $ourHistory,
@@ -68,8 +66,8 @@ Route::get('/hestory_and_values', function () {
 Route::get('/school_facilities', function () {
     $schoolFacilityBanner = Banner::where('position_code', 'SCHOOL_FACILITIES')->first();
     $schoolFacilities = Page::where('code', 'SCHOOL_FACILITIES')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
     // return($schoolFacilityBanner);
     return Inertia::render('westernuniversity/about/SchoolFacilities', [
         'schoolFacilityBanner' => $schoolFacilityBanner,
@@ -78,8 +76,8 @@ Route::get('/school_facilities', function () {
 });
 Route::get('/campuses', function () {
     $campuseBanner = Banner::where('position_code', 'CAMPUSES')->first();
-    return Inertia::render('westernuniversity/about/Campuses',[
-'campuseBanner' => $campuseBanner,
+    return Inertia::render('westernuniversity/about/Campuses', [
+        'campuseBanner' => $campuseBanner,
     ]);
 })->name('campuses');
 Route::get('/detail/{id}', function ($id) {
@@ -94,24 +92,24 @@ Route::get('/curriculum', function () {
     $curriculumBanner = Banner::where('position_code', 'CURRICULUM')->first();
     $curriculum = Page::where('code', 'CURRICULUM')->with('images')->first();
     // return($curriculum);
-    return Inertia::render('westernuniversity/academic/Curriculum',[
-    'curriculumBanner' => $curriculumBanner,
-    'curriculum' => $curriculum,
+    return Inertia::render('westernuniversity/academic/Curriculum', [
+        'curriculumBanner' => $curriculumBanner,
+        'curriculum' => $curriculum,
 
     ]);
 });
 Route::get('/programs', function () {
     $programBanner = Banner::where('position_code', 'PROGRAMS')->first();
     $programs = Page::where('code', 'PROGRAMS')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
+        ->with(['children.images']) // Eager load images for children
+        ->first();
     // return($programBanner);
-    return Inertia::render('westernuniversity/academic/Programs',[
+    return Inertia::render('westernuniversity/academic/Programs', [
         'programBanner' => $programBanner,
         'programs' => $programs,
 
     ]);
-})->name('programs');
+});
 Route::get('/schedules_and_subjects', function () {
     return Inertia::render('westernuniversity/academic/ScheduleAndSubjects');
 })->name('schedules_and_subjects');
@@ -119,37 +117,57 @@ Route::get('/schedules_and_subjects', function () {
 Route::get('/admissions', function () {
     $admissionBanner = Banner::where('position_code', 'ADMISSIONS')->first();
     $admission = Page::where('code', 'ADMISSIONS')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
-    // return($admission);
-        $table = Page::where('code', 'SCHOOL_FEES_TABLE')
         ->with(['children.images']) // Eager load images for children
         ->first();
-    return Inertia::render('westernuniversity/admissions/Index',[
-    'admissionBanner' => $admissionBanner,
-    'admission' => $admission,
-    'table' => $table,
+    // return($admission);
+    $table = Page::where('code', 'SCHOOL_FEES_TABLE')
+        ->with(['children.images']) // Eager load images for children
+        ->first();
+    return Inertia::render('westernuniversity/admissions/Index', [
+        'admissionBanner' => $admissionBanner,
+        'admission' => $admission,
+        'table' => $table,
     ]);
 });
 
 Route::get('/activities_and_events', function () {
     $banner = Banner::where('position_code', 'SCHOOL_ACTIVITIES_AND_EVENT')->first();
-    $activitiesAndEventsTopData = Page::where('code', 'SCHOOL_ACTIVITIES_AND_EVENT')
-    ->with(['children.images']) // Eager load images for children
-    ->first();
-    return Inertia::render('westernuniversity/school_life/ActivitiesAndEvents',[
-    'banner' => $banner,
-    'activitiesAndEventsTopData' => $activitiesAndEventsTopData,
+    $dataPage = Page::where('code', 'SCHOOL_ACTIVITIES_AND_EVENTS')->first();
+    $activitiesAndEventsTopData = Page::where('position_code', 'SCHOOL_ACTIVITIES_AND_EVENT_TOP')->with('images')->get();
+    $activitiesAndEventsBottomData = Page::where('position_code', 'SCHOOL_ACTIVITIES_AND_EVENT_BOTTOM')->with('images')->get();
+        // return $activitiesAndEventsBottomData;
+    return Inertia::render('westernuniversity/school_life/ActivitiesAndEvents', [
+        'banner' => $banner,
+        'dataPage' => $dataPage,
+        'activitiesAndEventsTopData' => $activitiesAndEventsTopData,
+        'activitiesAndEventsBottomData' => $activitiesAndEventsBottomData,
 
     ]);
-})->name('activities_and_events');
+});
 
 Route::get('/extracurricular_activities', function () {
-    return Inertia::render('westernuniversity/school_life/ExtracurricularActivities');
-})->name('extracurricular_activities');
+    $banner = Banner::where('position_code', 'Extracurricular_Activities')->first();
+    $dataPage = Page::where('code', 'EXTRACURRICULAR_ACTIVITIES')->first();
+    $TopData = Page::where('position_code', 'EXTRACURRICULAR_ACTIVITIES_TOP')->with('images')->get();
+    $BottomData = Page::where('position_code', 'EXTRACURRICULAR_ACTIVITIES_BOTTOM')->with('images')->get();
+    return Inertia::render('westernuniversity/school_life/ExtracurricularActivities',[
+        'banner' => $banner,
+        'dataPage' => $dataPage,
+        'topData' => $TopData,
+        'bottomData' => $BottomData,
+    ]);
+});
 
 Route::get('/outreach_programs', function () {
-    return Inertia::render('westernuniversity/school_life/OutreachPrograms');
+    $banner = Banner::where('position_code', 'OUTREACH_PROGRAMS')->first();
+    $outreachProgramData = Page::where('code', 'OUTREACH_PROGRAMS')
+        ->with(['children.images']) // Eager load images for children
+        ->first();
+        // return $outreachProgramData;
+    return Inertia::render('westernuniversity/school_life/OutreachPrograms',[
+        'banner' => $banner,
+        'outreachProgramData' => $outreachProgramData,
+    ]);
 })->name('outreach_programs');
 
 Route::get('/student_council', function () {

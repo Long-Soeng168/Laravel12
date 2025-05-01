@@ -197,11 +197,11 @@ class PageController extends Controller implements HasMiddleware
         $image_files = $request->file('images');
         unset($validated['images']);
 
-        foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+        // foreach ($validated as $key => $value) {
+        //     if ($value === null || $value === '') {
+        //         unset($validated[$key]);
+        //     }
+        // }
 
         $page->update($validated);
 
