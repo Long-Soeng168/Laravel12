@@ -1,50 +1,46 @@
-import { Star, Verified } from 'lucide-react';
+import { Verified } from 'lucide-react';
+import React from 'react';
 
 interface MyProductCardProps {
-    instock: boolean;
-    imageUrl: string;
-    rating: number;
-    reviews: number;
-    name: string;
-    price: number;
-    oldPrice?: number;
+    product: any;
 }
 
-const MyProductCard = (
-    {
-        product
-    }
-        :
-        {
-            product: MyProductCardProps
-        }
-) => {
+const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
+    const isInStock = product.stock_status === 'instock';
+
     return (
-        <a href={`/products/1`} className='flex flex-col rounded-md overflow-hidden m-2'>
+        <a href={`/products/${product.id}`} className="flex flex-col overflow-hidden rounded-md transition-all duration-300 hover:scale-105">
             {/* Product Image */}
-            <img
-                width={600}
-                height={600}
-                src={product.imageUrl}
-                alt={`Product`}
-                className="aspect-square object-cover w-full h-full"
-            />
-            <div className='p-2'>
+            <div className="overflow-hidden rounded-md border-[0.5px]">
+                {product.images?.length > 0 ? (
+                    <img
+                        width={600}
+                        height={600}
+                        src={`/assets/images/items/thumb/${product.images[0]?.image}`}
+                        alt={product.name}
+                        className="aspect-square h-full w-full object-cover"
+                    />
+                ) : (
+                    <img width={600} height={600} src="/assets/icons/image-icon.png" alt="Placeholder" className="aspect-square h-full w-full p-8 opacity-50 object-cover" />
+                )}
+            </div>
+
+            <div className="p-2">
                 {/* Stock Status */}
-                <div className={`flex gap-2 text-sm ${product.instock ? 'text-green-500' : 'text-red-500'} items-center justify-start py-2`}>
-                    <Verified size={16} />
-                    <p>{product.instock ? 'In Stock' : 'Out of Stock'}</p>
-                </div>
+                {product.stock_status != 'na' && (
+                    <div className={`flex items-center justify-start gap-2 py-2 text-sm ${isInStock ? 'text-green-500' : 'text-red-500'}`}>
+                        <Verified size={16} />
+
+                        <p>{isInStock ? 'In Stock' : 'Out of Stock'}</p>
+                    </div>
+                )}
 
                 {/* Product Name */}
-                <p className="line-clamp-2 text-md font-semibold">
-                    {product.name}
-                </p>
+                <p className="line-clamp-3">{product.name}</p>
 
                 {/* Product Price */}
-                <div className='flex items-center gap-2'>
-                    {product.oldPrice && <p className='text-gray-400 line-through'>${product.oldPrice.toFixed(2)}</p>}
-                    <p className='text-md text-red-400 '>${product.price.toFixed(2)}</p>
+                <div className="flex items-center gap-2">
+                    <p className="text-md text-red-400">{parseFloat(product.price) > 0 && `$${parseFloat(product.price).toFixed(2)}`}</p>
                 </div>
             </div>
         </a>

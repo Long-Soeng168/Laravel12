@@ -1,10 +1,9 @@
+import { usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 import MyBlogList from './components/my-blogs-list';
 import MyBrandList from './components/my-brand-list';
 import MyMiddleSlide from './components/my-middle-slide';
 import MyProductList from './components/my-product-list';
-import MyProductListBrands from './components/my-product-list-brands';
-import MyProductListCategories from './components/my-product-list-categories';
 import MyProductListHeader from './components/my-product-list-header';
 import MySlide from './components/my-slide';
 import NokorTechLayout from './layouts/nokor-tech-layout';
@@ -14,6 +13,8 @@ interface NokorTechLayoutProps {
 }
 
 const Index = ({ children }: NokorTechLayoutProps) => {
+    const { topBanners, middleBanners, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
+    console.log(categoriesWithItems);
     return (
         <NokorTechLayout>
             <main>
@@ -21,29 +22,30 @@ const Index = ({ children }: NokorTechLayoutProps) => {
 
                 <>
                     <div className="mx-auto mb-10 max-w-screen-xl">
-                        {/* start slide */}
-                        <MySlide
-                            images={[
-                                '/assets/nokor-tech/images/slides/slide1.png',
-                                '/assets/nokor-tech/images/slides/slide2.png',
-                                '/assets/nokor-tech/images/slides/slide3.png',
-                            ]}
-                        />
+                        {topBanners && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
                         {/* end slide */}
                         <MyProductListHeader title="New Arrivals" />
-                        <MyProductList />
+                        <MyProductList items={newArrivals} />
 
-                        <MyMiddleSlide
-                            images={[
-                                '/assets/nokor-tech/images/slides/slide7.png',
-                                '/assets/nokor-tech/images/slides/slide5.png',
-                                '/assets/nokor-tech/images/slides/slide8.png',
-                                '/assets/nokor-tech/images/slides/slide6.png',
-                            ]}
-                        />
+                        <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />
 
-                        <MyProductListCategories />
-                        <MyProductListBrands />
+                        {categoriesWithItems
+                            .filter((category: any) => category.all_items.length > 0)
+                            .map((category: any) => (
+                                <div key={category.id}>
+                                    <MyProductListHeader title={category.name} />
+                                    <MyProductList items={category.all_items} />
+                                </div>
+                            ))}
+
+                        {brandsWithItems
+                            .filter((brand: any) => brand.items.length > 0)
+                            .map((brand: any) => (
+                                <div key={brand.id}>
+                                    <MyProductListHeader title={brand.name} />
+                                    <MyProductList items={brand.items} />
+                                </div>
+                            ))}
 
                         <MyBrandList />
                         <MyBlogList />

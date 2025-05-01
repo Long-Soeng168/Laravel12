@@ -58,6 +58,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Name')}
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('price')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Price')}
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('short_description')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description')}
@@ -71,6 +76,21 @@ const MyTableData = () => {
                             <TableHead onClick={() => handleSort('category_code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Category Code')}
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('brand_code')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Brand Code')}
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('model_code')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Model Code')}
+                                </span>
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('body_type_code')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Body Type Code')}
                                 </span>
                             </TableHead>
                             <TableHead onClick={() => handleSort('total_view_counts')}>
@@ -172,6 +192,7 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
+                                <TableCell>{item.price || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>
                                     {hasPermission('item update') ? (
@@ -186,6 +207,9 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.category_code || '---'}</TableCell>
+                                <TableCell>{item.brand_code || '---'}</TableCell>
+                                <TableCell>{item.model_code || '---'}</TableCell>
+                                <TableCell>{item.body_type_code || '---'}</TableCell>
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell> 

@@ -25,6 +25,7 @@ const formSchema = z.object({
     working_days: z.string().max(255).optional(),
     working_days_kh: z.string().max(255).optional(),
     email: z.string().optional(),
+    google_map: z.string().max(500).optional(),
     copyright: z.string().optional(),
     copyright_kh: z.string().optional(),
     image: z.string().optional(),
@@ -60,6 +61,7 @@ export default function Create() {
             working_days: editData?.working_days || '',
             working_days_kh: editData?.working_days_kh || '',
             email: editData?.email || '',
+            google_map: editData?.google_map || '',
             copyright: editData?.copyright || '',
             copyright_kh: editData?.copyright_kh || '',
         },
@@ -183,7 +185,22 @@ export default function Create() {
                         </FormItem>
                     )}
                 />
-                <div className="grid grid-cols-12 gap-4">
+                <div className="grid grid-cols-12 gap-8">
+                    <div className="col-span-12">
+                        <FormField
+                            control={form.control}
+                            name="google_map"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Google Map Embed')}</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder={t('Google Map Embed')} type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.google_map && <div>{errors.google_map}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
                     <div className="col-span-6">
                         <FormField
                             control={form.control}

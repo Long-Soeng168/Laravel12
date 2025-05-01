@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
 use App\Models\Item;
+use App\Models\ItemBodyType;
+use App\Models\ItemBrand;
 use App\Models\Link;
 use App\Models\ItemCategory;
 use App\Models\ItemImage;
+use App\Models\ItemModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -64,6 +67,9 @@ class ItemController extends Controller implements HasMiddleware
     {
         return Inertia::render('admin/items/Create', [
             'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -73,6 +79,7 @@ class ItemController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:1000',
@@ -80,11 +87,15 @@ class ItemController extends Controller implements HasMiddleware
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
-            'category_code' => 'nullable|string|exists:item_categories, code',
+            'category_code' => 'nullable|string|exists:item_categories,code',
+            'brand_code' => 'nullable|string|exists:item_brands,code',
+            'model_code' => 'nullable|string|exists:item_models,code',
+            'body_type_code' => 'nullable|string|exists:item_body_types,code',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+
 
         $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
@@ -124,11 +135,13 @@ class ItemController extends Controller implements HasMiddleware
     public function show(Item $item)
     {
         return Inertia::render('admin/items/Create', [
-            'links' => Link::orderBy('name')->where('status', 'active')->get(),
             'editData' => $item->load('images'),
-            'postCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
             'readOnly' => true,
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
+
         ]);
     }
 
@@ -139,10 +152,11 @@ class ItemController extends Controller implements HasMiddleware
     public function edit(Item $item)
     {
         return Inertia::render('admin/items/Create', [
-            'links' => Link::orderBy('name')->where('status', 'active')->get(),
             'editData' => $item->load('images'),
-            'postCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -153,6 +167,7 @@ class ItemController extends Controller implements HasMiddleware
     {
         // dd($request->all());
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:1000',
@@ -160,7 +175,10 @@ class ItemController extends Controller implements HasMiddleware
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
-            'category_code' => 'nullable|string|exists:item_categories, code',
+            'category_code' => 'nullable|string|exists:item_categories,code',
+            'brand_code' => 'nullable|string|exists:item_brands,code',
+            'model_code' => 'nullable|string|exists:item_models,code',
+            'body_type_code' => 'nullable|string|exists:item_body_types,code',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -172,11 +190,11 @@ class ItemController extends Controller implements HasMiddleware
         $image_files = $request->file('images');
         unset($validated['images']);
 
-        foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+        // foreach ($validated as $key => $value) {
+        //     if ($value === null || $value === '') {
+        //         unset($validated[$key]);
+        //     }
+        // }
 
         $item->update($validated);
 

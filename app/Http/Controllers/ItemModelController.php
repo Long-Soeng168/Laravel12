@@ -67,8 +67,8 @@ class ItemModelController extends Controller implements HasMiddleware
     {
         $validated = $request->validate([
             'code' => 'required|string|max:255|unique:item_models,code',
-            'brand_code' => 'nullable|string|max:255|exists:item_brands,code',
-            'name' => 'nullable|string|max:255',
+            'brand_code' => 'required|string|max:255|exists:item_brands,code',
+            'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -126,7 +126,7 @@ class ItemModelController extends Controller implements HasMiddleware
     {
         $validated = $request->validate([
             'code' => 'required|string|max:255|unique:item_models,code,' . $item_model->id,
-            'brand_code' => 'nullable|string|max:255|exists:item_brands,code',
+            'brand_code' => 'required|string|max:255|exists:item_brands,code',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

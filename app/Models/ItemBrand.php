@@ -19,4 +19,9 @@ class ItemBrand extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'brand_code', 'code');
+    }
 }
