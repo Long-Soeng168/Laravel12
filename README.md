@@ -19,3 +19,5 @@ How to setup project
     - php artisan db:seed --class=UserSeeder
 # Laravel12
 # Laravel12
+
+- npm i --legacy-peer-deps
