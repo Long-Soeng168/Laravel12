@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, Globe, Users } from 'lucide-react';
-import { BackgroundPattern } from './background-pattern';
+import SectionHeader from './section-header';
 
 const WhoWeAre = () => {
     return (
@@ -9,12 +9,11 @@ const WhoWeAre = () => {
 
             <div className="mx-auto max-w-7xl space-y-8 px-4 text-center">
                 {/* Headline */}
-                <h1 className="text-5xl font-extrabold text-gray-800">Who We Are</h1>
-                <p className="mx-auto max-w-2xl text-xl text-gray-600">
-                    At <strong>CamActive</strong>, we believe that quality education should be accessible worldwide. We are architects of learning
-                    journeys, creating comprehensive solutions that empower both learners and educators. With a passion for education, we seamlessly
-                    integrate technology, resources, and services to transform academic experiences.
-                </p>
+                <SectionHeader
+                    label="Who We Are"
+                    title="Connecting with Our Global Educational Community"
+                    subtitle="At CamActive, we believe that quality education should be accessible worldwide. We are architects of learning journeys, meticulously crafting comprehensive solutions that empower both learners and educators. Born from a passion for accessible, high-quality education, we uniquely integrate...."
+                />
 
                 {/* Core Values */}
                 <div className="grid grid-cols-1 gap-16 px-6 sm:grid-cols-2 lg:grid-cols-3">

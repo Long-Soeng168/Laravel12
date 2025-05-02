@@ -1,19 +1,17 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Award, BadgeCheck, Globe2, Layers, Lightbulb, Settings, Users } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const WhyChooseUs = () => {
     return (
         <div className="mx-auto my-20 max-w-7xl space-y-12 p-8">
             {/* Headline */}
-            <h1 className=" text-center text-4xl font-bold">
-                Why Choose Us
-                {/* The CamActive Advantage */}
-            </h1>
-
-            <p className="text-muted-foreground mx-auto max-w-3xl text-center text-lg">
-                Choosing CamActive means choosing a partner dedicated to your success. Here’s why we stand apart:
-            </p>
+            <SectionHeader
+                label="Why Choose Us"
+                title="The CamActive Advantage"
+                subtitle="Choosing CamActive means choosing a partner dedicated to your success. Here's why we stand apart:"
+            />
 
             {/* Advantages Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -82,13 +80,6 @@ const WhyChooseUs = () => {
                         </p>
                     </CardContent>
                 </Card>
-            </div>
-
-            {/* Call to Action */}
-            <div className="space-y-4 text-center">
-                <h2 className="text-2xl font-semibold">Ready to Work with a True Educational Partner?</h2>
-                <p className="text-muted-foreground">Discover the CamActive difference today.</p>
-                <Button>Contact Our Team</Button>
             </div>
         </div>
     );

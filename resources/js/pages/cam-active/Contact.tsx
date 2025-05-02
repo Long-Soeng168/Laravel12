@@ -4,20 +4,21 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { MailIcon, MapPinIcon, MessageCircle, PhoneIcon } from 'lucide-react';
-import CamActiveLayout from './layouts/CamActiveLayout';
 import { Link } from '@inertiajs/react';
+import { MailIcon, MapPinIcon, MessageCircle, PhoneIcon } from 'lucide-react';
+import SectionHeader from './components/section-header';
+import CamActiveLayout from './layouts/CamActiveLayout';
 
 const ContactCamActivePage = () => (
     <CamActiveLayout>
         <div className="flex min-h-screen items-center justify-center py-16">
             <div className="mx-auto w-full max-w-screen-xl px-6 xl:px-0">
-                <b className="text-muted-foreground">Contact Us</b>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Let&apos;s Connect: Partner with CamActive Today</h2>
-                <p className="mt-3 text-base sm:text-lg">
-                    We are eager to embark on a journey of educational transformation with you. Contact us today to discover how CamActive can empower
-                    your learners, support your educators, and elevate your institution to new heights.
-                </p>
+                <SectionHeader
+                    label="Contact Us"
+                    title="Let's Connect: Partner with CamActive Today"
+                    subtitle=" We are eager to embark on a journey of educational transformation with you. Contact us today to discover how CamActive can empower
+                    your learners, support your educators, and elevate your institution to new heights."
+                />
 
                 <div className="mt-24 grid gap-16 md:gap-10 lg:grid-cols-2">
                     {/* Contact Info */}

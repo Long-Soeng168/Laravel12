@@ -1,15 +1,20 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PaperclipIcon } from 'lucide-react';
+import { PaperclipIcon, Shapes } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const CareerList = () => {
     return (
-        <div className="mx-auto max-w-[4000px] bg-white">
-            <h1 className="text-color px-4 py-4 text-2xl font-semibold sm:px-8 lg:px-16 lg:py-8">Career Opportunities </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
-                {BlogCard()}
+        <div className="mx-auto mb-8 max-w-7xl bg-white mt-28">
+            <SectionHeader
+                label="Careers"
+                title="Join Our Team: Shape the Future of Education"
+                subtitle="At CamActive, we are passionate about making a difference in the world of education. We are always looking for talented and dedicated individuals to join our growing team. If you are driven by a desire to empower learners and educators globally, we encourage you to explore career opportunities with us."
+            />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 mt-12">
                 {BlogCard()}
                 {BlogCard()}
                 {BlogCard()}
@@ -19,24 +24,22 @@ const CareerList = () => {
 
     function BlogCard() {
         return (
-            <div className="flex flex-col overflow-hidden border-[0.5px] bg-[#36454f] hover:shadow-lg">
-                <a href="#">
-                    <img className="aspect-[1/1] w-full object-cover" src="/assets/demo-images/NEWS.jpg" alt="Sunset in the mountains" />
-                </a>
-
-                <div className="p-4">
-                    <div className="mb-8">
-                        <a href="#" className="inline-block text-lg font-bold text-yellow-500 transition duration-500 ease-in-out">
-                            Be Our next ELV Design Engineer!
-                        </a>
-                        <p className="text-sm text-gray-300">Engineering the Future - Join Our Team!</p>
-                    </div>
-                    <div>
+            <div>
+                <Card className="shadow-none">
+                    <CardHeader className="flex-row items-center gap-3 font-semibold">
+                        <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-full">
+                            <Shapes className="h-5 w-5" />
+                        </div>
+                        Be Our next ELV Design Engineer!
+                    </CardHeader>
+                    <CardContent className="text-muted-foreground px-5 text-[15px]">
+                        <p>Engineering the Future - Join Our Team!</p>
+                        <div className="bg-muted mt-5 aspect-video w-full rounded-xl" />
+                    </CardContent>
+                    <CardFooter>
                         <Dialog>
                             <DialogTrigger>
-                                <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline">
-                                    More Details
-                                </span>
+                                <Button>More Details</Button>
                             </DialogTrigger>
                             <DialogContent showCloseButton={true} className="bg-primary min-w-[95%] gap-0 rounded-none p-0 text-white sm:min-w-[95%]">
                                 <DialogHeader>
@@ -198,8 +201,8 @@ const CareerList = () => {
                                 </div>
                             </DialogContent>
                         </Dialog>
-                    </div>
-                </div>
+                    </CardFooter>
+                </Card>
             </div>
         );
     }

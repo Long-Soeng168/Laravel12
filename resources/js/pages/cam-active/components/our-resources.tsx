@@ -1,18 +1,17 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Book, Package } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const OurResources = () => {
     return (
         <div className="mx-auto my-20 max-w-7xl space-y-12 p-8">
             {/* Headline */}
-            <h1 className="text-center text-4xl font-bold">
-                Our Resources
-                {/* A World of Resources at Your Fingertips */}
-            </h1>
-            <p className="mx-auto max-w-3xl text-center text-lg">
-                Connecting You to a World of Resources: Our import and export division acts as your gateway to a vast and meticulously curated
-                collection of essential educational and office materials.
-            </p>
+            <SectionHeader
+                label="Our Resources"
+                title="A World of Resources at Your Fingertips"
+                subtitle="Connecting You to a World of Resources: Our import and export division acts as your gateway to a vast and meticulously curated
+                collection of essential educational and office materials."
+            />
 
             {/* Resources Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

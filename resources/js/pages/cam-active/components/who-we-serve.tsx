@@ -1,4 +1,5 @@
 import { BookOpen, Briefcase, GitCommitVerticalIcon, Home, School, School2Icon, University, User, User2Icon, Users } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const WhoWeServe = () => {
     const sectors = [
@@ -20,15 +21,11 @@ const WhoWeServe = () => {
 
     return (
         <section className="bg-background py-16">
-            <div className="mx-auto max-w-4xl space-y-6 px-4 text-center">
-                <h1 className="text-4xl font-extrabold">
-                    Who We Serve
-                    {/* Partnering with a Diverse Network */}
-                </h1>
-                <p className="text-muted-foreground text-lg">
-                    Our comprehensive suite of solutions is thoughtfully designed to empower a wide range of learners and institutions.
-                </p>
-            </div>
+            <SectionHeader
+                label="Who We Serve"
+                title="Partnering with a Diverse Network"
+                subtitle="Our comprehensive suite of solutions is thoughtfully designed to empower a wide range of learners and institutions."
+            />
             <ul className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2">
                 {sectors.map(({ icon: Icon, title, desc }) => (
                     <li key={title} className="flex items-start space-x-4">

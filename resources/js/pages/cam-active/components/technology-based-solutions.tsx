@@ -1,20 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Cloud, Database, MonitorSmartphone, Wifi } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const TechnologyBasedSolutions = () => {
     return (
         <div className="mx-auto my-20 max-w-7xl space-y-12 p-8">
             {/* Headline */}
-            <h1 className="text-center text-4xl font-bold">
-                Technology-Based Solutions
-                {/* Leveraging Technology for Seamless and Accessible Education */}
-            </h1>
-
-            <p className="text-muted-foreground mx-auto max-w-3xl text-center text-lg">
-                CamActive is at the forefront of educational innovation, strategically leveraging the power of technology to enhance the delivery,
-                accessibility, and effectiveness of our comprehensive educational services and resources.
-            </p>
+            <SectionHeader
+                label="Technology-Based Solutions"
+                title="Leveraging Technology for Seamless and Accessible Education"
+                subtitle="CamActive is at the forefront of educational innovation, strategically leveraging the power of technology to enhance the delivery,
+                accessibility, and effectiveness of our comprehensive educational services and resources."
+            />
 
             {/* Tech Features Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">

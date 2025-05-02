@@ -1,4 +1,5 @@
 import { Globe, HandshakeIcon, MapPin, Users } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const OurGlobalReach = () => {
     const features = [
@@ -26,16 +27,12 @@ const OurGlobalReach = () => {
 
     return (
         <section className="bg-white py-16">
-            <div className="mx-auto max-w-4xl space-y-6 px-4 text-center">
-                <h2 className="text-4xl font-extrabold">
-                    Our Global Reach
-                    {/* Extending Our Impact Across the Globe */}
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                    Our commitment to global education is deeply embedded in our import and export capabilities, providing you with unparalleled
-                    access and opportunities.
-                </p>
-            </div>
+            <SectionHeader
+                label="Our Global Reach"
+                title="Extending Our Impact Across the Globe"
+                subtitle="Our commitment to global education is deeply embedded in our import and export capabilities, providing you with unparalleled
+                    access and opportunities."
+            />
 
             <div className="mx-auto mt-12 max-w-6xl px-4">
                 {/* World Map Placeholder */}

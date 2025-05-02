@@ -1,17 +1,16 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, Briefcase, GraduationCap, Users } from 'lucide-react';
+import SectionHeader from './section-header';
 
 const OurServices = () => {
     return (
         <div className="mx-auto my-20 max-w-7xl space-y-12 p-8">
             {/* Headline */}
-            <h1 className="text-center text-4xl font-bold">
-                Our Services
-                {/* Expert Support to Foster Academic Success */}
-            </h1>
-            <p className="mx-auto max-w-3xl text-center text-lg">
-                Nurturing Growth at Every Stage: We offer a holistic spectrum of support tailored for every level of education.
-            </p>
+            <SectionHeader
+                label="Our Services"
+                title="Expert Support to Foster Academic Success"
+                subtitle=" Nurturing Growth at Every Stage: We offer a holistic spectrum of support tailored for every level of education."
+            />
 
             {/* Services Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

@@ -18,8 +18,9 @@ export default function MySlideCareer() {
         });
     }, [api]);
     return (
-        <div className="mx-auto max-w-6xl">
-            <Carousel setApi={setApi} className="w-full max-w-6xl" opts={{ loop: true }}>
+        <div className="mx-auto max-w-7xl">
+            <h1 className="text-color py-4 text-2xl font-semibold lg:py-8">Employee Highlights</h1>
+            <Carousel setApi={setApi} className="w-full mx-auto max-w-6xl" opts={{ loop: true }}>
                 <CarouselContent className="ml-0">
                     {Array.from({ length: 5 }).map((_, index) => (
                         <CarouselItem key={index} className={cn('basis-[50%] pl-0 sm:basis-[33%]', {})}>
@@ -74,22 +75,22 @@ export default function MySlideCareer() {
                                                             />
                                                             <div className="order-2 p-2 text-white lg:p-4">
                                                                 <div className="mb-4">
-                                                                    <h1 className="mt-2 font-bold text-xl">A Visionary Project Manager</h1>
+                                                                    <h1 className="mt-2 text-xl font-bold">A Visionary Project Manager</h1>
                                                                     <p>
                                                                         Meet <span className="text-yellow-400">Mr. Try Pidet</span> who is shaping
                                                                         success and leadership at the best at COMPANY
                                                                     </p>
                                                                 </div>
                                                                 <div className="bg-black/30 p-2">
-                                                                    <div className="space-y-2 flex flex-col gap-4 font-medium lg:text-sm">
+                                                                    <div className="flex flex-col gap-4 space-y-2 font-medium lg:text-sm">
                                                                         <p>
-                                                                            Meet Mr. Try Pidet, our dedicated Project Manager at COMPANY, whose journey
-                                                                            embodies a profound commitment to excellence and a passion for continued
-                                                                            learning. From the start of his career, Mr. Pidet has exemplified
-                                                                            resilience and innovation, mastering the installation and configuration of
-                                                                            cutting-edge technologies like solar systems and walk-through detectors.
-                                                                            His ability to tackle technical challenges without formal training
-                                                                            showcases his determination and self-driven nature.
+                                                                            Meet Mr. Try Pidet, our dedicated Project Manager at COMPANY, whose
+                                                                            journey embodies a profound commitment to excellence and a passion for
+                                                                            continued learning. From the start of his career, Mr. Pidet has
+                                                                            exemplified resilience and innovation, mastering the installation and
+                                                                            configuration of cutting-edge technologies like solar systems and
+                                                                            walk-through detectors. His ability to tackle technical challenges without
+                                                                            formal training showcases his determination and self-driven nature.
                                                                         </p>
                                                                         <p>
                                                                             Over the years, Mr. Pidet has evolved significantly within our
@@ -122,9 +123,9 @@ export default function MySlideCareer() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <div className="my-8 flex items-center justify-center gap-8">
-                    <CarouselPrevious className="relative translate-0" />
-                    <CarouselNext className="relative translate-0" />
+                <div className="my-8 flex items-center justify-center gap-4">
+                    <CarouselPrevious className="translate-y-0" />
+                    <CarouselNext className="translate-y-0" />
                 </div>
             </Carousel>
         </div>
