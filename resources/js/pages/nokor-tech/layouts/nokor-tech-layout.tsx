@@ -14,7 +14,7 @@ const NokorTechLayout = ({ children }: NokorTechLayoutProps) => {
         <>
             <MyHeader />
 
-            <div className={`p-2 ${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>{children}</div>
+            <div className={`${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>{children}</div>
             <Toaster />
             <MyFooter />
         </>

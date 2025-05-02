@@ -17,6 +17,7 @@ const formSchema = z.object({
     code: z.string().min(1).max(255),
     name: z.string().max(255).optional(),
     name_kh: z.string().max(255).optional(),
+    order_index: z.string().optional(),
     image: z.string().optional(),
 });
 
@@ -50,6 +51,7 @@ export default function Create({
             code: editData?.code || '',
             name: editData?.name || '',
             name_kh: editData?.name_kh || '',
+            order_index: editData?.order_index.toString() || '',
             image: editData?.image || '',
         },
     });
@@ -116,22 +118,37 @@ export default function Create({
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-10">
-                <div className="col-span-6">
-                    <FormField
-                        control={form.control}
-                        name="code"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>{t('Code')}</FormLabel>
-                                <FormControl>
-                                    <Input autoFocus placeholder="New Code" type="text" {...field} />
-                                </FormControl>
-                                <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                </div>
                 <div className="grid grid-cols-12 gap-4">
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="code"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Code')}</FormLabel>
+                                    <FormControl>
+                                        <Input autoFocus placeholder="New Code" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="order_index"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Order Index')}</FormLabel>
+                                    <FormControl>
+                                        <Input autoFocus placeholder="Order Index" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
                     <div className="col-span-6">
                         <FormField
                             control={form.control}

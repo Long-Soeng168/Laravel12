@@ -1,6 +1,5 @@
-import React from 'react';
-import { CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React from 'react';
 
 interface SlideItem {
     id: number;
@@ -16,7 +15,7 @@ interface MyMiddleSlideProps {
 
 const MyMiddleSlide: React.FC<MyMiddleSlideProps> = ({ slides, path }) => {
     return (
-        <Carousel className="relative mt-10 px-2">
+        <Carousel className="relative my-10 px-2">
             <CarouselContent>
                 {slides.map((slide) => (
                     <CarouselItem
@@ -48,8 +47,8 @@ const MyMiddleSlide: React.FC<MyMiddleSlideProps> = ({ slides, path }) => {
                 ))}
             </CarouselContent>
 
-            <CarouselPrevious className="absolute top-1/2 left-4 z-10 -translate-y-1/2 transform border-none bg-transparent text-white" />
-            <CarouselNext className="absolute top-1/2 right-4 z-10 -translate-y-1/2 transform border-none bg-transparent text-white" />
+            <CarouselPrevious className="absolute top-1/2 -left-2 z-10 -translate-y-1/2 transform" />
+            <CarouselNext className="absolute top-1/2 -right-2 z-10 -translate-y-1/2 transform" />
         </Carousel>
     );
 };

@@ -2,6 +2,7 @@ import { usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 import MyBlogList from './components/my-blogs-list';
 import MyBrandList from './components/my-brand-list';
+import MyCategoryList from './components/my-category-list';
 import MyMiddleSlide from './components/my-middle-slide';
 import MyProductList from './components/my-product-list';
 import MyProductListHeader from './components/my-product-list-header';
@@ -13,17 +14,21 @@ interface NokorTechLayoutProps {
 }
 
 const Index = ({ children }: NokorTechLayoutProps) => {
-    const { topBanners, middleBanners, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
-    console.log(categoriesWithItems);
+    const { topBanners, middleBanners, posts, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
     return (
         <NokorTechLayout>
-            <main>
+            <main className='px-2'>
                 {children}
 
                 <>
                     <div className="mx-auto mb-10 max-w-screen-xl">
                         {topBanners && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
                         {/* end slide */}
+                        <div className="mt-10 mb-4 space-y-8">
+                            <MyCategoryList items={categoriesWithItems} />
+                            <MyBrandList items={brandsWithItems} />
+                        </div>
+
                         <MyProductListHeader title="New Arrivals" />
                         <MyProductList items={newArrivals} />
 
@@ -33,7 +38,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             .filter((category: any) => category.all_items.length > 0)
                             .map((category: any) => (
                                 <div key={category.id}>
-                                    <MyProductListHeader title={category.name} />
+                                    <MyProductListHeader title={category.name} image={`/assets/images/item_categories/thumb/${category.image}`} />
                                     <MyProductList items={category.all_items} />
                                 </div>
                             ))}
@@ -42,13 +47,17 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             .filter((brand: any) => brand.items.length > 0)
                             .map((brand: any) => (
                                 <div key={brand.id}>
-                                    <MyProductListHeader title={brand.name} />
+                                    <MyProductListHeader title={brand.name} image={`/assets/images/item_brands/thumb/${brand.image}`} />
                                     <MyProductList items={brand.items} />
                                 </div>
                             ))}
 
-                        <MyBrandList />
-                        <MyBlogList />
+                        {posts?.length > 0 && (
+                            <>
+                                <MyProductListHeader title="Blogs" />
+                                <MyBlogList posts={posts} />
+                            </>
+                        )}
                     </div>
                     {/* <MyService /> */}
                 </>

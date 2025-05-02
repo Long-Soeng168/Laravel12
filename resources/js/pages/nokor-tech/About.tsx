@@ -1,92 +1,50 @@
-import { Heart } from 'lucide-react';
+import { usePage } from '@inertiajs/react';
 import NokorTechLayout from './layouts/nokor-tech-layout';
 
 const About = () => {
+    const { aboutPages } = usePage().props;
+
     return (
         <NokorTechLayout>
             <div>
-                <div className="bg-primary text-white">
-                    <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between px-4 py-16 lg:flex-row lg:px-24">
-                        <div className="w-full lg:w-1/2 lg:pr-16">
-                            <h3 className="mb-4 text-4xl font-semibold lg:text-5xl">A Family That Keeps On Growing</h3>
-                            <div className="text-lg text-gray-200 lg:text-xl">
-                                <p className="mb-4">
-                                    We always aim to please the home market, supplying great computers and hardware at great prices to non-corporate
-                                    customers, through our large Melbourne CBD showroom and our online store.
-                                </p>
-                                <p>
-                                    Shop management approach fosters a strong customer service focus in our staff. We prefer to cultivate long-term
-                                    client relationships rather than achieve quick sales, demonstrated in the measure of our long-term success.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="mt-8 w-full lg:mt-0 lg:w-auto">
-                            <img src="/assets/nokor-tech/images/products/about-us/1.png" alt="About Us" width={500} height={500} className="object-cover" />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Section 2 */}
-                <div className="bg-white text-black">
-                    <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between px-4 py-16 lg:flex-row lg:px-24">
-                        <div className="order-1 mb-8 w-full lg:mb-0 lg:w-auto">
-                            <div className="relative h-[300px] w-[300px] lg:h-[500px] lg:w-[500px]">
-                                <img src="/assets/nokor-tech/images/products/about-us/2.png" alt="About Us" fill />
-                            </div>
-                        </div>
-                        <div className="w-full lg:order-2 lg:w-1/2">
-                            <div className="flex items-center gap-4">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-t-full rounded-l-full bg-blue-600 p-2">
-                                    <div className="relative h-[20px] w-[20px]">
-                                        <img src="/assets/nokor-tech/images/logo/wlogo.png" alt="Logo" fill />
+                {aboutPages.map((page, index) => (
+                    <div
+                        key={page.id}
+                        className={`${index % 2 !== 0 ? 'bg-black bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,255,255,0)_40%,rgba(102,51,238,1)_100%)] text-white' : 'bg-background text-foreground'}`}
+                    >
+                        <div
+                            className={`mx-auto flex max-w-7xl flex-col items-center justify-between px-4 py-16 md:flex-row ${
+                                index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                            } lg:px-24`}
+                        >
+                            {/* Image */}
+                            <div className="order-2 mt-8 flex w-full items-center justify-center lg:order-1 lg:mt-0 lg:w-auto">
+                                {page?.images && page?.images[0] && (
+                                    <div className="relative flex h-[300px] w-[300px] items-center justify-center lg:h-[500px] lg:w-[500px]">
+                                        <img
+                                            src={`/assets/images/pages/thumb/${page.images[0].image}`}
+                                            alt=""
+                                            className="object-cover"
+                                            style={{ width: '60%', height: '60%' }}
+                                        />
                                     </div>
-                                </div>
-                                <h3 className="text-4xl font-semibold lg:text-5xl">Shop.com</h3>
+                                )}
                             </div>
-                            <div className="mt-4 text-lg text-gray-600 lg:text-xl">
-                                <p className="mb-4">
-                                    We always aim to please the home market, supplying great computers and hardware at great prices to non-corporate
-                                    customers, through our large Melbourne CBD showroom and our online store.
-                                </p>
-                                <p>
-                                    Shop management approach fosters a strong customer service focus in our staff. We prefer to cultivate long-term
-                                    client relationships rather than achieve quick sales, demonstrated in the measure of our long-term success.
-                                </p>
+
+                            {/* Text */}
+                            <div className="w-full lg:w-1/2 lg:pr-16">
+                                <div className="flex items-center gap-4">
+                                    <h3 className="text-4xl font-semibold lg:text-5xl">{page.title}</h3>
+                                </div>
+                                <div
+                                    className={`prose ck-content mt-4 max-w-md text-lg ${index % 2 === 0 ? 'text-foreground' : 'text-white'} lg:text-xl`}
+                                >
+                                    <div dangerouslySetInnerHTML={{ __html: page.long_description }} />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Section 3 */}
-                <div className="bg-primary text-white">
-                    <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between px-4 py-16 lg:flex-row lg:px-24">
-                        <div className="w-full lg:w-1/2">
-                            <div className="flex items-center gap-4">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-t-full rounded-l-full bg-blue-600 p-2">
-                                    <Heart />
-                                </div>
-                                <h3 className="text-4xl font-semibold lg:text-5xl">Now You're In Safe Hands</h3>
-                            </div>
-                            <div className="mt-4 text-lg text-gray-200 lg:text-xl">
-                                <p className="mb-4">
-                                    We always aim to please the home market, supplying great computers and hardware at great prices to non-corporate
-                                    customers, through our large Melbourne CBD showroom and our online store.
-                                </p>
-                                <p>
-                                    Shop management approach fosters a strong customer service focus in our staff. We prefer to cultivate long-term
-                                    client relationships rather than achieve quick sales, demonstrated in the measure of our long-term success.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="mt-8 w-full lg:mt-0 lg:w-auto">
-                            <div className="relative h-[300px] w-[300px] lg:h-[500px] lg:w-[500px]">
-                                <img src="/assets/nokor-tech/images/products/about-us/3.png" alt="About Us" fill />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Additional sections follow the same pattern */}
+                ))}
             </div>
         </NokorTechLayout>
     );

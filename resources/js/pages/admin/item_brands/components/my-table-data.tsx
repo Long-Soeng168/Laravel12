@@ -67,6 +67,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Name Khmer')}
                                 </span>
                             </TableHead>
+                            <TableHead onClick={() => handleSort('order_index')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Order Index')}
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Status')}
@@ -120,6 +125,7 @@ const MyTableData = () => {
                                     <TableCell>{item.code || '---'}</TableCell>
                                     <TableCell>{item.name || '---'}</TableCell>
                                     <TableCell>{item.name_kh || '---'}</TableCell>
+                                    <TableCell>{item.order_index || '---'}</TableCell>
                                     {/* <TableCell>{item.image || '---'}</TableCell> */}
                                     <TableCell>
                                         {hasPermission('item update') ? (

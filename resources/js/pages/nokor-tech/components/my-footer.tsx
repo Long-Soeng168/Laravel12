@@ -1,17 +1,25 @@
-import { usePage } from '@inertiajs/react';
+import BackgroundAnimated from '@/pages/cam-active/components/background-animated';
+import { Link, usePage } from '@inertiajs/react';
 
 // components/Footer.js
 export default function MyFooter() {
-    const { application_info } = usePage().props;
-    console.log(application_info);
+    const { application_info, links } = usePage().props;
+    // console.log(application_info);
     return (
-        <footer className="bg-primary text-primary-foreground">
-            <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
+        <footer className="relative border-t border-white/50">
+            <BackgroundAnimated />
+            <div className="relative z-10 mx-auto max-w-7xl px-4 pt-12 text-white sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
                     <div className="justify-self-center">
                         <div className="flex flex-col items-center justify-center">
-                            <img width={65} height={65} src="/assets/nokor-tech/images/logo/logo.png" alt="" className="hover:cursor-pointer" />
-                            <p className="text-2xl font-semibold">Nokor-Tech</p>
+                            <img
+                                width={65}
+                                height={65}
+                                src={`/assets/images/application_info/thumb/${application_info?.image}`}
+                                alt={`${application_info?.name}'s logo`}
+                                className="hover:cursor-pointer"
+                            />
+                            <p className="text-2xl ">{application_info?.name}</p>
                         </div>
                     </div>
                     {/* Company Info */}
@@ -23,11 +31,15 @@ export default function MyFooter() {
                             </li>
                             <li className="flex">
                                 <span className="mr-2 font-semibold">Phone:</span>
-                                <span>0937654323</span>
+                                <a className="hover:underline" href={`tel:${application_info?.phone}`}>
+                                    {application_info?.phone}
+                                </a>
                             </li>
                             <li className="flex">
                                 <span className="mr-2 font-semibold">Email:</span>
-                                <span>bububobo@gmail.com</span>
+                                <a className="hover:underline" href={`mailto:${application_info?.email}`}>
+                                    {application_info?.email}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -37,79 +49,89 @@ export default function MyFooter() {
                         <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
                         <ul className="space-y-2">
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <Link prefetch href="/" className="hover:underline">
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <Link prefetch href="/products" className="hover:underline">
                                     Products
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <Link prefetch href="/contact-us" className="hover:underline">
                                     Contact
-                                </a>
+                                </Link>
                             </li>
+                            <li>
+                                <Link prefetch href="/about-us" className="hover:underline">
+                                    About
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="lg:justify-self-center">
+                        <h3 className="mb-4 text-lg font-semibold">Social Media</h3>
+                        <ul className="space-y-3">
+                            {links?.map((item) => (
+                                <li>
+                                    <Link prefetch href="/" className="flex items-center gap-2 hover:underline">
+                                        <img
+                                            width={28}
+                                            height={28}
+                                            src={`/assets/images/links/thumb/${item?.image}`}
+                                            alt=""
+                                            className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
+                                        />
+                                        {item?.title}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     {/* Customer Service */}
-                    <div className="lg:justify-self-center">
+                    {/* <div className="lg:justify-self-center">
                         <h3 className="mb-4 text-lg font-semibold">Features</h3>
                         <ul className="space-y-2">
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <a href="#" className="hover:underline">
                                     Product Support
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <a href="#" className="hover:underline">
                                     Fast Delivery
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-200 hover:text-white">
+                                <a href="#" className="hover:underline">
                                     Easy Returns
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Footer Bottom */}
                 <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white py-6 md:flex-row">
-                    <p className="text-sm text-gray-200">
-                        © 2025 <span className="font-bold">Nokor-Text</span>. All rights reserved.
-                    </p>
-                    <div className="flex gap-4">
-                        <img
-                            width={32}
-                            height={32}
-                            src="/assets/nokor-tech/icons/links/facebook.png"
-                            alt=""
-                            className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
-                        />
-                        <img
-                            width={32}
-                            height={32}
-                            src="/assets/nokor-tech/icons/links/messenger.png"
-                            alt=""
-                            className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
-                        />
-                        <img
-                            width={32}
-                            height={32}
-                            src="/assets/nokor-tech/icons/links/telegram.png"
-                            alt=""
-                            className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
-                        />
-                    </div>
+                    <p className="text-sm">{application_info?.copyright}</p>
+                    <a className="text-sm" href="https://kampu.solutions">
+                        Developed by : <strong>Kampu Solutions</strong>
+                    </a>
+                    {/* <div className="flex gap-4">
+                        {links?.map((item) => (
+                            <a href={item?.link ? item?.link : '#'}>
+                                <img
+                                    width={32}
+                                    height={32}
+                                    src={`/assets/images/links/thumb/${item?.image}`}
+                                    alt=""
+                                    className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
+                                />
+                            </a>
+                        ))}
+                    </div> */}
                 </div>
             </div>
         </footer>

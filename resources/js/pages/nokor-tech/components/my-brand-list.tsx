@@ -1,22 +1,30 @@
-import BrandLogos from './BrandLogosProps ';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React from 'react';
 
-const MyBrandList = () => {
-  const logos = [
-    { src: '/assets/nokor-tech/images/logo/brand/1.png', alt: 'Brand 1' },
-    { src: '/assets/nokor-tech/images/logo/brand/2.png', alt: 'Brand 2' },
-    { src: '/assets/nokor-tech/images/logo/brand/3.png', alt: 'Brand 3' },
-    { src: '/assets/nokor-tech/images/logo/brand/4.png', alt: 'Brand 4' },
-    { src: '/assets/nokor-tech/images/logo/brand/5.png', alt: 'Brand 5' },
-    { src: '/assets/nokor-tech/images/logo/brand/6.png', alt: 'Brand 6' },
-    { src: '/assets/nokor-tech/images/logo/brand/7.png', alt: 'Brand 7' },
-  ];
-  return (
-    <div>
-      <BrandLogos logos={logos}
-        className='mx-8 md:mx-0 flex flex-wrap gap-y-8 md:gap-x-16 justify-evenly items-center py-16'
-      />
-    </div>
-  )
+interface MyBrandListProps {
+    items: any;
 }
 
-export default MyBrandList
+const MyBrandList: React.FC<MyBrandListProps> = ({ items }) => {
+    return (
+        <Carousel>
+            <CarouselContent className="p-2">
+                {items?.map((item, i) => (
+                    <CarouselItem key={item.id} className="basis-1/2 md:basis-1/3 xl:basis-1/6">
+                        <div
+                            key={i}
+                            className="border-primary flex cursor-pointer flex-col items-center justify-center gap-2 rounded border border-dashed bg-white p-2 transition-all duration-300 hover:-translate-2 hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2)]"
+                        >
+                            <img src={`/assets/images/item_brands/thumb/${item.image}`} alt={`Partner ${i + 1}`} className="h-16 object-contain" />
+                        </div>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+
+            <CarouselPrevious className="absolute top-1/2 -left-2 z-10 -translate-y-1/2 transform" />
+            <CarouselNext className="absolute top-1/2 -right-2 z-10 -translate-y-1/2 transform" />
+        </Carousel>
+    );
+};
+
+export default MyBrandList;

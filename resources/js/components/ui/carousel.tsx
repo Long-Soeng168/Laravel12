@@ -171,7 +171,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function CarouselPrevious({
   className,
-  variant = "outline",
+  variant = "secondary",
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -185,7 +185,7 @@ function CarouselPrevious({
       className={cn(
         "text-true-primary",
         orientation === "horizontal"
-          ? "top-1/2 left-2 md:left-5 -translate-y-1/2"
+          ? "top-1/2 left-2 -translate-y-1/2"
           : "-top-12 left-5 -translate-x-1/2 rotate-90",
         className
       )}
@@ -201,7 +201,7 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  variant = "outline",
+  variant = "secondary",
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {

@@ -67,6 +67,7 @@ class ItemBrandController extends Controller implements HasMiddleware
             'code' => 'required|string|max:255|unique:item_brands,code',
             'name' => 'nullable|string|max:255',
             'name_kh' => 'nullable|string|max:255',
+            'order_index' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -125,6 +126,7 @@ class ItemBrandController extends Controller implements HasMiddleware
             'code' => 'required|string|max:255|unique:item_brands,code,' . $item_brand->id,
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
+            'order_index' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $validated['updated_by'] = $request->user()->id;

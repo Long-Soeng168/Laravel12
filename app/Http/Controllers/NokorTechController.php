@@ -7,6 +7,9 @@ use App\Models\Banner;
 use App\Models\Item;
 use App\Models\ItemBrand;
 use App\Models\ItemCategory;
+use App\Models\Link;
+use App\Models\Page;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,8 +17,12 @@ class NokorTechController extends Controller
 {
     public function index()
     {
-        $topBanners = Banner::where('position_code', 'TOP_HOMEPAGE')->where('status', 'active')->get();
-        $middleBanners = Banner::where('position_code', 'MIDDLE_HOMEPAGE')->where('status', 'active')->get();
+        $topBanners = Banner::where('position_code', 'TOP_HOMEPAGE')->orderBy('order_index')->where('status', 'active')->get();
+        $middleBanners = Banner::where('position_code', 'MIDDLE_HOMEPAGE')->orderBy('order_index')->where('status', 'active')->get();
+
+        $posts = Post::where('status', 'active')->with('images')->orderBy('id', 'desc')->get();
+
+
         $newArrivals = Item::with('images')->where('status', 'active')->orderBy('id', 'desc')->take(12)->get();
         $brandsWithItems = ItemBrand::with([
             'items' => function ($query) {
@@ -25,6 +32,7 @@ class NokorTechController extends Controller
                     ->take(12); // Limit to 12 items
             },
         ])
+            ->orderBy('order_index')
             ->where('item_brands.status', 'active') // Specify 'item_categories' table for status
             ->get();
 
@@ -43,6 +51,7 @@ class NokorTechController extends Controller
                     ->take(12); // Limit to 12 child items
             }
         ])
+            ->orderBy('order_index')
             ->where('item_categories.status', 'active') // Specify 'item_categories' table for status
             ->whereNull('parent_code') // Only main categories (no parent)
             ->get();
@@ -72,6 +81,7 @@ class NokorTechController extends Controller
         return Inertia::render("nokor-tech/Index", [
             'topBanners' => $topBanners,
             'middleBanners' => $middleBanners,
+            'posts' => $posts,
             'newArrivals' => $newArrivals,
             'categoriesWithItems' => $categoriesWithItems,
             'brandsWithItems' => $brandsWithItems,
@@ -80,18 +90,51 @@ class NokorTechController extends Controller
 
     public function about()
     {
-        return Inertia::render("nokor-tech/About");
+        $aboutPages = Page::with('images')->where('position_code', 'ABOUT')->where('status', 'active')->orderBy('order_index')->get();
+        // return $aboutPages;
+        return Inertia::render("nokor-tech/About", [
+            "aboutPages" => $aboutPages
+        ]);
     }
 
     public function contact()
     {
-        return Inertia::render("nokor-tech/Contact");
+        $contactPage = Page::with('images')->where('position_code', 'CONTACT')->where('status', 'active')->orderBy('order_index')->first();
+
+        return Inertia::render("nokor-tech/Contact", [
+            "contactPage" => $contactPage
+        ]);
     }
 
-    public function blogs()
+    public function blogs(Request $request)
     {
-        return Inertia::render("nokor-tech/blogs/Index");
+        $search = $request->input('search', '');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $status = $request->input('status');
+
+        $query = Post::query();
+
+        $query->with('created_by', 'updated_by', 'images', 'category', 'source_detail');
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $query->orderBy($sortBy, $sortDirection);
+
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $blogsData = $query->paginate(perPage: 10)->onEachSide(1);
+        return Inertia::render('nokor-tech/blogs/Index', [
+            'blogsData' => $blogsData,
+        ]);
     }
+
     public function blog_show($id)
     {
         return Inertia::render("nokor-tech/blogs/Show");

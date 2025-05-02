@@ -1,13 +1,13 @@
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ChevronRight, Search } from 'lucide-react';
 import NokorTechLayout from '../layouts/nokor-tech-layout';
 
 const Index = () => {
+    const { blogsData } = usePage().props;
     return (
         <NokorTechLayout>
             <div className="mx-auto max-w-screen-xl px-6 py-16 xl:px-0">
@@ -35,28 +35,30 @@ const Index = () => {
                 </div>
 
                 <div className="mt-4 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    {blogsData?.data?.map((item, i) => (
                         <Link href={'/blogs/1'} prefetch>
-                            <Card key={i} className="overflow-hidden rounded-md p-0 shadow-none">
+                            <Card key={i} className="h-full overflow-hidden rounded-md p-0 shadow-none">
                                 <CardHeader className="p-0">
                                     <div className="bg-muted aspect-video w-full border-b" />
                                 </CardHeader>
-                                <CardContent className="pb-6">
-                                    <div className="flex items-center gap-3">
-                                        <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">Technology</Badge>
-                                        <span className="text-muted-foreground text-xs font-medium">05-Jan-2025</span>
+                                <CardContent className="flex h-full flex-col items-start justify-between pb-6">
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">Technology</Badge>
+                                            <span className="text-muted-foreground text-xs font-medium">05-Jan-2025</span>
+                                        </div>
+
+                                        <h3 className="mt-4 line-clamp-2 text-[1.35rem] font-semibold tracking-tight">{item?.title}</h3>
+                                        <p className="text-muted-foreground mt-2 line-clamp-3">{item?.short_description}</p>
                                     </div>
-
-                                    <h3 className="mt-4 text-[1.35rem] font-semibold tracking-tight">
-                                        A beginner&apos;s guide to blackchain for engineers
-                                    </h3>
-                                    <p className="text-muted-foreground mt-2">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
-                                    </p>
-
-                                    <Button className="mt-6 shadow-none">
-                                        Read more <ChevronRight />
-                                    </Button>
+                                    <button className="group mt-8 relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border-2 border-[#394481] font-medium dark:border-[#656fe2]">
+                                        <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-gradient-to-r from-[#f7f8ff] to-[#ffffff] px-6 text-black transition group-hover:-translate-y-[150%] dark:from-[#070e41] dark:to-[#263381] dark:text-white">
+                                            Read more <ChevronRight />
+                                        </div>
+                                        <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-[#394481] px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 dark:bg-[#656fe2]">
+                                            Read more <ChevronRight />
+                                        </div>
+                                    </button>
                                 </CardContent>
                             </Card>
                         </Link>

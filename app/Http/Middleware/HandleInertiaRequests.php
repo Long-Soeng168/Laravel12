@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\ApplicationInfo;
+use App\Models\Link;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -44,6 +45,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'app_url' => config('app.url'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user(),
@@ -59,6 +61,7 @@ class HandleInertiaRequests extends Middleware
             'can_switch_language' => config('app.can_switch_language'),
 
             'application_info' => ApplicationInfo::first(),
+            'links' => Link::where('status', 'active')->orderBy('order_index')->get(),
 
             'flash' => [
                 'success' => session('success'),
