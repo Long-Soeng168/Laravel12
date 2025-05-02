@@ -18,7 +18,7 @@ export function Navbar({ className }: { className?: string }) {
 
             <Sheet>
                 <SheetTrigger asChild>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" className='md:hidden flex'>
                         <MenuIcon />
                     </Button>
                 </SheetTrigger>
