@@ -1,8 +1,9 @@
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { Link } from '@inertiajs/react';
-import { AlignLeftIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { useState } from 'react';
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu';
 
@@ -14,9 +15,36 @@ export function Navbar({ className }: { className?: string }) {
                 <img src="/assets/cam-active/logo.png" className="h-20 p-2" />
                 {/* <img src="/assets/icons/image-icon.png" className="h-20 p-2" /> */}
             </Link>
-            <Button size="icon" variant="outline" className="md:hidden">
-                <AlignLeftIcon className="stroke-primary stroke-3" />
-            </Button>
+
+            <Sheet>
+                <SheetTrigger asChild>
+                    <Button variant="outline" size="icon">
+                        <MenuIcon />
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[350px] p-4 sm:w-[450px]">
+                    <div className="mt-12 space-y-6 text-base">
+                        <Link href="/" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Home
+                        </Link>
+                        <Link href="/solutions" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Solutions
+                        </Link>
+                        <Link href="/company" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Company
+                        </Link>
+                        <Link href="/blogs" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Blogs
+                        </Link>
+                        <Link href="/career" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Career
+                        </Link>
+                        <Link href="/contact" className="text-primary hover:text-foreground block text-lg font-semibold">
+                            Contact Us
+                        </Link>
+                    </div>
+                </SheetContent>
+            </Sheet>
             <div className="hidden items-center justify-end gap-2 md:flex">
                 <Menu setActive={setActive}>
                     <Link href={'/'} prefetch>
@@ -72,8 +100,12 @@ export function Navbar({ className }: { className?: string }) {
                     <Link href={'/blogs'} prefetch>
                         Blogs
                     </Link>
-                    <Link href={'/career'} prefetch>Career</Link>
-                    <Link href={'/contact'} prefetch>Contact Us</Link>
+                    <Link href={'/career'} prefetch>
+                        Career
+                    </Link>
+                    <Link href={'/contact'} prefetch>
+                        Contact Us
+                    </Link>
                 </Menu>
                 <ToggleModeSwitch />
             </div>

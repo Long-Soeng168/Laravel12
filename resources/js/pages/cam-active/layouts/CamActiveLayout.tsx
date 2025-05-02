@@ -30,7 +30,7 @@ const CamActiveLayout = ({ children }: { children: ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <header className="bg-background/30 sticky top-0 z-50 mx-auto px-2 backdrop-blur-md">
+            <header className="bg-background sticky top-0 z-50 mx-auto px-2 backdrop-blur-md">
                 <Navbar />
             </header>
             <main className="min-h-[60vh]">{children}</main>

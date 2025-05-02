@@ -1,5 +1,7 @@
 import { Globe, HandshakeIcon, MapPin, Users } from 'lucide-react';
 import SectionHeader from './section-header';
+import Earth from './ui/globe';
+import { Sparkles } from './ui/sparkles';
 
 const OurGlobalReach = () => {
     const features = [
@@ -26,34 +28,43 @@ const OurGlobalReach = () => {
     ];
 
     return (
-        <section className="bg-white py-16">
-            <SectionHeader
-                label="Our Global Reach"
-                title="Extending Our Impact Across the Globe"
-                subtitle="Our commitment to global education is deeply embedded in our import and export capabilities, providing you with unparalleled
+        <section className="min-h-screen overflow-hidden bg-gray-700 text-white">
+            {/* World Map Placeholder */}
+            <article className="relative mx-auto rounded-lg p-5 py-16 text-center">
+                <div className="absolute top-0 left-0 z-[1] h-full w-full bg-[radial-gradient(#5875d653_1px,#06080e_1px)] bg-[size:20px_20px]"></div>
+                <div className="relative z-10">
+                    <h1 className="mx-auto max-w-[20ch] bg-gradient-to-b from-[#edeffd] to-[#06152e] bg-clip-text text-4xl leading-[100%] font-semibold tracking-tighter text-transparent md:text-6xl">
+                        Extending Our Impact Across the Globe
+                    </h1>
+                    <Earth />
+                    <SectionHeader
+                        labelColor="text-[#38bdf8]"
+                        titleColor="text-[#f1f5f9]"
+                        subtitleColor="text-[#cbd5e1]"
+                        title=""
+                        subtitle="Our commitment to global education is deeply embedded in our import and export capabilities, providing you with unparalleled
                     access and opportunities."
-            />
-
-            <div className="mx-auto mt-12 max-w-6xl px-4">
-                {/* World Map Placeholder */}
-                <div className="bg-muted mb-12 aspect-video w-full rounded-xl" />
-
-                <ul className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    />
+                </div>
+                <ul className="relative z-10 mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-8 text-start md:grid-cols-2">
                     {features.map(({ icon: Icon, title, desc }) => (
-                        <li key={title} className="flex space-x-4">
+                        <li
+                            key={title}
+                            className="flex items-start space-x-4 rounded-xl bg-gray-900 p-6 shadow-lg ring-1 ring-white/50 transition hover:scale-[1.02] hover:bg-gray-800/90"
+                        >
                             <div className="flex-shrink-0">
-                                <div className="bg-primary/10 inline-flex rounded-full p-3">
-                                    <Icon className="text-primary h-6 w-6" aria-hidden="true" />
+                                <div className="inline-flex items-center justify-center rounded-full bg-gray-600 p-3 shadow-sm">
+                                    <Icon className="h-6 w-6 text-white" aria-hidden="true" />
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-                                <p className="text-muted-foreground">{desc}</p>
+                                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                                <p className="mt-2 text-gray-300">{desc}</p>
                             </div>
                         </li>
                     ))}
                 </ul>
-            </div>
+            </article>
         </section>
     );
 };

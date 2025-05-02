@@ -1,5 +1,5 @@
 import FeaturedSolutions from './components/featured-solutions';
-import HeroOne from './components/hero';
+import HeroOne from './components/hero-one';
 import OurExpertise from './components/our-expertise';
 import Testimonials from './components/testimonials';
 import WhyChooseUs from './components/why-choose-us';

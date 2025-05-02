@@ -21,9 +21,9 @@ const SectionHeader = ({
         <div>
             {label && (
                 <p className={`flex items-center justify-center gap-2 text-center ${labelColor}`}>
-                    <div className={`h-1 w-6 rounded-full ${dividerColor}`} />
+                    <span className={`h-1 w-6 rounded-full ${dividerColor}`} />
                     {label}
-                    <div className={`h-1 w-6 rounded-full ${dividerColor}`} />
+                    <span className={`h-1 w-6 rounded-full ${dividerColor}`} />
                 </p>
             )}
             <h1 className={`m-0 mx-auto my-4 max-w-2xl text-center text-4xl font-bold ${titleColor}`}>{title}</h1>
