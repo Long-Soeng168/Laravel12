@@ -111,7 +111,7 @@ class PostController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/posts', 600);
                     PostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $created_project->id,
@@ -193,7 +193,7 @@ class PostController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/posts', 600);
                     PostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $post->id,

@@ -108,7 +108,7 @@ class ItemCategoryController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_categories', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/item_categories', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -116,7 +116,7 @@ class ItemCategoryController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/item_categories', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/item_categories', 900);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -161,7 +161,7 @@ class ItemCategoryController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_categories', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/item_categories', 600);
                 $validated['image'] = $created_image_name;
 
                 if ($item_category->image && $created_image_name) {
@@ -173,7 +173,7 @@ class ItemCategoryController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/item_categories', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/item_categories', 900);
                 $validated['banner'] = $created_image_name;
 
                 if ($item_category->banner && $created_image_name) {

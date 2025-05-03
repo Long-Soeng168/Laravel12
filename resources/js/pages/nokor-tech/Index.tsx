@@ -17,7 +17,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
     const { topBanners, middleBanners, posts, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
     return (
         <NokorTechLayout>
-            <main className='px-2'>
+            <main className="px-2">
                 {children}
 
                 <>
@@ -29,7 +29,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             <MyBrandList items={brandsWithItems} />
                         </div>
 
-                        <MyProductListHeader title="New Arrivals" />
+                        <MyProductListHeader title="New Arrivals" link="/products" />
                         <MyProductList items={newArrivals} />
 
                         <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />
@@ -38,7 +38,11 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             .filter((category: any) => category.all_items.length > 0)
                             .map((category: any) => (
                                 <div key={category.id}>
-                                    <MyProductListHeader title={category.name} image={`/assets/images/item_categories/thumb/${category.image}`} />
+                                    <MyProductListHeader
+                                        link={`/products?category_code=${category?.code}`}
+                                        title={category.name}
+                                        image={`/assets/images/item_categories/thumb/${category.image}`}
+                                    />
                                     <MyProductList items={category.all_items} />
                                 </div>
                             ))}
@@ -47,7 +51,11 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             .filter((brand: any) => brand.items.length > 0)
                             .map((brand: any) => (
                                 <div key={brand.id}>
-                                    <MyProductListHeader title={brand.name} image={`/assets/images/item_brands/thumb/${brand.image}`} />
+                                    <MyProductListHeader
+                                        link={`/products?brand_code=${brand?.code}`}
+                                        title={brand.name}
+                                        image={`/assets/images/item_brands/thumb/${brand.image}`}
+                                    />
                                     <MyProductList items={brand.items} />
                                 </div>
                             ))}

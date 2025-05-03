@@ -49,7 +49,7 @@ class BannerController extends Controller implements HasMiddleware
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('title', 'LIKE', "%{$search}%")
                     ->orWhere('title_kh', 'LIKE', "%{$search}%")
-                   ;
+                ;
             });
         }
 
@@ -131,7 +131,7 @@ class BannerController extends Controller implements HasMiddleware
         if ($image_files && $validated['type'] == 'multi_images') {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/banners', 900);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebpWebp($image, 'assets/images/banners', 900);
                     BannerImage::create([
                         'image' => $created_image_name,
                         'banner_id' => $created_banner->id,
@@ -143,7 +143,7 @@ class BannerController extends Controller implements HasMiddleware
         } // For single image
         elseif ($image_files && !empty($image_files)) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_files[0], 'assets/images/banners', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_files[0], 'assets/images/banners', 900);
                 $created_banner->update([
                     'image' => $created_image_name,
                 ]);
@@ -248,7 +248,7 @@ class BannerController extends Controller implements HasMiddleware
         if ($image_files && $validated['type'] == 'multi_images') {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/banners', 900);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/banners', 900);
                     BannerImage::create([
                         'image' => $created_image_name,
                         'banner_id' => $banner->id,
@@ -260,14 +260,13 @@ class BannerController extends Controller implements HasMiddleware
         } // For single image
         elseif ($image_files && !empty($image_files)) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_files[0], 'assets/images/banners', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_files[0], 'assets/images/banners', 900);
                 if ($created_image_name && $banner->image) {
                     ImageHelper::deleteImage($banner->image, 'assets/images/banners');
                 }
                 $banner->update([
                     'image' => $created_image_name,
                 ]);
-
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }

@@ -11,7 +11,7 @@ const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
     return (
         <a href={`/products/${product.id}`} className="flex flex-col overflow-hidden rounded-md transition-all duration-300 hover:scale-105">
             {/* Product Image */}
-            <div className="relative overflow-hidden rounded-md border-[0.5px]">
+            <div className="relative overflow-hidden bg-white rounded-md border-[0.5px]">
                 {product.images?.length > 0 ? (
                     <img
                         width={600}

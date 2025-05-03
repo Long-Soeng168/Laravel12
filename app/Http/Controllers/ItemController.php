@@ -116,7 +116,7 @@ class ItemController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/items', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/items', 600);
                     ItemImage::create([
                         'image' => $created_image_name,
                         'item_id' => $created_project->id,
@@ -201,7 +201,7 @@ class ItemController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/items', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/items', 600);
                     ItemImage::create([
                         'image' => $created_image_name,
                         'item_id' => $item->id,

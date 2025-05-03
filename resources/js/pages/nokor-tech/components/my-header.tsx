@@ -6,11 +6,19 @@ import { Menu, Search, ShoppingCart, User2Icon } from 'lucide-react';
 import { MyCategoriesNav } from './my-categories-nav';
 
 const MyHeader = () => {
-    const { application_info, links } = usePage().props;
+    const { application_info, links, post_counts, item_categories } = usePage().props;
+    const currentPath = window.location.pathname;
+    const navItems = [
+        { label: 'Products', href: '/products' },
+        { label: 'Blogs', href: '/blogs', condition: post_counts > 0 },
+        { label: 'Contact', href: '/contact-us' },
+        { label: 'About', href: '/about-us' },
+    ];
+
     return (
         <>
-            <nav className="bg-true-primary px-4 text-white">
-                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between text-sm text-gray-300">
+            <nav className="bg-true-primary text-white">
+                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-4 text-sm text-gray-300">
                     <Link prefetch href="/" className="flex items-center gap-2">
                         <img
                             width={65}
@@ -58,7 +66,7 @@ const MyHeader = () => {
             </nav>
             <div className="bg-background sticky top-0 z-50">
                 <header>
-                    <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-2 md:px-2 lg:px-0 lg:py-4">
+                    <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-2 lg:py-4">
                         <div className="flex items-center">
                             <Sheet>
                                 <div className="flex items-center gap-2">
@@ -80,18 +88,29 @@ const MyHeader = () => {
                                         <SheetTitle className="text-2xl font-bold text-gray-700">Menu</SheetTitle>
                                     </SheetHeader>
                                     <ul className="flex flex-col gap-6 font-semibold text-gray-600">
-                                        <hr className='mr-6' />
+                                        <hr className="mr-6" />
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
-                                            <Link href="/products">Products</Link>
+                                            <Link prefetch href="/products">
+                                                Products
+                                            </Link>
+                                        </li>
+                                        {post_counts > 0 && (
+                                            <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
+                                                <Link prefetch href="/blogs">
+                                                    Blogs
+                                                </Link>
+                                            </li>
+                                        )}
+
+                                        <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
+                                            <Link prefetch href="/contact-us">
+                                                Contact
+                                            </Link>
                                         </li>
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
-                                            <Link href="/blogs">Blogs</Link>
-                                        </li>
-                                        <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
-                                            <Link href="/contact-us">Contact</Link>
-                                        </li>
-                                        <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
-                                            <Link href="/about-us">About</Link>
+                                            <Link prefetch href="/about-us">
+                                                About
+                                            </Link>
                                         </li>
                                     </ul>
                                 </SheetContent>
@@ -99,52 +118,48 @@ const MyHeader = () => {
                         </div>
                         <div className="hidden flex-1 lg:flex">
                             <ul className="flex items-center gap-2 font-semibold">
-                                <li>
-                                    <MyCategoriesNav />
-                                </li>
-                                <li>
-                                    <Link href="/products" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Laptops
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/products" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Desktop
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/products" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Networking Device
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
+                                {item_categories?.length > 0 && (
+                                    <>
+                                        <li>
+                                            <MyCategoriesNav />
+                                        </li>
+                                        {item_categories.slice(0, 3).map((category, index) => (
+                                            <li key={index}>
+                                                <Link
+                                                    prefetch
+                                                    href={`/products?category_code=${category.code}`}
+                                                    className="group hover:text-primary relative mx-2 cursor-pointer"
+                                                >
+                                                    {category.name}
+                                                    <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </>
+                                )}
+
                                 <li className="border-primary/5 bg-primary/50 h-6 border"></li>
-                                <li>
-                                    <Link href="/products" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Products
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/blogs" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Blogs
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="contact-us" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        Contact
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="about-us" className="group hover:text-primary relative mx-2 cursor-pointer">
-                                        About
-                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                    </Link>
-                                </li>
+                                {navItems.map((item, index) =>
+                                    item.condition === false ? null : (
+                                        <li className="flex gap-4">
+                                            <Link
+                                                prefetch
+                                                key={index}
+                                                href={item.href}
+                                                className={`group relative mx-2 cursor-pointer ${
+                                                    currentPath.startsWith(item.href) ? 'text-primary font-bold' : ''
+                                                } hover:text-primary`}
+                                            >
+                                                {item.label}
+                                                <span
+                                                    className={`bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full ${
+                                                        currentPath.startsWith(item.href) ? 'w-full' : ''
+                                                    }`}
+                                                ></span>
+                                            </Link>
+                                        </li>
+                                    ),
+                                )}
                             </ul>
                         </div>
                         <div className="flex shrink-0 gap-4">
@@ -153,7 +168,7 @@ const MyHeader = () => {
                                     <Search />
                                 </Button>
                             </Link>
-                            <Link href="/shopping-cart">
+                            <Link prefetch href="/shopping-cart">
                                 <Button size="icon" variant="ghost" className="text-primary">
                                     <ShoppingCart />
                                 </Button>

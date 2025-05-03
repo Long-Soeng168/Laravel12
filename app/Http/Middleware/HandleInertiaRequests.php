@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Models\ApplicationInfo;
+use App\Models\ItemCategory;
 use App\Models\Link;
+use App\Models\Post;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -62,6 +64,8 @@ class HandleInertiaRequests extends Middleware
 
             'application_info' => ApplicationInfo::first(),
             'links' => Link::where('status', 'active')->orderBy('order_index')->get(),
+            'item_categories' => ItemCategory::with('children')->where('status', 'active')->where('parent_code', null)->orderBy('order_index')->get() ?? [],
+            'post_counts' => Post::where('status', 'active')->count(),
 
             'flash' => [
                 'success' => session('success'),

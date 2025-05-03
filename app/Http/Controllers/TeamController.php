@@ -81,7 +81,7 @@ class TeamController extends Controller
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/teams', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/teams', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -137,7 +137,7 @@ class TeamController extends Controller
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/teams', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/teams', 600);
                 $validated['image'] = $created_image_name;
 
                 if ($team->image && $created_image_name) {

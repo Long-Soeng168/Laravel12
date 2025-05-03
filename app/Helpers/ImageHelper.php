@@ -23,7 +23,7 @@ class ImageHelper
 
         // Define paths
         $file_path = public_path("$folder/");
-        $file_thumb_path = public_path("$folder/thumb/"); 
+        $file_thumb_path = public_path("$folder/thumb/");
 
         // Create directories if they don't exist
         if (!File::exists($file_path)) {
@@ -44,6 +44,39 @@ class ImageHelper
             } else {
                 $file->storeAs("$folder/thumb", $image_file_name, 'real_public');
             }
+            return $image_file_name;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public static function uploadAndResizeImageWebp($file, $folder = 'assets/images/projects', $maxWidth = 600, $timePrefixFileName = true)
+    {
+        if (!$file) {
+            return null;
+        }
+
+        $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $image_file_name = $timePrefixFileName ? time() . '_' . $originalFileName . '.webp' : $originalFileName . '.webp';
+
+
+        // Define paths
+        $file_path = public_path("$folder/");
+        $file_thumb_path = public_path("$folder/thumb/");
+
+        // Create directories if they don't exist
+        if (!File::exists($file_path)) {
+            File::makeDirectory($file_path, 0755, true, true);
+        }
+        if (!File::exists($file_thumb_path)) {
+            File::makeDirectory($file_thumb_path, 0755, true, true);
+        }
+
+        // Resize and store
+        try {
+            $image = Image::read($file);
+            $image->toWebp(100)->save($file_path . $image_file_name);
+            $image->scale(width: $maxWidth)->toWebp(90)->save($file_thumb_path . $image_file_name);
             return $image_file_name;
         } catch (\Exception $e) {
             return null;

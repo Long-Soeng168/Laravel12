@@ -1,12 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translation';
+import { cn } from '@/lib/utils';
 import { router } from '@inertiajs/react';
 import debounce from 'debounce';
 import { SearchIcon } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
-export function MySearchTableData() {
+export function MySearchTableData({ className }: { className?: string }) {
     const { t } = useTranslation();
 
     const initialQueryParams = new URLSearchParams(window.location.search);
@@ -25,7 +26,7 @@ export function MySearchTableData() {
     );
 
     return (
-        <div className="flex w-full max-w-xl items-center space-x-2 rounded-xl border p-1">
+        <div className={cn('flex w-full max-w-xl items-center space-x-2 rounded-xl border p-1', className)}>
             <Input
                 defaultValue={search}
                 type="search"

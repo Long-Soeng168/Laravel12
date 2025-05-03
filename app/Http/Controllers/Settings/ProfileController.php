@@ -41,7 +41,7 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if ($request->hasFile('image')) {
-            $image_created_name = ImageHelper::uploadAndResizeImage($request->file('image'), 'assets/images/users', 600);
+            $image_created_name = ImageHelper::uploadAndResizeImageWebp($request->file('image'), 'assets/images/users', 600);
             if ($image_created_name) {
                 ImageHelper::deleteImage($user->image, 'assets/images/users');
                 $validated['image'] = $image_created_name;

@@ -85,7 +85,7 @@ class ItemBodyTypeController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_body_types', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/item_body_types', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -142,7 +142,7 @@ class ItemBodyTypeController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/item_body_types', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/item_body_types', 600);
                 $validated['image'] = $created_image_name;
 
                 if ($item_body_type->image && $created_image_name) {

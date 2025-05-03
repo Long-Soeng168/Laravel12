@@ -1,198 +1,92 @@
-import { Button } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Link } from "@inertiajs/react"
-import { AlignLeft, ChevronDown, ChevronRight, Laptop, LucideGamepad2, LucideMonitor, MonitorSpeaker, Mouse, Network, PcCase, PcCaseIcon, Router } from "lucide-react"
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuPortal,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Link, usePage } from '@inertiajs/react';
+import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 
 export function MyCategoriesNav() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="border-none outline-none">
-        <span className="hover:text-primary group relative hover:text-primary gap-1 flex items-center rounded p-2">
-          <p className="relative">
-            Categories
-            <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-          </p> <ChevronDown size={18} className="translate-y-[1px]" />
-        </span>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuGroup className="space-y-1">
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <Laptop />
-                  Laptop
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link>
-              <DropdownMenuSubTrigger className="inline-block hover:bg-primary hover:text-white">
-              </DropdownMenuSubTrigger>
-            </div>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Notebook
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Design and Gamming
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
+    const { item_categories } = usePage().props;
+    const [openDropdown, setOpenDropdown] = useState(false);
 
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <MonitorSpeaker />
-                  Desktop
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link>
-              <DropdownMenuSubTrigger className="inline-block hover:bg-primary hover:text-white">
-              </DropdownMenuSubTrigger>
-            </div>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    All In One PC
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Custom PC
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Used Desktop
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <Router />
-                  Network Device
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link>
-              <DropdownMenuSubTrigger className="inline-block hover:bg-primary hover:text-white">
-              </DropdownMenuSubTrigger>
-            </div>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Router
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Switch
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Network Cable
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Network Connector
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <LucideGamepad2 />
-                  Gamming Gear
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link> 
-            </div> 
-          </DropdownMenuSub>
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <Mouse />
-                  Accessories
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link> 
-            </div> 
-          </DropdownMenuSub>
-
-          <DropdownMenuSub>
-            <div className="flex">
-              <Link href='#' className="group p-0.5 flex-1 ">
-                <p className="w-full relative gap-1 hover:text-primary flex">
-                  <Router />
-                  Network Device
-                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
-                </p>
-              </Link>
-              <DropdownMenuSubTrigger className="inline-block hover:bg-primary hover:text-white">
-              </DropdownMenuSubTrigger>
-            </div>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Router
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Switch
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Network Cable
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href='#' className="p-2 cursor-pointer ">
-                    Network Connector
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-
-
-
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
+    return (
+        <DropdownMenu open={openDropdown} onOpenChange={() => setOpenDropdown(false)}>
+            <DropdownMenuTrigger onMouseEnter={() => setOpenDropdown(true)} className="border-none outline-none">
+                <span className="hover:text-primary group relative flex items-center gap-1 rounded p-2">
+                    <p className="relative">
+                        Categories
+                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                    </p>{' '}
+                    <ChevronDown size={18} className="translate-y-[1px]" />
+                </span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+                <DropdownMenuGroup onMouseLeave={() => setOpenDropdown(false)} className="space-y-1">
+                    {item_categories?.map((category) =>
+                        category?.children?.length > 0 ? (
+                            <DropdownMenuSub>
+                                <div className="flex">
+                                    <Link prefetch href={`/products?category_code=${category?.code}`} className="group flex-1 p-0.5">
+                                        <p className="hover:text-primary relative flex w-full gap-1">
+                                            {category?.image ? (
+                                                <img
+                                                    className="mr-1 size-6 object-contain"
+                                                    src={`/assets/images/item_categories/thumb/${category?.image}`}
+                                                    alt=""
+                                                />
+                                            ) : (
+                                                <span className="mr-1 size-6 object-contain" />
+                                            )}
+                                            {category?.name}
+                                            <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                                        </p>
+                                    </Link>
+                                    <DropdownMenuSubTrigger className="hover:bg-primary inline-block hover:text-white"></DropdownMenuSubTrigger>
+                                </div>
+                                <DropdownMenuPortal>
+                                    <DropdownMenuSubContent>
+                                        {category?.children?.map((item) => (
+                                            <DropdownMenuItem asChild>
+                                                <Link prefetch href={`/products?category_code=${item?.code}`} className="cursor-pointer p-2">
+                                                    {item?.name}
+                                                </Link>
+                                            </DropdownMenuItem>
+                                        ))}
+                                    </DropdownMenuSubContent>
+                                </DropdownMenuPortal>
+                            </DropdownMenuSub>
+                        ) : (
+                            <DropdownMenuSub>
+                                <div className="flex">
+                                    <Link prefetch href={`/products?category_code=${category?.code}`} className="group flex-1 p-0.5">
+                                        <p className="hover:text-primary relative flex w-full gap-1">
+                                            {category?.image ? (
+                                                <img
+                                                    className="mr-1 size-6 object-contain"
+                                                    src={`/assets/images/item_categories/thumb/${category?.image}`}
+                                                    alt=""
+                                                />
+                                            ) : (
+                                                <span className="mr-1 size-6 object-contain" />
+                                            )}
+                                            {category?.name}
+                                            <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                                        </p>
+                                    </Link>
+                                </div>
+                            </DropdownMenuSub>
+                        ),
+                    )}
+                </DropdownMenuGroup>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
 }

@@ -86,7 +86,7 @@ class UserController extends Controller implements HasMiddleware
 
             // Handle image upload if present
             if ($imageFile) {
-                $imageName = ImageHelper::uploadAndResizeImage($imageFile, 'assets/images/users', 600);
+                $imageName = ImageHelper::uploadAndResizeImageWebp($imageFile, 'assets/images/users', 600);
                 $validated['image'] = $imageName;
             }
 
@@ -144,7 +144,7 @@ class UserController extends Controller implements HasMiddleware
 
             // Handle image upload if present
             if ($imageFile) {
-                $imageName = ImageHelper::uploadAndResizeImage($imageFile, 'assets/images/users', 600);
+                $imageName = ImageHelper::uploadAndResizeImageWebp($imageFile, 'assets/images/users', 600);
                 $validated['image'] = $imageName;
                 if ($imageName && $user->image) {
                     ImageHelper::deleteImage($user->image, 'assets/images/users');

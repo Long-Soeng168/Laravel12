@@ -114,7 +114,7 @@ class GaragePostController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/garage_posts', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/garage_posts', 600);
                     GaragePostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $created_post->id,
@@ -198,7 +198,7 @@ class GaragePostController extends Controller implements HasMiddleware
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/garage_posts', 600);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/garage_posts', 600);
                     GaragePostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $garage_post->id,

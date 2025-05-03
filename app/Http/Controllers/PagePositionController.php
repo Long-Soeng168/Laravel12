@@ -88,7 +88,7 @@ class PagePositionController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/page_positions', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/page_positions', 600);
                 $validated['image'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -96,7 +96,7 @@ class PagePositionController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/page_positions', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/page_positions', 900);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -139,7 +139,7 @@ class PagePositionController extends Controller implements HasMiddleware
 
         if ($image_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($image_file, 'assets/images/page_positions', 600);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/page_positions', 600);
                 $validated['image'] = $created_image_name;
 
                 if ($pagePosition->image && $created_image_name) {
@@ -151,7 +151,7 @@ class PagePositionController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImage($banner_file, 'assets/images/page_positions', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/page_positions', 900);
                 $validated['banner'] = $created_image_name;
 
                 if ($pagePosition->banner && $created_image_name) {

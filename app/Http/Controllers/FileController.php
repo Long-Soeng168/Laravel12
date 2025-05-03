@@ -154,7 +154,7 @@ class FileController extends Controller implements HasMiddleware
                     } else {
                         // Determine file type
                         if (str_starts_with($mimeType, 'image/')) {
-                            $created_file_name = ImageHelper::uploadAndResizeImage($file, $folder, 600, false);
+                            $created_file_name = ImageHelper::uploadAndResizeImageWebp($file, $folder, 600, false);
                             // Get Image Dimensions
                             [$width, $height] = getimagesize($file);
                         } else {
