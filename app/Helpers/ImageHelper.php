@@ -75,7 +75,7 @@ class ImageHelper
         // Resize and store
         try {
             $image = Image::read($file);
-            $image->toWebp(100)->save($file_path . $image_file_name);
+            $image->toWebp(95)->save($file_path . $image_file_name);
             $image->scale(width: $maxWidth)->toWebp(90)->save($file_thumb_path . $image_file_name);
             return $image_file_name;
         } catch (\Exception $e) {

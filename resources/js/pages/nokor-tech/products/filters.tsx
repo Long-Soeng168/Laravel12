@@ -79,7 +79,7 @@ const Filters = () => {
                                             {category?.name}
                                         </button>
                                         {category?.children?.length > 0 && (
-                                            <AccordionTrigger className="hover:bg-secondary cursor-pointer border p-2"></AccordionTrigger>
+                                            <AccordionTrigger className="hover:bg-secondary cursor-pointer border p-0.5"></AccordionTrigger>
                                         )}
                                     </div>
                                     {category?.children?.length > 0 && (

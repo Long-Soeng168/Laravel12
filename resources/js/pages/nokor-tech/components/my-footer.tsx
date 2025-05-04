@@ -74,7 +74,7 @@ export default function MyFooter() {
                         <h3 className="mb-4 text-lg font-semibold">Social Media</h3>
                         <ul className="space-y-3">
                             {links?.map((item) => (
-                                <li>
+                                <li key={item?.id}>
                                     <Link prefetch href="/" className="flex items-center gap-2 hover:underline">
                                         <img
                                             width={28}

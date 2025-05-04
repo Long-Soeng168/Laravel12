@@ -15,6 +15,18 @@ class Item extends Model
     {
         return $this->belongsTo(ItemCategory::class, 'category_code', 'code');
     }
+    public function brand()
+    {
+        return $this->belongsTo(ItemBrand::class, 'brand_code', 'code');
+    }
+    public function model()
+    {
+        return $this->belongsTo(ItemModel::class, 'model_code', 'code');
+    }
+    public function body_type()
+    {
+        return $this->belongsTo(ItemBodyType::class, 'body_type_code', 'code');
+    }
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');

@@ -1,106 +1,43 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
-import { Minus, Plus, Trash2 } from 'lucide-react';
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import NokorTechLayout from '../layouts/nokor-tech-layout';
+import CartItemList from './components/CartItemList';
+import ClearCartButton from './components/ClearCartButton';
 
-type Product = {
-    id: number;
-    name: string;
-    image: string;
-    price: number;
-    quantity: number;
-    subtotal: number;
-};
-
-const products: Product[] = [
-    {
-        id: 1,
-        name: 'MSI MEG Trident X Gaming Desktop',
-        image: 'https://via.placeholder.com/100',
-        price: 4349.0,
-        quantity: 1,
-        subtotal: 13047.0,
-    },
-    {
-        id: 2,
-        name: 'Dell XPS 13 Laptop',
-        image: 'https://via.placeholder.com/100',
-        price: 999.0,
-        quantity: 1,
-        subtotal: 999.0,
-    },
-];
+const formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`;
 
 const ShoppingCart = () => {
-    const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState('');
+    if (typeof window === 'undefined') return null;
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            const parsedCart = JSON.parse(storedCart);
+            setCartItems(parsedCart.cartItems || []);
+        }
+    }, []);
+
+    const cartSubtotal = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+    const shippingCost = 2.0;
+    const cartTotal = cartSubtotal + shippingCost;
 
     return (
         <NokorTechLayout>
-            <div className="mx-auto mb-20 max-w-screen-xl px-2">
-                <h1 className="mb-8 text-2xl font-bold lg:text-3xl">Shopping Cart</h1>
+            <div className="mx-auto my-10 max-w-screen-xl px-4">
+                <h1 className="mb-8 text-2xl font-bold lg:text-2xl">Shopping Cart</h1>
 
                 <div className="flex flex-col gap-12 lg:flex-row">
                     {/* Products Table */}
                     <div className="lg:w-8/12">
                         <div className="overflow-x-auto">
-                            <table className="min-w-full border-collapse">
-                                <thead>
-                                    <tr className="text-left text-sm font-semibold text-gray-700">
-                                        <th className="border-b-2 py-4 text-center">Item</th>
-                                        <th className="border-b-2 py-4 text-center">Price</th>
-                                        <th className="border-b-2 py-4 text-center">Qty</th>
-                                        <th className="border-b-2 py-4 text-center">Subtotal</th>
-                                        <th className="border-b-2 py-4 text-center">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {products.map((product) => (
-                                        <tr key={product.id} className="space-x-2 hover:bg-gray-50">
-                                            <td className="flex items-center p-4">
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                    className="mr-2 aspect-square w-20 rounded object-cover"
-                                                />
-                                                <p className="line-clamp-2 w-60 text-gray-700 lg:w-96">{product.name}</p>
-                                            </td>
-                                            <td className="p-4 text-gray-600">${product.price.toFixed(2)}</td>
-                                            <td className="p-4 text-center text-lg">
-                                                <div className="flex items-center justify-center gap-2">
-                                                    <Button variant="outline" size="icon">
-                                                        <Minus />
-                                                    </Button>
-                                                    {product.quantity}
-                                                    <Button variant="outline" size="icon">
-                                                        <Plus />
-                                                    </Button>
-                                                </div>
-                                            </td>
-                                            <td className="p-4 text-gray-600">${product.subtotal.toFixed(2)}</td>
-                                            <td className="space-x-2 p-4 text-center">
-                                                <button className="rounded bg-red-500 p-2 text-white hover:bg-red-600">
-                                                    <Trash2 size={16} />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                            <CartItemList />
                         </div>
 
                         <div className="mt-6 flex justify-between">
-                            <Link href="#">
-                                <Button
-                                    variant="outline"
-                                    className="border-destructive text-destructive hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                                >
-                                    <Trash2 />
-                                    Clear Cart
-                                </Button>
-                            </Link>
+                            <ClearCartButton />
                             <div className="space-x-4">
                                 <Link href="/checkout">
                                     <Button>Checkout</Button>
@@ -110,28 +47,28 @@ const ShoppingCart = () => {
                     </div>
 
                     {/* Summary Section */}
-                    <div className="rounded-md bg-gray-50 p-6 shadow-sm lg:w-4/12">
+                    <div className="bg-muted rounded-md p-6 shadow-sm lg:w-4/12">
                         <h2 className="mb-6 text-xl font-bold">Summary</h2>
 
                         <Accordion type="single" collapsible>
                             <AccordionItem value="item-1">
                                 <AccordionTrigger className="text-sm font-semibold">Products</AccordionTrigger>
-                                <AccordionContent className="mt-4 text-sm text-gray-600">
-                                    <table className="w-full space-y-2">
+                                <AccordionContent className="mt-4 text-sm">
+                                    <table className="w-full">
                                         <tbody>
-                                            {products.map((product) => (
-                                                <tr key={product.id}>
+                                            {cartItems.map((product) => (
+                                                <tr key={`summary-${product.id}`}>
                                                     <td className="flex items-center p-2">
                                                         <img
                                                             src={product.image}
-                                                            alt={product.name}
+                                                            alt=""
                                                             className="mr-2 aspect-square w-10 rounded object-cover"
                                                         />
-                                                        <p className="line-clamp-2 text-gray-700">{product.name}</p>
+                                                        <p className="line-clamp-2">{product.name}</p>
                                                     </td>
-                                                    <td className="p-2 text-gray-600">${product.price.toFixed(2)}</td>
-                                                    <td className="p-2 text-center text-lg">{product.quantity}</td>
-                                                    <td className="p-2 text-gray-600">${product.subtotal.toFixed(2)}</td>
+                                                    <td className="p-2">{formatCurrency(product.price)}</td>
+                                                    <td className="p-2 text-center text-lg">{product.cartQuantity}</td>
+                                                    <td className="p-2">{formatCurrency(product.price * product.cartQuantity)}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -143,15 +80,15 @@ const ShoppingCart = () => {
                         <div className="mt-6 space-y-2 pt-4">
                             <div className="flex justify-between text-sm">
                                 <p>Subtotal</p>
-                                <p>$13,047.00</p>
+                                <p>{formatCurrency(cartSubtotal)}</p>
                             </div>
                             <div className="flex justify-between text-sm">
                                 <p>Shipping</p>
-                                <p>$2.00</p>
+                                <p>{formatCurrency(shippingCost)}</p>
                             </div>
                             <div className="flex justify-between text-lg font-bold">
                                 <p>Total</p>
-                                <p>$13,049.00</p>
+                                <p>{formatCurrency(cartTotal)}</p>
                             </div>
                         </div>
                     </div>

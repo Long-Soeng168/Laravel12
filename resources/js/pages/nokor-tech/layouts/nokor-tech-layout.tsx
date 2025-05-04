@@ -1,4 +1,5 @@
 import { Toaster } from '@/components/ui/sonner';
+import { CartProvider } from '@/contexts/cart-contexts';
 import useTranslation from '@/hooks/use-translation';
 import { type ReactNode } from 'react';
 import MyFooter from '../components/my-footer';
@@ -12,11 +13,13 @@ const NokorTechLayout = ({ children }: NokorTechLayoutProps) => {
     const { currentLocale } = useTranslation();
     return (
         <>
-            <MyHeader />
+            <CartProvider>
+                <MyHeader />
 
-            <div className={`${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>{children}</div>
-            <Toaster />
-            <MyFooter />
+                <div className={`${currentLocale == 'kh' ? 'font-siemreap-regular' : 'font-poppins-regular'}`}>{children}</div>
+                <Toaster />
+                <MyFooter />
+            </CartProvider>
         </>
     );
 };

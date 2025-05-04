@@ -190,11 +190,11 @@ const FileTableData = ({ handleInsertMedia }: { handleInsertMedia?: (type: 'imag
                                     <span>{`${item.width} x ${item.height}`}</span>
                                 </div>
                             )} */}
-                            {item.extension && item.mime_type.startsWith('image/') && (
+                            {/* {item.extension && item.mime_type.startsWith('image/') && (
                                 <div className="absolute right-1 bottom-1 gap-1 rounded-tl-md rounded-br-md bg-white px-2 text-base text-black transition-all duration-300 group-hover:flex">
                                     <span>{`.${item.extension}`}</span>
                                 </div>
-                            )}
+                            )} */}
                         </div>
                         <p className="max-w-full overflow-hidden pt-1 text-center text-xs overflow-ellipsis">{item.name}</p>
                         <p className="py-1 text-center text-[10px]">

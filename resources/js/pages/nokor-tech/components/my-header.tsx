@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search, ShoppingCart, User2Icon } from 'lucide-react';
 import { MyCategoriesNav } from './my-categories-nav';
+import { MySearchProducts } from './my-search-products';
 
 const MyHeader = () => {
     const { application_info, links, post_counts, item_categories } = usePage().props;
@@ -50,7 +51,7 @@ const MyHeader = () => {
                         </p>
                         <div className="flex gap-2">
                             {links?.map((item) => (
-                                <a href={item?.link ? item?.link : '#'}>
+                                <a key={item?.id} href={item?.link ? item?.link : '#'}>
                                     <img
                                         width={32}
                                         height={32}
@@ -124,7 +125,7 @@ const MyHeader = () => {
                                             <MyCategoriesNav />
                                         </li>
                                         {item_categories.slice(0, 3).map((category, index) => (
-                                            <li key={index}>
+                                            <li key={index + category?.id}>
                                                 <Link
                                                     prefetch
                                                     href={`/products?category_code=${category.code}`}
@@ -138,10 +139,10 @@ const MyHeader = () => {
                                     </>
                                 )}
 
-                                <li className="border-primary/5 bg-primary/50 h-6 border"></li>
+                                <li key={'seperator'} className="border-primary/5 bg-primary/50 h-6 border"></li>
                                 {navItems.map((item, index) =>
                                     item.condition === false ? null : (
-                                        <li className="flex gap-4">
+                                        <li key={index + item.label} className="flex gap-4">
                                             <Link
                                                 prefetch
                                                 key={index}
@@ -163,11 +164,21 @@ const MyHeader = () => {
                             </ul>
                         </div>
                         <div className="flex shrink-0 gap-4">
-                            <Link href="#">
-                                <Button size="icon" variant="ghost" className="text-primary">
-                                    <Search />
-                                </Button>
-                            </Link>
+                            <Sheet>
+                                <div className="flex items-center gap-2">
+                                    <SheetTrigger asChild>
+                                        <Button size="icon" variant="ghost" className="text-primary">
+                                            <Search className="text-primary size-6" />
+                                        </Button>
+                                    </SheetTrigger>
+                                </div>
+                                <SheetContent side="top" className="w-full p-6 shadow-md">
+                                    <SheetHeader>
+                                        <SheetTitle>Search Products</SheetTitle>
+                                    </SheetHeader>
+                                    <MySearchProducts className='max-w-full mx-auto border-primary' />
+                                </SheetContent>
+                            </Sheet>
                             <Link prefetch href="/shopping-cart">
                                 <Button size="icon" variant="ghost" className="text-primary">
                                     <ShoppingCart />

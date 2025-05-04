@@ -1,5 +1,6 @@
 import '../css/app.css';
 import '../css/ckeditor-custom.css';
+// import 'ckeditor5/ckeditor5.css';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

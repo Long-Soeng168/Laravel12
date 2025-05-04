@@ -32,7 +32,7 @@ export function MyCategoriesNav() {
                 <DropdownMenuGroup onMouseLeave={() => setOpenDropdown(false)} className="space-y-1">
                     {item_categories?.map((category) =>
                         category?.children?.length > 0 ? (
-                            <DropdownMenuSub>
+                            <DropdownMenuSub key={category?.id}>
                                 <div className="flex">
                                     <Link prefetch href={`/products?category_code=${category?.code}`} className="group flex-1 p-0.5">
                                         <p className="hover:text-primary relative flex w-full gap-1">
@@ -54,7 +54,7 @@ export function MyCategoriesNav() {
                                 <DropdownMenuPortal>
                                     <DropdownMenuSubContent>
                                         {category?.children?.map((item) => (
-                                            <DropdownMenuItem asChild>
+                                            <DropdownMenuItem key={item?.id} asChild>
                                                 <Link prefetch href={`/products?category_code=${item?.code}`} className="cursor-pointer p-2">
                                                     {item?.name}
                                                 </Link>

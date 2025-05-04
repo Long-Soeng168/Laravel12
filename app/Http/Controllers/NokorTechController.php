@@ -205,7 +205,13 @@ class NokorTechController extends Controller
 
     public function product_show($id)
     {
-        return Inertia::render("nokor-tech/products/Show");
+        $itemShow = Item::find($id);
+        $relatedItems = Item::with('category', 'images')->where('id', '!=', $id)->where('category_code', $itemShow->category_code)->orderBy('id', 'desc')->limit(12)->get();
+
+        return Inertia::render("nokor-tech/products/Show", [
+            "itemShow" => $itemShow->load('created_by', 'updated_by', 'images', 'category', 'brand'),
+            'relatedItems'=> $relatedItems,
+        ]);
     }
 
     public function shopping_cart()
