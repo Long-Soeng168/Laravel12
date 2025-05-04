@@ -1,3 +1,4 @@
+import MyStepper from '@/components/my-stepper';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
@@ -27,8 +28,8 @@ const ShoppingCart = () => {
     return (
         <NokorTechLayout>
             <div className="mx-auto my-10 max-w-screen-xl px-4">
-                <h1 className="mb-8 text-2xl font-bold lg:text-2xl">Shopping Cart</h1>
-
+                {/* <h1 className="mb-8 text-2xl font-bold lg:text-2xl">Shopping Cart</h1> */}
+                <MyStepper steps={['Cart', 'Checkout', 'Complete']} currentStep={1} />
                 <div className="flex flex-col gap-12 lg:flex-row">
                     {/* Products Table */}
                     <div className="lg:w-8/12">
@@ -59,11 +60,7 @@ const ShoppingCart = () => {
                                             {cartItems.map((product) => (
                                                 <tr key={`summary-${product.id}`}>
                                                     <td className="flex items-center p-2">
-                                                        <img
-                                                            src={product.image}
-                                                            alt=""
-                                                            className="mr-2 aspect-square w-10 rounded object-cover"
-                                                        />
+                                                        <img src={product.image} alt="" className="mr-2 aspect-square w-10 rounded object-cover" />
                                                         <p className="line-clamp-2">{product.name}</p>
                                                     </td>
                                                     <td className="p-2">{formatCurrency(product.price)}</td>
