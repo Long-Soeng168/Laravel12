@@ -7,7 +7,7 @@ interface MyStepperProps {
 
 const MyStepper: React.FC<MyStepperProps> = ({ steps, currentStep }) => {
     return (
-        <div className="mx-auto flex w-full items-center gap-4 mb-10">
+        <div className="mx-auto flex w-full overflow-auto items-center gap-4 mb-10">
             {steps.map((label, index) => (
                 <div key={index} className={`flex items-center ${index !== steps.length - 1 ? 'flex-1' : ''}`}>
                     {/* Icon */}
