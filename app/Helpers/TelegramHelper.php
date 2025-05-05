@@ -76,7 +76,6 @@ class TelegramHelper
     {
         $token  = env('TELEGRAM_BOT_TOKEN');
         $chatId = env('TELEGRAM_GROUP_CHAT_ID');
-        $itemUrl = env('APP_URL') . '/' . $itemId;
 
         if (!$token || !$chatId) {
             return ['success' => false, 'message' => 'Telegram configuration is missing.'];
