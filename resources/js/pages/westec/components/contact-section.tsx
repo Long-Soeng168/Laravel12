@@ -5,7 +5,7 @@ export function ContactSection({ bg = 'bg-primary', showButton = true }: { bg?: 
             <div className={`relative mx-auto flex w-full flex-col px-4 py-10 lg:px-16 lg:py-20 ${bg}`}>
                 {/* Left Section */}
                 <div className="flex flex-col items-end text-left">
-                    <h1 className="font-proxima-nova-bold mb-4 max-w-[80%] text-end text-xl leading-[30px] text-white md:text-3xl md:leading-[30px] lg:max-w-[50%] lg:text-4xl lg:leading-[50px]">
+                    <h1 className="font-proxima-nova-bold mb-4 max-w-[80%] text-end text-xl leading-[30px] text-white md:text-3xl md:leading-[30px] lg:max-w-[70%] lg:text-4xl 2xl:text-5xl lg:leading-[50px]">
                         Smarter solutions start here! Find out what Westec can do for you.
                     </h1>
                     {showButton && (

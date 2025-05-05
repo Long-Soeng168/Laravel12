@@ -4,6 +4,7 @@ import BlogsList from './components/blogs-list';
 import { ContactSection } from './components/contact-section';
 import EventList from './components/event-list';
 import { FeatureSection } from './components/feature-section';
+import Headline from './components/headline';
 import MyBoosters from './components/my-boosters';
 import WestecLayout from './layout/layout';
 const images = [
@@ -50,18 +51,17 @@ const Index = () => {
             <FeatureSection defaultDropDown={false} />
             <FeatureSection defaultDropDown={false} />
 
-            <ContactSection bg='bg-primary' />
+            <ContactSection bg="bg-primary" />
 
             <FeatureSection defaultDropDown={false} />
             <FeatureSection defaultDropDown={false} />
 
-            <ContactSection bg='bg-primary' />
+            <ContactSection bg="bg-primary" />
 
             <MyBoosters />
-            <h1 className="mb-6 inline-block scroll-mt-[100px] border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16" id="partners">
-                Our Partners
-            </h1>
-            <div>
+            <div id="partners"></div>
+            <div className="mt-16">
+                <Headline title="Our Partners" />
                 <MyPartner />
             </div>
 
@@ -75,8 +75,8 @@ const Index = () => {
                 </div>
             </div>
 
-            <div className="mt-16" id="clients">
-                <h1 className="mb-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Our Clientele</h1>
+            <div className="mb-16" id="clients">
+                <Headline title="Our Clientele" />
                 <MyPartner />
             </div>
         </WestecLayout>

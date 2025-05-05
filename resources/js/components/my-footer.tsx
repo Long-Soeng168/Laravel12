@@ -6,7 +6,7 @@ const MyFooter = () => {
                     {/* Contact Section */}
                     <div className="grid grid-cols-1 w-full">
                         <img src="/assets/westec/images/Logo.png" alt="Angkor Wildlife & Aquarium" className="mb-4 w-48" />
-                        <div className="text-sm leading-relaxed text-gray-500 md:text-base">
+                        <div className="text-sm leading-relaxed text-gray-500 md:text-base 2xl:text-xl">
                             <p>
                                 No20, St598C, Phum Tomnub Toek,
                                 <br />
@@ -45,8 +45,8 @@ const MyFooter = () => {
                         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 text-sm text-gray-500">
                             {/* About Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">About Us</h3>
-                                <ul className="mt-6 list-disc space-y-1 pl-3">
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white 2xl:text-2xl">About Us</h3>
+                                <ul className="mt-6 list-disc space-y-1 pl-3 2xl:text-xl">
                                     <li>What is Westec?</li>
                                     <li>Mission & Vision</li>
                                     <li>Why Westec</li>
@@ -56,8 +56,8 @@ const MyFooter = () => {
 
                             {/* Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Solutions</h3>
-                                <ul className="mt-6 list-disc space-y-1 pl-3">
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white 2xl:text-2xl">Solutions</h3>
+                                <ul className="mt-6 list-disc space-y-1 pl-3 2xl:text-xl">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
                                     <li>Commercial & Residential Equipments</li>
@@ -66,8 +66,8 @@ const MyFooter = () => {
                             </div>
                             {/*Feature Solutions */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Featured Solutions</h3>
-                                <ul className="mt-6 list-disc space-y-1 pl-3">
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white 2xl:text-2xl">Featured Solutions</h3>
+                                <ul className="mt-6 list-disc space-y-1 pl-3 2xl:text-xl">
                                     <li>Security & Safety Solutions</li>
                                     <li>Smart Home & Office Solutions</li>
                                     <li>Commercial & Residential Equipments</li>
@@ -77,8 +77,8 @@ const MyFooter = () => {
 
                             {/* Case Studies */}
                             <div className="flex-1">
-                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white">Case studies</h3>
-                                <ul className="mt-6 list-disc space-y-1 pl-3">
+                                <h3 className="inline-block w-full bg-primary px-6 py-1 text-center text-base text-white 2xl:text-2xl">Case studies</h3>
+                                <ul className="mt-6 list-disc space-y-1 pl-3 2xl:text-xl">
                                     <li>Banking</li>
                                     <li>Embassy</li>
                                     <li>Microfinance</li>
@@ -93,7 +93,7 @@ const MyFooter = () => {
                         <div className="mt-16 flex flex-wrap gap-6 w-full">
                             {/* Follow Us */}
                             <div className="w-full sm:flex-1">
-                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white">Follow Us!</h3>
+                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white 2xl:text-2xl">Follow Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'facebook', alt: 'Facebook' },
@@ -106,7 +106,7 @@ const MyFooter = () => {
                                             key={index}
                                             src={`/assets/demo-images/${icon.name}.png`}
                                             alt={icon.alt}
-                                            className="background h-10 w-10 p-1 transition-all duration-500 hover:scale-125"
+                                            className="background size-10 object-contain 2xl:size-14 p-1 transition-all duration-500 hover:scale-125"
                                         />
                                     ))}
                                 </div>
@@ -114,7 +114,7 @@ const MyFooter = () => {
 
                             {/* Chat With Us */}
                             <div className="flex-1">
-                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white">Chat With Us!</h3>
+                                <h3 className="inline-block bg-primary px-6 py-1 text-base text-white 2xl:text-2xl">Chat With Us!</h3>
                                 <div className="mt-6 flex gap-2">
                                     {[
                                         { name: 'talk', alt: 'Talk' },
@@ -126,7 +126,7 @@ const MyFooter = () => {
                                             key={index}
                                             src={`/assets/demo-images/${icon.name}.png`}
                                             alt={icon.alt}
-                                            className="background h-10 w-10 p-1 transition-all duration-500 hover:scale-125"
+                                            className="background size-10 object-contain 2xl:size-14 p-1 transition-all duration-500 hover:scale-125"
                                         />
                                     ))}
                                 </div>

@@ -1,11 +1,11 @@
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ContactSection } from './components/contact-section';
-import WestecLayout from './layout/layout';
 import { Textarea } from '@/components/ui/textarea';
+import { ContactSection } from './components/contact-section';
+import Headline from './components/headline';
+import WestecLayout from './layout/layout';
 
 const solutionsData = [
     {
@@ -52,45 +52,45 @@ const Contact = () => {
                 <img src="/assets/westec/images/contact-1.png" alt="" />
             </section>
             <section>
-                <h1 className="my-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Project Inquiry?</h1>
+                <Headline title="Project Inquiry?" />
                 <div className="bg-primary px-4 py-4 text-white lg:px-16">
                     <div className="grid grid-cols-1 gap-4 gap-x-8 md:grid-cols-3">
                         <div className="w-full max-w-full">
-                            <Label htmlFor="name">Name</Label>
+                            <Label className='2xl:text-xl' htmlFor="name">Name</Label>
                             <Input
                                 id="name"
                                 type="name"
                                 placeholder="Name"
-                                className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                             />
                         </div>
                         <div className="w-full max-w-full">
-                            <Label htmlFor="email">Email</Label>
+                            <Label className='2xl:text-xl' htmlFor="email">Email</Label>
                             <Input
                                 id="email"
                                 type="email"
                                 placeholder="Email"
-                                className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                             />
                         </div>
                         <div className="w-full max-w-full">
-                            <Label htmlFor="email">Phone number</Label>
+                            <Label className='2xl:text-xl' htmlFor="email">Phone number</Label>
                             <Input
                                 id="phone"
                                 type="phone"
                                 placeholder="Phone"
-                                className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                             />
                         </div>
                     </div>
-                    <div className="mt-4 space-y-4">
-                        <p className="text-base font-bold">OUR SOLUTIONS:</p>
+                    <div className="mt-8 space-y-4">
+                        <p className="text-base font-bold 2xl:text-2xl">OUR SOLUTIONS:</p>
                         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {solutionsData.map((solution, index) => (
                                 <div key={index} className="mb-4 flex flex-col items-start justify-start rounded p-4">
                                     <div className="mb-4 flex items-center gap-4">
                                         <img src="/assets/icons/image-icon.png" className="size-16" />
-                                        <p className="text-sm font-bold">{solution.category}</p>
+                                        <p className="text-sm 2xl:text-lg font-bold">{solution.category}</p>
                                     </div>
                                     <div className="space-y-2">
                                         {solution.items.map((item, subIndex) => (
@@ -101,7 +101,7 @@ const Contact = () => {
                                                 />
                                                 <label
                                                     htmlFor={`item-${index}-${subIndex}`}
-                                                    className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                    className="text-sm leading-none 2xl:text-lg font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                 >
                                                     {item}
                                                 </label>
@@ -121,20 +121,20 @@ const Contact = () => {
                                 />
                                 <label
                                     htmlFor="terms"
-                                    className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    className="text-sm 2xl:text-lg leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
                                     Others
                                 </label>
                             </div>
-                            <div className="w-full max-w-full lg:w-lg">
+                            <div className="2xl:text-xl 2xl:h-10 w-full max-w-full lg:w-lg">
                                 <Input
                                     id="other"
                                     type="other"
-                                    className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                         </div>
-                        <Button variant="secondary" className="h-full rounded-none">
+                        <Button variant="secondary" className="h-full 2xl:text-xl rounded-none">
                             Submit
                         </Button>
                     </div>
@@ -145,57 +145,57 @@ const Contact = () => {
                 <h1 className="my-6 inline-block border-[#273892] px-4 text-2xl font-semibold text-[#273892] lg:px-16">Get Support?</h1>
                 <div className="bg-primary px-4 py-4 text-white lg:px-16">
                     <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
-                        <div className="grid grid-cols-1 gap-4 gap-x-8 md:grid-cols-1 content-start">
+                        <div className="grid grid-cols-1 content-start gap-4 gap-x-8 md:grid-cols-1">
                             <div className="w-full max-w-full">
-                                <Label htmlFor="name">Name</Label>
+                                <Label className='2xl:text-xl' htmlFor="name">Name</Label>
                                 <Input
                                     id="name"
                                     type="name"
                                     placeholder="Name"
-                                    className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                             <div className="w-full max-w-full">
-                                <Label htmlFor="email">Email</Label>
+                                <Label className='2xl:text-xl' htmlFor="email">Email</Label>
                                 <Input
                                     id="email"
                                     type="email"
                                     placeholder="Email"
-                                    className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                             <div className="w-full max-w-full">
-                                <Label htmlFor="email">Phone number</Label>
+                                <Label className='2xl:text-xl' htmlFor="email">Phone number</Label>
                                 <Input
                                     id="phone"
                                     type="phone"
                                     placeholder="Phone"
-                                    className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                         </div>
                         <div className="grid grid-cols-1 gap-4 gap-x-8 md:grid-cols-1">
                             <div className="w-full max-w-full">
-                                <Label htmlFor="name">Subject</Label>
+                                <Label className='2xl:text-xl' htmlFor="name">Subject</Label>
                                 <Input
                                     id="subject"
                                     type="subject"
                                     placeholder="Subject"
-                                    className="w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="2xl:text-xl 2xl:h-10 w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                             <div className="w-full max-w-full">
-                                <Label htmlFor="Your inquiry">Your inquiry</Label>
+                                <Label className='2xl:text-xl' htmlFor="Your inquiry">Your inquiry</Label>
                                 <Textarea
                                     id="Your inquiry"
                                     placeholder="Your inquiry"
-                                    className="min-h-[115px] w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
+                                    className="min-h-[115px] 2xl:text-xl w-full max-w-full rounded-none border-none bg-white text-black shadow-none"
                                 />
                             </div>
                         </div>
                     </div>
                     <div className="mt-8 flex flex-wrap justify-end gap-4">
-                        <Button variant="secondary" className="h-full rounded-none">
+                        <Button variant="secondary" className="h-full 2xl:text-xl rounded-none">
                             Submit
                         </Button>
                     </div>

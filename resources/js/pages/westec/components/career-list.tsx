@@ -3,11 +3,12 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PaperclipIcon } from 'lucide-react';
+import Headline from './headline';
 
 const CareerList = () => {
     return (
         <div className="mx-auto max-w-[4000px] bg-white">
-            <h1 className="text-color px-4 py-4 text-2xl font-semibold sm:px-8 lg:px-16 lg:py-8">News & Updates</h1>
+            <Headline title="Career" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
                 {BlogCard()}
                 {BlogCard()}
@@ -26,15 +27,15 @@ const CareerList = () => {
 
                 <div className="p-4">
                     <div className="mb-8">
-                        <a href="#" className="inline-block text-lg font-bold text-yellow-500 transition duration-500 ease-in-out">
+                        <a href="#" className="mb-2 inline-block text-lg font-bold text-white transition duration-500 ease-in-out 2xl:text-2xl">
                             Be Our next ELV Design Engineer!
                         </a>
-                        <p className="text-sm text-gray-300">Engineering the Future - Join Our Team!</p>
+                        <p className="text-sm text-gray-300 2xl:text-xl">Engineering the Future - Join Our Team!</p>
                     </div>
                     <div>
                         <Dialog>
                             <DialogTrigger>
-                                <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline">
+                                <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline 2xl:text-2xl">
                                     More Details
                                 </span>
                             </DialogTrigger>

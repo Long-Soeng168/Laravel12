@@ -19,10 +19,10 @@ export function CaseStudySection({ defaultDropDown = true }: { defaultDropDown?:
                 <img src="/assets/demo-images/Artboard3.jpg" className="min-h-[250px] w-full object-cover" alt="" />
                 <div className="absolute top-0 left-0">
                     <div className="flex flex-col p-4 text-start md:text-left lg:grid-cols-2 lg:p-16">
-                        <h1 className="font-proxima-nova-bold text-xl leading-[30px] text-white md:mb-4 md:text-2xl md:leading-[30px] lg:text-4xl lg:leading-[50px]">
+                        <h1 className="font-proxima-nova-bold text-xl leading-[30px] text-white md:mb-4 md:text-2xl md:leading-[30px] lg:text-4xl lg:leading-[50px] 2xl:text-5xl">
                             Security And Safety Solutions
                         </h1>
-                        <p className="font-proxima-nova-regular text-base text-white capitalize md:max-w-[65%] lg:text-xl">
+                        <p className="font-proxima-nova-regular text-base text-white capitalize md:max-w-[65%] lg:text-xl 2xl:text-3xl">
                             <ul className="list-disc">
                                 <li>
                                     In 2016, we took on a major challenge—securing the banking sector, where the cost of risk is high and the margin
@@ -39,11 +39,11 @@ export function CaseStudySection({ defaultDropDown = true }: { defaultDropDown?:
                     <div ref={bannerRef} className="h-[90px]"></div>
                     <div className="flex w-full flex-nowrap justify-center gap-2.5 px-4 py-2.5 lg:justify-end lg:px-16">
                         {selectedData != '' ? (
-                            <Button className="h-7 rounded-none" onClick={() => handleSelect('')}>
+                            <Button className="h-7 rounded-none 2xl:text-2xl 2xl:h-10" onClick={() => handleSelect('')}>
                                 Show Less <ChevronUp />
                             </Button>
                         ) : (
-                            <Button className="h-7 rounded-none" onClick={() => handleSelect('/assets/westec/images/study-case1.jpeg')}>
+                            <Button className="h-7 rounded-none 2xl:text-2xl 2xl:h-10" onClick={() => handleSelect('/assets/westec/images/study-case1.jpeg')}>
                                 Read More <ChevronDown />
                             </Button>
                         )}

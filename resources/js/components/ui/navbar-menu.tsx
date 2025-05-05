@@ -28,7 +28,7 @@ export const MenuItem = ({
       <motion.a
         // href={item.toLowerCase() === "about us" ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
         transition={{ duration: 0.3 }}
-        className="bg-true-primary text-sm px-6 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
+        className="bg-true-primary text-sm whitespace-nowrap 2xl:text-xl 2xl:px-8 px-6 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
       >
         {item}  <ChevronUp className="h-4 w-4 text-white dark:text-gray-300 transition-transform duration-300 rotate-180" />
       </motion.a>
@@ -117,7 +117,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
       {...rest}
-      className="text-white text-[13px] max-w-32 hover:underline "
+      className="text-white text-[13px] 2xl:text-base max-w-32 hover:underline "
     >
       {children}
     </Link>

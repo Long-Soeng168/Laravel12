@@ -91,7 +91,7 @@ export const InfiniteMovingCards = ({
                 )}
             >
                 {items.map((item, idx) => (
-                    <li className="size-[100px] object-contain">
+                    <li className="size-[100px] 2xl:size-[120px] object-contain">
                         <img src='/assets/icons/pc.png' className='object-contain w-full h-full' />
                     </li>
                 ))}

@@ -1,11 +1,12 @@
 import MySlideCareer from '@/components/my-slide-career';
-import { ContactSection } from './components/contact-section';
-import WestecLayout from './layout/layout';
 import CareerList from './components/career-list';
+import { ContactSection } from './components/contact-section';
+import Headline from './components/headline';
+import WestecLayout from './layout/layout';
 const Career = () => {
     return (
         <WestecLayout>
-            <h1 className="text-color px-4 py-4 text-2xl font-semibold sm:px-8 lg:px-16 lg:py-8">Employee Highlights</h1>
+            <Headline title="Employee Highlights" />
             <MySlideCareer />
 
             <ContactSection />

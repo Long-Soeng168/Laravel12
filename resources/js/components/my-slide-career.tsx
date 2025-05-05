@@ -18,8 +18,8 @@ export default function MySlideCareer() {
         });
     }, [api]);
     return (
-        <div className="mx-auto max-w-6xl">
-            <Carousel setApi={setApi} className="w-full max-w-6xl" opts={{ loop: true }}>
+        <div className="mx-auto max-w-6xl 2xl:max-w-[80vw]">
+            <Carousel setApi={setApi} className="w-full max-w-6xl 2xl:max-w-[80vw]" opts={{ loop: true }}>
                 <CarouselContent className="ml-0">
                     {Array.from({ length: 5 }).map((_, index) => (
                         <CarouselItem key={index} className={cn('basis-[50%] pl-0 sm:basis-[33%]', {})}>
@@ -42,11 +42,11 @@ export default function MySlideCareer() {
                                             <div className="mb-4 flex flex-col justify-between">
                                                 <a
                                                     href="#"
-                                                    className="mb-1 inline-block text-[16px] font-bold text-white transition duration-500 ease-in-out"
+                                                    className="mb-1 inline-block text-[16px] font-bold text-white transition duration-500 ease-in-out 2xl:text-2xl"
                                                 >
                                                     A Visionary Project Manager
                                                 </a>
-                                                <p className="text-[12px] text-gray-300">
+                                                <p className="text-[12px] text-gray-300 2xl:text-base">
                                                     Meet <span className="text-yellow-400">Mr. Try Pidet</span> who is shaping success and leadership
                                                     at the best at Westec
                                                 </p>
@@ -54,7 +54,7 @@ export default function MySlideCareer() {
                                             <div className="mt-2">
                                                 <Dialog>
                                                     <DialogTrigger>
-                                                        <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline">
+                                                        <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline 2xl:text-xl">
                                                             Read More
                                                         </span>
                                                     </DialogTrigger>
@@ -74,14 +74,14 @@ export default function MySlideCareer() {
                                                             />
                                                             <div className="order-2 p-2 text-white lg:p-4">
                                                                 <div className="mb-4">
-                                                                    <h1 className="mt-2 font-bold text-xl">A Visionary Project Manager</h1>
+                                                                    <h1 className="mt-2 text-xl font-bold">A Visionary Project Manager</h1>
                                                                     <p>
                                                                         Meet <span className="text-yellow-400">Mr. Try Pidet</span> who is shaping
                                                                         success and leadership at the best at Westec
                                                                     </p>
                                                                 </div>
                                                                 <div className="bg-black/30 p-2">
-                                                                    <div className="space-y-2 flex flex-col gap-4 font-medium lg:text-sm">
+                                                                    <div className="flex flex-col gap-4 space-y-2 font-medium lg:text-sm">
                                                                         <p>
                                                                             Meet Mr. Try Pidet, our dedicated Project Manager at Westec, whose journey
                                                                             embodies a profound commitment to excellence and a passion for continued

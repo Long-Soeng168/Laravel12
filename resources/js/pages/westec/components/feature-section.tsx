@@ -92,10 +92,10 @@ export function FeatureSection({ defaultDropDown = true }: { defaultDropDown?: b
                 <img src="/assets/demo-images/Artboard2.jpg" className="min-h-[250px] w-full object-cover" alt="" />
                 <div className="absolute top-0 left-0">
                     <div className="flex flex-col p-4 text-start md:text-left lg:grid-cols-2 lg:p-16">
-                        <h1 className="font-proxima-nova-bold text-xl leading-[30px] text-white md:mb-4 md:text-2xl md:leading-[30px] lg:text-4xl lg:leading-[50px]">
+                        <h1 className="font-proxima-nova-bold text-xl leading-[30px] text-white md:mb-4 md:text-2xl md:leading-[30px] lg:text-4xl lg:leading-[50px] 2xl:text-5xl">
                             Security And Safety Solutions
                         </h1>
-                        <p className="font-proxima-nova-regular text-base text-white capitalize md:max-w-[65%] lg:text-xl">
+                        <p className="font-proxima-nova-regular text-base text-white capitalize md:max-w-[65%] lg:text-xl 2xl:text-3xl">
                             We deliver advanced security and safety solutions that go beyond protection—offering peace of mind.
                         </p>
                     </div>
@@ -110,14 +110,14 @@ export function FeatureSection({ defaultDropDown = true }: { defaultDropDown?: b
                                     onClick={() => handleSelect(item)}
                                     className={`${
                                         item.id === selectedData?.id ? 'border border-white' : ''
-                                    } flex aspect-square size-[100px] shrink-0 flex-col items-center justify-center bg-true-primary/45 p-1 transition-transform duration-300 hover:scale-110 lg:size-[125px] lg:p-2`}
+                                    } bg-true-primary/45 flex aspect-square size-[100px] shrink-0 flex-col items-center justify-center p-1 transition-transform duration-300 hover:scale-110 lg:size-[125px]  2xl:size-[170px]  lg:p-2`}
                                 >
                                     <img
                                         src={`/assets/demo-images/${item.img}`}
                                         className="w-[40px] object-contain lg:w-[50px]"
                                         alt={`${item.label} Icon`}
                                     />
-                                    <p className="mt-2 line-clamp-3 text-center text-[10px] whitespace-normal text-white lg:text-xs">{item.label}</p>
+                                    <p className="mt-2 line-clamp-3 text-center text-[10px] whitespace-normal text-white lg:text-xs 2xl:text-base">{item.label}</p>
                                 </button>
                             ))}
                         </div>
@@ -129,10 +129,10 @@ export function FeatureSection({ defaultDropDown = true }: { defaultDropDown?: b
             {selectedData != null && (
                 <div className="relative bg-black">
                     <img src={`${selectedData?.banner} `} className="w-full" alt="" />
-                    <div className="absolute bottom-0 left-0 right-0">
+                    <div className="absolute right-0 bottom-0 left-0">
                         <div className="flex w-full flex-nowrap justify-end px-4 lg:px-14">
                             <button className="rounded-none" onClick={() => setSelectedData(null)}>
-                                <ChevronUp className='size-16 stroke-1 stroke-white' />
+                                <ChevronUp className="size-16 stroke-white stroke-1" />
                             </button>
                         </div>
                     </div>
