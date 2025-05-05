@@ -128,6 +128,12 @@ export function AppSidebar() {
             icon: TvMinimalPlayIcon,
         },
         {
+            title: t('Videos Playlists'),
+            permission: 'video view',
+            url: '/admin/video_play_lists',
+            icon: TvMinimalPlayIcon,
+        },
+        {
             title: t('Documents'),
             permission: 'document view',
             url: '',

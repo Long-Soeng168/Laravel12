@@ -30,6 +30,9 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\VideoPlayListController;
+use App\Models\VideoPlayList;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -98,6 +101,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/courses', CourseController::class);
     Route::post('admin/courses/{course}/update', [CourseController::class, 'update']);
     Route::post('admin/courses/{course}/update_status', [CourseController::class, 'update_status']);
+
+    // Video Play Lists Route
+    Route::resource('admin/video_play_lists', VideoPlayListController::class);
+    Route::post('admin/video_play_lists/{video_play_list}/update', [VideoPlayListController::class, 'update']);
+    Route::post('admin/video_play_lists/{video_play_list}/update_status', [VideoPlayListController::class, 'update_status']);
+
+    // Videos Route
+    Route::resource('admin/videos', VideoController::class);
+    Route::post('admin/videos/{video}/update', [VideoController::class, 'update']);
+    Route::post('admin/videos/{video}/update_status', [VideoController::class, 'update_status']);
 
     // Item Brands Route
     Route::resource('admin/item_brands', ItemBrandController::class);

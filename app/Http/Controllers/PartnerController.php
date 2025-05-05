@@ -120,7 +120,7 @@ class PartnerController extends Controller implements HasMiddleware
     public function update(Request $request, Partner $partner)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:partners,code,' . $partner->id,
+            'name' => 'required|string|max:255|unique:partners,name,' . $partner->id,
             'name_kh' => 'nullable|string|max:255',
             'phone' => 'nullable|numeric',
             'link' => 'nullable|max:255',

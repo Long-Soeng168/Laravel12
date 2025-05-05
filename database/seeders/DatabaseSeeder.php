@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
         // ItemBrand::factory(30)->create();
         // PhoneCompany::factory(30)->create();
         // Dtc::factory(30)->create();
-        Course::factory(30)->create();
+        // Course::factory(30)->create();
+        \App\Models\VideoPlayList::factory(5)->create();
+        // \App\Models\Video::factory(30)->create();
     }
 }
