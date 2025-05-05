@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ImageHelper;
+use App\Helpers\TelegramHelper;
 use App\Models\Item;
 use App\Models\ItemBodyType;
 use App\Models\ItemBrand;
@@ -111,7 +112,7 @@ class ItemController extends Controller implements HasMiddleware
             }
         }
 
-        $created_project = Item::create($validated);
+        $created_item = Item::create($validated);
 
         if ($image_files) {
             try {
@@ -119,14 +120,22 @@ class ItemController extends Controller implements HasMiddleware
                     $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/items', 600);
                     ItemImage::create([
                         'image' => $created_image_name,
-                        'item_id' => $created_project->id,
+                        'item_id' => $created_item->id,
                     ]);
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
             }
         }
-        return redirect()->back()->with('success', 'Item Created Successfully!.');
+        $result = TelegramHelper::sendItemToTelegram($created_item->id);
+
+        if (!$result['success']) {
+            session()->flash('error', $result['message']);
+            session()->flash('success', 'Item Created Successfully!.');
+        } else {
+            session()->flash('success', 'Item Created Successfully!.');
+        }
+        return redirect()->back();
     }
 
     /**

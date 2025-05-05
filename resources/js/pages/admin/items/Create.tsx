@@ -202,21 +202,6 @@ export default function Create() {
                     </div>
 
                     <div className="grid grid-cols-12 gap-8">
-                        <div className="col-span-12">
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t('Name')}</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder={t('Name')} type="text" {...field} />
-                                        </FormControl>
-                                        <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -229,6 +214,22 @@ export default function Create() {
                                         </FormControl>
                                         <FormDescription>{t('Can use product Barcode.')}</FormDescription>
                                         <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="col-span-12">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Name')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Name')} type="text" {...field} />
+                                        </FormControl>
+                                        <FormMessage>{errors.name && <div>{errors.name}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />

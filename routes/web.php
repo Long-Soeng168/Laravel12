@@ -22,7 +22,7 @@ Route::get('/lang/{locale}', function ($locale) {
 // ========= Client =========
 // === Client ===
 
-// require __DIR__ . '/nokor_tech.php';
+require __DIR__ . '/nokor_tech.php';
 // require __DIR__ . '/cam_active.php';
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/western_university.php'; 
@@ -38,6 +38,7 @@ require __DIR__ . '/western_university_new.php';
 require __DIR__ . '/settings.php';
 require __DIR__ . '/file_manager.php';
 require __DIR__ . '/auth.php';
+require __DIR__ . '/order.php';
 require __DIR__ . '/admin.php';
 
 
