@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, CirclePlay } from "lucide-react";
+import { Link } from "@inertiajs/react";
+import { ArrowUpRight } from "lucide-react";
 
 const MyNewHero = () => {
   return (
@@ -17,7 +18,7 @@ const MyNewHero = () => {
           </p>
           <div className="mt-12 flex items-center gap-4">
             <Button size="lg" className="rounded-md p-6 shadow-lg bg-white text-black border-2 border-black hover:bg-blue-900 hover:text-white transition-all duration-500 text-base">
-              Learn More <ArrowUpRight className="!h-5 !w-5" />
+              <Link href="/history_and_values">Learn More </Link> <ArrowUpRight className="!h-5 !w-5" />
             </Button>
           </div>
         </div>

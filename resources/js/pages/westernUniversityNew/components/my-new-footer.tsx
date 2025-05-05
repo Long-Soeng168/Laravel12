@@ -6,7 +6,7 @@ import { DribbbleIcon, GithubIcon, Mail, MapPin, Phone, TwitchIcon, TwitterIcon 
 
 const Footer03Page = () => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col border-t border-gray-200">
             <div className="bg-muted grow" />
             <footer>
                 <div className="mx-auto max-w-screen-xl">
@@ -18,6 +18,10 @@ const Footer03Page = () => {
 
                         <div>
                             <h6 className="font-noto-san-extra-light text-xl font-semibold">Contact</h6>
+                            <div className="relative mt-2 mb-4 h-[1px] w-full bg-gray-200">
+                                <div className="absolute top-0 left-0 h-full bg-red-700" style={{ width: '20%' }} />
+                            </div>
+
                             <ul className="mt-4 space-y-4">
                                 <li className="flex items-center gap-2">
                                     <Phone className="mr-2 inline-block h-5 w-5 text-blue-900" fill="#1c398e" />
@@ -33,7 +37,7 @@ const Footer03Page = () => {
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Mail className="mr-2 inline-block h-5 w-5 text-blue-900" />
-                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                    <Link href="#" className=" text-red-800 hover:text-foreground">
                                         info@western.edu.kh
                                     </Link>
                                 </li>
@@ -56,7 +60,10 @@ const Footer03Page = () => {
 
                         {/* Subscribe Newsletter */}
                         <div>
-                            <h6 className="font-noto-san-extra-light text-xl font-semibold">Stay up to date</h6>
+                            <h6 className="font-noto-san-extra-light text-xl font-semibold">Newsletter</h6>
+                            <div className="relative mt-2 mb-4 h-[1px] w-full bg-gray-200">
+                                <div className="absolute top-0 left-0 h-full bg-red-700" style={{ width: '20%' }} />
+                            </div>
                             <p className="text-muted-foreground hover:text-foreground mt-4">
                                 Enter your email address to get the latest University news, special events and student activities delivered right to
                                 your inbox.

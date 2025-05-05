@@ -11,8 +11,16 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', function () {
-    return Inertia::render('westernUniversityNew/Home');
+return Inertia::render('westernUniversityNew/Home');
 });
+
+Route::get('/contact', function () {
+    return Inertia::render('westernUniversityNew/Contact');
+    });
+
+Route::get('/history_and_values', function () {
+        return Inertia::render('westernUniversityNew/About/HistoryAndValues');
+        });
 // Route::get('/hestory_and_values', function () {
 //     $ourHistory = Page::where('code', 'OUR_HESTORY')->with('images')->first();
 //     $ourVision = Page::where('code', 'OUR_VISION')->with('images')->first();

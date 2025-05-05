@@ -1,26 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { AlignLeftIcon } from "lucide-react";
 import { Logo } from "./logo";
-import { foods, academic, schoolLife } from "./config";
+import { foods, academic, schoolLife, admissions } from "./config";
 import { Link } from "@inertiajs/react";
 
 export const NavigationSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Menu />
+        <Button className="border border-blue-900" variant="outline" size="icon">
+          <AlignLeftIcon className="stroke-blue-900  stroke-3" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto h-screen p-4 ">
         <Logo />
-
         <div className="mt-12 text-base space-y-4">
-          <Link href="#">Home</Link>
+          <Link href="/" className="font-bold font-noto-san-extra-light">Home</Link>
 
           <div>
-            <div className="font-bold">About</div>
+            <div className="font-bold font-noto-san-extra-light">About</div>
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {foods.map((foodItem) => (
                 <li key={foodItem.title}>
@@ -33,7 +32,7 @@ export const NavigationSheet = () => {
           </div>
 
           <div>
-            <div className="font-bold">Academics</div>
+            <div className="font-bold font-noto-san-extra-light">Academics</div>
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {academic.map((item) => (
                 <li key={item.title}>
@@ -45,9 +44,9 @@ export const NavigationSheet = () => {
             </ul>
           </div>
           <div>
-            <div className="font-bold">Admissions</div>
+            <div className="font-bold font-noto-san-extra-light">Admissions</div>
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
-              {academic.map((item) => (
+              {admissions.map((item) => (
                 <li key={item.title}>
                   <Link href="#" className="flex items-center gap-2">
                     {item.title}
@@ -57,7 +56,7 @@ export const NavigationSheet = () => {
             </ul>
           </div>
           <div>
-            <div className="font-bold">School Life</div>
+            <div className="font-bold font-noto-san-extra-light">School Life</div>
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {schoolLife.map((item) => (
                 <li key={item.title}>

@@ -55,7 +55,7 @@ import {
       description: "Make every trip smooth and memorable.",
     },
   ];
-  export const admission = [
+  export const admissions = [
     {
       title: "Destinations",
       icon: MapPin,

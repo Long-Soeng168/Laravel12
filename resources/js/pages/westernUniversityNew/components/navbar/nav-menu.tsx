@@ -1,128 +1,103 @@
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
-import { LucideIcon } from "lucide-react";
-import React from "react";
-import { academic, foods, admission, schoolLife } from "./config";
-import { Link } from "@inertiajs/react";
+import { cn } from '@/lib/utils';
+import { Link } from '@inertiajs/react';
+import { AlignLeftIcon, Search } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { HoveredLink, Menu, MenuItem } from '../ui/navbar-menu';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
+import { MySearchProducts } from '../my-search-products';
 
-export const NavMenu = (props: NavigationMenuProps) => (
-  <NavigationMenu {...props}>
-    <NavigationMenuList className="gap-0 space-x-0 text-sm">
-      <NavigationMenuItem>
-        <Button variant="ghost" className="text-[15px] font-normal" asChild>
-          <Link href="#">Home</Link>
-        </Button>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="text-[15px] font-normal">
-          About
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid w-[300px] gap-3 ">
-            {foods.map((food) => (
-              <ListItem
-                key={food.title}
-                title={food.title}
-                 className="border-b-[0.5px] "
-                href="#"
-              >
-              </ListItem>
-            ))}
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="text-[15px] font-normal">
-          Academic
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid w-[300px] gap-3 ">
-            {academic.map((menuItem) => (
-              <ListItem
-                key={menuItem.title}
-                title={menuItem.title}
-                className="border-b-[0.5px] "
-                href="#"
-              >
-              </ListItem>
-            ))}
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="text-[15px] font-normal">
-          Admissions
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid w-[300px] gap-3 ">
-            {admission.map((menuItem) => (
-              <ListItem
-                key={menuItem.title}
-                title={menuItem.title}
-                className="border-b-[0.5px] "
-                href="#"
-              >
-              </ListItem>
-            ))}
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="text-[15px] font-normal">
-          School Life
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid w-[300px] gap-3 ">
-            {schoolLife.map((menuItem) => (
-              <ListItem
-                key={menuItem.title}
-                title={menuItem.title}
-                className="border-b-[0.5px] "
-                href="#"
-              >
-              </ListItem>
-            ))}
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <Button variant="ghost" className="text-[15px] font-normal" asChild>
-          <Link href="#">Contact</Link>
-        </Button>
-    </NavigationMenuList>
-  </NavigationMenu>
-);
+export function MyNavMenu({ className }: { className?: string }) {
+    const [active, setActive] = useState<string | null>(null);
+    return (
+        <>
+            <div className={cn('mx-auto w-full', className)}>
+                <div className="bg-background flex h-full items-center justify-end ">
+                    <div className="hidden xl:block">
+                        <div className='flex items-center gap-2'>
+                        <Menu setActive={setActive}>
+                            <Link href={`/`} >
+                                <p className='text-base px-6 py-0.5 font-noto-san-extra-light font-black cursor-pointer text-black hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center hover:text-red-800'>Home</p>
+                            </Link>
+                            <Link href={`#`}>
+                                <MenuItem setActive={setActive} active={active} item="About" >
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/history_and_values" to={'/history_and_values'}>History and Values</HoveredLink>
+                                        <HoveredLink href="/school_facilities">School Facilities</HoveredLink>
+                                        <HoveredLink href="/solutions">Commercial & Residential Equipments</HoveredLink>
+                                        <HoveredLink href="/campuses">Campuses</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+                            <Link href={`/#`}>
+                                <MenuItem setActive={setActive} active={active} item="Academics">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/curriculum">Curriculum</HoveredLink>
+                                        <HoveredLink href="/programs">Programs</HoveredLink>
+                                        <HoveredLink href="/class_schedules_and_subjects">Class Schedules and Subjects </HoveredLink>
+                                        <HoveredLink href="/school_calendar">School Calendar</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
 
-const ListItem = React.forwardRef<
-  React.ElementRef<typeof Link>,
-  React.ComponentPropsWithoutRef<typeof Link> & { icon: LucideIcon }
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          className={cn(
-            "block select-none space-y-2 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-semibold leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
+                            <Link href={`/Admissions`}>
+                                <MenuItem setActive={setActive} active={active} item="Admissions">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/#partners">Admissions</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/#`}>
+                                <MenuItem setActive={setActive} active={active} item="School Life">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/activities_and_events">Activities And Events</HoveredLink>
+                                        <HoveredLink href="/extracurricular_activities">Extracurricular Activities</HoveredLink>
+                                        <HoveredLink href="/outreach_programs">Outreach Programs</HoveredLink>
+                                        <HoveredLink href="/student_council">Student Council</HoveredLink>
+                                        <HoveredLink href="/news_and_blogs">News And Blogs</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/#`}>
+                                <MenuItem setActive={setActive} active={active} item="News">
+                                    <div className="flex flex-col space-y-4 text-sm">
+                                        <HoveredLink href="/#newsId">News & Updates</HoveredLink>
+                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
+                                        <HoveredLink href="/Outreach Programs">Outreach Programs</HoveredLink>
+                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
+                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
+                                    </div>
+                                </MenuItem>
+                            </Link>
+
+                            <Link href={`/contact`} className='text-base px-6 py-0.5 font-noto-san-extra-light font-black cursor-pointer text-black hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center hover:text-red-800'>
+                                Contact
+                            </Link>
+                            
+                        </Menu>
+                        <div>
+                         <Sheet>
+                                <div className="flex items-center gap-2">
+                                    <SheetTrigger asChild>
+                                        <Button size="icon" variant="ghost" className="text-blue-950">
+                                            <Search className="text-blue-950 size-6" />
+                                        </Button>
+                                    </SheetTrigger>
+                                </div>
+                                <SheetContent side="top" className="w-full p-6 shadow-md">
+                                    <SheetHeader>
+                                        <SheetTitle>Search</SheetTitle>
+                                    </SheetHeader>
+                                    <MySearchProducts className='max-w-full mx-auto border-primary' />
+                                </SheetContent>
+                            </Sheet>
+                         </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
