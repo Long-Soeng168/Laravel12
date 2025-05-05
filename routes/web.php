@@ -11,14 +11,15 @@ Route::get('/', function () {
 // Switch Language
 Route::get('/lang/{locale}', function ($locale) {
    if (!in_array($locale, ['en', 'kh'])) {
-       abort(404);
+      abort(404);
    }
    session(['locale' => $locale]);
    return redirect()->back();
 });
 
 
-// === Client ===
+
+// ========= Client =========
 require __DIR__ . '/nokor_tech.php';
 // require __DIR__ . '/cam_active.php';
 // require __DIR__ . '/westec.php';
@@ -29,10 +30,16 @@ require __DIR__ . '/nokor_tech.php';
 // require __DIR__ . '/vectorasoft.php';
 // require __DIR__ . '/rule_library.php';
 
-// === Admin ===
+
+
+// ========= Admin =========
 require __DIR__ . '/settings.php';
 require __DIR__ . '/file_manager.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 
+
+
+// ========= Telegram Testing Route =========
+require __DIR__ . '/telegram.php';
 
