@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ItemDailyViewExport;
 use App\Helpers\ImageHelper;
 use App\Helpers\TelegramHelper;
 use App\Models\Item;
@@ -9,6 +10,7 @@ use App\Models\ItemBodyType;
 use App\Models\ItemBrand;
 use App\Models\Link;
 use App\Models\ItemCategory;
+use App\Models\ItemDailyView;
 use App\Models\ItemImage;
 use App\Models\ItemModel;
 use Carbon\Carbon;
@@ -17,7 +19,7 @@ use Inertia\Inertia;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class ItemController extends Controller implements HasMiddleware
 {
@@ -50,7 +52,8 @@ class ItemController extends Controller implements HasMiddleware
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('name_kh', 'LIKE', "%{$search}%");
+                    ->orWhere('name_kh', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%");
             });
         }
 
@@ -189,7 +192,7 @@ class ItemController extends Controller implements HasMiddleware
             'model_code' => 'nullable|string|exists:item_models,code',
             'body_type_code' => 'nullable|string|exists:item_body_types,code',
             'status' => 'nullable|string|in:active,inactive',
-            'images' => 'required|array',
+            'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
@@ -263,5 +266,87 @@ class ItemController extends Controller implements HasMiddleware
         $image->delete();
 
         return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+
+    public function item_view_counts(Request $request)
+    {
+        $search = $request->input('search', '');
+        $sortBy = $request->input('sortBy', 'view_date');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $status = $request->input('status');
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
+
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
+
+        $query = ItemDailyView::query();
+
+
+        if ($from_date) {
+            // dd($from_date);
+            $query->where('view_date', '>=', $from_date);
+        }
+
+        if ($to_date) {
+            $query->where('view_date', '<=', $to_date);
+        }
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $query->orderBy($sortBy, $sortDirection);
+
+        $query->with('item');
+
+        if ($search) {
+            $query->whereHas('item', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%");
+            });
+        }
+        // Clone the query for total views calculation
+        $totalViews = (clone $query)->sum('view_counts');
+
+        $tableData = $query->paginate(perPage: 10)->onEachSide(1);
+
+        return Inertia::render('admin/items/ItemViewCount', [
+            'tableData' => $tableData,
+            'totalViews' => $totalViews,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ]);
+    }
+
+    public function item_view_counts_export(Request $request)
+    {
+        // dd($request->all());
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
+        // dd($from_date, $to_date);
+
+        $filters = [
+            'search' => $request->input('search', ''),
+            'status' => $request->input('status'),
+            'sortBy' => $request->input('sortBy', 'view_date'),
+            'sortDirection' => $request->input('sortDirection', 'desc'),
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ];
+
+        return Excel::download(new ItemDailyViewExport($filters), 'item_views.xlsx');
     }
 }

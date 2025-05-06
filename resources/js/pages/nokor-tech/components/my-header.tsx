@@ -1,6 +1,7 @@
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import MySelectLanguageSwitch from '@/pages/westec/components/my-select-language-switch';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search, User2Icon } from 'lucide-react';
 import CartButton from './cart-button';
@@ -36,8 +37,8 @@ const MyHeader = () => {
                             <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{application_info?.address}</div>
                             <span className="pl-2 font-semibold text-white underline hover:cursor-pointer">
                                 <Link href="/contact-us" prefetch>
-                                    <button className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white">
-                                        Contact me
+                                    <button className="relative cursor-pointer underline underline-offset-[5.5px] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white">
+                                        Contact
                                     </button>
                                 </Link>
                             </span>
@@ -125,18 +126,19 @@ const MyHeader = () => {
                                         <li>
                                             <MyCategoriesNav />
                                         </li>
-                                        {item_categories.slice(0, 3).map((category, index) => (
-                                            <li key={index + category?.id}>
-                                                <Link
-                                                    prefetch
-                                                    href={`/products?category_code=${category.code}`}
-                                                    className="group hover:text-primary relative mx-2 cursor-pointer"
-                                                >
-                                                    {category.name}
-                                                    <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
-                                                </Link>
-                                            </li>
-                                        ))}
+                                        {item_categories?.length > 2 &&
+                                            item_categories.slice(0, 3).map((category, index) => (
+                                                <li key={index + category?.id} className="flex items-center justify-center">
+                                                    <Link
+                                                        prefetch
+                                                        href={`/products?category_code=${category.code}`}
+                                                        className="group hover:text-primary relative mx-2 cursor-pointer"
+                                                    >
+                                                        {category.name}
+                                                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                                                    </Link>
+                                                </li>
+                                            ))}
                                     </>
                                 )}
 
@@ -188,6 +190,7 @@ const MyHeader = () => {
                                     <User2Icon />
                                 </Button>
                             </Link>
+                            <MySelectLanguageSwitch />
                             <ToggleModeSwitch />
                         </div>
                     </div>

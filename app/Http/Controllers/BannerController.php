@@ -131,7 +131,7 @@ class BannerController extends Controller implements HasMiddleware
         if ($image_files && $validated['type'] == 'multi_images') {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImageWebpWebp($image, 'assets/images/banners', 900);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/banners', 900);
                     BannerImage::create([
                         'image' => $created_image_name,
                         'banner_id' => $created_banner->id,

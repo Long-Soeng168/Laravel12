@@ -16,7 +16,7 @@ const MyBrandList: React.FC<MyBrandListProps> = ({ items }) => {
                             prefetch
                             href={`/products?brand_code=${item?.code}`}
                             key={i}
-                            className="border-primary flex cursor-pointer flex-col items-center justify-center gap-2 rounded border border-dashed bg-white p-2 transition-all duration-300 hover:-translate-2 hover:border-solid hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2)]"
+                            className="border-primary flex cursor-pointer flex-col items-center justify-center gap-2 rounded border border-dashed bg-white p-2 transition-all duration-300 hover:-translate-2 hover:border-solid hover:shadow-[5px_5px_rgba(104,_96,_255,_0.4),_10px_10px_rgba(104,_96,_255,_0.3),_15px_15px_rgba(104,_96,_255,_0.2)]"
                         >
                             <img src={`/assets/images/item_brands/thumb/${item.image}`} alt={`Partner ${i + 1}`} className="h-16 object-contain" />
                         </Link>

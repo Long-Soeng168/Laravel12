@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Item;
 use App\Models\ItemBrand;
 use App\Models\ItemCategory;
+use App\Models\ItemDailyView;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
@@ -208,9 +209,20 @@ class NokorTechController extends Controller
         $itemShow = Item::find($id);
         $relatedItems = Item::with('category', 'images')->where('id', '!=', $id)->where('category_code', $itemShow->category_code)->orderBy('id', 'desc')->limit(12)->get();
 
+        $date = now()->toDateString();
+        $view = ItemDailyView::firstOrCreate(
+            ['item_id' => $id, 'view_date' => $date],
+            ['view_counts' => 0],
+        );
+        $view->increment('view_counts');
+
+        $itemShow->update([
+            'total_view_counts' => $itemShow->total_view_counts + 1,
+        ]);
+
         return Inertia::render("nokor-tech/products/Show", [
             "itemShow" => $itemShow->load('created_by', 'updated_by', 'images', 'category', 'brand'),
-            'relatedItems'=> $relatedItems,
+            'relatedItems' => $relatedItems,
         ]);
     }
 

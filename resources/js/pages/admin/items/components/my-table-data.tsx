@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
+import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
@@ -49,10 +49,15 @@ const MyTableData = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[50px]">{t('No')}</TableHead>
+                            <TableHead className="w-[50px]">{t('ID')}</TableHead>
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
-                            <TableHead>{t('Link')}</TableHead>
+                            {/* <TableHead>{t('Link')}</TableHead> */}
+                            <TableHead onClick={() => handleSort('code')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Code')}
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Name')}
@@ -124,7 +129,8 @@ const MyTableData = () => {
                         {tableData?.data?.map((item: any, index: number) => (
                             <TableRow key={item.id}>
                                 <TableCell className="font-medium">
-                                    {tableData?.current_page > 1 ? tableData?.per_page * (tableData?.current_page - 1) + index + 1 : index + 1}
+                                    {item.id}
+                                    {/* {tableData?.current_page > 1 ? tableData?.per_page * (tableData?.current_page - 1) + index + 1 : index + 1} */}
                                 </TableCell>
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
@@ -170,7 +176,7 @@ const MyTableData = () => {
                                         />
                                     )}
                                 </TableCell>
-                                <TableCell className="text-center">
+                                {/* <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
                                             <MyTooltipButton variant="ghost" title={item.link} className="p-0 hover:bg-transparent">
@@ -190,7 +196,8 @@ const MyTableData = () => {
                                     ) : (
                                         '---'
                                     )}
-                                </TableCell>
+                                </TableCell> */}
+                                <TableCell>{item.code || '---'}</TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
                                 <TableCell>{item.price || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
@@ -212,7 +219,7 @@ const MyTableData = () => {
                                 <TableCell>{item.body_type_code || '---'}</TableCell>
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
-                                </TableCell> 
+                                </TableCell>
                                 <TableCell className="whitespace-nowrap">
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {
