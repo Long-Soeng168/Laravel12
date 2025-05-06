@@ -65,7 +65,7 @@ const ViewCountMyTableData = () => {
                                 <TableCell>
                                     <span className="flex h-full items-center justify-start">
                                         <Link href={`/admin/items/${item.item_id}`}>
-                                            <MyTooltipButton title={t('Show')} side="bottom" variant="ghost">
+                                            <MyTooltipButton title={t('Show Item')} side="bottom" variant="ghost">
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
