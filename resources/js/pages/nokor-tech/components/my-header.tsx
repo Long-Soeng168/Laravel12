@@ -2,7 +2,8 @@ import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu, Search, ShoppingCart, User2Icon } from 'lucide-react';
+import { Menu, Search, User2Icon } from 'lucide-react';
+import CartButton from './cart-button';
 import { MyCategoriesNav } from './my-categories-nav';
 import { MySearchProducts } from './my-search-products';
 
@@ -176,17 +177,17 @@ const MyHeader = () => {
                                     <SheetHeader>
                                         <SheetTitle>Search Products</SheetTitle>
                                     </SheetHeader>
-                                    <MySearchProducts className='max-w-full mx-auto border-primary' />
+                                    <MySearchProducts className="border-primary mx-auto max-w-full" />
                                 </SheetContent>
                             </Sheet>
                             <Link prefetch href="/shopping-cart">
+                                <CartButton />
+                            </Link>
+                            <Link prefetch href="/login">
                                 <Button size="icon" variant="ghost" className="text-primary">
-                                    <ShoppingCart />
+                                    <User2Icon />
                                 </Button>
                             </Link>
-                            <Button size="icon" variant="ghost" className="text-primary">
-                                <User2Icon />
-                            </Button>
                             <ToggleModeSwitch />
                         </div>
                     </div>

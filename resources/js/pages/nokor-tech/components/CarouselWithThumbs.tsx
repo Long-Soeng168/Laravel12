@@ -33,7 +33,7 @@ export default function CarouselWithThumbs({ images }: { images: any }) {
         [api],
     );
     return (
-        <div className="mx-auto max-w-full">
+        <div className="mx-auto w-full">
             <Carousel setApi={setApi} className="w-full max-w-full">
                 <CarouselContent>
                     {images?.map((item, index) => (

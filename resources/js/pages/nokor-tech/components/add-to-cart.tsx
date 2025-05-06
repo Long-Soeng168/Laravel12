@@ -22,7 +22,7 @@ function AddToCart({ item }: { item: any }) {
                     <span>Add To Cart</span>
                     <ShoppingCartIcon />
                 </div>
-                <div className="absolute top-[40%] left-[20%] h-0 w-0 scale-[1] rounded-lg bg-black transition-all duration-300 group-hover:top-[0%] group-hover:left-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-[#263381] dark:group-hover:bg-[#263381]"></div>
+                <div className="absolute top-[40%] left-[20%] h-2 w-2 scale-[1] rounded-lg bg-transparent transition-all duration-300 group-hover:top-[0%] group-hover:left-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-[#263381] dark:group-hover:bg-[#263381]"></div>
             </button>
             <button
                 onClick={() => {
@@ -43,7 +43,7 @@ function AddToCart({ item }: { item: any }) {
                     <ShoppingBagIcon />
                 </div>
 
-                <div className="absolute top-[40%] left-[20%] h-0 w-0 scale-[1] rounded-lg bg-white transition-all duration-300 group-hover:top-0 group-hover:left-0 group-hover:h-full group-hover:w-full group-hover:scale-[1.8]"></div>
+                <div className="absolute top-[40%] left-[20%] h-2 w-2 scale-[1] rounded-lg bg-transparent group-hover:bg-white transition-all duration-300 group-hover:top-0 group-hover:left-0 group-hover:h-full group-hover:w-full group-hover:scale-[1.8]"></div>
             </button>
         </div>
     );

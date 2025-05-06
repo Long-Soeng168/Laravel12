@@ -13,9 +13,11 @@ const ProductDetailPage = () => {
                 <div className="mx-auto max-w-screen-xl overflow-hidden">
                     <div className="flex flex-col md:flex-row">
                         {/* Product Image */}
-                        <div className="flex flex-col items-center p-4 md:w-[40%]">
-                            <CarouselWithThumbs images={itemShow?.images || []} />
-                        </div>
+                        {itemShow?.images?.length > 0 && (
+                            <div className="flex flex-col items-center p-4 md:w-[40%]">
+                                <CarouselWithThumbs images={itemShow?.images || []} />
+                            </div>
+                        )}
 
                         {/* Product Details */}
                         <div className="p-6 md:w-1/2">
@@ -56,22 +58,24 @@ const ProductDetailPage = () => {
                         <MyVideoGallery />
                     </div> */}
 
-                    <div className="px-2">
-                        <Accordion defaultValue="description" type="single" collapsible>
-                            <AccordionItem value="description" className="border-none">
-                                <AccordionTrigger className="border-primary my-4 rounded-none border-b-2 p-0 hover:no-underline">
-                                    <span className="bg-primary text-primary-foreground rounded-md rounded-bl-none px-8 py-1 text-lg font-bold">
-                                        Descriptions
-                                    </span>
-                                </AccordionTrigger>
-                                <AccordionContent className="text-base">
-                                    <div className="prose ck-content max-w-none">
-                                        <div dangerouslySetInnerHTML={{ __html: itemShow?.long_description }} />
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    </div>
+                    {itemShow?.long_description && (
+                        <div className="px-2">
+                            <Accordion defaultValue="description" type="single" collapsible>
+                                <AccordionItem value="description" className="border-none">
+                                    <AccordionTrigger className="border-primary my-4 rounded-none border-b-2 p-0 hover:no-underline">
+                                        <span className="bg-primary text-primary-foreground rounded-md rounded-bl-none px-8 py-1 text-lg font-bold">
+                                            Descriptions
+                                        </span>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-base">
+                                        <div className="prose ck-content max-w-none">
+                                            <div dangerouslySetInnerHTML={{ __html: itemShow?.long_description }} />
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </div>
+                    )}
 
                     {relatedItems?.length > 0 && (
                         <div>

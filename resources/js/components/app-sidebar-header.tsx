@@ -14,6 +14,9 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
                 <div className="flex-1 flex-wrap">
                     <Breadcrumbs breadcrumbs={breadcrumbs} />
                 </div>
+                {/* <span className='mr-1'>
+                    <ToggleModeSwitch />
+                </span> */}
                 {can_switch_language == true && <SwitchLanguageAdmin />}
             </div>
         </header>

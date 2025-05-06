@@ -19,7 +19,9 @@ import {
     Layers2Icon,
     LayoutDashboardIcon,
     LinkIcon,
+    ListOrderedIcon,
     ListTodoIcon,
+    MailsIcon,
     PresentationIcon,
     ProjectorIcon,
     ReplaceAllIcon,
@@ -185,6 +187,18 @@ export function AppSidebar() {
                     url: '/admin/page_positions',
                 },
             ],
+        },
+        {
+            title: t('Orders'),
+            permission: 'order view',
+            url: '/admin/orders',
+            icon: ListOrderedIcon,
+        },
+        {
+            title: t('Messages'),
+            permission: 'message view',
+            url: '/admin/messages',
+            icon: MailsIcon,
         },
         {
             title: t('Teams'),

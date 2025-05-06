@@ -3,6 +3,7 @@ import { useCart } from '@/contexts/cart-contexts';
 import { Link } from '@inertiajs/react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import ClearCartButton from './ClearCartButton';
+import MyNoData from '@/components/my-no-data';
 
 const formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`;
 
@@ -58,14 +59,18 @@ const CartItemList = () => {
                 </div>
             </div>
 
-            <div className="mt-6 flex justify-between">
-                <ClearCartButton />
-                <div className="space-x-4">
-                    <Link href="/checkout" prefetch>
-                        <Button>Checkout</Button>
-                    </Link>
+            {cartItems?.length > 0 ? (
+                <div className="mt-6 flex justify-between">
+                    <ClearCartButton />
+                    <div className="space-x-4">
+                        <Link href="/checkout" prefetch>
+                            <Button>Checkout</Button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            ):
+            <MyNoData />
+        }
         </div>
     );
 };

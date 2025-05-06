@@ -16,6 +16,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemModelController;
 use App\Http\Controllers\ItemColorController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PartnerController;
@@ -101,6 +103,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/courses', CourseController::class);
     Route::post('admin/courses/{course}/update', [CourseController::class, 'update']);
     Route::post('admin/courses/{course}/update_status', [CourseController::class, 'update_status']);
+
+    // Messages Route
+    Route::resource('admin/messages', MessageController::class);
+    Route::post('admin/messages/{message}/update', [MessageController::class, 'update']);
+    Route::post('admin/messages/{message}/update_status', [MessageController::class, 'update_status']);
+
+    // Orders Route
+    Route::resource('admin/orders', OrderController::class);
+    Route::post('admin/orders/{order}/update', [OrderController::class, 'update']);
+    Route::post('admin/orders/{order}/update_status', [OrderController::class, 'update_status']);
 
     // Video Play Lists Route
     Route::resource('admin/video_play_lists', VideoPlayListController::class);

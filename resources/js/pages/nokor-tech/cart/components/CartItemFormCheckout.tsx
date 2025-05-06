@@ -21,7 +21,7 @@ const FormField: React.FC<{
 
 const CartItemFormCheckout = () => {
     const { t } = useTranslation();
-    const { cartItems } = useCart();
+    const { cartItems, clearCart } = useCart();
     const cartItemTotals =
         cartItems?.map((item) => {
             const itemPrice = parseFloat(item.price);
@@ -55,7 +55,9 @@ const CartItemFormCheckout = () => {
         post('/orders', {
             onSuccess: (page) => {
                 if (page.props.flash?.success) {
+                    clearCart(false);
                     router.visit('/checkout_success');
+
                     // toast.success('Success', {
                     //     description: page.props.flash.success,
                     // });
@@ -81,6 +83,8 @@ const CartItemFormCheckout = () => {
                     <input
                         type="text"
                         placeholder="Name"
+                        autoComplete="name"
+                        name="name"
                         required
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
@@ -90,8 +94,10 @@ const CartItemFormCheckout = () => {
                 </FormField>
                 <FormField label="Phone Number" required>
                     <input
-                        type="number"
+                        type="text"
                         placeholder="Phone"
+                        autoComplete="phone"
+                        name="phone"
                         required
                         value={data.phone}
                         onChange={(e) => setData('phone', e.target.value)}
@@ -100,7 +106,15 @@ const CartItemFormCheckout = () => {
                     {errors?.phone && <p className="text-red-400">{errors?.phone}</p>}
                 </FormField>
                 <FormField label="Note">
-                    <Textarea id="note" className="bg-muted" placeholder="Note" value={data.note} onChange={(e) => setData('note', e.target.value)} />
+                    <Textarea
+                        id="note"
+                        autoComplete="note"
+                        name="note"
+                        className="bg-muted"
+                        placeholder="Note"
+                        value={data.note}
+                        onChange={(e) => setData('note', e.target.value)}
+                    />
                     {errors?.note && <p className="text-red-400">{errors?.note}</p>}
                 </FormField>
                 {errors?.general && <p className="text-red-400">{errors?.general}</p>}

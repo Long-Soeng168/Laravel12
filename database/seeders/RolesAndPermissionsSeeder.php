@@ -122,6 +122,18 @@ class RolesAndPermissionsSeeder extends Seeder
          Permission::firstOrCreate(['name' => 'phone_company update']);
          Permission::firstOrCreate(['name' => 'phone_company delete']);
 
+         // Order
+         Permission::firstOrCreate(['name' => 'order view']);
+         Permission::firstOrCreate(['name' => 'order create']);
+         Permission::firstOrCreate(['name' => 'order update']);
+         Permission::firstOrCreate(['name' => 'order delete']);
+         
+         // Message
+         Permission::firstOrCreate(['name' => 'message view']);
+         Permission::firstOrCreate(['name' => 'message create']);
+         Permission::firstOrCreate(['name' => 'message update']);
+         Permission::firstOrCreate(['name' => 'message delete']);
+
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
         // Give all existing permissions to the admin role

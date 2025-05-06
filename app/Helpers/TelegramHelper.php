@@ -13,6 +13,7 @@ class TelegramHelper
     {
         $token = env('TELEGRAM_BOT_TOKEN');
         $chatId = env('TELEGRAM_GROUP_CHAT_ID');
+        $isLocalhost = env('TETELGRAM_LOCALHOST');
 
         if (!$token || !$chatId) {
             return ['success' => false, 'message' => 'Telegram configuration is missing.'];
@@ -34,8 +35,7 @@ class TelegramHelper
 
                 $photo = [
                     'type'  => 'photo',
-                    // 'media' => $imageUrl,
-                    'media' => 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Model-S-Desktop.png',
+                    'media' => !$isLocalhost ? $imageUrl : 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Model-S-Desktop.png',
                 ];
 
                 if ($index === 0) {
@@ -75,7 +75,8 @@ class TelegramHelper
     public static function sendItemToTelegram($itemId)
     {
         $token  = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_GROUP_CHAT_ID');
+        $chatId = env('TELEGRAM_GROUP_ITEM_CHAT_ID');
+        $isLocalhost = env('TETELGRAM_LOCALHOST');
 
         if (!$token || !$chatId) {
             return ['success' => false, 'message' => 'Telegram configuration is missing.'];
@@ -90,8 +91,6 @@ class TelegramHelper
             return ['success' => false, 'message' => 'No images found for this item cannot sent to telegram.'];
         }
 
-
-
         $media = [];
 
         foreach ($item->images as $index => $image) {
@@ -99,8 +98,7 @@ class TelegramHelper
 
             $photo = [
                 'type'  => 'photo',
-                // 'media' => $imageUrl,
-                'media' => 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Model-S-Desktop.png',
+                'media' => !$isLocalhost ? $imageUrl : 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Model-S-Desktop.png',
             ];
 
             // Add caption on first image
@@ -145,6 +143,43 @@ class TelegramHelper
             return ['success' => true, 'message' => 'Item posted to Telegram group.'];
         } else {
             return ['success' => false, 'message' => 'Failed to send item. ' . $response->body()];
+        }
+    }
+
+
+    public static function sendMessage($message)
+    {
+        $token  = env('TELEGRAM_BOT_TOKEN');
+        $chatId = env('TELEGRAM_GROUP_CHAT_ID');
+
+        if (!$token || !$chatId) {
+            return ['success' => false, 'message' => 'Telegram configuration is missing.'];
+        }
+
+        try {
+            // Construct the message text
+            $text = "📩 *New Message Received:*\n\n"
+                . "*Name:* " . ($message->name ?? '-') . "\n"
+                . "*Phone:* " . $message->phone . "\n"
+                . "*Email:* " . ($message->email ?? '-') . "\n"
+                . "*Message:* " . ($message->message ?? '-') . "\n";
+
+            // Send message via Telegram Bot API
+            $response = Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                'chat_id'    => $chatId,
+                'text'       => $text,
+                'parse_mode' => 'Markdown',
+            ]);
+
+            if ($response->successful()) {
+                return ['success' => true, 'message' => 'Message sent successfully!'];
+            } else {
+                Log::error('Telegram Message failed: ' . $response->body());
+                return ['success' => false, 'message' => 'Failed to send message. ' . $response->body()];
+            }
+        } catch (\Exception $e) {
+            Log::error('Telegram Message exception: ' . $e->getMessage());
+            return ['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()];
         }
     }
 }

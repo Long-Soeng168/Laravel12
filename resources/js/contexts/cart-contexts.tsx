@@ -86,9 +86,9 @@ export function CartProvider({ children }) {
         toast.info(`Quantity updated.`);
     };
 
-    const clearCart = ({ isShowDialog = true }) => {
+    const clearCart = () => {
         dispatch({ type: 'CLEAR_CART' });
-        isShowDialog && toast('Cart has been cleared.');
+        toast('Cart has been cleared.');
     };
 
     const getTotalItemCount = () => {

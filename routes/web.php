@@ -26,7 +26,7 @@ require __DIR__ . '/nokor_tech.php';
 // require __DIR__ . '/cam_active.php';
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/western_university.php'; 
-require __DIR__ . '/western_university_new.php'; 
+// require __DIR__ . '/western_university_new.php'; 
 // require __DIR__ . '/westec.php';
 // require __DIR__ . '/western_university.php'; 
 // require __DIR__ . '/vectorasoft.php';
