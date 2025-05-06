@@ -1,4 +1,4 @@
-import BackgroundAnimated from '@/pages/cam-active/components/background-animated';
+import BackgroundAnimated from '@/components/background-animated';
 import { Link, usePage } from '@inertiajs/react';
 
 // components/Footer.js

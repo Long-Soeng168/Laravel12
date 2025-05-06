@@ -1,7 +1,7 @@
 import { Separator } from '@/components/ui/separator';
 import { Link } from '@inertiajs/react';
 import { DribbbleIcon, GithubIcon, TwitchIcon, TwitterIcon } from 'lucide-react';
-import BackgroundAnimated from './background-animated';
+import BackgroundAnimated from '../../../components/background-animated';
 
 const footerLinks = [
     {

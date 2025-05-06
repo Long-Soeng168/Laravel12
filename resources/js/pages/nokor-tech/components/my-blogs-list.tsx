@@ -8,8 +8,8 @@ const MyBlogList = ({ posts }: { posts: any }) => {
     return (
         <div className="mt-8 grid grid-cols-1 gap-8 px-2 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((item, i) => (
-                <Link href={`/blogs/${item?.id}`} prefetch>
-                    <Card key={item?.id} className="h-full overflow-hidden rounded-md p-0 shadow-none">
+                <Link key={item.id} href={`/blogs/${item?.id}`} prefetch>
+                    <Card className="h-full overflow-hidden rounded-md p-0 shadow-none">
                         <CardHeader className="p-0">
                             <div className="bg-muted aspect-video w-full border-b">
                                 <img

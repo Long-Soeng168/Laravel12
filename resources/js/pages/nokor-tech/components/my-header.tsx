@@ -1,7 +1,7 @@
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import MySelectLanguageSwitch from '@/pages/westec/components/my-select-language-switch';
+import MySelectLanguageSwitch from '@/components/my-select-language-switch';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search, User2Icon } from 'lucide-react';
 import CartButton from './cart-button';
