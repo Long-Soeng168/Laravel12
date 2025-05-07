@@ -106,56 +106,56 @@ const cards = [
         content: <SkeletonOne />,
         className: 'md:col-span-2',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2022.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 2,
         content: <SkeletonTwo />,
         className: 'col-span-1',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2021.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 3,
         content: <SkeletonThree />,
         className: 'col-span-1',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2023.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 4,
         content: <SkeletonFour />,
         className: 'md:col-span-2',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2019.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 5,
         content: <Skeleton5 />,
         className: 'md:col-span-2',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2020.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 6,
         content: <Skeleton6 />,
         className: 'col-span-1',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2011.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 7,
         content: <Skeleton7 />,
         className: 'col-span-1',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2021.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
     {
         id: 8,
         content: <Skeleton8 />,
         className: 'col-span-2',
         thumbnail:
-            '/assets/demo-images/02TimeLineIcons/2018.jpg',
+            '/assets/demo-images/Homepage/03_welcome_to_western_1.jpg',
     },
 
 ];

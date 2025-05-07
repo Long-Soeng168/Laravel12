@@ -5,13 +5,13 @@ const MyBlogImage = () => {
       <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {[
             {
-                img: "assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
             },
             {
-                img: "assets/demo-images/02TimeLineIcons/2022.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
             },
             {
-                img: "assets/demo-images/02TimeLineIcons/2023.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
             },
            
         ].map((item) => (

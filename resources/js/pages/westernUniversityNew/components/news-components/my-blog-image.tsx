@@ -6,15 +6,15 @@ const MyBlogImage = () => {
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {[
             {
-                img: "/assets/demo-images/02TimeLineIcons/2021.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
                 title: "Image 1", 
             },
             {
-                img: "/assets/demo-images/02TimeLineIcons/2022.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
                 title: "Image 2",
             },
             {
-                img: "/assets/demo-images/02TimeLineIcons/2023.jpg",
+                img: "/assets/demo-images/Homepage/03_welcome_to_western_1.jpg",
                 title: "Image 3",
             },
            
