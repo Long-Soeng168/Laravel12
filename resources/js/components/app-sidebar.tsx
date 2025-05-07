@@ -10,7 +10,6 @@ import {
     BookmarkCheckIcon,
     BriefcaseBusinessIcon,
     CarIcon,
-    ContactRound,
     FilePenLineIcon,
     FilesIcon,
     GalleryThumbnailsIcon,
@@ -132,12 +131,20 @@ export function AppSidebar() {
             permission: 'video view',
             url: '/admin/videos',
             icon: TvMinimalPlayIcon,
-        },
-        {
-            title: t('Videos Playlists'),
-            permission: 'video view',
-            url: '/admin/video_play_lists',
-            icon: TvMinimalPlayIcon,
+            subItems: [
+                {
+                    title: t('Videos'),
+                    permission: 'video view',
+                    url: '/admin/videos',
+                    icon: TvMinimalPlayIcon,
+                },
+                {
+                    title: t('Playlists'),
+                    permission: 'video view',
+                    url: '/admin/video_play_lists',
+                    icon: TvMinimalPlayIcon,
+                },
+            ],
         },
         {
             title: t('Documents'),
@@ -255,7 +262,7 @@ export function AppSidebar() {
             permission: 'order view',
             url: '/admin/orders',
             icon: ListOrderedIcon,
-        }, 
+        },
         {
             title: t('Banners'),
             permission: 'banner view',
@@ -354,7 +361,7 @@ export function AppSidebar() {
 
     const footerNavItems: NavItem[] = [
         {
-            permission: '',
+            permission: 'sample_content view',
             title: t('Sample Content'),
             url: '/admin/ckeditor5',
             icon: FilePenLineIcon,

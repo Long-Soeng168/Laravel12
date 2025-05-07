@@ -11,7 +11,7 @@ export default function Page() {
     const hasPermission = usePermission();
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('Dashboard'),
+            title: t('Admin Dashboard'),
             href: '/dashboard',
         },
     ];

@@ -37,7 +37,7 @@ return new class extends Migration
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
-            $table->unsignedBigInteger('playlist_code')->nullable();
+            $table->string('playlist_code')->nullable();
             $table->foreign('playlist_code')
                 ->references('code')
                 ->on('video_play_lists')

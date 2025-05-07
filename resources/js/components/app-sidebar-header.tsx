@@ -1,7 +1,9 @@
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { type BreadcrumbItem as BreadcrumbItemType } from '@/types';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+import { HouseIcon } from 'lucide-react';
+import { MyTooltipButton } from './my-tooltip-button';
 import SwitchLanguageAdmin from './switch-language-admin';
 
 export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: BreadcrumbItemType[] }) {
@@ -17,6 +19,11 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
                 {/* <span className='mr-1'>
                     <ToggleModeSwitch />
                 </span> */}
+                <MyTooltipButton title="Home Page" size="icon" variant="ghost" className="hover:bg-foreground/5 mr-4">
+                    <Link href={'/'} prefetch>
+                        <HouseIcon />
+                    </Link>
+                </MyTooltipButton>
                 {can_switch_language == true && <SwitchLanguageAdmin />}
             </div>
         </header>

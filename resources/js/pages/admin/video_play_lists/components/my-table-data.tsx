@@ -11,7 +11,6 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
-import { formatDate } from '@/components/my-date-formart';
 
 const MyTableData = () => {
     const hasPermission = usePermission();
@@ -34,7 +33,6 @@ const MyTableData = () => {
         }
         router.get(currentPath + '?' + queryParams.toString());
     };
-
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [isOpenViewImages, setIsOpenViewImages] = useState(false);
@@ -89,8 +87,6 @@ const MyTableData = () => {
                                 </span>
                             </TableHead>
 
-
-
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Status')}
@@ -111,8 +107,8 @@ const MyTableData = () => {
                                     <TableCell>
                                         <span className="flex h-full items-center justify-start">
                                             <ViewButton item={item} />
-                                            {<DeleteButton deletePath="/admin/video_play_lists/" id={item.id} />}
-                                            {<EditButton item={item} />}
+                                            {hasPermission('video delete') && <DeleteButton deletePath="/admin/video_play_lists/" id={item.id} />}
+                                            {hasPermission('video update') && <EditButton item={item} />}
                                         </span>
                                     </TableCell>
                                     <TableCell>
@@ -151,7 +147,7 @@ const MyTableData = () => {
 
                                     {/* <TableCell>{item.image || '---'}</TableCell> */}
                                     <TableCell>
-                                        {hasPermission('course update') ? (
+                                        {hasPermission('video update') ? (
                                             <MyUpdateStatusButton
                                                 id={item.id}
                                                 pathName="/admin/video_play_lists"
@@ -166,19 +162,19 @@ const MyTableData = () => {
                                     <TableCell>
                                         {item.created_at
                                             ? new Date(item.created_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                     <TableCell>
                                         {item.updated_at
                                             ? new Date(item.updated_at).toLocaleDateString('en-UK', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
+                                                  year: 'numeric',
+                                                  month: 'long',
+                                                  day: 'numeric',
+                                              })
                                             : '---'}
                                     </TableCell>
                                 </TableRow>

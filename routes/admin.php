@@ -37,7 +37,6 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoPlayListController;
-use App\Models\VideoPlayList;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -56,7 +55,7 @@ Route::middleware('auth')->group(function () {
     });
     // === End Testing Spatie Role & Permission ===
 
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['admin.only', 'auth'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
 
@@ -131,6 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/videos', VideoController::class);
     Route::post('admin/videos/{video}/update', [VideoController::class, 'update']);
     Route::post('admin/videos/{video}/update_status', [VideoController::class, 'update_status']);
+    Route::post('admin/videos_free_status/{video}/update_status', [VideoController::class, 'videos_free_status']);
 
     // Item Brands Route
     Route::resource('admin/item_brands', ItemBrandController::class);

@@ -4,7 +4,6 @@ import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -57,12 +56,11 @@ export default function Create({
             name: editData?.name || '',
             name_kh: editData?.name_kh || '',
             image: editData?.image || '',
-            price: editData?.price || 0,
+            price: editData?.price || '',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
             // status: editData?.status || 'active',
         },
-
     });
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
@@ -142,10 +140,8 @@ export default function Create({
                             </FormItem>
                         )}
                     />
-
                 </div>
                 <div className="grid grid-cols-12 gap-4">
-
                     {/* Title Khmer */}
                     <div className="col-span-6">
                         <FormField
@@ -195,9 +191,8 @@ export default function Create({
                     />
                 </div>
                 <div className="grid grid-cols-12 gap-4">
-
                     {/* Short Description */}
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="short_description"
@@ -214,7 +209,7 @@ export default function Create({
                     </div>
 
                     {/* Short Description Khmer */}
-                    <div className="col-span-6">
+                    <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="short_description_kh"

@@ -1,7 +1,6 @@
 import DeleteButton from '@/components/delete-button';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -12,12 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
-import MyCkeditor5 from '@/pages/plugins/ckeditor5/my-ckeditor5';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
-import { format } from 'date-fns';
-import { CalendarIcon, Check, ChevronsUpDown, CloudUpload, Loader, Paperclip } from 'lucide-react';
+import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -186,7 +183,6 @@ export default function Create() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
-
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField
@@ -249,7 +245,6 @@ export default function Create() {
                         )}
                     />
 
-
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField
@@ -268,9 +263,9 @@ export default function Create() {
                                                     >
                                                         {field.value
                                                             ? (() => {
-                                                                const playlist = playlists?.find((playlist) => playlist.code === field.value);
-                                                                return playlist ? `${playlist.name} (${playlist.name_kh})` : '';
-                                                            })()
+                                                                  const playlist = playlists?.find((playlist) => playlist.code === field.value);
+                                                                  return playlist ? `${playlist.name} (${playlist.name_kh})` : '';
+                                                              })()
                                                             : t('Select playlist')}
 
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -387,7 +382,7 @@ export default function Create() {
                                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                             </div>
                                         </FileInput>
-                                        <FileUploaderContent className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-6">
+                                        <FileUploaderContent className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-4">
                                             {files?.map((file, i) => (
                                                 <FileUploaderItem
                                                     key={i}
@@ -441,7 +436,12 @@ export default function Create() {
                             <FormItem>
                                 <FormLabel>{t('Select video file')}</FormLabel>
                                 <FormControl>
-                                    <FileUploader value={videoFiles} onValueChange={setVideoFiles} dropzoneOptions={dropZoneConfigVideoFile} className="relative p-1">
+                                    <FileUploader
+                                        value={videoFiles}
+                                        onValueChange={setVideoFiles}
+                                        dropzoneOptions={dropZoneConfigVideoFile}
+                                        className="relative p-1"
+                                    >
                                         <FileInput id="fileInput" className="outline-1 outline-slate-500 outline-dashed">
                                             <div className="flex w-full flex-col items-center justify-center p-8">
                                                 <CloudUpload className="h-10 w-10 text-gray-500" />
@@ -451,25 +451,56 @@ export default function Create() {
                                                 </p>
                                             </div>
                                         </FileInput>
-                                        <FileUploaderContent className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-6">
+                                        <FileUploaderContent className="grid w-full grid-cols-3 gap-2 rounded-md lg:grid-cols-4">
                                             {videoFiles?.map((file, i) => (
-                                                // <FileUploaderItem
-                                                //     key={i}
-                                                //     index={i}
-                                                //     className="bg-background aspect-square h-auto w-full overflow-hidden rounded-md border p-0"
-                                                //     aria-roledescription={`file ${i + 1} containing ${file.name}`}
-                                                // >
-                                                //     <img src={URL.createObjectURL(file)} alt={file.name} className="h-full w-full object-contain" />
-                                                // </FileUploaderItem>
-                                                <FileUploaderItem key={i} index={i}>
-                                                    <Paperclip className="h-4 w-4 stroke-current" />
-                                                    <span>{file.name}</span>
+                                                <FileUploaderItem
+                                                    key={i}
+                                                    index={i}
+                                                    className="bg-background h-full w-full overflow-hidden rounded-md border p-0" // Removed aspect-video, added h-40
+                                                    aria-roledescription={`video file ${i + 1} containing ${file.name}`}
+                                                >
+                                                    <div className="relative h-full w-full">
+                                                        <video className="h-full w-full object-cover" preload="metadata">
+                                                            <source src={URL.createObjectURL(file)} type={file.type} />
+                                                        </video>
+                                                        <div className="bg-opacity-50 absolute right-0 bottom-0 left-0 bg-black p-1 text-xs text-white">
+                                                            {file.name}
+                                                        </div>
+                                                    </div>
                                                 </FileUploaderItem>
+                                                // <FileUploaderItem key={i} index={i}>
+                                                //     <Paperclip className="h-4 w-4 stroke-current" />
+                                                //     <span>{file.name}</span>
+                                                // </FileUploaderItem>
                                             ))}
                                         </FileUploaderContent>
                                     </FileUploader>
                                 </FormControl>
                                 <FormMessage>{errors.video_file && <div>{errors.video_file}</div>}</FormMessage>
+                                {editData?.video_file && (
+                                    <div className="mt-4 p-1">
+                                        <FormDescription className="mb-2">Uploaded Video.</FormDescription>
+                                        <div className="grid w-full grid-cols-2 gap-2 rounded-md lg:grid-cols-3">
+                                            <span
+                                                className="bg-background h-full w-full overflow-hidden rounded-md border p-0" // Removed aspect-video, added h-40
+                                            >
+                                                <div className="relative h-full w-full">
+                                                    <video
+                                                        className="h-full w-full object-cover"
+                                                        preload="metadata"
+                                                        controls
+                                                        controlsList="nodownload"
+                                                    >
+                                                        <source src={`/assets/files/videos/${editData?.video_file}`} />
+                                                    </video>
+                                                    {/* <div className="bg-opacity-50 absolute right-0 bottom-0 left-0 bg-black p-1 text-xs text-white">
+                                                        {editData?.video_file}
+                                                    </div> */}
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
                             </FormItem>
                         )}
                     />

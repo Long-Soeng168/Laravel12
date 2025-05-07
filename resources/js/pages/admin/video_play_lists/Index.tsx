@@ -28,7 +28,7 @@ const Index = () => {
                     <span className="flex-1"></span>
                     {/* <MyExportButton />
                     <MyImportButton /> */}
-                    {hasPermission('course create') && <AddNewButton />}
+                    {hasPermission('video create') && <AddNewButton />}
                 </div>
             </div>
             <div className="h-2" />

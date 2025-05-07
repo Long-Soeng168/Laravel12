@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FileHelper;
 use App\Helpers\ImageHelper;
-use App\Http\Requests\StoreVideoRequest;
-use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Video;
 use App\Models\VideoPlayList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
-use function Laravel\Prompts\alert;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class VideoController extends Controller
+class VideoController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:video view', only: ['index', 'show']),
+            new Middleware('permission:video create', only: ['create', 'store']),
+            new Middleware('permission:video update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:video delete', only: ['destroy', 'destroy_image']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -67,7 +75,7 @@ class VideoController extends Controller
         // dd($request->all());
         $validated = $request->validate([
             'is_free' => 'nullable|boolean',
-            'title' => 'required|string|max:255|unique:videos,title',
+            'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'video_file' => 'required|file|mimes:mp4|max:307200', // 300MB
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -145,12 +153,7 @@ class VideoController extends Controller
     {
         $validated = $request->validate([
             'is_free' => 'nullable|boolean',
-            'title' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('videos', 'title')->ignore($video->id),
-            ],
+            'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'video_file' => 'nullable|file|mimes:mp4|max:307200',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -206,6 +209,17 @@ class VideoController extends Controller
         ]);
         $video->update([
             'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+    public function videos_free_status(Request $request, Video $video)
+    {
+        $request->validate([
+            'status' => 'required|string|in:free,subscribe',
+        ]);
+        $video->update([
+            'is_free' => $request->status == 'free',
         ]);
 
         return redirect()->back()->with('success', 'Status updated successfully!');
