@@ -1,4 +1,3 @@
-import MyAddNewButton from '@/components/my-add-new-button';
 import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
@@ -6,7 +5,6 @@ import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
-import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
 
 const Index = () => {
@@ -14,8 +12,8 @@ const Index = () => {
     const { t } = useTranslation();
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('Messages'),
-            href: '/admin/messages',
+            title: t('Messages Inquiries'),
+            href: '/admin/message_inquiries',
         },
     ];
     return (

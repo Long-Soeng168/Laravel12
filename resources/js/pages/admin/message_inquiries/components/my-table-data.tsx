@@ -65,16 +65,12 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Email')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('subject')}>
-                                <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Subject')}
-                                </span>
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('message')}>
+                            <TableHead> {t('Total Inquiry Solutions')}</TableHead>
+                            {/* <TableHead onClick={() => handleSort('message')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Message')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -93,8 +89,8 @@ const MyTableData = () => {
                                 <TableCell>{item.name || '---'}</TableCell>
                                 <TableCell>{item.phone || '---'}</TableCell>
                                 <TableCell>{item.email || '---'}</TableCell>
-                                <TableCell>{item.subject || '---'}</TableCell>
-                                <TableCell>{item.message || '---'}</TableCell>
+                                <TableCell>{item.inquiry_solutions?.length || '---'}</TableCell>
+                                {/* <TableCell>{item.message || '---'}</TableCell> */}
                             </TableRow>
                         ))}
                     </TableBody>

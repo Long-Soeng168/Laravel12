@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title_kh')->nullable();
             $table->string('video_file')->nullable();
             $table->string('image')->nullable();
-            $table->string('playlist_code')->nullable(); // optional if you're using foreign keys with 'code'
             $table->string('status')->nullable()->default('active');
             $table->text('short_description')->nullable();
             $table->text('short_description_kh')->nullable();
@@ -38,7 +37,13 @@ return new class extends Migration
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
-            $table->foreignId('video_play_list_id')->nullable()->constrained('video_play_lists')->onDelete('set null');
+            $table->unsignedBigInteger('playlist_code')->nullable();
+            $table->foreign('playlist_code')
+                ->references('code')
+                ->on('video_play_lists')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
+
             $table->timestamps();
         });
     }
@@ -48,6 +53,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('videos', function (Blueprint $table) {
+            $table->dropForeign(['playlist_code']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+        });
         Schema::dropIfExists('videos');
     }
 };

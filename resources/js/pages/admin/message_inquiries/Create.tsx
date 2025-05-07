@@ -1,5 +1,4 @@
 import MyDialogCancelButton from '@/components/my-dialog-cancel-button';
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -165,7 +164,7 @@ export default function Create({
                             )}
                         />
                     </div>
-                    <div className="col-span-12">
+                    {/* <div className="col-span-12">
                         <FormField
                             control={form.control}
                             name="subject"
@@ -194,6 +193,16 @@ export default function Create({
                                 </FormItem>
                             )}
                         />
+                    </div> */}
+                    <div className="col-span-12">
+                        <FormLabel>{t('Inquiry Solutions')}</FormLabel>
+                        <ul className="ml-4 list-disc font-bold text-primary my-2">
+                            {editData?.inquiry_solutions?.map((item) => (
+                                <li>
+                                    <span>{item?.solution?.title}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
 

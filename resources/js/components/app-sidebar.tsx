@@ -22,6 +22,7 @@ import {
     ListOrderedIcon,
     ListTodoIcon,
     MailsIcon,
+    MessageCircleQuestionIcon,
     PresentationIcon,
     ProjectorIcon,
     ReplaceAllIcon,
@@ -189,17 +190,32 @@ export function AppSidebar() {
             ],
         },
         {
+            title: t('Messages'),
+            permission: 'message view',
+            url: '/admin/messages',
+            icon: MailsIcon,
+            subItems: [
+                {
+                    title: t('Messages'),
+                    permission: 'message view',
+                    url: '/admin/messages',
+                    icon: MailsIcon,
+                },
+                {
+                    title: t('Message Inquiries'),
+                    permission: 'message view',
+                    url: '/admin/message_inquiries',
+                    icon: MessageCircleQuestionIcon,
+                },
+            ],
+        },
+        {
             title: t('Orders'),
             permission: 'order view',
             url: '/admin/orders',
             icon: ListOrderedIcon,
         },
-        {
-            title: t('Messages'),
-            permission: 'message view',
-            url: '/admin/messages',
-            icon: MailsIcon,
-        },
+
         {
             title: t('Teams'),
             permission: '',

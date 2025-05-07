@@ -17,6 +17,7 @@ use App\Http\Controllers\ItemModelController;
 use App\Http\Controllers\ItemColorController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MessageInquiryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PagePositionController;
@@ -108,6 +109,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/messages', MessageController::class);
     Route::post('admin/messages/{message}/update', [MessageController::class, 'update']);
     Route::post('admin/messages/{message}/update_status', [MessageController::class, 'update_status']);
+
+    // Message Inquiries Route
+    Route::resource('admin/message_inquiries', MessageInquiryController::class);
+    Route::post('admin/message_inquiries/{message_inquiry}/update', [MessageInquiryController::class, 'update']);
+    Route::post('admin/message_inquiries/{message_inquiry}/update_status', [MessageInquiryController::class, 'update_status']);
 
     // Orders Route
     Route::resource('admin/orders', OrderController::class);
