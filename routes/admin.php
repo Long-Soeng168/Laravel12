@@ -24,12 +24,14 @@ use App\Http\Controllers\PagePositionController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhoneCompanyController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostViewController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TeamCategoryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -196,10 +198,19 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/pages/{page}/update_status', [PageController::class, 'update_status']);
     Route::delete('admin/pages/images/{image}', [PageController::class, 'destroy_image']);
 
+    // Team Position Route
+    Route::resource('admin/positions', PositionController::class);
+    Route::post('admin/positions/{position}/update', [PositionController::class, 'update']);
+    Route::post('admin/positions/{position}/update_status', [PositionController::class, 'update_status']);
+    // Team Category Route
+    Route::resource('admin/team_categories', TeamCategoryController::class);
+    Route::post('admin/team_categories/{post_category}/update', [TeamCategoryController::class, 'update']);
+    Route::post('admin/team_categories/{post_category}/update_status', [TeamCategoryController::class, 'update_status']);
     // Team Route
     Route::resource('admin/teams', TeamController::class);
     Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);
     Route::post('admin/teams/{team}/update_status', [TeamController::class, 'update_status']);
+    Route::delete('admin/teams/images/{image}', [TeamController::class, 'destroy_image']);
 
     // Banner Position Route
     Route::resource('admin/banner_positions', BannerPositionController::class);

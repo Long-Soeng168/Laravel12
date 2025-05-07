@@ -62,77 +62,83 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'role update']);
         Permission::firstOrCreate(['name' => 'role delete']);
 
-         // permission
-         Permission::firstOrCreate(['name' => 'permission view']);
-         Permission::firstOrCreate(['name' => 'permission create']);
-         Permission::firstOrCreate(['name' => 'permission update']);
-         Permission::firstOrCreate(['name' => 'permission delete']);
+        // permission
+        Permission::firstOrCreate(['name' => 'permission view']);
+        Permission::firstOrCreate(['name' => 'permission create']);
+        Permission::firstOrCreate(['name' => 'permission update']);
+        Permission::firstOrCreate(['name' => 'permission delete']);
 
-         // type
-         Permission::firstOrCreate(['name' => 'type view']);
-         Permission::firstOrCreate(['name' => 'type create']);
-         Permission::firstOrCreate(['name' => 'type update']);
-         Permission::firstOrCreate(['name' => 'type delete']);
+        // type
+        Permission::firstOrCreate(['name' => 'type view']);
+        Permission::firstOrCreate(['name' => 'type create']);
+        Permission::firstOrCreate(['name' => 'type update']);
+        Permission::firstOrCreate(['name' => 'type delete']);
 
-         // File Manager
-         Permission::firstOrCreate(['name' => 'file_manager view']);
-         Permission::firstOrCreate(['name' => 'file_manager create']);
-         Permission::firstOrCreate(['name' => 'file_manager delete']);
+        // File Manager
+        Permission::firstOrCreate(['name' => 'file_manager view']);
+        Permission::firstOrCreate(['name' => 'file_manager create']);
+        Permission::firstOrCreate(['name' => 'file_manager delete']);
 
-         // Item
-         Permission::firstOrCreate(['name' => 'item view']);
-         Permission::firstOrCreate(['name' => 'item create']);
-         Permission::firstOrCreate(['name' => 'item update']);
-         Permission::firstOrCreate(['name' => 'item delete']);
-         // Shop
-         Permission::firstOrCreate(['name' => 'shop view']);
-         Permission::firstOrCreate(['name' => 'shop create']);
-         Permission::firstOrCreate(['name' => 'shop update']);
-         Permission::firstOrCreate(['name' => 'shop delete']);
-         // Garage
-         Permission::firstOrCreate(['name' => 'garage view']);
-         Permission::firstOrCreate(['name' => 'garage create']);
-         Permission::firstOrCreate(['name' => 'garage update']);
-         Permission::firstOrCreate(['name' => 'garage delete']);
-         // DTC
-         Permission::firstOrCreate(['name' => 'dtc view']);
-         Permission::firstOrCreate(['name' => 'dtc create']);
-         Permission::firstOrCreate(['name' => 'dtc update']);
-         Permission::firstOrCreate(['name' => 'dtc delete']);
-         // Video
-         Permission::firstOrCreate(['name' => 'video view']);
-         Permission::firstOrCreate(['name' => 'video create']);
-         Permission::firstOrCreate(['name' => 'video update']);
-         Permission::firstOrCreate(['name' => 'video delete']);
-         // Document
-         Permission::firstOrCreate(['name' => 'document view']);
-         // Partner
-         Permission::firstOrCreate(['name' => 'partner view']);
-         Permission::firstOrCreate(['name' => 'partner create']);
-         Permission::firstOrCreate(['name' => 'partner update']);
-         Permission::firstOrCreate(['name' => 'partner delete']);
-         // Course
-         Permission::firstOrCreate(['name' => 'course view']);
-         Permission::firstOrCreate(['name' => 'course create']);
-         Permission::firstOrCreate(['name' => 'course update']);
-         Permission::firstOrCreate(['name' => 'course delete']);
-         // Phone_company
-         Permission::firstOrCreate(['name' => 'phone_company view']);
-         Permission::firstOrCreate(['name' => 'phone_company create']);
-         Permission::firstOrCreate(['name' => 'phone_company update']);
-         Permission::firstOrCreate(['name' => 'phone_company delete']);
+        // Item
+        Permission::firstOrCreate(['name' => 'item view']);
+        Permission::firstOrCreate(['name' => 'item create']);
+        Permission::firstOrCreate(['name' => 'item update']);
+        Permission::firstOrCreate(['name' => 'item delete']);
+        // Shop
+        Permission::firstOrCreate(['name' => 'shop view']);
+        Permission::firstOrCreate(['name' => 'shop create']);
+        Permission::firstOrCreate(['name' => 'shop update']);
+        Permission::firstOrCreate(['name' => 'shop delete']);
+        // Garage
+        Permission::firstOrCreate(['name' => 'garage view']);
+        Permission::firstOrCreate(['name' => 'garage create']);
+        Permission::firstOrCreate(['name' => 'garage update']);
+        Permission::firstOrCreate(['name' => 'garage delete']);
+        // DTC
+        Permission::firstOrCreate(['name' => 'dtc view']);
+        Permission::firstOrCreate(['name' => 'dtc create']);
+        Permission::firstOrCreate(['name' => 'dtc update']);
+        Permission::firstOrCreate(['name' => 'dtc delete']);
+        // Video
+        Permission::firstOrCreate(['name' => 'video view']);
+        Permission::firstOrCreate(['name' => 'video create']);
+        Permission::firstOrCreate(['name' => 'video update']);
+        Permission::firstOrCreate(['name' => 'video delete']);
+        // Document
+        Permission::firstOrCreate(['name' => 'document view']);
+        // Partner
+        Permission::firstOrCreate(['name' => 'partner view']);
+        Permission::firstOrCreate(['name' => 'partner create']);
+        Permission::firstOrCreate(['name' => 'partner update']);
+        Permission::firstOrCreate(['name' => 'partner delete']);
+        // Course
+        Permission::firstOrCreate(['name' => 'course view']);
+        Permission::firstOrCreate(['name' => 'course create']);
+        Permission::firstOrCreate(['name' => 'course update']);
+        Permission::firstOrCreate(['name' => 'course delete']);
+        // Phone_company
+        Permission::firstOrCreate(['name' => 'phone_company view']);
+        Permission::firstOrCreate(['name' => 'phone_company create']);
+        Permission::firstOrCreate(['name' => 'phone_company update']);
+        Permission::firstOrCreate(['name' => 'phone_company delete']);
 
-         // Order
-         Permission::firstOrCreate(['name' => 'order view']);
-         Permission::firstOrCreate(['name' => 'order create']);
-         Permission::firstOrCreate(['name' => 'order update']);
-         Permission::firstOrCreate(['name' => 'order delete']);
-         
-         // Message
-         Permission::firstOrCreate(['name' => 'message view']);
-         Permission::firstOrCreate(['name' => 'message create']);
-         Permission::firstOrCreate(['name' => 'message update']);
-         Permission::firstOrCreate(['name' => 'message delete']);
+        // Order
+        Permission::firstOrCreate(['name' => 'order view']);
+        Permission::firstOrCreate(['name' => 'order create']);
+        Permission::firstOrCreate(['name' => 'order update']);
+        Permission::firstOrCreate(['name' => 'order delete']);
+
+        // Message
+        Permission::firstOrCreate(['name' => 'message view']);
+        Permission::firstOrCreate(['name' => 'message create']);
+        Permission::firstOrCreate(['name' => 'message update']);
+        Permission::firstOrCreate(['name' => 'message delete']);
+
+        // Team
+        Permission::firstOrCreate(['name' => 'team view']);
+        Permission::firstOrCreate(['name' => 'team create']);
+        Permission::firstOrCreate(['name' => 'team update']);
+        Permission::firstOrCreate(['name' => 'team delete']);
 
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);

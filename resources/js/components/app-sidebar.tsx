@@ -8,6 +8,7 @@ import { Link } from '@inertiajs/react';
 import {
     AppWindowIcon,
     BookmarkCheckIcon,
+    BriefcaseBusinessIcon,
     CarIcon,
     ContactRound,
     FilePenLineIcon,
@@ -21,6 +22,7 @@ import {
     LinkIcon,
     ListOrderedIcon,
     ListTodoIcon,
+    MailCheckIcon,
     MailsIcon,
     MessageCircleQuestionIcon,
     PresentationIcon,
@@ -29,6 +31,7 @@ import {
     ShapesIcon,
     ShieldCheckIcon,
     SignalIcon,
+    SquareUserIcon,
     StoreIcon,
     TagsIcon,
     Tally5Icon,
@@ -210,18 +213,49 @@ export function AppSidebar() {
             ],
         },
         {
+            title: t('Teams and Careers'),
+            permission: 'team view',
+            url: '/admin/teams',
+            icon: SquareUserIcon,
+            subItems: [
+                {
+                    title: t('Teams'),
+                    permission: 'team view',
+                    url: '/admin/teams',
+                    icon: SquareUserIcon,
+                },
+                {
+                    title: t('Team Categories'),
+                    permission: 'team view',
+                    url: '/admin/team_categories',
+                    icon: Layers2Icon,
+                },
+                {
+                    title: t('Position'),
+                    permission: 'team view',
+                    url: '/admin/positions',
+                    icon: ReplaceAllIcon,
+                },
+                {
+                    title: t('Careers'),
+                    permission: 'team view',
+                    url: '/admin/careers',
+                    icon: BriefcaseBusinessIcon,
+                },
+                {
+                    title: t('Career Submits'),
+                    permission: 'team view',
+                    url: '/admin/career_submits',
+                    icon: MailCheckIcon,
+                },
+            ],
+        },
+        {
             title: t('Orders'),
             permission: 'order view',
             url: '/admin/orders',
             icon: ListOrderedIcon,
-        },
-
-        {
-            title: t('Teams'),
-            permission: '',
-            url: '/admin/teams',
-            icon: ContactRound,
-        },
+        }, 
         {
             title: t('Banners'),
             permission: 'banner view',

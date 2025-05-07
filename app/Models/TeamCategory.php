@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class TeamCategory extends Model
 {
-    /** @use HasFactory<\Database\Factories\TeamFactory> */
+    /** @use HasFactory<\Database\Factories\TeamCategoryFactory> */
     use HasFactory;
-    protected $guarded = [];
 
-    public function category()
-    {
-        return $this->belongsTo(TeamCategory::class, 'category_code', 'code');
-    }
+    protected $guarded = [];
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
@@ -23,4 +19,10 @@ class Team extends Model
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
+
+    // public function teams()
+    // {
+    //     return $this->hasMany(Team::class, 'category_code', 'code');
+    // }
+
 }
