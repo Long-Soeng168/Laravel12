@@ -16,7 +16,7 @@ const MyBlogImage = () => {
            
         ].map((i) => (
          
-            <div key={i} className="w-full aspect-video ">
+            <div className="w-full aspect-video ">
               <img className="w-full h-full object-cover" src={i.img}  />
             </div>
         ))}
