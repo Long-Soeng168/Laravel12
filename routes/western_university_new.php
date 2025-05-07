@@ -26,12 +26,38 @@ Route::get('/campuses', function () {
     return Inertia::render('westernUniversityNew/About/Campuses');
 });
 
+Route::get('/school_facilities', function () {
+    return Inertia::render('westernUniversityNew/About/SchoolFacilities');
+});
+
+Route::get('/curriculum', function () {
+    return Inertia::render('westernUniversityNew/Academics/Curriculum');
+});
+
 Route::get('/programs', function () {
     return Inertia::render('westernUniversityNew/Academics/Programs');
 });
 
+Route::get('/class_schedules_and_subjects', function () {
+    return Inertia::render('westernUniversityNew/Academics/ClassScheduleAndSubject');
+});
+
+Route::get('/admissions', function () {
+    return Inertia::render('westernUniversityNew/Admission/Index');
+});
+
 Route::get('/news', function () {
     return Inertia::render('westernUniversityNew/SchoolLife/News');
+});
+Route::get('/activities_and_events', function () {
+    return Inertia::render('westernUniversityNew/SchoolLife/ActivitiesAndEvents');
+});
+Route::get('/extracurricular_activities', function () {
+    return Inertia::render('westernUniversityNew/SchoolLife/ExtracurricularActivities');
+});
+
+Route::get('/outreach_programs', function () {
+    return Inertia::render('westernUniversityNew/SchoolLife/OutreachPrograms');
 });
 
 Route::get('/programs/detail/{id}', function ($id) {

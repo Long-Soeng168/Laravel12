@@ -9,79 +9,76 @@ import {
   
   export const foods = [
     {
-      title: "Hestory&Values",
-      href: "#",
+      title: "History and Values",
+      href: "/history_and_values",
     },
     {
-        title: "Hestory&Values",
-        href: "#",
+        title: "School Facilities",
+        href: "/school_facilities",
     },
     {
-        title: "Hestory&Values",
-        href: "#",
+        title: "Campuses",
+        href: "/campuses",
     },
    
   ];
   
   export const academic = [
     {
-      title: "Destinations",
-      icon: MapPin,
+      title: "Curriculum",
+      href:'/curriculum',
       description: "Discover amazing places to visit.",
     },
     {
-      title: "Hotels",
-      icon: Hotel,
+      title: "Programs",
+      href:'/programs',
       description: "Find the best stays for your trips.",
     },
     {
-      title: "Flights",
-      icon: Plane,
-      description: "Get deals and tips on air travel.",
-    },
-    {
-      title: "Packing",
-      icon: Package,
+      title: "Class Schedules and Subjects ",
+      href:'/class_schedules_and_subjects',
       description: "Essential checklists for stress-free packing.",
     },
     {
-      title: "Activities",
-      icon: Smile,
+      title: "School Calendar",
+      href:'/school_calendar',
       description: "Exciting things to do wherever you go.",
     },
-    {
-      title: "Travel Tips",
-      icon: Backpack,
-      description: "Make every trip smooth and memorable.",
-    },
+    
   ];
   export const admissions = [
     {
-      title: "Destinations",
-      icon: MapPin,
+      title: "Admissions",
+      href:'/admissions',
       description: "Discover amazing places to visit.",
     },
-    {
-      title: "Hotels",
-      icon: Hotel,
-      description: "Find the best stays for your trips.",
-    },
+  
     
   ];
   export const schoolLife = [
     {
-      title: "Destinations",
-      icon: MapPin,
+      title: "Activities And Events",
+      href:"/activities_and_events",
       description: "Discover amazing places to visit.",
     },
     {
-      title: "Hotels",
-      icon: Hotel,
+      title: "Extracurricular Activities",
+      href:"/extracurricular_activities",
       description: "Find the best stays for your trips.",
     },
     {
-      title: "Flights",
-      icon: Plane,
+      title: "Outreach Programs",
+      href:"/outreach_programs",
+      description: "Get deals and tips on air travel.",
+    },
+    {
+      title: "Student Council",
+      href:"/student_council",
+      description: "Get deals and tips on air travel.",
+    },
+    {
+      title: "News And Blogs",
+      href:"/news",
       description: "Get deals and tips on air travel.",
     },
    

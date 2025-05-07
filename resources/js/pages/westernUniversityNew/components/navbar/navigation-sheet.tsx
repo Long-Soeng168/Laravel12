@@ -23,7 +23,7 @@ export const NavigationSheet = () => {
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {foods.map((foodItem) => (
                 <li key={foodItem.title}>
-                  <Link href="#" className="flex items-center gap-2">
+                  <Link href={foodItem.href} className="flex items-center gap-2">
                     {foodItem.title}
                   </Link>
                 </li>
@@ -36,7 +36,7 @@ export const NavigationSheet = () => {
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {academic.map((item) => (
                 <li key={item.title}>
-                  <Link href="#" className="flex items-center gap-2">
+                  <Link href={item.href} className="flex items-center gap-2">
                     {item.title}
                   </Link>
                 </li>
@@ -48,7 +48,7 @@ export const NavigationSheet = () => {
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {admissions.map((item) => (
                 <li key={item.title}>
-                  <Link href="#" className="flex items-center gap-2">
+                  <Link href={item.href} className="flex items-center gap-2">
                     {item.title}
                   </Link>
                 </li>
@@ -60,7 +60,7 @@ export const NavigationSheet = () => {
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {schoolLife.map((item) => (
                 <li key={item.title}>
-                  <Link href="#" className="flex items-center gap-2">
+                  <Link href={item.href} className="flex items-center gap-2">
                     {item.title}
                   </Link>
                 </li>

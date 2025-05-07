@@ -30,7 +30,7 @@ const departments = [
 const MyContent = () => {
     return (
         <div className="bg-white px-4 py-16 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="mx-auto max-w-screen-xl grid  grid-cols-1 gap-10 lg:grid-cols-12">
                 {/* Sidebar */}
                 <div className="lg:col-span-4 ">
                     <div className="flex flex-col space-y-3 rounded-lg border p-4 lg:items-end lg:border-r lg:border-y-0 lg:border-l-0 ">

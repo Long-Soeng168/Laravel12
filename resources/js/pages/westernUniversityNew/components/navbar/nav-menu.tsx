@@ -42,7 +42,7 @@ export function MyNavMenu({ className }: { className?: string }) {
                             <Link href={`/Admissions`}>
                                 <MenuItem setActive={setActive} active={active} item="Admissions">
                                     <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/#partners">Admissions</HoveredLink>
+                                        <HoveredLink href="/admissions">Admissions</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
@@ -54,23 +54,10 @@ export function MyNavMenu({ className }: { className?: string }) {
                                         <HoveredLink href="/extracurricular_activities">Extracurricular Activities</HoveredLink>
                                         <HoveredLink href="/outreach_programs">Outreach Programs</HoveredLink>
                                         <HoveredLink href="/student_council">Student Council</HoveredLink>
-                                        <HoveredLink href="/news_and_blogs">News And Blogs</HoveredLink>
+                                        <HoveredLink href="/news">News And Blogs</HoveredLink>
                                     </div>
                                 </MenuItem>
                             </Link>
-
-                            <Link href={`/#`}>
-                                <MenuItem setActive={setActive} active={active} item="News">
-                                    <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/#newsId">News & Updates</HoveredLink>
-                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
-                                        <HoveredLink href="/Outreach Programs">Outreach Programs</HoveredLink>
-                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
-                                        <HoveredLink href="/#eventsId">Events & Promotions</HoveredLink>
-                                    </div>
-                                </MenuItem>
-                            </Link>
-
                             <Link href={`/contact`} className='text-base px-6 py-0.5 font-noto-san-extra-light font-black cursor-pointer text-black hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center hover:text-red-800'>
                                 Contact
                             </Link>

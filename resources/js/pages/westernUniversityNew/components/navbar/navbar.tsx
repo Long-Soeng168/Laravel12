@@ -20,7 +20,7 @@ const NavbarPage = () => {
                             <Sheet>
                                 <div className="flex items-center gap-2">
                                     <SheetTrigger asChild>
-                                        <Button className="border border-blue-900" variant="outline" size="icon">
+                                        <Button className=" border border-blue-900" variant="outline" size="icon">
                                             <Search className="size-6 text-blue-950" />
                                         </Button>
                                     </SheetTrigger>

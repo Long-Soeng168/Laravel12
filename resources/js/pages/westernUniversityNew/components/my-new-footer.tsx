@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Link } from '@inertiajs/react';
 import { DribbbleIcon, GithubIcon, Mail, MapPin, Phone, TwitchIcon, TwitterIcon } from 'lucide-react';
+import { MySocial } from './my-social';
 
 const Footer03Page = () => {
     return (
@@ -42,25 +43,11 @@ const Footer03Page = () => {
                                     </Link>
                                 </li>
                             </ul>
-                            <div className="text-muted-foreground mt-4 flex items-center gap-5">
-                                <Link href="#" target="_blank" className="rounded-full bg-gray-200 p-4">
-                                    <TwitterIcon className="h-5 w-5" />
-                                </Link>
-                                <Link href="#" target="_blank" className="rounded-full bg-gray-200 p-4">
-                                    <DribbbleIcon className="h-5 w-5" />
-                                </Link>
-                                <Link href="#" target="_blank" className="rounded-full bg-gray-200 p-4">
-                                    <TwitchIcon className="h-5 w-5" />
-                                </Link>
-                                <Link href="#" target="_blank" className="rounded-full bg-gray-200 p-4">
-                                    <GithubIcon className="h-5 w-5" />
-                                </Link>
-                            </div>
                         </div>
 
                         {/* Subscribe Newsletter */}
                         <div>
-                            <h6 className="font-noto-san-extra-light text-xl font-semibold">Newsletter</h6>
+                            <h6 className="font-noto-san-extra-light text-xl font-semibold">Social Media</h6>
                             <div className="relative mt-2 mb-4 h-[1px] w-full bg-gray-200">
                                 <div className="absolute top-0 left-0 h-full bg-red-700" style={{ width: '20%' }} />
                             </div>
@@ -68,15 +55,10 @@ const Footer03Page = () => {
                                 Enter your email address to get the latest University news, special events and student activities delivered right to
                                 your inbox.
                             </p>
-                            <form className="mt-4 flex max-w-3xl items-center">
-                                <Input type="email" placeholder="Enter your email" className="max-w-full grow rounded-none rounded-l-md py-6" />
-                                <Button
-                                    type="submit"
-                                    className="rounded-none border border-red-600 bg-red-600 px-5 py-6 transition-all duration-500 hover:border-blue-950 hover:bg-blue-950"
-                                >
-                                    Subscribe
-                                </Button>
-                            </form>
+                            <div className="mt-4 flex items-center gap-5">
+                                <MySocial/>
+                            </div>
+                           
                         </div>
                     </div>
                     <Separator />
