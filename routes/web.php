@@ -32,12 +32,12 @@ require __DIR__ . '/nokor_tech.php';
 
 // ========= Admin =========
 require __DIR__ . '/settings.php';
-require __DIR__ . '/file_manager.php';
 require __DIR__ . '/auth.php';
 
 require __DIR__ . '/user-dashbaord.php';
 require __DIR__ . '/admin.php';
 
+require __DIR__ . '/file_manager.php';
 require __DIR__ . '/order.php';
 
 
