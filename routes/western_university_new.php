@@ -16,11 +16,29 @@ return Inertia::render('westernUniversityNew/Home');
 
 Route::get('/contact', function () {
     return Inertia::render('westernUniversityNew/Contact');
-    });
+});
 
 Route::get('/history_and_values', function () {
         return Inertia::render('westernUniversityNew/About/HistoryAndValues');
-        });
+});
+
+Route::get('/campuses', function () {
+    return Inertia::render('westernUniversityNew/About/Campuses');
+});
+
+Route::get('/programs', function () {
+    return Inertia::render('westernUniversityNew/Academics/Programs');
+});
+
+Route::get('/news', function () {
+    return Inertia::render('westernUniversityNew/SchoolLife/News');
+});
+
+Route::get('/programs/detail/{id}', function ($id) {
+    return Inertia::render('westernUniversityNew/Academics/Detail', [
+        'id' => $id,
+    ]);
+});
 // Route::get('/hestory_and_values', function () {
 //     $ourHistory = Page::where('code', 'OUR_HESTORY')->with('images')->first();
 //     $ourVision = Page::where('code', 'OUR_VISION')->with('images')->first();

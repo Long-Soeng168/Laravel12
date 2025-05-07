@@ -1,14 +1,11 @@
-import { Link } from '@inertiajs/react';
-import { CalendarArrowUp, CalendarClock, CalendarIcon } from 'lucide-react';
+import { CalendarClock } from 'lucide-react'
+import React from 'react'
 
-const MyLastestNew = () => {
-    return (
-        <div>
-            <div className="mx-auto min-h-screen max-w-screen-2xl bg-white px-4 py-16 text-center sm:px-16 ">
-                <h2 className="font-noto-san-extra-light text-4xl text-black sm:text-4xl">Latest News</h2>
-                <div className="mx-auto my-10 h-1 w-16 bg-[#2c318a]"></div>
-
-                <div className="mx-auto mb-12 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
+const MyNewPost = () => {
+  return (
+    <div className="mx-auto min-h-screen max-w-screen-2xl bg-white px-4 py-16 text-center sm:px-16 ">
+               <div className='flex flex-col lg:flex-row  gap-12'>
+               <div className="mx-auto flex-1 mb-12 space-y-12">
                     <div className="overflow-hidden border border-gray-200 bg-white shadow-lg hover:cursor-pointer">
                         <img
                             src="assets/demo-images/banner5.jpg"
@@ -130,12 +127,21 @@ const MyLastestNew = () => {
                         </div>
                     </div>
                 </div>
-                <Link href="/news" className="inline-flex shadow-md items-center mt-6 px-6 py-3 bg-[#e31c24] rounded-md text-white hover:bg-blue-950 font-semibold duration-500 transition">
-            View All Courses
-        </Link>
-            </div>
-        </div>
-    );
-};
+                <div className="">
+                    <button className="rounded-md bg-red-700 px-4 py-2 text-black hover:bg-red-800">
+                        Load More 
+                    </button>
+                    <button className="rounded-md bg-red-700 px-4 py-2 text-black hover:bg-red-800">
+                        Load More 
+                    </button><button className="rounded-md bg-red-700 px-4 py-2 text-black hover:bg-red-800">
+                        Load More 
+                    </button>
 
-export default MyLastestNew;
+                    
+                    </div>
+               </div>
+            </div>
+  )
+}
+
+export default MyNewPost

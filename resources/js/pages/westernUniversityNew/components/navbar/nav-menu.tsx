@@ -24,10 +24,9 @@ export function MyNavMenu({ className }: { className?: string }) {
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/history_and_values" to={'/history_and_values'}>History and Values</HoveredLink>
                                         <HoveredLink href="/school_facilities">School Facilities</HoveredLink>
-                                        <HoveredLink href="/solutions">Commercial & Residential Equipments</HoveredLink>
                                         <HoveredLink href="/campuses">Campuses</HoveredLink>
                                     </div>
-                                </MenuItem>
+                                </MenuItem> 
                             </Link>
                             <Link href={`/#`}>
                                 <MenuItem setActive={setActive} active={active} item="Academics">
