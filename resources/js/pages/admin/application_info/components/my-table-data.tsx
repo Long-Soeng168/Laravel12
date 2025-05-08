@@ -81,7 +81,7 @@ const MyTableData = () => {
                                         {item.image ? (
                                             <button
                                                 onClick={() => {
-                                                    setSelectedImages(item.image);
+                                                    setSelectedImages([{'image': item.image}]);
                                                     setIsOpenViewImages(true);
                                                 }}
                                                 className="cursor-pointer"

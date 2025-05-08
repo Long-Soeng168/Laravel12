@@ -1,5 +1,4 @@
 import DeleteButton from '@/components/delete-button';
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
@@ -25,8 +24,8 @@ const formSchema = z.object({
     title: z.string().min(1).max(255),
     code: z.string().max(255).optional(),
     title_kh: z.string().max(255).optional(),
-    short_description: z.string().max(500).optional(),
-    short_description_kh: z.string().max(500).optional(),
+    // short_description: z.string().max(500).optional(),
+    // short_description_kh: z.string().max(500).optional(),
     link: z.string().max(255).optional(),
     source: z.string().max(255).optional(),
     type: z.string().optional(),
@@ -58,6 +57,8 @@ export default function Create() {
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
     const [long_description_kh, setLong_description_kh] = useState(editData?.long_description_kh || '');
+    const [short_description, setShort_description] = useState(editData?.short_description || '');
+    const [short_description_kh, setShort_description_kh] = useState(editData?.short_description_kh || '');
     const [editorKey, setEditorKey] = useState(0);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -66,8 +67,8 @@ export default function Create() {
             title: editData?.title || '',
             code: editData?.code || '',
             title_kh: editData?.title_kh || '',
-            short_description: editData?.short_description || '',
-            short_description_kh: editData?.short_description_kh || '',
+            // short_description: editData?.short_description || '',
+            // short_description_kh: editData?.short_description_kh || '',
             link: editData?.link || '',
             source: editData?.source?.toString() || '',
             type: editData?.type || 'content',
@@ -94,6 +95,8 @@ export default function Create() {
                 ...values,
                 long_description: long_description,
                 long_description_kh: long_description_kh,
+                short_description: short_description,
+                short_description_kh: short_description_kh,
                 images: files || null,
             }));
 
@@ -121,6 +124,8 @@ export default function Create() {
                         form.reset();
                         setLong_description('');
                         setLong_description_kh('');
+                        setShort_description('');
+                        setShort_description_kh('');
                         setEditorKey((prev) => prev + 1);
                         setFiles(null);
                         if (page.props.flash?.success) {
@@ -167,12 +172,7 @@ export default function Create() {
                                     <FormItem>
                                         <FormLabel>{t('Unique Code')}</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                disabled={disableCodeField}
-                                                placeholder={t('Code')}
-                                                type="text"
-                                                {...field}
-                                            />
+                                            <Input disabled={disableCodeField} placeholder={t('Code')} type="text" {...field} />
                                         </FormControl>
                                         <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
                                     </FormItem>
@@ -214,7 +214,7 @@ export default function Create() {
                         </div>
                     </div>
 
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="short_description"
                         render={({ field }) => (
@@ -240,7 +240,18 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
+                    {/* Start Short Description */}
+                    <div key={editorKey} className="space-y-8">
+                        <div>
+                            <p className="mb-1 text-sm font-medium">{t('Short Description')}</p>
+                            <MyCkeditor5 data={short_description} setData={setShort_description} />
+                        </div>
+                        <div>
+                            <p className="mb-1 text-sm font-medium">{t('Short Description Khmer')}</p>
+                            <MyCkeditor5 data={short_description_kh} setData={setShort_description_kh} />
+                        </div>
+                    </div>
 
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
                         <div className="col-span-6 flex space-x-2">

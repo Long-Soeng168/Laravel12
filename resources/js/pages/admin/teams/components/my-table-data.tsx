@@ -130,8 +130,8 @@ const MyTableData = () => {
                                 <TableCell>
                                     {item.image ? (
                                         <button
-                                            onClick={() => {
-                                                setSelectedImages(item.image);
+                                            onClick={() => { 
+                                                setSelectedImages([{'image': item.image}]);
                                                 setIsOpenViewImages(true);
                                             }}
                                             className="cursor-pointer"
@@ -156,8 +156,12 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
                                 <TableCell>{item.name_kh || '---'}</TableCell>
-                                <TableCell>{item.short_description || '---'}</TableCell>
-                                <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                <TableCell>
+                                    <div dangerouslySetInnerHTML={{ __html: item.short_description || '---' }}></div>
+                                </TableCell>
+                                <TableCell>
+                                    <div dangerouslySetInnerHTML={{ __html: item.short_description_kh || '---' }}></div>
+                                </TableCell>
                                 <TableCell>
                                     {hasPermission('team update') ? (
                                         <MyUpdateStatusButton

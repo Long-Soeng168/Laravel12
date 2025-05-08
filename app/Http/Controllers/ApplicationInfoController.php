@@ -20,7 +20,8 @@ class ApplicationInfoController extends Controller implements HasMiddleware
         ];
     }
 
-    public function index(){
+    public function index()
+    {
         return Inertia::render('admin/application_info/Index', [
             'editData' => ApplicationInfo::first(),
         ]);
@@ -34,6 +35,7 @@ class ApplicationInfoController extends Controller implements HasMiddleware
             'address_kh' => 'nullable|string|max:500',
             'name_kh' => 'nullable|string|max:500',
             'phone' => 'nullable|string',
+            'landline_phone' => 'nullable|string',
             'email' => 'nullable|string|max:255',
             'google_map' => 'nullable|string|max:500',
             'working_hours' => 'nullable|string|max:255',
@@ -49,10 +51,10 @@ class ApplicationInfoController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {
@@ -75,6 +77,7 @@ class ApplicationInfoController extends Controller implements HasMiddleware
             'address_kh' => 'nullable|string|max:500',
             'name_kh' => 'nullable|string|max:500',
             'phone' => 'nullable|string',
+            'landline_phone' => 'nullable|string',
             'google_map' => 'nullable|string|max:500',
             'email' => 'nullable|string|max:255',
             'working_hours' => 'nullable|string|max:255',
@@ -90,10 +93,10 @@ class ApplicationInfoController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {
@@ -112,5 +115,4 @@ class ApplicationInfoController extends Controller implements HasMiddleware
 
         return redirect()->back()->with('success', 'Info updated successfully!');
     }
-
 }

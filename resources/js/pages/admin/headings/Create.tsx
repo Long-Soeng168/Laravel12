@@ -115,7 +115,7 @@ export default function Create({
                                 <FormItem>
                                     <FormLabel>{t('Title')}</FormLabel>
                                     <FormControl>
-                                         <Input placeholder={t("Title")} type="text" {...field} />
+                                         <AutosizeTextarea placeholder={t("Title")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.title && <div>{errors.title}</div>}</FormMessage>
                                 </FormItem>
@@ -131,7 +131,7 @@ export default function Create({
                                 <FormItem>
                                     <FormLabel>{t('Title Khmer')}</FormLabel>
                                     <FormControl>
-                                       <Input placeholder={t("Title Khmer")} type="text" {...field} />
+                                       <AutosizeTextarea placeholder={t("Title Khmer")} type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.title_kh && <div>{errors.title_kh}</div>}</FormMessage>
                                 </FormItem>

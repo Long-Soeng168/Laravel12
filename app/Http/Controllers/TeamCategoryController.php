@@ -91,10 +91,10 @@ class TeamCategoryController extends Controller implements HasMiddleware
         unset($validated['banner']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
 
         if ($image_file) {
@@ -127,7 +127,7 @@ class TeamCategoryController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'code' => 'required|string|max:255|unique:team_categories,code,' . $team_category->id,
+            'code'  => 'required|string|max:255|unique:team_categories,code,' . $team_category->id,
             'short_description' => 'nullable|string|max:255',
             'short_description_kh' => 'nullable|string|max:255',
             'parent_code' => 'nullable|string|max:255',
@@ -145,10 +145,10 @@ class TeamCategoryController extends Controller implements HasMiddleware
         unset($validated['banner']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {

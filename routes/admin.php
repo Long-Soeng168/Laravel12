@@ -206,8 +206,8 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/positions/{position}/update_status', [PositionController::class, 'update_status']);
     // Team Category Route
     Route::resource('admin/team_categories', TeamCategoryController::class);
-    Route::post('admin/team_categories/{post_category}/update', [TeamCategoryController::class, 'update']);
-    Route::post('admin/team_categories/{post_category}/update_status', [TeamCategoryController::class, 'update_status']);
+    Route::post('admin/team_categories/{team_category}/update', [TeamCategoryController::class, 'update']);
+    Route::post('admin/team_categories/{team_category}/update_status', [TeamCategoryController::class, 'update_status']);
     // Team Route
     Route::resource('admin/teams', TeamController::class);
     Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);

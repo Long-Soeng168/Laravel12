@@ -20,6 +20,7 @@ const formSchema = z.object({
     address: z.string().max(500).optional(),
     address_kh: z.string().max(500).optional(),
     phone: z.string().max(255).optional(),
+    landline_phone: z.string().max(255).optional(),
     working_hours: z.string().max(255).optional(),
     working_hours_kh: z.string().max(255).optional(),
     working_days: z.string().max(255).optional(),
@@ -56,6 +57,7 @@ export default function Create() {
             address: editData?.address || '',
             address_kh: editData?.address_kh || '',
             phone: editData?.phone || '',
+            landline_phone: editData?.landline_phone || '',
             working_hours: editData?.working_hours || '',
             working_hours_kh: editData?.working_hours_kh || '',
             working_days: editData?.working_days || '',
@@ -219,6 +221,21 @@ export default function Create() {
                     <div className="col-span-6">
                         <FormField
                             control={form.control}
+                            name="landline_phone"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Landline Phone')}</FormLabel>
+                                    <FormControl>
+                                        <AutosizeTextarea placeholder={t('Landline Phone')} type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.landline_phone && <div>{errors.landline_phone}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
@@ -342,7 +359,7 @@ export default function Create() {
                                         <div className="flex w-full flex-col items-center justify-center p-8">
                                             <CloudUpload className="h-10 w-10 text-gray-500" />
                                             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                 <span className="font-semibold">{t('Click to upload')}</span>
+                                                <span className="font-semibold">{t('Click to upload')}</span>
                                                 &nbsp; {t('or drag and drop')}
                                             </p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>

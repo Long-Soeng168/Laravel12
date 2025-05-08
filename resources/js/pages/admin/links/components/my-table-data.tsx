@@ -65,10 +65,9 @@ const MyTableData = () => {
                             <TableHead>{t('Link')}</TableHead>
                             <TableHead onClick={() => handleSort('order_index')}>
                                 <span className="flex cursor-pointer items-center">
-                                    <ArrowUpDown size={16} /> {t('Title Khmer')}
+                                    <ArrowUpDown size={16} /> {t('Order Index')}
                                 </span>
                             </TableHead>
-                            <TableHead>{t('Order Index')}</TableHead>
                             <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Type')}
@@ -126,8 +125,8 @@ const MyTableData = () => {
                                     </TableCell>
                                     <TableCell>{item.title || '---'}</TableCell>
                                     <TableCell>{item.title_kh || '---'}</TableCell>
-                                    <TableCell>{item.order_index || '---'}</TableCell>
                                     <TableCell>{item.link || '---'}</TableCell>
+                                    <TableCell>{item.order_index || '---'}</TableCell>
                                     <TableCell>{item.type || '---'}</TableCell>
                                     <TableCell>
                                         {hasPermission('link update') ? (
