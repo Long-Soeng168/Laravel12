@@ -84,10 +84,10 @@ class HeadingController extends Controller implements HasMiddleware
 
       
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         Heading::create($validated);
 
@@ -128,10 +128,10 @@ class HeadingController extends Controller implements HasMiddleware
 
       
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
         $heading->update($validated);
 
         return redirect()->back()->with('success', 'Heading created successfully!');

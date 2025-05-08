@@ -116,6 +116,7 @@ export const ProductItem = ({
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
+    prefetch
       {...rest}
       className="text-white text-[13px] 2xl:text-base max-w-32 hover:underline "
     >

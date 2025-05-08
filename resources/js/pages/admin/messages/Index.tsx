@@ -12,8 +12,8 @@ const Index = () => {
     const { t } = useTranslation();
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('Messages Inquiries'),
-            href: '/admin/message_inquiries',
+            title: t('Messages'),
+            href: '/admin/messages',
         },
     ];
     return (

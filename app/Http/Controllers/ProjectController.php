@@ -91,10 +91,10 @@ class ProjectController extends Controller implements HasMiddleware
         unset($validated['images']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         $created_project = Project::create($validated);
 
@@ -153,10 +153,10 @@ class ProjectController extends Controller implements HasMiddleware
         unset($validated['images']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         $project->update($validated);
 

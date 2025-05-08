@@ -75,10 +75,10 @@ class PartnerController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         if ($image_file) {
             try {
@@ -132,10 +132,10 @@ class PartnerController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         if ($image_file) {
             try {

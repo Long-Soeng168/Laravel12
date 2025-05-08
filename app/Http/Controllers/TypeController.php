@@ -69,10 +69,10 @@ class TypeController extends Controller
         $validated['updated_by'] = $request->user()->id;
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
 
         Type::create($validated);
@@ -104,10 +104,10 @@ class TypeController extends Controller
         $validated['updated_by'] = $request->user()->id;
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         $type->update($validated);
 

@@ -119,10 +119,10 @@ class FileController extends Controller implements HasMiddleware
         unset($validated['files']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         $folder = 'assets/files/file_manager';
         $allExistFileNames = [];

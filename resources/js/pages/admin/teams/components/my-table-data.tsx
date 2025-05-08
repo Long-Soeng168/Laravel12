@@ -2,6 +2,7 @@ import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
+import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
@@ -51,7 +52,6 @@ const MyTableData = () => {
                             <TableHead className="w-[50px]">{t('No')}</TableHead>
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
-                            <TableHead>{t('Link')}</TableHead>
                             <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Name')}
@@ -117,8 +117,8 @@ const MyTableData = () => {
                                                 <ScanEyeIcon />
                                             </MyTooltipButton>
                                         </Link>
-                                        {hasPermission('post delete') && <DeleteButton deletePath="/admin/teams/" id={item.id} />}
-                                        {hasPermission('post update') && (
+                                        {hasPermission('team delete') && <DeleteButton deletePath="/admin/teams/" id={item.id} />}
+                                        {hasPermission('team update') && (
                                             <Link href={`/admin/teams/${item.id}/edit`}>
                                                 <MyTooltipButton title={t('Edit')} side="bottom" variant="ghost">
                                                     <EditIcon />
@@ -158,6 +158,18 @@ const MyTableData = () => {
                                 <TableCell>{item.name_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                <TableCell>
+                                    {hasPermission('team update') ? (
+                                        <MyUpdateStatusButton
+                                            id={item.id}
+                                            pathName="/admin/teams"
+                                            currentStatus={item.status}
+                                            statuses={['active', 'inactive']}
+                                        />
+                                    ) : (
+                                        <span className="capitalize">{item.status}</span>
+                                    )}
+                                </TableCell>
                                 <TableCell>{item.category_code || '---'}</TableCell>
                                 <TableCell className="whitespace-nowrap">
                                     {item.created_at

@@ -26,13 +26,8 @@ const formSchema = z.object({
     name_kh: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
     short_description_kh: z.string().max(500).optional(),
-    link: z.string().max(255).optional(),
-    type: z.string().optional(),
     status: z.string().optional(),
-    parent_id: z.string().optional(),
-    source: z.string().optional(),
     category_code: z.string().optional(),
-    post_date: z.coerce.date(),
     image: z.string().optional(),
 });
 
@@ -66,12 +61,8 @@ export default function Create() {
             name_kh: editData?.name_kh || '',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
-            link: editData?.link || '',
-            type: editData?.type || 'content',
-            source: editData?.source?.toString() || '',
             status: editData?.status || 'active',
             category_code: editData?.category_code?.toString() || '',
-            post_date: editData?.id ? new Date(editData?.post_date) : new Date(),
         },
     });
 
@@ -88,7 +79,7 @@ export default function Create() {
                 ...values,
                 long_description: long_description,
                 long_description_kh: long_description_kh,
-                images: files ? files[0] : null,
+                image: files ? files[0] : null,
             }));
 
             if (editData?.id) {

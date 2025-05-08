@@ -60,7 +60,7 @@ class TeamController extends Controller implements HasMiddleware
     public function create(Request $request)
     {
         return Inertia::render('admin/teams/Create', [
-            'postCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'teamCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -90,10 +90,10 @@ class TeamController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
         if ($image_file) {
             try {
@@ -111,13 +111,11 @@ class TeamController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Team $team)
     {
         return Inertia::render('admin/teams/Create', [
-            'links' => Link::orderBy('name')->where('status', 'active')->get(),
-            'editData' => $post->load('images'),
-            'postCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
+            'editData' => $team,
+            'teamCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
             'readOnly' => true,
         ]);
     }
@@ -126,76 +124,67 @@ class TeamController extends Controller implements HasMiddleware
      * Show the form for editing the specified resource.
      */
 
-    public function edit(Post $post)
+    public function edit(Team $team)
     {
         return Inertia::render('admin/teams/Create', [
-            'links' => Link::orderBy('name')->where('status', 'active')->get(),
-            'editData' => $post->load('images'),
-            'postCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'types' => Type::where(['status' => 'active', 'type_of' => 'post'])->orderBy('id', 'desc')->get(),
+            'editData' => $team,
+            'teamCategories' => TeamCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Team $team)
     {
         // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'post_date' => 'nullable',
             'name_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
-            'link' => 'nullable|string|max:255',
-            'source' => 'nullable|string|max:255',
             'category_code' => 'nullable|string',
-            'type' => 'nullable|string',
+            'position_code' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
-            'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $validated['updated_by'] = $request->user()->id;
-        $validated['post_date'] = Carbon::parse($validated['post_date'])->setTimezone('Asia/Bangkok')->startOfDay()->toDateString();
-        // $validated['post_date'] = Carbon::parse($validated['post_date'])->addDay()->toDateString();
 
-        $image_files = $request->file('images');
-        unset($validated['images']);
+        $image_file = $request->file('image');
+        unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-            if ($value === null || $value === '') {
-                unset($validated[$key]);
-            }
-        }
+    if ($value === '') {
+        $validated[$key] = null;
+    }
+}
 
-        $post->update($validated);
 
-        if ($image_files) {
+        if ($image_file) {
             try {
-                foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/teams', 600);
-                    PostImage::create([
-                        'image' => $created_image_name,
-                        'post_id' => $post->id,
-                    ]);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($image_file, 'assets/images/teams', 600);
+                $validated['image'] = $created_image_name;
+                if (!empty($created_image_name)) {
+                    ImageHelper::deleteImage($team->image, 'assets/images/teams');
                 }
             } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
+                return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
             }
         }
-        return redirect()->back()->with('success', 'Post Updated Successfully!.');
+        $team->update($validated);
+
+        return redirect()->back()->with('success', 'Team Updated Successfully!.');
     }
 
-    public function update_status(Request $request, Post $post)
+    public function update_status(Request $request, Team $team)
     {
         $request->validate([
             'status' => 'required|string|in:active,inactive',
         ]);
-        $post->update([
+        $team->update([
             'status' => $request->status,
         ]);
 
@@ -205,30 +194,12 @@ class TeamController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Team $team)
     {
-        if (count($post->images) > 0) {
-            foreach ($post->images as $image) {
-                ImageHelper::deleteImage($image->image, 'assets/images/teams');
-            }
+        if (!empty($team->image)) {
+            ImageHelper::deleteImage($team->image, 'assets/images/teams');
         }
-        $post->delete();
-        return redirect()->back()->with('success', 'post deleted successfully.');
-    }
-
-    public function destroy_image(PostImage $image)
-    {
-        // Debugging (Check if model is found)
-        if (!$image) {
-            return redirect()->back()->with('error', 'Image not found.');
-        }
-
-        // Call helper function to delete image
-        ImageHelper::deleteImage($image->image, 'assets/images/teams');
-
-        // Delete from DB
-        $image->delete();
-
-        return redirect()->back()->with('success', 'Image deleted successfully.');
+        $team->delete();
+        return redirect()->back()->with('success', 'Team deleted successfully.');
     }
 }

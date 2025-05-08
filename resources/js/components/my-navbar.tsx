@@ -20,7 +20,7 @@ export function MyNavbar({ className }: { className?: string }) {
                     </Button>
                     <div className="hidden xl:block">
                         <Menu setActive={setActive}>
-                            <Link href={`/about`}>
+                            <Link prefetch href={`/about`}>
                                 <MenuItem setActive={setActive} active={active} item="About Us">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/about">What is Westec?</HoveredLink>
@@ -32,7 +32,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/solutions`}>
+                            <Link prefetch href={`/solutions`}>
                                 <MenuItem setActive={setActive} active={active} item="Solutions">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/solutions">Security & Safety Solutions</HoveredLink>
@@ -43,7 +43,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                     </div>
                                 </MenuItem>
                             </Link>
-                            <Link href={`/case_studies`}>
+                            <Link prefetch href={`/case_studies`}>
                                 <MenuItem setActive={setActive} active={active} item="Case Studies">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/case_studies">Banking</HoveredLink>
@@ -55,7 +55,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/#partners`}>
+                            <Link prefetch href={`/#partners`}>
                                 <MenuItem setActive={setActive} active={active} item="Partners">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/#partners">Our Partners</HoveredLink>
@@ -63,7 +63,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/career`}>
+                            <Link prefetch href={`/career`}>
                                 <MenuItem setActive={setActive} active={active} item="Career">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/career">Employee Highlight</HoveredLink>
@@ -72,7 +72,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/#newsId`}>
+                            <Link prefetch href={`/#newsId`}>
                                 <MenuItem setActive={setActive} active={active} item="News">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/#newsId">News & Updates</HoveredLink>
@@ -81,7 +81,7 @@ export function MyNavbar({ className }: { className?: string }) {
                                 </MenuItem>
                             </Link>
 
-                            <Link href={`/contact`}>
+                            <Link prefetch href={`/contact`}>
                                 <MenuItem setActive={setActive} active={active} item="Contact Us">
                                     <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/contact">Project Inquiry?</HoveredLink>

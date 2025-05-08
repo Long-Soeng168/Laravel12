@@ -3,6 +3,8 @@
 use App\Http\Controllers\ApplicationInfoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
+use App\Http\Controllers\CareerController;
+use App\Http\Controllers\CareerSubmitController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GarageController;
@@ -210,7 +212,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/teams', TeamController::class);
     Route::post('admin/teams/{team}/update', [TeamController::class, 'update']);
     Route::post('admin/teams/{team}/update_status', [TeamController::class, 'update_status']);
-    Route::delete('admin/teams/images/{image}', [TeamController::class, 'destroy_image']);
+    // Career Route
+    Route::resource('admin/careers', CareerController::class);
+    Route::post('admin/careers/{career}/update', [CareerController::class, 'update']);
+    Route::post('admin/careers/{career}/update_status', [CareerController::class, 'update_status']);
+    // Career Route
+    Route::resource('admin/career_submits', CareerSubmitController::class);
+    Route::post('admin/career_submits/{career_submit}/update', [CareerSubmitController::class, 'update']);
+    Route::post('admin/career_submits/{career_submit}/update_status', [CareerSubmitController::class, 'update_status']);
 
     // Banner Position Route
     Route::resource('admin/banner_positions', BannerPositionController::class);
