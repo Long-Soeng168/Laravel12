@@ -4,7 +4,7 @@ import { CalendarArrowUp, CalendarClock, CalendarIcon } from 'lucide-react';
 const MyLastestNew = () => {
     return (
         <div>
-            <div className="mx-auto min-h-screen max-w-screen-2xl bg-white px-4 py-16 text-center sm:px-16 ">
+            <div className="mx-auto max-w-screen-2xl bg-white px-4 py-12 text-center sm:px-16 ">
                 <h2 className="font-noto-san-extra-light text-4xl text-black sm:text-4xl">Latest News</h2>
                 <div className="mx-auto my-10 h-1 w-16 bg-[#2c318a]"></div>
 

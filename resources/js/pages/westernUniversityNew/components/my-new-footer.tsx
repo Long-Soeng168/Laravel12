@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Link } from '@inertiajs/react';
-import { DribbbleIcon, GithubIcon, Mail, MapPin, Phone, TwitchIcon, TwitterIcon } from 'lucide-react';
+import { Mail, MapPin, Phone} from 'lucide-react';
 import { MySocial } from './my-social';
 
 const Footer03Page = () => {
@@ -12,10 +12,10 @@ const Footer03Page = () => {
             <footer>
                 <div className="mx-auto max-w-screen-xl">
                     <div className="grid grid-cols-1 gap-x-8 gap-y-10 px-6 py-12 xl:grid-cols-3 xl:px-0">
-                        <div className="col-span-full w-32 text-center xl:col-span-1">
+                        <Link href={'http://western.kimsoreya.site/'} className="col-span-full w-32 text-center xl:col-span-1">
                             {/* Logo */}
                             <img src="/assets/demo-images/Homepage/01_Logo_WIS.png" />
-                        </div>
+                        </Link>
 
                         <div>
                             <h6 className="font-noto-san-extra-light text-xl font-semibold">Contact</h6>
@@ -70,9 +70,9 @@ const Footer03Page = () => {
                 <span className="text-white">
                     &copy; {new Date().getFullYear()}{' '}
                     <Link href="/" target="_blank">
-                        Shadcn UI Blocks
+                    Western International School
                     </Link>
-                    . All rights reserved.
+                    . All Rights Reserved.
                 </span>
             </div>
         </div>

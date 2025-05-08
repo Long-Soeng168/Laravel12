@@ -5,14 +5,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from "@/components/ui/separator";
 import { CalendarClockIcon, Mail, MapPin, Phone } from 'lucide-react';
+import { MySocial } from './my-social';
 
 const MyContact = () => (
-    <div className="flex min-h-screen items-center justify-center py-16 ">
+    <div className="flex items-center justify-center my-12 ">
     <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="grid grid-cols-2 gap-12 lg:grid-cols-12">
         {/* Left - Form & Intro */}
         <div className="col-span-2 lg:col-span-9">
-          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Visit The School</h2>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Visit The School</h2>
           <div className="my-6 w-20 border-[1.5px] border-black" />
           <p className="text-base text-gray-600 sm:text-lg">
             Western International School Central Office
@@ -85,14 +86,15 @@ const MyContact = () => (
             <h3 className="text-xl font-bold tracking-tight">Socials</h3>
             <Separator className="mb-4 mt-2" />
             <div className="flex gap-3">
-              {["facebook", "telegram", "youtube"].map((platform) => (
+              {/* {["facebook", "telegram", "youtube"].map((platform) => (
                 <img
                   key={platform}
                   src={`/assets/demo-images/${platform}.png`}
                   alt={platform}
                   className="h-10 w-10 rounded-full"
                 />
-              ))}
+              ))} */}
+              <MySocial/>
             </div>
           </div>
 

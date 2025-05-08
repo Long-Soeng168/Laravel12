@@ -2,8 +2,8 @@ import React from 'react'
 
 const MyHeroHistory = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-screen-xl w-full mx-auto grid md:flex gap-10 md:gap-12 px-6 py-12">
+    <div className="flex items-center justify-center">
+      <div className="max-w-screen-xl w-full mx-auto grid md:flex gap-10 md:gap-12 px-6 mt-12">
         <div>
           <h1 className="font-noto-san-extra-light max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
           Our Hestory

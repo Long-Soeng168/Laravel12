@@ -5,10 +5,10 @@ import { ArrowUpRight } from "lucide-react";
 
 const MyNewHero = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="max-w-screen-xl w-full mx-auto grid lg:grid-cols-2 gap-12 px-6 py-12">
         <div>
-          <h1 className="mt-6 max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
+          <h1 className="max-w-[17ch] text-3xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
           Welcome to
           Western International School
           </h1>

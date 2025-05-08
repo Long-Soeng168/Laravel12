@@ -68,7 +68,7 @@ export function MyNewSlide() {
             </div>
 
             {/* Dot Navigation */}
-            <div className="absolute bottom-2 xl:bottom-20 left-1/2 xl:left-32 transform -translate-x-1/2 flex space-x-2 sm:space-x-4">
+            <div className="absolute bottom-2 sm:bottom-10 xl:bottom-20 left-1/2  transform -translate-x-1/2 flex space-x-2 sm:space-x-4">
                 {images?.map((_, index) => (
                     <button
                         key={index}

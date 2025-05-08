@@ -5,50 +5,50 @@ import { ArrowUpRight, DribbbleIcon, TwitchIcon, TwitterIcon } from "lucide-reac
 
 const teamMembers = [
   {
-    name: "Reaching Hearts, Changing Lives",
-    bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
+    name: "Grade 9 Outreach",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
-    name: "Extending a Helping Hand",
-    bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
+    name: "Grade 10 Outreach",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
-    name: "Spreading Hope, One Program at a Time",
-    bio: "Lead backend dev at Clearbit. Former Clearbit and Loom.",
+    name: "Grade 11 Outreach",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
-    name: "Empowering Futures Through Outreach",
-    bio: "Founding design team at Figma. Former Pleo, Stripe, and Tile.",
+    name: "Grade 9 Outreach",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     name: "  Connecting Communities Through Education",
-    bio: "Lead user research for Slack. Contractor for Netflix and Udacity.",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     name: "  Expanding Horizons: Our Outreach Initiatives",
-    bio: "Lead CX at Wealthsimple. Former PagerDuty and Sqreen.",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
     "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     name: "  Building Bridges Through Outreach",
-    bio: "Former marketing lead at Notion. Early team at Dropbox.",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
       "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     name: "  Empowering Communities Through Outreach",
-    bio: "Former sales lead at Intercom. Early team at Stripe.",
+    bio: "loream ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     imageUrl:
       "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
@@ -58,13 +58,12 @@ const teamMembers = [
 const MyOutreachProgram = () => {
   return (
     <div className="flex flex-col justify-center py-8 sm:py-12 px-6 lg:px-8 max-w-screen-xl mx-auto gap-16">
-      <div className="text-center max-w-2xl mx-auto">
-        <h2 className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight">
+      <div className="text-center max-w-5xl mx-auto">
+        <h2 className="mt-3 tex-sta text-4xl sm:text-5xl font-bold tracking-tight">
         Outreach Programs
         </h2>
-        <p className="mt-6 text-base sm:text-lg">
-          Our philosophy is simple — hire a team of diverse, passionate people
-          and foster a culture that empowers you to do you best work.
+        <p className="mt-6 text-start text-base sm:text-lg">
+        Western International School management and students participate in Outreach Programs and help provide schools with necessary materials such as books, bags, water filters, and others that will be helpful for the children's studies. Our students feel the joy of sharing their love through this outreach and we hope that these programs will help them understand the importance of sharing and reaching out to those who are in need.
         </p>
       </div>
 

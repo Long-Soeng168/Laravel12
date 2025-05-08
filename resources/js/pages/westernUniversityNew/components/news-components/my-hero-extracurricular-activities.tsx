@@ -1,6 +1,6 @@
 const MyHeroExtracurricularActivities = () => {
     return (
-        <div id="about" className="relative mt-0 lg:mt-16 overflow-hidden bg-white">
+        <div id="about" className="relative mt-0 lg:mt-12 overflow-hidden bg-white">
             <div className="mx-auto max-w-7xl">
                 <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
                     <svg
@@ -17,14 +17,10 @@ const MyHeroExtracurricularActivities = () => {
 
                     <main className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                         <div className="sm:text-center lg:text-left">
-                            <h2 className="my-6 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">Extracurricular Activities</h2>
+                            <h2 className="my-6 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl md:text-4xl font-noto-san-extra-light">Extracurricular Activities</h2>
 
                             <p>
-                                Donec porttitor, enim ut dapibus lobortis, lectus sem tincidunt dui, eget ornare lectus ex non libero. Nam rhoncus
-                                diam ultrices porttitor laoreet. Ut mollis fermentum ex, vel viverra lorem volutpat sodales. In ornare porttitor odio
-                                sit amet laoreet. Sed laoreet, nulla a posuere ultrices, purus nulla tristique turpis, hendrerit rutrum augue quam ut
-                                est. Fusce malesuada posuere libero, vitae dapibus eros facilisis euismod. Sed sed lobortis justo, ut tincidunt velit.
-                                Mauris in maximus eros.
+                            Our students also participate in other activities that help them build teamwork, communication, and relationship. It helps students explore their interests and create a broader perspective of the worldview.
                             </p>
                         </div>
                     </main>
@@ -33,7 +29,7 @@ const MyHeroExtracurricularActivities = () => {
             <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                 <img
                     className="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:h-full lg:w-full"
-                    src="/assets/demo-images/02TopBackground/10ExtracurricularActivities.jpg"
+                    src="https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600"
                     alt=""
                 />
             </div>

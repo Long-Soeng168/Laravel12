@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 
 const MyNewMiddleSection = () => {
     return (
-        <div className="my-16 bg-blue-950">
+        <div className="bg-blue-950">
             <div className="mx-auto grid max-w-screen-2xl items-center lg:grid-cols-2">
                 <div className="h-full w-full">
                     <img src="assets/demo-images/Homepage/05_caring_environment_2.jpg" alt="Students" className="h-full w-full object-cover" />

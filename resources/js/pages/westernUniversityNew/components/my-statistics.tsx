@@ -2,7 +2,7 @@ import { User } from 'lucide-react';
 
 const MyStatistics = () => {
     return (
-        <div>
+        <div className='mt-12'>
             <div className="mx-auto max-w-screen-xl bg-white px-4 pb-16 text-center sm:px-16">
                 <h2 className="text-3xl text-black sm:text-4xl">Statistics</h2>
                 <div className="mx-auto my-4 h-1 w-16 bg-black"></div>
