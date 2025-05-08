@@ -48,7 +48,15 @@ class PageController extends Controller implements HasMiddleware
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('code', 'LIKE', "%{$search}%");
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                    ->orWhere('code', 'LIKE', "%{$search}%")
+                    ->orWhere('position_code', 'LIKE', "%{$search}%")
+                    ->orWhere('short_description', 'LIKE', "%{$search}%")
+                    ->orWhere('short_description_kh', 'LIKE', "%{$search}%")
+                    ->orWhereHas('parent', function ($parent_query) use ($search) {
+                        $parent_query->where('title', 'LIKE', "%{$search}%")
+                            ->orWhere('title_kh', 'LIKE', "%{$search}%");
+                    });;
             });
         }
 
@@ -107,10 +115,10 @@ class PageController extends Controller implements HasMiddleware
         unset($validated['images']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         $created_project = Page::create($validated);
 
