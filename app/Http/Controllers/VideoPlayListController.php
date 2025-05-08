@@ -69,13 +69,11 @@ class VideoPlayListController extends Controller implements HasMiddleware
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'price' => 'nullable|numeric|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'status' => 'nullable|string|in:active,inactive',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',
         ]);
-
-
 
         $validated['created_by'] = $request->user()->id;
         $validated['updated_by'] = $request->user()->id;
@@ -84,10 +82,10 @@ class VideoPlayListController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {
@@ -134,7 +132,7 @@ class VideoPlayListController extends Controller implements HasMiddleware
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'price' => 'nullable|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'status' => 'nullable|string|in:active,inactive',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',
@@ -145,10 +143,10 @@ class VideoPlayListController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {

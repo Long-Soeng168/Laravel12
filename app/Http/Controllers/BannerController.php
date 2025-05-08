@@ -97,7 +97,7 @@ class BannerController extends Controller implements HasMiddleware
             'status' => 'nullable|string|in:active,inactive',
             'video' => 'nullable|file|mimes:mp4',
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -212,7 +212,7 @@ class BannerController extends Controller implements HasMiddleware
             'status' => 'nullable|string|in:active,inactive',
             'video' => 'nullable|file|mimes:mp4',
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['updated_by'] = $request->user()->id;

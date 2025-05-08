@@ -24,20 +24,23 @@ const CartItemSummary = () => {
                         <table className="w-full">
                             <tbody>
                                 {cartItems.map((product) => (
-                                    <tr key={`summary-${product.id}`}>
+                                    <tr key={`summary-${product?.id}`}>
                                         <td>
-                                            <Link href={`/products/${product.id}`} className="flex items-center p-2">
-                                                <img
-                                                    src={`/assets/images/items/thumb/${product?.images[0]?.image}`}
-                                                    alt=""
-                                                    className="mr-2 aspect-square size-14 rounded object-cover"
-                                                />
-                                                <p className="line-clamp-3 hover:underline">{product.name}</p>
+                                            <Link href={`/products/${product?.id}`} className="flex items-center p-2">
+                                                {product?.images?.length > 0 && (
+                                                    <img
+                                                        src={`/assets/images/items/thumb/${product?.images[0]?.image}`}
+                                                        alt=""
+                                                        className="mr-2 aspect-square size-14 rounded object-cover"
+                                                    />
+                                                )}
+
+                                                <p className="line-clamp-3 hover:underline">{product?.name}</p>
                                             </Link>
                                         </td>
-                                        <td className="p-2">{formatCurrency(product.price)}</td>
-                                        <td className="p-2 text-center text-lg">x{product.cartQuantity}</td>
-                                        <td className="p-2">{formatCurrency(product.price * product.cartQuantity)}</td>
+                                        <td className="p-2">{formatCurrency(product?.price)}</td>
+                                        <td className="p-2 text-center text-lg">x{product?.cartQuantity}</td>
+                                        <td className="p-2">{formatCurrency(product?.price * product?.cartQuantity)}</td>
                                     </tr>
                                 ))}
                             </tbody>

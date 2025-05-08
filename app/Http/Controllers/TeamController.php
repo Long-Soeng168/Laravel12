@@ -79,7 +79,7 @@ class TeamController extends Controller implements HasMiddleware
             'category_code' => 'nullable|string',
             'position_code' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -148,7 +148,7 @@ class TeamController extends Controller implements HasMiddleware
             'category_code' => 'nullable|string',
             'position_code' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['updated_by'] = $request->user()->id;

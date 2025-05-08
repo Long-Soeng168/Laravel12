@@ -15,4 +15,13 @@ class VideoPlayList extends Model
     {
         return $this->hasMany(Video::class, 'playlist_code', 'code');
     }
+
+    public function created_by()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+    public function updated_by()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
 }

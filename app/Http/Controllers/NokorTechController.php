@@ -12,6 +12,7 @@ use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\VideoPlayList;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -201,6 +202,52 @@ class NokorTechController extends Controller
             'tableData' => $tableData,
             'item_brands' => $item_brands,
             'productListBanners' => $productListBanners,
+        ]);
+    }
+
+    public function online_trainings(Request $request)
+    {
+        $search = $request->input('search', '');
+        $brand_code = $request->input('brand_code', '');
+        $perPage = $request->input('perPage', 25);
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+
+        $query = VideoPlayList::query();
+        $query->with('created_by', 'updated_by');
+        $query->withCount('videos');
+
+
+
+        if ($brand_code) {
+            $query->where('brand_code', $brand_code);
+        }
+
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('name_kh', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $query->orderBy($sortBy, $sortDirection);
+        $query->where('status', 'active');
+
+        $tableData = $query->paginate(perPage: $perPage)->onEachSide(1);
+
+        return Inertia::render('nokor-tech/online_trainings/Index', [
+            'tableData' => $tableData,
+        ]);
+    }
+    public function online_training_show($id)
+    {
+        $videoPlaylist = VideoPlayList::find($id);
+
+        $relatedPosts = Post::with('category', 'images')->where('id', '!=', $id)->orderBy('id', 'desc')->limit(6)->get();
+
+        return Inertia::render("nokor-tech/online_trainings/Show", [
+            "videoPlaylist" => $videoPlaylist,
+            'relatedPosts' => $relatedPosts,
         ]);
     }
 

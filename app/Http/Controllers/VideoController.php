@@ -37,12 +37,15 @@ class VideoController extends Controller implements HasMiddleware
 
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
-                $sub_query->where('', 'LIKE', "%{$search}%")
+                $sub_query->where('playlist_code', 'LIKE', "%{$search}%")
                     ->orWhere('title', 'LIKE', "%{$search}%")
-                    ->orWhere('title_kh', 'LIKE', "%{$search}%");
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%");
             });
         }
 
+        $query->orderBy('playlist_code');
+        $query->orderBy('order_index');
         $query->orderBy($sortBy, $sortDirection);
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
@@ -78,8 +81,9 @@ class VideoController extends Controller implements HasMiddleware
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'video_file' => 'required|file|mimes:mp4|max:307200', // 300MB
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'playlist_code' => 'nullable|string|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',
@@ -95,10 +99,10 @@ class VideoController extends Controller implements HasMiddleware
         unset($validated['video_file']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {
@@ -156,8 +160,9 @@ class VideoController extends Controller implements HasMiddleware
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
             'video_file' => 'nullable|file|mimes:mp4|max:307200',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'playlist_code' => 'nullable|string|max:255',
+            'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',
@@ -169,10 +174,10 @@ class VideoController extends Controller implements HasMiddleware
         unset($validated['image']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {

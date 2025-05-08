@@ -11,11 +11,15 @@ export function MyPagination() {
     const queryString = new URLSearchParams(queryParams).toString();
 
     const renderLabel = (label) => {
-        if (label == "&laquo; Previous" || label == "Next &raquo;") {
+        if (label == '&laquo; Previous' || label == 'Next &raquo;') {
             return t(label);
         }
         return label;
     };
+
+    if (!links?.length || (links.length === 3 && links[1].active)) {
+        return null;
+    }
 
     return (
         <div className="mt-4 mb-2 flex max-w-[100vw] flex-wrap justify-center gap-2 p-2">

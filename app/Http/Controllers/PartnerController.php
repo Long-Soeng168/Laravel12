@@ -65,7 +65,7 @@ class PartnerController extends Controller implements HasMiddleware
             'name_kh' => 'nullable|string|max:255',
             'phone' => 'nullable|numeric',
             'link' => 'nullable|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -124,7 +124,7 @@ class PartnerController extends Controller implements HasMiddleware
             'name_kh' => 'nullable|string|max:255',
             'phone' => 'nullable|numeric',
             'link' => 'nullable|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
         $validated['updated_by'] = $request->user()->id;
 

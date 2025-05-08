@@ -68,7 +68,7 @@ class ItemBodyTypeController extends Controller implements HasMiddleware
             'name' => 'nullable|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -127,7 +127,7 @@ class ItemBodyTypeController extends Controller implements HasMiddleware
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'order_index' => 'nullable|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
         $validated['updated_by'] = $request->user()->id;
 

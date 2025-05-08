@@ -89,7 +89,7 @@ class PostController extends Controller implements HasMiddleware
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -172,7 +172,7 @@ class PostController extends Controller implements HasMiddleware
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['updated_by'] = $request->user()->id;

@@ -28,30 +28,10 @@ const formSchema = z.object({
     status: z.string().optional(),
     is_free: z.boolean().optional(),
     playlist_code: z.string().optional(),
+    order_index: z.string().optional(),
     image: z.instanceof(File).optional().nullable(),
     video_file: z.instanceof(File).optional().nullable(),
 });
-
-// Define PageProps
-interface PageProps {
-    playlists?: { code: string; name: string; name_kh: string }[];
-    types?: unknown;
-    editData?: {
-        id?: string;
-        title?: string;
-        title_kh?: string;
-        short_description?: string;
-        short_description_kh?: string;
-        status?: string;
-        is_free?: boolean;
-        playlist_code?: string | number;
-        image?: string;
-        name?: string;
-    };
-    links?: unknown;
-    readOnly?: boolean;
-    flash?: { success?: string; error?: string };
-}
 
 export default function Create() {
     // ===== Start Our Code =====
@@ -96,6 +76,7 @@ export default function Create() {
             status: editData?.status || 'active',
             is_free: editData?.is_free != null ? Boolean(editData.is_free) : false,
             playlist_code: editData?.playlist_code?.toString() || '',
+            order_index: editData?.order_index?.toString() || '',
         },
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -317,8 +298,23 @@ export default function Create() {
                                 )}
                             />
                         </div>
-
-                        <div className="col-span-6">
+                        <div className="col-span-3">
+                            <FormField
+                                control={form.control}
+                                name="order_index"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Order Index')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Order Index')} type="number" {...field} />
+                                        </FormControl>
+                                        <FormDescription>{t('Video Sequence Order')}</FormDescription>
+                                        <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-3">
                             <FormField
                                 control={form.control}
                                 name="status"
@@ -341,6 +337,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
+
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}

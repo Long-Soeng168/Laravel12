@@ -70,7 +70,7 @@ class ItemModelController extends Controller implements HasMiddleware
             'brand_code' => 'required|string|max:255|exists:item_brands,code',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -129,7 +129,7 @@ class ItemModelController extends Controller implements HasMiddleware
             'brand_code' => 'required|string|max:255|exists:item_brands,code',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
         $validated['updated_by'] = $request->user()->id;
 

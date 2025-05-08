@@ -78,8 +78,8 @@ class TeamCategoryController extends Controller implements HasMiddleware
             'parent_code' => 'nullable|string|max:255',
             'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['created_by'] = $request->user()->id;
@@ -133,8 +133,8 @@ class TeamCategoryController extends Controller implements HasMiddleware
             'parent_code' => 'nullable|string|max:255',
             'order_index' => 'nullable|numeric|max:255',
             'status' => 'nullable|string|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg,webp|max:2048',
         ]);
 
         $validated['updated_by'] = $request->user()->id;

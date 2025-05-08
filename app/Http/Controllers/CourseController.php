@@ -67,7 +67,7 @@ class CourseController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:courses,title',
             'title_kh' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'price' => 'required|numeric|min:0',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',
@@ -130,7 +130,7 @@ class CourseController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:courses,title,' . $course->id,
             'title_kh' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'price' => 'required|numeric|min:0',
             'short_description' => 'nullable|string',
             'short_description_kh' => 'nullable|string',

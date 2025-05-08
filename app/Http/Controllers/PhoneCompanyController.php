@@ -67,7 +67,7 @@ class PhoneCompanyController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'code' => 'required|string|max:255|unique:phone_companies,code',
             'company' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'status' => 'nullable|string|in:active,inactive',
         ]);
 
@@ -125,7 +125,7 @@ class PhoneCompanyController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'code' => 'required|string|max:255|unique:phone_companies,code,' . $phone_company->id,
             'company' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'status' => 'nullable|string|in:active,inactive',
 
         ]);

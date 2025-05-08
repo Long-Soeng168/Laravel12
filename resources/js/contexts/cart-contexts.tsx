@@ -13,9 +13,15 @@ function cartReducer(state, action) {
                 return {
                     ...state,
                     cartItems: state.cartItems.map((item) =>
-                        item.id === action.payload.id ? { ...item, cartQuantity: item.cartQuantity + 1 } : item,
+                        item.id === action.payload.id ? { ...item, cartQuantity: item.cartQuantity + 0 } : item,
                     ),
                 };
+                // return {
+                //     ...state,
+                //     cartItems: state.cartItems.map((item) =>
+                //         item.id === action.payload.id ? { ...item, cartQuantity: item.cartQuantity + 1 } : item,
+                //     ),
+                // };
             }
             return {
                 ...state,

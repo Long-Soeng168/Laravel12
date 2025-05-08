@@ -1,7 +1,7 @@
+import MySelectLanguageSwitch from '@/components/my-select-language-switch';
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import MySelectLanguageSwitch from '@/components/my-select-language-switch';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search, User2Icon } from 'lucide-react';
 import CartButton from './cart-button';
@@ -13,6 +13,7 @@ const MyHeader = () => {
     const currentPath = window.location.pathname;
     const navItems = [
         { label: 'Products', href: '/products' },
+        { label: 'Online Trainings', href: '/online_trainings' },
         { label: 'Blogs', href: '/blogs', condition: post_counts > 0 },
         { label: 'Contact', href: '/contact-us' },
         { label: 'About', href: '/about-us' },
@@ -95,6 +96,11 @@ const MyHeader = () => {
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
                                             <Link prefetch href="/products">
                                                 Products
+                                            </Link>
+                                        </li>
+                                        <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
+                                            <Link prefetch href="/online_trainings">
+                                                Online Trainings
                                             </Link>
                                         </li>
                                         {post_counts > 0 && (
