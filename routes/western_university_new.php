@@ -30,8 +30,16 @@ Route::get('/school_facilities', function () {
     return Inertia::render('westernUniversityNew/About/SchoolFacilities');
 });
 
+Route::get('/student_council', function () {
+    return Inertia::render('westernUniversityNew/About/StudentCouncil');
+});
+
 Route::get('/curriculum', function () {
     return Inertia::render('westernUniversityNew/Academics/Curriculum');
+});
+
+Route::get('/school_calendar', function () {
+    return Inertia::render('westernUniversityNew/Academics/SchoolCalendars');
 });
 
 Route::get('/programs', function () {

@@ -1,13 +1,14 @@
+import React from 'react'
+import MyNewLayout from '../layout/MyLayout'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Slash } from 'lucide-react';
-import MyContent from '../components/academic-components/my-content';
-import MyNewLayout from '../layout/MyLayout';
+import MyCalendar from '../components/academic-components/my-calendar';
 
-const Programs = () => {
-    return (
-        <MyNewLayout>
-            <div className="relative flex h-full w-full flex-col items-center justify-center bg-red-900 p-10 text-white md:p-20">
-                <p className="font-noto-san-extra-light text-3xl md:text-6xl">Programs</p>
+const SchoolCalendars = () => {
+  return (
+    <MyNewLayout>
+             <div className="relative flex h-full w-full flex-col items-center justify-center bg-red-900 p-10 text-white md:p-20">
+                <p className="font-noto-san-extra-light text-3xl md:text-6xl">School Calendar</p>
                 <div className="mt-10">
                     <Breadcrumb>
                         <BreadcrumbList>
@@ -28,17 +29,17 @@ const Programs = () => {
                                 <Slash className="text-gray-400" />
                             </BreadcrumbSeparator>
                             <BreadcrumbItem>
-                                <BreadcrumbLink href="#/history_and_values" className="text-gray-400">
-                                    Programs
+                                <BreadcrumbLink href="#/school_calendar" className="text-gray-400">
+                                School Calendar
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
                 </div>
             </div>
-            <MyContent />
-        </MyNewLayout>
-    );
-};
+            <MyCalendar/>
+    </MyNewLayout>
+  )
+}
 
-export default Programs;
+export default SchoolCalendars

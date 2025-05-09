@@ -1,3 +1,4 @@
+import MyEvent from './components/my-event';
 import MyGoogleMap from './components/my-google-map';
 import MyLastestNew from './components/my-lastest-new';
 import MyMultipleSlides from './components/my-multiple-slide';
@@ -15,6 +16,7 @@ const Home = () => {
             <MyNewHero />
             <MyNewMiddleSection />
             <MyStatistics />
+            <MyEvent/>
             <MyNewSlideBottom />
             <MyLastestNew />
             <MyMultipleSlides />
