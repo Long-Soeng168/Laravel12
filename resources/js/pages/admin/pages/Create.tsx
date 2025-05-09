@@ -75,12 +75,12 @@ export default function Create() {
             order_index: editData?.order_index?.toString() || '',
             status: editData?.status || 'active',
             parent_id: editData?.parent_id?.toString() || '',
-            position_code: editData?.position_code?.toString() || '',
+            position_code: editData?.position_code?.toString() || pagePositions[0]?.code || '',
         },
     });
 
     useEffect(() => {
-        editData?.code && setdisableCodeField(true);
+        // editData?.code && setdisableCodeField(true);
     }, []);
 
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -242,7 +242,7 @@ export default function Create() {
                         )}
                     /> */}
                     {/* Start Short Description */}
-                    <div key={editorKey} className="space-y-8">
+                    <div key={'short_description' + editorKey} className="space-y-8">
                         <div>
                             <p className="mb-1 text-sm font-medium">{t('Short Description')}</p>
                             <MyCkeditor5 data={short_description} setData={setShort_description} />
@@ -356,7 +356,7 @@ export default function Create() {
                                         <FormControl>
                                             <Input placeholder={t('Order Index')} type="number" {...field} />
                                         </FormControl>
-                                        <FormDescription>{t('Lower number is priority - default = 1')}</FormDescription>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
                                         <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                     </FormItem>
                                 )}
@@ -409,7 +409,7 @@ export default function Create() {
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent className="p-0">
+                                            <PopoverContent className="w-[350px] p-0">
                                                 <Command>
                                                     <CommandInput placeholder={t('Search')} />
                                                     <CommandList>
@@ -440,6 +440,8 @@ export default function Create() {
                                                                             parent.id == field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
+                                                                    <span className="font-mono"> {parent?.order_index}</span>
+                                                                    {/* {parent?.order_index && getDashes(parent?.order_index)}  */}
                                                                     {parent.title}
                                                                 </CommandItem>
                                                             ))}
@@ -594,7 +596,7 @@ export default function Create() {
                         </div>
                     )}
                     {/* Start Long Description */}
-                    <div key={editorKey} className="space-y-8">
+                    <div key={'long_description' + editorKey} className="space-y-8">
                         <div>
                             <p className="mb-1 text-sm font-medium">{t('Long Description')}</p>
                             <MyCkeditor5 data={long_description} setData={setLong_description} />

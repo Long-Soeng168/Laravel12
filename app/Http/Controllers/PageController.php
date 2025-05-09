@@ -75,7 +75,7 @@ class PageController extends Controller implements HasMiddleware
 
         $query = Page::query();
 
-        $parentData = $query->get();
+        $parentData = $query->orderBy('order_index')->where('status', 'active')->get();
         return Inertia::render('admin/pages/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'parentData' => $parentData,
@@ -93,13 +93,13 @@ class PageController extends Controller implements HasMiddleware
             'code' => 'nullable|string|max:255|unique:pages,code',
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:500',
-            'short_description_kh' => 'nullable|string|max:500',
+            'short_description' => 'nullable|string|max:1000',
+            'short_description_kh' => 'nullable|string|max:1000',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'source' => 'nullable|string|max:255',
-            'order_index' => 'nullable|integer|min:0|max:255',
+            'order_index' => 'nullable|integer|min:0',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',
             'type' => 'nullable|string',
@@ -145,7 +145,7 @@ class PageController extends Controller implements HasMiddleware
     {
         $query = Page::query();
 
-        $parentData = $query->where('id', '!=', $page->id)->get();
+        $parentData = $query->orderBy('order_index')->where('status', 'active')->where('id', '!=', $page->id)->get();
         return Inertia::render('admin/pages/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $page->load('images'),
@@ -165,7 +165,7 @@ class PageController extends Controller implements HasMiddleware
 
         $query = Page::query();
 
-        $parentData = $query->where('id', '!=', $page->id)->get();
+        $parentData = $query->orderBy('order_index')->where('status', 'active')->where('id', '!=', $page->id)->get();
         return Inertia::render('admin/pages/Create', [
             'links' => Link::orderBy('title')->where('status', 'active')->get(),
             'editData' => $page->load('images'),
@@ -185,13 +185,13 @@ class PageController extends Controller implements HasMiddleware
             'code' => 'nullable|string|max:255|unique:pages,code,' . $page->id,
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:500',
-            'short_description_kh' => 'nullable|string|max:500',
+            'short_description' => 'nullable|string|max:1000',
+            'short_description_kh' => 'nullable|string|max:1000',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'source' => 'nullable|string|max:255',
-            'order_index' => 'nullable|integer|min:0|max:255',
+            'order_index' => 'nullable|integer|min:0',
             'parent_id' => 'nullable|numeric',
             'position_code' => 'nullable|string',
             'type' => 'nullable|string',

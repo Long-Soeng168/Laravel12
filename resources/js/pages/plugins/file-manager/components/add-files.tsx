@@ -2,7 +2,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { ProgressWithValue } from '@/components/ui/progress-with-value';
 import useTranslation from '@/hooks/use-translation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -191,6 +191,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                             </FileUploaderContent>
                                         </FileUploader>
                                     </FormControl>
+                                    <FormDescription>Max File Size 2MB</FormDescription>
                                     <FormMessage>{errors.files && <div>{errors.files}</div>}</FormMessage>
                                 </FormItem>
                             )}

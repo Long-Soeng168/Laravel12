@@ -253,6 +253,10 @@ a.ck.ck-button.ck-button_with-text .ck-button__label {
     color: white !important;
 }
 
+.dark button.ck.ck-button.ck-resize-image-button.ck-off.ck-button_with-text.ck-dropdown__button {
+    color: white;
+}
+
 .dark .ck.ck-list-styles-list,
 .dark .ck.ck-color-selector {
     background-color: #444 !important;
