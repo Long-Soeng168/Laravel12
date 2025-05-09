@@ -1,3 +1,4 @@
+import { User } from 'lucide-react';
 import { useState } from 'react';
 
 const months = [
@@ -6,17 +7,17 @@ const months = [
         Children: [
             {
                 id: '1',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '31 May 5:00Pm',
                 image: '/assets/demo-images/banner3.jpg',
             },
             {
                 id: '2',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '2 May 5:00Pm',
                 image: '/assets/demo-images/banner4.jpg',
             },
-            
+
             // ... (rest of events)
         ],
     },
@@ -25,26 +26,26 @@ const months = [
         Children: [
             {
                 id: '1',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '31 May 5:00Pm',
                 image: '/assets/demo-images/banner3.jpg',
             },
             {
                 id: '2',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '2 May 5:00Pm',
                 image: '/assets/demo-images/banner4.jpg',
             },
-            
+
             {
                 id: '4',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '2 May 5:00Pm',
                 image: '/assets/demo-images/banner4.jpg',
             },
             {
                 id: '4',
-                title: 'Spacewalking Conference',
+                title: 'Spacewalking Conference Spacewalking Conference',
                 short_description: '2 May 5:00Pm',
                 image: '/assets/demo-images/banner4.jpg',
             },
@@ -119,6 +120,10 @@ const MyCalendar = () => {
                                         </div>
                                         <div className="my-2 text-left">
                                             <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">{event.title}</h2>
+                                            <p className="flex items-center text-sm text-gray-600">
+                                                <User className="mr-1 h-4 w-4 text-red-700" />
+                                                Walter Stanley
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

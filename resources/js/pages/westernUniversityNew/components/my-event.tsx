@@ -12,9 +12,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/banner3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -29,7 +29,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
@@ -42,9 +42,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/courses3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -59,7 +59,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">
                                     International Conference on Biomolecular Engineering Engineering{' '}
                                 </h2>
                                 <p className="flex items-center text-sm text-gray-600">
@@ -74,9 +74,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/banner3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -91,7 +91,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
@@ -104,9 +104,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/courses2.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -121,7 +121,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
@@ -134,9 +134,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/banner3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -151,7 +151,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
@@ -164,9 +164,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/courses3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -181,7 +181,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">
                                     International Conference on Biomolecular Engineering Engineering{' '}
                                 </h2>
                                 <p className="flex items-center text-sm text-gray-600">
@@ -196,9 +196,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/banner3.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -213,7 +213,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
@@ -226,9 +226,9 @@ const MyEvent = () => {
                         <div className="relative">
                             <img className="aspect-[9/10] w-full object-cover" src="/assets/demo-images/courses2.jpg" alt="Event Image" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-950/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
+                                {/* <a href="#" className="mb-2 rounded-lg bg-[#e31c24] px-6 py-2 font-semibold text-white">
                                     Book Now
-                                </a>
+                                </a> */}
                                 <a href="#" className="rounded-lg border border-white px-4 py-2 font-semibold text-white">
                                     Learn More
                                 </a>
@@ -243,7 +243,7 @@ const MyEvent = () => {
                                 <p className="text-sm font-bold">5:00pm</p>
                             </div>
                             <div className="my-2">
-                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700">Spacewalking Conference</h2>
+                                <h2 className="font-noto-san-extra-light mb-2 line-clamp-2 text-base text-red-700 text-start">Spacewalking Conference</h2>
                                 <p className="flex items-center text-sm text-gray-600">
                                     <User className="mr-1 h-4 w-4 text-red-700" />
                                     Walter Stanley
