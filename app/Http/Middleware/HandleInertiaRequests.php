@@ -61,6 +61,7 @@ class HandleInertiaRequests extends Middleware
 
             'locale' => session('locale'),
             'can_switch_language' => config('app.can_switch_language'),
+            'CKEDITOR_USE_FILE_FULL_PATH' => env('CKEDITOR_USE_FILE_FULL_PATH'),
 
             'application_info' => ApplicationInfo::first(),
             'links' => Link::where('status', 'active')->orderBy('order_index')->get(),

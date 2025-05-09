@@ -102,7 +102,7 @@ class FileController extends Controller implements HasMiddleware
         $tableData = $query->paginate(perPage: 24)->onEachSide(1);
 
         return response()->json($tableData);
-    } 
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -119,10 +119,10 @@ class FileController extends Controller implements HasMiddleware
         unset($validated['files']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         $folder = 'assets/files/file_manager';
         $allExistFileNames = [];
@@ -148,8 +148,11 @@ class FileController extends Controller implements HasMiddleware
                     // Generate the full file path
                     $file_path_name = public_path("$folder/$fileName");
 
+                    // Check for webp
+                    $webp_file_name = pathinfo($fileName, PATHINFO_FILENAME) . '.webp';
+                    $webp_path_name = public_path("$folder/$webp_file_name");
                     // Check if the file already exists
-                    if (File::exists($file_path_name)) {
+                    if (File::exists($file_path_name) || File::exists($webp_path_name)) {
                         $allExistFileNames[] = $fileName;
                     } else {
                         // Determine file type
@@ -197,7 +200,7 @@ class FileController extends Controller implements HasMiddleware
         }
 
         return redirect()->back()->with('success', 'All files uploaded successfully.');
-    } 
+    }
 
     /**
      * Remove the specified resource from storage.

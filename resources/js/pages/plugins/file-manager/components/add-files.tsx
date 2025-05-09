@@ -170,7 +170,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                                                 <div className="flex w-full flex-col items-center justify-center p-8">
                                                     <CloudUpload className="h-10 w-10 text-gray-500" />
                                                     <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                                                         <span className="font-semibold">{t('Click to upload')}</span>
+                                                        <span className="font-semibold">{t('Click to upload')}</span>
                                                         &nbsp; {t('or drag and drop')}
                                                     </p>
                                                     <p className="text-center text-xs text-gray-500 dark:text-gray-400">
@@ -196,7 +196,7 @@ export function AddFiles({ open, setOpen }: { open: boolean; setOpen: React.Disp
                             )}
                         />
                         {progress && <ProgressWithValue value={progress.percentage} position="start" />}
-                        <Button disabled={processing} type="submit">
+                        <Button disabled={processing} type="button" onClick={() => onSubmit(form.getValues())}>
                             {processing && (
                                 <span className="size-6 animate-spin">
                                     <Loader />
