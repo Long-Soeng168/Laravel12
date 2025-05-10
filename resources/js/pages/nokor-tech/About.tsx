@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
+import { ArrowUpRightIcon } from 'lucide-react';
 import NokorTechLayout from './layouts/nokor-tech-layout';
 
 const About = () => {
@@ -134,12 +135,16 @@ const About = () => {
                             <p>
                                 By using our app or subscribing to our services, you agree to our data practices as outlined here. For questions or
                                 concerns, feel free to{' '}
-                                <a href="mailto:longsoeng017@gmail.com" className="text-primary underline">
+                                <a href="/contact-us" className="text-primary underline">
                                     contact us
                                 </a>
                                 .
                             </p>
-                            <Button>More about privacy</Button>
+                            <Link href={`/privacy`} prefetch>
+                                <Button variant="outline" size="lg">
+                                    More about privacy <ArrowUpRightIcon />
+                                </Button>
+                            </Link>
                         </div>
                     </section>
 
@@ -156,11 +161,6 @@ const About = () => {
                         </Link>
                     </section>
                 </main>
-
-                {/* Footer */}
-                <footer className="border-t border-gray-700 bg-gray-900 py-6 text-center text-gray-400">
-                    <p>&copy; 2025 ATA Auto. All rights reserved.</p>
-                </footer>
             </div>
         </NokorTechLayout>
     );
