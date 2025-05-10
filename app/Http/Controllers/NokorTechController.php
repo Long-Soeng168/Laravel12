@@ -26,10 +26,10 @@ class NokorTechController extends Controller
         $posts = Post::where('status', 'active')->with('images', 'category')->orderBy('id', 'desc')->limit(3)->get();
 
 
-        $newArrivals = Item::with('images')->where('status', 'active')->orderBy('id', 'desc')->take(12)->get();
+        $newArrivals = Item::with('images', 'shop')->where('status', 'active')->orderBy('id', 'desc')->take(12)->get();
         $brandsWithItems = ItemBrand::with([
             'items' => function ($query) {
-                $query->with('images')
+                $query->with('images', 'shop')
                     ->where('items.status', 'active') // Specify 'items' table for status
                     ->orderBy('id', 'desc')
                     ->take(12); // Limit to 12 items
@@ -42,13 +42,13 @@ class NokorTechController extends Controller
 
         $categoriesWithItems = ItemCategory::with([
             'items' => function ($query) {
-                $query->with('images')
+                $query->with('images', 'shop')
                     ->where('items.status', 'active') // Specify 'items' table for status
                     ->orderBy('id', 'desc')
                     ->take(12); // Limit to 12 items
             },
             'children_items' => function ($query) {
-                $query->with('images')
+                $query->with('images',  'shop')
                     ->where('items.status', 'active') // Specify 'items' table for status
                     ->orderBy('id', 'desc')
                     ->take(12); // Limit to 12 child items
@@ -162,7 +162,7 @@ class NokorTechController extends Controller
         $category_code = $request->input('category_code', '');
 
         $query = Item::query();
-        $query->with('created_by', 'updated_by', 'images', 'category');
+        $query->with('created_by', 'updated_by', 'images', 'category', 'shop');
 
         if ($category_code) {
             // get category and its children codes
@@ -254,7 +254,21 @@ class NokorTechController extends Controller
     public function product_show($id)
     {
         $itemShow = Item::find($id);
-        $relatedItems = Item::with('category', 'images')->where('id', '!=', $id)->where('category_code', $itemShow->category_code)->orderBy('id', 'desc')->limit(12)->get();
+
+        $relatedItemsQuery = Item::query();
+
+        $relatedItemsQuery->with(['category', 'images', 'shop']);
+
+        $relatedItemsQuery->where('id', '!=', $id);
+
+        if ($itemShow->category_code) {
+            $relatedItemsQuery->where('category_code', $itemShow->category_code);
+        }
+
+        $relatedItems = $relatedItemsQuery
+            ->orderByDesc('id')
+            ->limit(12)
+            ->get();
 
         $date = now()->toDateString();
         $view = ItemDailyView::firstOrCreate(
@@ -268,7 +282,7 @@ class NokorTechController extends Controller
         ]);
 
         return Inertia::render("nokor-tech/products/Show", [
-            "itemShow" => $itemShow->load('created_by', 'updated_by', 'images', 'category', 'brand'),
+            "itemShow" => $itemShow->load('created_by', 'updated_by', 'images', 'category', 'brand', 'shop'),
             'relatedItems' => $relatedItems,
         ]);
     }

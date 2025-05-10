@@ -116,7 +116,7 @@ class ShopController extends Controller implements HasMiddleware
             'owner_user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
+            'phone' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'parent_code' => 'nullable|string|max:255',
@@ -135,10 +135,10 @@ class ShopController extends Controller implements HasMiddleware
         unset($validated['banner']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
 
         if ($image_file) {
@@ -180,7 +180,7 @@ class ShopController extends Controller implements HasMiddleware
             'owner_user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
+            'phone' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'parent_code' => 'nullable|string|max:255',
@@ -204,10 +204,10 @@ class ShopController extends Controller implements HasMiddleware
         unset($validated['banner']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         if ($image_file) {
             try {

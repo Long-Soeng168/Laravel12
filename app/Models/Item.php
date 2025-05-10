@@ -11,6 +11,10 @@ class Item extends Model
     use HasFactory;
 
     protected $guarded = [];
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
+    }
     public function category()
     {
         return $this->belongsTo(ItemCategory::class, 'category_code', 'code');

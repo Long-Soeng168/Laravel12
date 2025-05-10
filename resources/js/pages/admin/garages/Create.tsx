@@ -234,7 +234,7 @@ export default function Create({
                                         <FormControl>
                                             <Input placeholder="ex: 1" type="text" {...field} />
                                         </FormControl>
-                                        <FormDescription>{t('Lower number is priority - default = 100')}</FormDescription>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
                                         <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                     </FormItem>
                                 )}

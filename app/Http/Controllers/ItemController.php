@@ -42,7 +42,7 @@ class ItemController extends Controller implements HasMiddleware
 
         $query = Item::query();
 
-        $query->with('created_by', 'updated_by', 'images', 'category');
+        $query->with('created_by', 'updated_by', 'images', 'category', 'shop');
 
         if ($status) {
             $query->where('status', $status);

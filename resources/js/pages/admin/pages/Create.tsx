@@ -428,7 +428,7 @@ export default function Create() {
                                                             </CommandItem>
                                                             {parentData?.map((parent) => (
                                                                 <CommandItem
-                                                                    value={parent.title}
+                                                                    value={parent?.order_index + parent.title}
                                                                     key={parent.id}
                                                                     onSelect={() => {
                                                                         form.setValue('parent_id', parent.id.toString());

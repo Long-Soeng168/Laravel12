@@ -67,7 +67,7 @@ export default function Create({
             status: editData?.status || 'active',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
-            order_index: editData?.order_index.toString() || '',
+            order_index: editData?.order_index?.toString() || '',
             owner_user_id: editData?.owner_user_id.toString() || '',
             logo: '',
             banner: '',
@@ -234,7 +234,7 @@ export default function Create({
                                         <FormControl>
                                             <Input placeholder="ex: 1" type="text" {...field} />
                                         </FormControl>
-                                        <FormDescription>{t('Lower number is priority - default = 100')}</FormDescription>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
                                         <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                     </FormItem>
                                 )}
@@ -285,7 +285,7 @@ export default function Create({
                                                             {all_users?.map((item) => {
                                                                 return (
                                                                     <CommandItem
-                                                                        value={item.name + item.id}
+                                                                        value={item.name + item.id + item.email}
                                                                         key={item.id}
                                                                         onSelect={() => {
                                                                             form.setValue('owner_user_id', item.id.toString());
@@ -297,7 +297,7 @@ export default function Create({
                                                                                 item.id == field.value ? 'opacity-100' : 'opacity-0',
                                                                             )}
                                                                         />
-                                                                        {item.id} - {item.name}
+                                                                        {item.name} ({item.email})
                                                                     </CommandItem>
                                                                 );
                                                             })}

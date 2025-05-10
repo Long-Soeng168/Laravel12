@@ -1,6 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Link, usePage } from '@inertiajs/react';
-import AddToCart from '../components/add-to-cart';
 import CarouselWithThumbs from '../components/CarouselWithThumbs';
 import MyProductList from '../components/my-product-list';
 import MyProductListHeader from '../components/my-product-list-header';
@@ -43,7 +42,23 @@ const ProductDetailPage = () => {
                             <div className="mt-6 mb-4">
                                 <p className="text-2xl font-bold text-red-600">${itemShow?.price}</p>
                             </div>
-                            <AddToCart item={itemShow} />
+                            <Link href={`/shops/${itemShow.shop?.id}`} className='hover:bg-muted p-2 block rounded-md cursor-pointer'>
+                                <figcaption className="flex items-center space-x-4">
+                                    <img
+                                        src={`/assets/images/shops/thumb/${itemShow.shop?.logo}`}
+                                        alt=""
+                                        className="h-14 w-14 flex-none rounded-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                    <div className="flex-auto">
+                                        <div className="text-base font-semibold text-slate-900 dark:text-slate-200">{itemShow.shop?.name}</div>
+                                        <div className="mt-0.5 dark:text-slate-300">{itemShow.shop?.address}</div>
+                                        <div className="mt-0.5 dark:text-slate-300">{itemShow.shop?.phone}</div>
+                                    </div>
+                                </figcaption>
+                            </Link>
+                            {/* <AddToCart item={itemShow} /> */}
                             {itemShow?.short_description && (
                                 <div>
                                     <hr className="my-8" />

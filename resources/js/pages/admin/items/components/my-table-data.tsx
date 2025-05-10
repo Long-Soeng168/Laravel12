@@ -3,6 +3,7 @@ import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
+import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
@@ -53,6 +54,11 @@ const MyTableData = () => {
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
                             {/* <TableHead>{t('Link')}</TableHead> */}
+                            <TableHead onClick={() => handleSort('shop_id')}>
+                                <span className="flex cursor-pointer items-center">
+                                    <ArrowUpDown size={16} /> {t('Shop')}
+                                </span>
+                            </TableHead>
                             <TableHead onClick={() => handleSort('code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Code')}
@@ -68,11 +74,11 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Price')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('short_description')}>
+                            {/* <TableHead onClick={() => handleSort('short_description')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('status')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Status')}
@@ -197,10 +203,15 @@ const MyTableData = () => {
                                         '---'
                                     )}
                                 </TableCell> */}
+                                <TableCell>
+                                    <Link className="hover:underline" href={`/admin/shops/${item.shop_id}`}>
+                                        <Badge variant='outline' className='hover:underline'>{item.shop?.name || '---'}</Badge>
+                                    </Link>
+                                </TableCell>
                                 <TableCell>{item.code || '---'}</TableCell>
                                 <TableCell>{item.name || '---'}</TableCell>
                                 <TableCell>{item.price || '---'}</TableCell>
-                                <TableCell>{item.short_description || '---'}</TableCell>
+                                {/* <TableCell>{item.short_description || '---'}</TableCell> */}
                                 <TableCell>
                                     {hasPermission('item update') ? (
                                         <MyUpdateStatusButton

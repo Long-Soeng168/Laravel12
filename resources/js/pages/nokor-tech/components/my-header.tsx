@@ -132,7 +132,7 @@ const MyHeader = () => {
                                         <li>
                                             <MyCategoriesNav />
                                         </li>
-                                        {item_categories?.length > 2 &&
+                                        {/* {item_categories?.length > 2 &&
                                             item_categories.slice(0, 3).map((category, index) => (
                                                 <li key={index + category?.id} className="flex items-center justify-center">
                                                     <Link
@@ -144,7 +144,7 @@ const MyHeader = () => {
                                                         <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
                                                     </Link>
                                                 </li>
-                                            ))}
+                                            ))} */}
                                     </>
                                 )}
 

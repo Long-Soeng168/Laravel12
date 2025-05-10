@@ -170,7 +170,7 @@ export default function Edit({ item }: { item: any }) {
                                     <FormControl>
                                         <Input placeholder="ex: 1" type="number" {...field} />
                                     </FormControl>
-                                    <FormDescription>{t('Lower number is priority - default = 1')}</FormDescription>
+                                    <FormDescription>{t('Lower number is priority')}</FormDescription>
                                     <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                 </FormItem>
                             )}
