@@ -48,15 +48,17 @@ const Filters = () => {
                     <h3 className="mb-4 text-xl font-semibold">Filters</h3>
                 </div>
                 <div>
-                    <button
-                        onClick={() => handleSubmit('category_code', '')}
-                        className={`${!initialQueryParams.get('category_code') && 'text-true-primary font-bold underline underline-offset-4'} hover:text-primary flex w-full flex-1 cursor-pointer items-center gap-1 p-1 hover:underline`}
-                    >
-                        <span className="mr-1 size-6 object-contain">
-                            <AlignLeft size={24} className="stroke-primary" />
-                        </span>
-                        All Categories
-                    </button>
+                    {item_categories?.length > 0 && (
+                        <button
+                            onClick={() => handleSubmit('category_code', '')}
+                            className={`${!initialQueryParams.get('category_code') && 'text-true-primary font-bold underline underline-offset-4'} hover:text-primary flex w-full flex-1 cursor-pointer items-center gap-1 p-1 hover:underline`}
+                        >
+                            <span className="mr-1 size-6 object-contain">
+                                <AlignLeft size={24} className="stroke-primary" />
+                            </span>
+                            All Categories
+                        </button>
+                    )}
 
                     {item_categories?.length > 0 &&
                         item_categories?.map((category) => (
@@ -105,90 +107,93 @@ const Filters = () => {
                 {/* end category  */}
 
                 {/* Brands */}
-                <div className="mt-8">
-                    <p className="text-primary mb-2 flex items-center gap-1 text-sm font-semibold">
-                        <AlignLeft size={18} /> Brands
-                    </p>
-                    <Popover open={open} onOpenChange={setOpen}>
-                        <PopoverTrigger asChild>
-                            <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
-                                {value
-                                    ? (() => {
-                                          const selectedBrand = item_brands.find((brand) => brand.code === value);
-                                          return selectedBrand ? (
-                                              <div className="flex items-center gap-2">
-                                                  {selectedBrand.image ? (
-                                                      <span className="rounded bg-white p-0.5">
-                                                          <img
-                                                              src={`/assets/images/item_brands/thumb/${selectedBrand.image}`}
-                                                              alt={selectedBrand.name}
-                                                              className="size-7 object-contain"
-                                                          />
-                                                      </span>
-                                                  ) : (
-                                                      <span className="size-8 object-contain" />
-                                                  )}
-                                                  {selectedBrand.name}
-                                              </div>
-                                          ) : (
-                                              'Select brand...'
-                                          );
-                                      })()
-                                    : 'Select brand...'}
+                {item_brands?.length > 0 && (
+                    <div className="mt-8">
+                        <p className="text-primary mb-2 flex items-center gap-1 text-sm font-semibold">
+                            <AlignLeft size={18} /> Brands
+                        </p>
+                        <Popover open={open} onOpenChange={setOpen}>
+                            <PopoverTrigger asChild>
+                                <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
+                                    {value
+                                        ? (() => {
+                                              const selectedBrand = item_brands.find((brand) => brand.code === value);
+                                              return selectedBrand ? (
+                                                  <div className="flex items-center gap-2">
+                                                      {selectedBrand.image ? (
+                                                          <span className="rounded bg-white p-0.5">
+                                                              <img
+                                                                  src={`/assets/images/item_brands/thumb/${selectedBrand.image}`}
+                                                                  alt={selectedBrand.name}
+                                                                  className="size-7 object-contain"
+                                                              />
+                                                          </span>
+                                                      ) : (
+                                                          <span className="size-8 object-contain" />
+                                                      )}
+                                                      {selectedBrand.name}
+                                                  </div>
+                                              ) : (
+                                                  'Select brand...'
+                                              );
+                                          })()
+                                        : 'Select brand...'}
 
-                                <ChevronsUpDown className="opacity-50" />
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full p-0">
-                            <Command>
-                                <CommandInput placeholder="Search brand..." className="h-9" />
-                                <CommandList>
-                                    <CommandEmpty>No brand found.</CommandEmpty>
-                                    <CommandGroup>
-                                        <CommandItem
-                                            value=""
-                                            onSelect={() => {
-                                                handleSubmit('brand_code', '');
-                                                setOpen(false);
-                                            }}
-                                        >
-                                            <span className="rounded bg-white p-0.5">
-                                                <AlignLeft size={30} className="stroke-true-primary !size-8 stroke-[1.5]" />
-                                            </span>
-                                            All Brands
-                                            <Check className={cn('ml-auto', value === '' ? 'opacity-100' : 'opacity-0')} />
-                                        </CommandItem>
-                                        {item_brands?.map((brand) => (
+                                    <ChevronsUpDown className="opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-full p-0">
+                                <Command>
+                                    <CommandInput placeholder="Search brand..." className="h-9" />
+                                    <CommandList>
+                                        <CommandEmpty>No brand found.</CommandEmpty>
+                                        <CommandGroup>
                                             <CommandItem
-                                                key={brand.code}
-                                                value={brand.code}
-                                                onSelect={(currentValue) => {
-                                                    setValue(currentValue === value ? '' : currentValue);
-                                                    handleSubmit('brand_code', currentValue);
+                                                value=""
+                                                onSelect={() => {
+                                                    handleSubmit('brand_code', '');
                                                     setOpen(false);
                                                 }}
                                             >
                                                 <span className="rounded bg-white p-0.5">
-                                                    {brand?.image ? (
-                                                        <img
-                                                            className="size-8 object-contain"
-                                                            src={`/assets/images/item_brands/thumb/${brand?.image}`}
-                                                            alt=""
-                                                        />
-                                                    ) : (
-                                                        <span className="size-8 object-contain" />
-                                                    )}
+                                                    <AlignLeft size={30} className="stroke-true-primary !size-8 stroke-[1.5]" />
                                                 </span>
-                                                {brand.name}
-                                                <Check className={cn('ml-auto', value === brand.code ? 'opacity-100' : 'opacity-0')} />
+                                                All Brands
+                                                <Check className={cn('ml-auto', value === '' ? 'opacity-100' : 'opacity-0')} />
                                             </CommandItem>
-                                        ))}
-                                    </CommandGroup>
-                                </CommandList>
-                            </Command>
-                        </PopoverContent>
-                    </Popover>
-                </div>
+                                            {item_brands?.map((brand) => (
+                                                <CommandItem
+                                                    key={brand.code}
+                                                    value={brand.code}
+                                                    onSelect={(currentValue) => {
+                                                        setValue(currentValue === value ? '' : currentValue);
+                                                        handleSubmit('brand_code', currentValue);
+                                                        setOpen(false);
+                                                    }}
+                                                >
+                                                    <span className="rounded bg-white p-0.5">
+                                                        {brand?.image ? (
+                                                            <img
+                                                                className="size-8 object-contain"
+                                                                src={`/assets/images/item_brands/thumb/${brand?.image}`}
+                                                                alt=""
+                                                            />
+                                                        ) : (
+                                                            <span className="size-8 object-contain" />
+                                                        )}
+                                                    </span>
+                                                    {brand.name}
+                                                    <Check className={cn('ml-auto', value === brand.code ? 'opacity-100' : 'opacity-0')} />
+                                                </CommandItem>
+                                            ))}
+                                        </CommandGroup>
+                                    </CommandList>
+                                </Command>
+                            </PopoverContent>
+                        </Popover>
+                    </div>
+                )}
+
                 {/* End Brands */}
 
                 {/* <Button className="my-8 w-full">Apply Filter</Button> */}

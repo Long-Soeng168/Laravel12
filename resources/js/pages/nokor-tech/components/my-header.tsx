@@ -22,17 +22,20 @@ const MyHeader = () => {
     return (
         <>
             <nav className="bg-true-primary text-white">
-                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-4 text-sm text-gray-300">
-                    <Link prefetch href="/" className="flex items-center gap-2">
-                        <img
-                            width={65}
-                            height={65}
-                            src={`/assets/images/application_info/thumb/${application_info?.image}`}
-                            alt={`${application_info?.name}'s logo`}
-                            className="hover:cursor-pointer"
-                        />
-                        <span className="text-lg font-semibold text-white">{application_info?.name}</span>
-                    </Link>
+                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center min-h-10 justify-between px-4 text-sm text-gray-300">
+                    {application_info?.image && (
+                        <Link prefetch href="/" className="flex items-center gap-2">
+                            <img
+                                width={65}
+                                height={65}
+                                src={`/assets/images/application_info/thumb/${application_info?.image}`}
+                                alt={`${application_info?.name}'s logo`}
+                                className="hover:cursor-pointer"
+                            />
+                            <span className="text-lg font-semibold text-white">{application_info?.name}</span>
+                        </Link>
+                    )}
+
                     <div className="items-center gap-2 lg:flex">
                         <div className="hidden items-center lg:flex">
                             <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{application_info?.address}</div>

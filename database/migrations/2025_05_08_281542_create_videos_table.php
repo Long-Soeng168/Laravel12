@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('video_file')->nullable();
             $table->string('image')->nullable();
             $table->string('status')->nullable()->default('active');
+            $table->unsignedInteger('order_index')->default('1');
             $table->text('short_description')->nullable();
             $table->text('short_description_kh')->nullable();
             $table->bigInteger('total_view_counts')->nullable();

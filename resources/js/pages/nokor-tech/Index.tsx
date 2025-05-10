@@ -1,3 +1,4 @@
+import MyNoData from '@/components/my-no-data';
 import { usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 import MyBlogList from './components/my-blogs-list';
@@ -22,17 +23,23 @@ const Index = ({ children }: NokorTechLayoutProps) => {
 
                 <>
                     <div className="mx-auto mb-10 max-w-screen-xl">
-                        {topBanners && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
+                        {topBanners?.length > 0 && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
                         {/* end slide */}
                         <div className="mt-10 mb-4 space-y-8">
-                            <MyCategoryList items={categoriesWithItems} />
-                            <MyBrandList items={brandsWithItems} />
+                            {categoriesWithItems?.length > 0 && <MyCategoryList items={categoriesWithItems} />}
+                            {brandsWithItems?.length > 0 && <MyBrandList items={brandsWithItems} />}
                         </div>
 
-                        <MyProductListHeader title="New Arrivals" link="/products" />
-                        <MyProductList items={newArrivals} />
+                        {newArrivals?.length > 0 ? (
+                            <>
+                                <MyProductListHeader title="New Arrivals" link="/products" />
+                                <MyProductList items={newArrivals} />
+                            </>
+                        ) : (
+                            <MyNoData />
+                        )}
 
-                        <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />
+                        {middleBanners?.length > 0 && <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />}
 
                         {categoriesWithItems
                             .filter((category: any) => category.all_items.length > 0)

@@ -11,16 +11,18 @@ export default function MyFooter() {
             <div className="relative z-10 mx-auto max-w-7xl px-4 pt-12 text-white sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
                     <div className="justify-self-center">
-                        <div className="flex flex-col items-center justify-center">
-                            <img
-                                width={65}
-                                height={65}
-                                src={`/assets/images/application_info/thumb/${application_info?.image}`}
-                                alt={`${application_info?.name}'s logo`}
-                                className="hover:cursor-pointer"
-                            />
-                            <p className="text-2xl ">{application_info?.name}</p>
-                        </div>
+                        {application_info?.image && (
+                            <div className="flex flex-col items-center justify-center">
+                                <img
+                                    width={65}
+                                    height={65}
+                                    src={`/assets/images/application_info/thumb/${application_info?.image}`}
+                                    alt={`${application_info?.name}'s logo`}
+                                    className="hover:cursor-pointer"
+                                />
+                                <p className="text-2xl">{application_info?.name}</p>
+                            </div>
+                        )}
                     </div>
                     {/* Company Info */}
                     <div className="lg:justify-self-center">
