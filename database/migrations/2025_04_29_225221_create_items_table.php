@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name')->index();
             $table->string('name_kh')->nullable();
             $table->string('code')->nullable();
-            $table->string('short_description', 1000)->nullable();
-            $table->string('short_description_kh', 1000)->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('short_description_kh')->nullable();
             $table->text('long_description')->nullable();
             $table->text('long_description_kh')->nullable();
             $table->string('link')->nullable();

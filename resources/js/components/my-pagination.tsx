@@ -8,7 +8,7 @@ export function MyPagination() {
     // console.log(links);
     const queryParams = new URLSearchParams(window.location.search);
     queryParams.delete('page');
-    const queryString = new URLSearchParams(queryParams).toString();
+    const queryString = new URLSearchParams(queryParams)?.toString();
 
     const renderLabel = (label) => {
         if (label == '&laquo; Previous' || label == 'Next &raquo;') {

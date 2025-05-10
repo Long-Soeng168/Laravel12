@@ -67,7 +67,7 @@ export default function Create({
             status: editData?.status || 'active',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
-            order_index: editData?.order_index.toString() || '',
+            order_index: editData?.order_index?.toString() || '',
             parent_code: editData?.parent_code || '',
             image: '',
             banner: '',

@@ -23,12 +23,13 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     name: z.string().min(1).max(255),
-    short_description: z.string().max(500).optional(),
+    short_description: z.string().optional(),
     code: z.string().max(255).optional(),
     link: z.string().max(255).optional(),
     status: z.string().optional(),
     source: z.string().optional(),
     category_code: z.string().optional(),
+    shop_id: z.any().optional(),
     brand_code: z.string().optional(),
     model_code: z.string().optional(),
     body_type_code: z.string().optional(),
@@ -52,7 +53,7 @@ export default function Create() {
     };
 
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { itemCategories, itemBrands, itemModels, itemBodyTypes, editData, links, readOnly } = usePage().props;
+    const { itemCategories, itemBrands, itemModels, itemBodyTypes, editData, shops, readOnly } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
@@ -67,6 +68,7 @@ export default function Create() {
             link: editData?.link || '',
             status: editData?.status || 'active',
             category_code: editData?.category_code?.toString() || '',
+            shop_id: editData?.shop_id?.toString() || '',
             brand_code: editData?.brand_code?.toString() || '',
             model_code: editData?.model_code?.toString() || '',
             body_type_code: editData?.body_type_code?.toString() || '',
@@ -218,6 +220,84 @@ export default function Create() {
                                 )}
                             />
                         </div>
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="shop_id"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col" key={field.value}>
+                                        <FormLabel>{t('shop')}</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                                                    >
+                                                        {field.value
+                                                            ? (() => {
+                                                                  const shop = shops?.find((shop) => shop.id == field.value);
+                                                                  return shop ? `${shop.name}` : '';
+                                                              })()
+                                                            : t('Select shop')}
+
+                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="p-0">
+                                                <Command>
+                                                    <CommandInput placeholder="Search shop..." />
+                                                    <CommandList>
+                                                        <CommandEmpty>{t('No data')}</CommandEmpty>
+                                                        <CommandGroup>
+                                                            <CommandItem
+                                                                value=""
+                                                                onSelect={() => {
+                                                                    form.setValue('shop_id', '');
+                                                                }}
+                                                            >
+                                                                <Check
+                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
+                                                                />
+                                                                {t('Select shop')}
+                                                            </CommandItem>
+                                                            {shops?.map((shop) => (
+                                                                <CommandItem
+                                                                    value={shop.name}
+                                                                    key={shop.id}
+                                                                    onSelect={() => {
+                                                                        form.setValue('shop_id', shop.id);
+                                                                    }}
+                                                                >
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'mr-2 h-4 w-4',
+                                                                            shop.id === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                    {shop.logo && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/shops/thumb/${shop.logo}`}
+                                                                        />
+                                                                    )}
+                                                                    {shop.name}
+                                                                    {/* {shop.name_kh && `(${shop.name_kh})`} */}
+                                                                </CommandItem>
+                                                            ))}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormDescription>{t('Select the category where this item belong to.')}</FormDescription>
+                                        <FormMessage>{errors.shop_id && <div>{errors.shop_id}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
 
                         <div className="col-span-12">
                             <FormField
@@ -259,7 +339,7 @@ export default function Create() {
                             <FormItem>
                                 <FormLabel>{t('Short Description')}</FormLabel>
                                 <FormControl>
-                                    <AutosizeTextarea placeholder={t('Short Description')} className="resize-none" {...field} />
+                                    <AutosizeTextarea placeholder={t('Short Description')} className="resize-none whitespace-pre-line" {...field} />
                                 </FormControl>
                                 <FormMessage>{errors.short_description && <div>{errors.short_description}</div>}</FormMessage>
                             </FormItem>
@@ -343,6 +423,12 @@ export default function Create() {
                                                                             category.code === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
+                                                                    {category.image && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/item_categories/thumb/${category.image}`}
+                                                                        />
+                                                                    )}
                                                                     {category.parent_code && '--'}
                                                                     {category.name}
                                                                     {/* {category.name_kh && `(${category.name_kh})`} */}
@@ -359,6 +445,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
+
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -417,7 +504,14 @@ export default function Create() {
                                                                             brand.code === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
-                                                                    {brand.name} {brand.name_kh && `(${brand.name_kh})`}
+                                                                    {brand.image && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/item_brands/thumb/${brand.image}`}
+                                                                        />
+                                                                    )}
+                                                                    {brand.name}
+                                                                    {/* {brand.name_kh && `(${brand.name_kh})`} */}
                                                                 </CommandItem>
                                                             ))}
                                                         </CommandGroup>
@@ -492,7 +586,8 @@ export default function Create() {
                                                                                     model.code === field.value ? 'opacity-100' : 'opacity-0',
                                                                                 )}
                                                                             />
-                                                                            {model.name} {model.name_kh && `(${model.name_kh})`}
+                                                                            {model.name}
+                                                                            {/* {model.name_kh && `(${model.name_kh})`} */}
                                                                         </CommandItem>
                                                                     ))}
                                                         </CommandGroup>
@@ -564,7 +659,14 @@ export default function Create() {
                                                                             bodyType.code === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
-                                                                    {bodyType.name} {bodyType.name_kh && `(${bodyType.name_kh})`}
+                                                                    {bodyType.image && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/item_body_types/thumb/${bodyType.image}`}
+                                                                        />
+                                                                    )}
+                                                                    {bodyType.name} 
+                                                                    {/* {bodyType.name_kh && `(${bodyType.name_kh})`} */}
                                                                 </CommandItem>
                                                             ))}
                                                         </CommandGroup>

@@ -13,6 +13,7 @@ use App\Models\ItemCategory;
 use App\Models\ItemDailyView;
 use App\Models\ItemImage;
 use App\Models\ItemModel;
+use App\Models\Shop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -70,10 +71,11 @@ class ItemController extends Controller implements HasMiddleware
     public function create(Request $request)
     {
         return Inertia::render('admin/items/Create', [
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('name')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('name')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('name')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('name')->get(),
+            'shops' => Shop::orderBy('name')->get(),
         ]);
     }
 
@@ -86,12 +88,13 @@ class ItemController extends Controller implements HasMiddleware
             'code' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:1000',
-            'short_description_kh' => 'nullable|string|max:1000',
+            'short_description' => 'nullable|string',
+            'short_description_kh' => 'nullable|string',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'category_code' => 'nullable|string|exists:item_categories,code',
+            'shop_id' => 'nullable|exists:shops,id',
             'brand_code' => 'nullable|string|exists:item_brands,code',
             'model_code' => 'nullable|string|exists:item_models,code',
             'body_type_code' => 'nullable|string|exists:item_body_types,code',
@@ -110,10 +113,10 @@ class ItemController extends Controller implements HasMiddleware
         unset($validated['images']);
 
         foreach ($validated as $key => $value) {
-    if ($value === '') {
-        $validated[$key] = null;
-    }
-}
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         $created_item = Item::create($validated);
 
@@ -149,11 +152,11 @@ class ItemController extends Controller implements HasMiddleware
         return Inertia::render('admin/items/Create', [
             'editData' => $item->load('images'),
             'readOnly' => true,
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
-
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('name')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('name')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('name')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('name')->get(),
+            'shops' => Shop::orderBy('name')->get(),
         ]);
     }
 
@@ -165,10 +168,11 @@ class ItemController extends Controller implements HasMiddleware
     {
         return Inertia::render('admin/items/Create', [
             'editData' => $item->load('images'),
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
-            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('name')->get(),
+            'itemBrands' => ItemBrand::where('status', 'active')->orderBy('name')->get(),
+            'itemModels' => ItemModel::where('status', 'active')->orderBy('name')->get(),
+            'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('name')->get(),
+            'shops' => Shop::orderBy('name')->get(),
         ]);
     }
 
@@ -182,12 +186,13 @@ class ItemController extends Controller implements HasMiddleware
             'code' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:1000',
-            'short_description_kh' => 'nullable|string|max:1000',
+            'short_description' => 'nullable|string',
+            'short_description_kh' => 'nullable|string',
             'long_description' => 'nullable|string',
             'long_description_kh' => 'nullable|string',
             'link' => 'nullable|string|max:255',
             'category_code' => 'nullable|string|exists:item_categories,code',
+            'shop_id' => 'nullable|exists:shops,id',
             'brand_code' => 'nullable|string|exists:item_brands,code',
             'model_code' => 'nullable|string|exists:item_models,code',
             'body_type_code' => 'nullable|string|exists:item_body_types,code',

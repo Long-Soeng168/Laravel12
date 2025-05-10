@@ -20,7 +20,7 @@ export function MySearchTableData({ className }: { className?: string }) {
             queryParams.set('search', searchTerm);
             queryParams.set('page', '1');
 
-            router.get(currentPath + '?' + queryParams.toString(), {}, { preserveState: true });
+            router.get(currentPath + '?' + queryParams?.toString(), {}, { preserveState: true });
         }, 500),
         [currentPath], // Dependency ensures it updates if the path changes
     );

@@ -26,7 +26,7 @@ const MyTableData = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     return (

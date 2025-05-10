@@ -1,6 +1,5 @@
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import { Link, router } from '@inertiajs/react';
-import { Verified } from 'lucide-react';
 import React from 'react';
 
 interface MyProductCardProps {
@@ -40,7 +39,7 @@ const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
 
             <div className="relative">
                 {product.shop?.name && (
-                    <figcaption className="absolute -top-11 left-2 aspect-square overflow-hidden rounded-full border dark:border-white bg-white object-contain p-1">
+                    <figcaption className="absolute -top-11 left-2 aspect-square overflow-hidden rounded-full border bg-white object-contain p-1 dark:border-white">
                         <MyTooltipButton
                             title={product.shop?.name}
                             size="icon"
@@ -60,13 +59,13 @@ const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
 
                 <Link prefetch href={`/products/${product.id}`} className="relative">
                     {/* Stock Status */}
-                    {product.stock_status != 'na' && (
+                    {/* {product.stock_status != 'na' && (
                         <div className={`flex items-center justify-start gap-2 py-2 text-sm ${isInStock ? 'text-green-500' : 'text-red-500'}`}>
                             <Verified size={16} />
 
                             <p>{isInStock ? 'In Stock' : 'Out of Stock'}</p>
                         </div>
-                    )}
+                    )} */}
 
                     {/* Product Name */}
                     <p className="line-clamp-3">{product.name}</p>

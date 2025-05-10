@@ -11,18 +11,21 @@ import { MySearchProducts } from './my-search-products';
 const MyHeader = () => {
     const { application_info, links, post_counts, item_categories } = usePage().props;
     const currentPath = window.location.pathname;
-    const navItems = [
+    const navItems1 = [
         { label: 'Products', href: '/products' },
         { label: 'Online Trainings', href: '/online_trainings' },
-        { label: 'Blogs', href: '/blogs', condition: post_counts > 0 },
-        { label: 'Contact', href: '/contact-us' },
+    ];
+    const navItems2 = [
+        { label: 'Privacy', href: '/privacy' },
         { label: 'About', href: '/about-us' },
+        { label: 'Contact', href: '/contact-us' },
+        // { label: 'Dowload App', href: '/download-app' },
     ];
 
     return (
         <>
             <nav className="bg-true-primary text-white">
-                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center min-h-10 justify-between px-4 text-sm text-gray-300">
+                <div className="mx-auto flex min-h-10 max-w-screen-xl flex-wrap items-center justify-between px-4 py-2 text-sm text-gray-300">
                     {application_info?.image && (
                         <Link prefetch href="/" className="flex items-center gap-2">
                             <img
@@ -30,32 +33,22 @@ const MyHeader = () => {
                                 height={65}
                                 src={`/assets/images/application_info/thumb/${application_info?.image}`}
                                 alt={`${application_info?.name}'s logo`}
-                                className="hover:cursor-pointer"
+                                className="overflow-hidden rounded-full hover:cursor-pointer"
                             />
-                            <span className="text-lg font-semibold text-white">{application_info?.name}</span>
+                            <span className="text-xl font-bold text-white">{application_info?.name}</span>
                         </Link>
                     )}
-
-                    <div className="items-center gap-2 lg:flex">
-                        <div className="hidden items-center lg:flex">
-                            <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{application_info?.address}</div>
-                            <span className="pl-2 font-semibold text-white underline hover:cursor-pointer">
-                                <Link href="/contact-us" prefetch>
-                                    <button className="relative cursor-pointer underline underline-offset-[5.5px] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white">
-                                        Contact
-                                    </button>
-                                </Link>
-                            </span>
-                        </div>
-                    </div>
                     <div className="flex items-center gap-4 font-semibold text-white">
-                        <p className="hidden sm:block">
-                            Call Us :{' '}
-                            <a className="hover:underline" href={`tel:${application_info?.phone}`}>
-                                {application_info?.phone}
-                            </a>
-                        </p>
-                        <div className="flex gap-2">
+                        <Link
+                            prefetch
+                            href="/download-app"
+                            className={`rainbow-button z-40 flex cursor-pointer items-center justify-center gap-2 pr-4 pl-2 font-semibold whitespace-nowrap`}
+                        >
+                            {/* <SquareLibraryIcon size={18} /> */}
+                            <img src="/assets/icons/phone-car.png" alt="elibrary icon" className="aspect-square w-12 object-contain py-1" />
+                            Download App
+                        </Link>
+                        {/* <div className="flex gap-2">
                             {links?.map((item) => (
                                 <a key={item?.id} href={item?.link ? item?.link : '#'}>
                                     <img
@@ -67,18 +60,18 @@ const MyHeader = () => {
                                     />
                                 </a>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </nav>
             <div className="bg-background sticky top-0 z-50">
                 <header>
-                    <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-2 lg:py-4">
+                    <div className="mx-auto flex max-w-screen-xl items-center justify-between py-2 lg:py-4">
                         <div className="flex items-center">
                             <Sheet>
                                 <div className="flex items-center gap-2">
                                     <SheetTrigger>
-                                        <Menu className="text-primary size-8 lg:hidden" />
+                                        <Menu className="text-primary mx-4 size-8 lg:hidden" />
                                     </SheetTrigger>
                                     {/* <Link href="/">
                                         <img
@@ -151,8 +144,45 @@ const MyHeader = () => {
                                     </>
                                 )}
 
+                                {navItems1.map((item, index) =>
+                                    item.condition === false ? null : (
+                                        <li key={index + item.label} className="flex gap-4">
+                                            <Link
+                                                prefetch
+                                                key={index}
+                                                href={item.href}
+                                                className={`group relative mx-2 cursor-pointer ${
+                                                    currentPath.startsWith(item.href) ? 'text-primary font-bold' : ''
+                                                } hover:text-primary`}
+                                            >
+                                                {item.label}
+                                                <span
+                                                    className={`bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full ${
+                                                        currentPath.startsWith(item.href) ? 'w-full' : ''
+                                                    }`}
+                                                ></span>
+                                            </Link>
+                                        </li>
+                                    ),
+                                )}
                                 <li key={'seperator'} className="border-primary/5 bg-primary/50 h-6 border"></li>
-                                {navItems.map((item, index) =>
+                                <li className="flex gap-4">
+                                    <Link
+                                        prefetch
+                                        href={'/'}
+                                        className={`group relative mx-2 cursor-pointer ${
+                                            currentPath.endsWith('/') ? 'text-primary font-bold' : ''
+                                        } hover:text-primary`}
+                                    >
+                                        Home
+                                        <span
+                                            className={`bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full ${
+                                                currentPath.endsWith('/') ? 'w-full' : ''
+                                            }`}
+                                        ></span>
+                                    </Link>
+                                </li>
+                                {navItems2.map((item, index) =>
                                     item.condition === false ? null : (
                                         <li key={index + item.label} className="flex gap-4">
                                             <Link
@@ -175,7 +205,7 @@ const MyHeader = () => {
                                 )}
                             </ul>
                         </div>
-                        <div className="flex shrink-0 gap-4">
+                        <div className="flex shrink-0 gap-4 px-4">
                             <Sheet>
                                 <div className="flex items-center gap-2">
                                     <SheetTrigger asChild>

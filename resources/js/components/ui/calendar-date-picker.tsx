@@ -608,14 +608,14 @@ export const CalendarDatePicker = React.forwardRef<
                           handleYearChange(Number(value), "from");
                           setSelectedRange(null);
                         }}
-                        value={yearFrom ? yearFrom.toString() : undefined}
+                        value={yearFrom ? yearFrom?.toString() : undefined}
                       >
                         <SelectTrigger className="hidden sm:flex w-[122px] focus:ring-0 focus:ring-offset-0 font-medium hover:bg-accent hover:text-accent-foreground">
                           <SelectValue placeholder="Year" />
                         </SelectTrigger>
                         <SelectContent>
                           {years.map((year, idx) => (
-                            <SelectItem key={idx} value={year.toString()}>
+                            <SelectItem key={idx} value={year?.toString()}>
                               {year}
                             </SelectItem>
                           ))}
@@ -649,14 +649,14 @@ export const CalendarDatePicker = React.forwardRef<
                             handleYearChange(Number(value), "to");
                             setSelectedRange(null);
                           }}
-                          value={yearTo ? yearTo.toString() : undefined}
+                          value={yearTo ? yearTo?.toString() : undefined}
                         >
                           <SelectTrigger className="hidden sm:flex w-[122px] focus:ring-0 focus:ring-offset-0 font-medium hover:bg-accent hover:text-accent-foreground">
                             <SelectValue placeholder="Year" />
                           </SelectTrigger>
                           <SelectContent>
                             {years.map((year, idx) => (
-                              <SelectItem key={idx} value={year.toString()}>
+                              <SelectItem key={idx} value={year?.toString()}>
                                 {year}
                               </SelectItem>
                             ))}

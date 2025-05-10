@@ -68,7 +68,7 @@ export default function Create({
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
             order_index: editData?.order_index?.toString() || '',
-            owner_user_id: editData?.owner_user_id.toString() || '',
+            owner_user_id: editData?.owner_user_id?.toString() || '',
             logo: '',
             banner: '',
         },

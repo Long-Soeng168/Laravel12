@@ -13,7 +13,7 @@ const Show = () => {
         <NokorTechLayout>
             <div className="mx-auto flex max-w-screen-xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-0">
                 <div>
-                    <h3 className="line-clamp-2 pb-4 text-4xl font-semibold tracking-tight">{post?.title}</h3>
+                    <h3 className="line-clamp-2 py-4 text-4xl font-semibold">{post?.title}</h3>
                     <img
                         className="mb-4 h-full max-h-[600px] rounded-xl w-full object-cover"
                         src={`/assets/images/posts/${post?.images && post?.images[0]?.image}`}

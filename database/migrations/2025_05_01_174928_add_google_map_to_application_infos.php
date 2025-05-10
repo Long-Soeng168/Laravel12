@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('application_infos', function (Blueprint $table) {
-            $table->string('google_map', 500)->default(false);
+            $table->string('google_map', 500)->nullable();
         });
     }
 

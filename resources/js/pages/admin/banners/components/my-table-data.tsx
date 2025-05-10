@@ -30,7 +30,7 @@ const MyTableData = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -63,7 +63,7 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Title Khmer')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('short_description')}>
+                            {/* <TableHead onClick={() => handleSort('short_description')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description')}
                                 </span>
@@ -72,7 +72,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description Khmer')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('order_index')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Order Index')}
@@ -218,8 +218,8 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.title || '---'}</TableCell>
                                 <TableCell>{item.title_kh || '---'}</TableCell>
-                                <TableCell>{item.short_description || '---'}</TableCell>
-                                <TableCell>{item.short_description_kh || '---'}</TableCell>
+                                {/* <TableCell>{item.short_description || '---'}</TableCell>
+                                <TableCell>{item.short_description_kh || '---'}</TableCell> */}
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 <TableCell>
                                     {hasPermission('banner update') ? (

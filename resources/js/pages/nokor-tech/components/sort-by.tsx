@@ -18,14 +18,14 @@ const SortBy = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     const handleChagePerPage = (perPage: number) => {
-        if (perPage.toString()) {
-            queryParams.set('perPage', perPage.toString());
+        if (perPage?.toString()) {
+            queryParams.set('perPage', perPage?.toString());
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
     return (
         <div className="flex items-center gap-2">

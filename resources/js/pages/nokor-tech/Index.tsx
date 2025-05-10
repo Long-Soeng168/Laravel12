@@ -2,6 +2,7 @@ import MyNoData from '@/components/my-no-data';
 import { usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 import MyBlogList from './components/my-blogs-list';
+import MyBodyTypeList from './components/my-body-types-list copy';
 import MyBrandList from './components/my-brand-list';
 import MyCategoryList from './components/my-category-list';
 import MyMiddleSlide from './components/my-middle-slide';
@@ -15,7 +16,7 @@ interface NokorTechLayoutProps {
 }
 
 const Index = ({ children }: NokorTechLayoutProps) => {
-    const { topBanners, middleBanners, posts, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
+    const { topBanners, middleBanners, posts, newArrivals, categoriesWithItems, brandsWithItems, bodyTypes } = usePage<any>().props;
     return (
         <NokorTechLayout>
             <main className="px-2">
@@ -25,9 +26,10 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                     <div className="mx-auto mb-10 max-w-screen-xl">
                         {topBanners?.length > 0 && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
                         {/* end slide */}
-                        <div className="mt-10 mb-4 space-y-8">
+                        <div className="mt-10 mb-4 space-y-4">
                             {categoriesWithItems?.length > 0 && <MyCategoryList items={categoriesWithItems} />}
                             {brandsWithItems?.length > 0 && <MyBrandList items={brandsWithItems} />}
+                            {bodyTypes?.length > 0 && <MyBodyTypeList items={bodyTypes} />}
                         </div>
 
                         {newArrivals?.length > 0 ? (

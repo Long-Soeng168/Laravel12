@@ -11,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { cn } from '@/lib/utils';
 
 const Filters = () => {
-    const { item_categories, item_brands } = usePage().props;
+    const { item_categories, item_brands, item_body_types } = usePage().props;
     const initialQueryParams = new URLSearchParams(window.location.search);
     const currentPath = window.location.pathname;
     function handleSubmit(key: string, value?: string) {
@@ -23,7 +23,7 @@ const Filters = () => {
                 queryParams.delete(key);
             }
             queryParams.set('page', '1');
-            const queryParamsString = queryParams.toString();
+            const queryParamsString = queryParams?.toString();
             router.get(currentPath + '?' + queryParamsString);
         } catch (error) {
             console.error('Form submission error', error);
@@ -34,6 +34,11 @@ const Filters = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(initialQueryParams?.get('brand_code') || '');
     // Brands
+
+    // Body Type
+    const [openBodyType, setOpenBodyType] = useState(false);
+    const [valueBodyType, setValueBodyType] = useState(initialQueryParams?.get('body_type_code') || '');
+    // Body Type
 
     const selectedCategoryCode = initialQueryParams.get('category_code') || '';
 
@@ -67,7 +72,7 @@ const Filters = () => {
                                     <div className="m-0.5 flex w-full items-center justify-between text-base">
                                         <button
                                             onClick={() => handleSubmit('category_code', category?.code)}
-                                            className={`${initialQueryParams.get('category_code') == category?.code && 'text-true-primary font-bold underline underline-offset-4'} hover:text-primary flex w-full flex-1 cursor-pointer items-center gap-1 p-1 hover:underline`}
+                                            className={`${initialQueryParams.get('category_code') == category?.code && 'text-true-primary flex font-bold underline underline-offset-4'} hover:text-primary flex w-full flex-1 cursor-pointer items-center gap-1 p-1 hover:underline`}
                                         >
                                             {category?.image ? (
                                                 <img
@@ -78,7 +83,9 @@ const Filters = () => {
                                             ) : (
                                                 <span className="mr-1 size-6 object-contain" />
                                             )}
-                                            {category?.name}
+                                            <span className="flex flex-1 items-center justify-between">
+                                                {category?.name} <span className="text-xs">({category?.items_count})</span>
+                                            </span>
                                         </button>
                                         {category?.children?.length > 0 && (
                                             <AccordionTrigger className="hover:bg-secondary cursor-pointer border p-0.5"></AccordionTrigger>
@@ -142,7 +149,7 @@ const Filters = () => {
                                     <ChevronsUpDown className="opacity-50" />
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-full p-0">
+                            <PopoverContent className="w-[250px] p-0">
                                 <Command>
                                     <CommandInput placeholder="Search brand..." className="h-9" />
                                     <CommandList>
@@ -182,7 +189,9 @@ const Filters = () => {
                                                             <span className="size-8 object-contain" />
                                                         )}
                                                     </span>
-                                                    {brand.name}
+                                                    <span className="flex flex-1 items-center justify-between">
+                                                        {brand?.name} <span className="text-xs">({brand?.items_count})</span>
+                                                    </span>
                                                     <Check className={cn('ml-auto', value === brand.code ? 'opacity-100' : 'opacity-0')} />
                                                 </CommandItem>
                                             ))}
@@ -195,6 +204,100 @@ const Filters = () => {
                 )}
 
                 {/* End Brands */}
+
+                {/* Body Type */}
+                {item_body_types?.length > 0 && (
+                    <div className="mt-8">
+                        <p className="text-primary mb-2 flex items-center gap-1 text-sm font-semibold">
+                            <AlignLeft size={18} /> Body Types
+                        </p>
+                        <Popover open={openBodyType} onOpenChange={setOpenBodyType}>
+                            <PopoverTrigger asChild>
+                                <Button variant="outline" role="combobox" aria-expanded={openBodyType} className="w-full justify-between">
+                                    {valueBodyType
+                                        ? (() => {
+                                              const selectedBodyType = item_body_types.find((body_type) => body_type.code === valueBodyType);
+                                              return selectedBodyType ? (
+                                                  <div className="flex items-center gap-2">
+                                                      {selectedBodyType.image ? (
+                                                          <span className="rounded bg-white p-0.5">
+                                                              <img
+                                                                  src={`/assets/images/item_body_types/thumb/${selectedBodyType.image}`}
+                                                                  alt={selectedBodyType.name}
+                                                                  className="size-7 object-contain"
+                                                              />
+                                                          </span>
+                                                      ) : (
+                                                          <span className="size-8 object-contain" />
+                                                      )}
+                                                      {selectedBodyType.name}
+                                                  </div>
+                                              ) : (
+                                                  'Select body_type...'
+                                              );
+                                          })()
+                                        : 'Select body_type...'}
+
+                                    <ChevronsUpDown className="opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-[250px] p-0">
+                                <Command>
+                                    <CommandInput placeholder="Search body_type..." className="h-9" />
+                                    <CommandList>
+                                        <CommandEmpty>No body type found.</CommandEmpty>
+                                        <CommandGroup>
+                                            <CommandItem
+                                                value=""
+                                                onSelect={() => {
+                                                    handleSubmit('body_type_code', '');
+                                                    setOpen(false);
+                                                }}
+                                            >
+                                                <span className="rounded bg-white p-0.5">
+                                                    <AlignLeft size={30} className="stroke-true-primary !size-8 stroke-[1.5]" />
+                                                </span>
+                                                All Body Types
+                                                <Check className={cn('ml-auto', valueBodyType === '' ? 'opacity-100' : 'opacity-0')} />
+                                            </CommandItem>
+                                            {item_body_types?.map((body_type) => (
+                                                <CommandItem
+                                                    key={body_type.code}
+                                                    value={body_type.code}
+                                                    onSelect={(currentValue) => {
+                                                        setValueBodyType(currentValue === valueBodyType ? '' : currentValue);
+                                                        handleSubmit('body_type_code', currentValue);
+                                                        setOpen(false);
+                                                    }}
+                                                >
+                                                    <span className="rounded bg-white p-0.5">
+                                                        {body_type?.image ? (
+                                                            <img
+                                                                className="size-8 object-contain"
+                                                                src={`/assets/images/item_body_types/thumb/${body_type?.image}`}
+                                                                alt=""
+                                                            />
+                                                        ) : (
+                                                            <span className="size-8 object-contain" />
+                                                        )}
+                                                    </span>
+                                                    <span className="flex flex-1 items-center justify-between">
+                                                        {body_type?.name} <span className="text-xs">({body_type?.items_count})</span>
+                                                    </span>
+                                                    <Check
+                                                        className={cn('ml-auto', valueBodyType === body_type.code ? 'opacity-100' : 'opacity-0')}
+                                                    />
+                                                </CommandItem>
+                                            ))}
+                                        </CommandGroup>
+                                    </CommandList>
+                                </Command>
+                            </PopoverContent>
+                        </Popover>
+                    </div>
+                )}
+
+                {/* End Body Type */}
 
                 {/* <Button className="my-8 w-full">Apply Filter</Button> */}
 

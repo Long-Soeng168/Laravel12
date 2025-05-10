@@ -18,9 +18,9 @@ export default function MyFooter() {
                                     height={65}
                                     src={`/assets/images/application_info/thumb/${application_info?.image}`}
                                     alt={`${application_info?.name}'s logo`}
-                                    className="hover:cursor-pointer"
+                                    className="hover:cursor-pointer rounded-full"
                                 />
-                                <p className="text-2xl">{application_info?.name}</p>
+                                <p className="text-2xl mt-2 font-bold">{application_info?.name}</p>
                             </div>
                         )}
                     </div>

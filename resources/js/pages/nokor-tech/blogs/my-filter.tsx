@@ -39,7 +39,7 @@ export default function MyFilter() {
                 queryParams.delete('category_code');
             }
             queryParams.set('page', '1');
-            const queryParamsString = queryParams.toString();
+            const queryParamsString = queryParams?.toString();
             router.get(currentPath + '?' + queryParamsString);
         } catch (error) {
             console.error('Form submission error', error);

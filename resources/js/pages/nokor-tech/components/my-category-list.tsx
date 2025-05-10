@@ -1,4 +1,5 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Label } from '@/components/ui/label';
 import useTranslation from '@/hooks/use-translation';
 import { Link } from '@inertiajs/react';
 import React from 'react';
@@ -11,6 +12,7 @@ const MyCategoryList: React.FC<MyCategoryListProps> = ({ items }) => {
     const { t, currentLocale } = useTranslation();
     return (
         <Carousel>
+            <Label className="px-2">{t('Categories')}</Label>
             <CarouselContent className="p-2">
                 {items?.map((item, i) => (
                     <CarouselItem key={item?.id} className="basis-1/2 md:basis-1/3 xl:basis-1/6">

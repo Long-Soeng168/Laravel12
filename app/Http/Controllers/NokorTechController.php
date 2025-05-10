@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ApplicationInfo;
 use App\Models\Banner;
 use App\Models\Item;
+use App\Models\ItemBodyType;
 use App\Models\ItemBrand;
 use App\Models\ItemCategory;
 use App\Models\ItemDailyView;
@@ -12,6 +13,7 @@ use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Shop;
 use App\Models\VideoPlayList;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,13 +22,18 @@ class NokorTechController extends Controller
 {
     public function index()
     {
-        $topBanners = Banner::where('position_code', 'TOP_HOMEPAGE')->orderBy('order_index')->where('status', 'active')->get();
-        $middleBanners = Banner::where('position_code', 'MIDDLE_HOMEPAGE')->orderBy('order_index')->where('status', 'active')->get();
+        $topBanners = Banner::where('position_code', 'HOME-21/9')->orderBy('order_index')->where('status', 'active')->get();
+        $middleBanners = Banner::where('position_code', 'HOME-16/9')->orderBy('order_index')->where('status', 'active')->get();
 
         $posts = Post::where('status', 'active')->with('images', 'category')->orderBy('id', 'desc')->limit(3)->get();
 
 
         $newArrivals = Item::with('images', 'shop')->where('status', 'active')->orderBy('id', 'desc')->take(12)->get();
+        $bodyTypes = ItemBodyType::orderBy('order_index')->orderBy('name')
+            ->orderBy('name')
+            ->where('status', 'active')
+            ->get();
+
         $brandsWithItems = ItemBrand::with([
             'items' => function ($query) {
                 $query->with('images', 'shop')
@@ -35,7 +42,7 @@ class NokorTechController extends Controller
                     ->take(12); // Limit to 12 items
             },
         ])
-            ->orderBy('order_index')
+            ->orderBy('order_index')->orderBy('name')
             ->where('item_brands.status', 'active') // Specify 'item_categories' table for status
             ->get();
 
@@ -54,7 +61,7 @@ class NokorTechController extends Controller
                     ->take(12); // Limit to 12 child items
             }
         ])
-            ->orderBy('order_index')
+            ->orderBy('order_index')->orderBy('name')
             ->where('item_categories.status', 'active') // Specify 'item_categories' table for status
             ->whereNull('parent_code') // Only main categories (no parent)
             ->get();
@@ -80,6 +87,7 @@ class NokorTechController extends Controller
             'newArrivals' => $newArrivals,
             'categoriesWithItems' => $categoriesWithItems,
             'brandsWithItems' => $brandsWithItems,
+            'bodyTypes' => $bodyTypes,
         ]);
     }
 
@@ -160,6 +168,7 @@ class NokorTechController extends Controller
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
         $category_code = $request->input('category_code', '');
+        $body_type_code = $request->input('body_type_code', '');
 
         $query = Item::query();
         $query->with('created_by', 'updated_by', 'images', 'category', 'shop');
@@ -180,6 +189,9 @@ class NokorTechController extends Controller
         if ($brand_code) {
             $query->where('brand_code', $brand_code);
         }
+        if ($body_type_code) {
+            $query->where('body_type_code', $body_type_code);
+        }
 
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
@@ -193,7 +205,12 @@ class NokorTechController extends Controller
 
         $tableData = $query->paginate(perPage: $perPage)->onEachSide(1);
 
-        $item_brands = ItemBrand::orderBy('order_index')
+        $item_brands = ItemBrand::orderBy('order_index')->orderBy('name')
+            ->withCount('items')
+            ->where('status', 'active') // Specify 'item_categories' table for status
+            ->get();
+        $item_body_types = ItemBodyType::orderBy('order_index')->orderBy('name')
+            ->withCount('items')
             ->where('status', 'active') // Specify 'item_categories' table for status
             ->get();
         $productListBanners = Banner::where('position_code', 'PRODUCT_SEARCH')->orderBy('order_index')->where('status', 'active')->get();
@@ -201,9 +218,75 @@ class NokorTechController extends Controller
         return Inertia::render('nokor-tech/products/Index', [
             'tableData' => $tableData,
             'item_brands' => $item_brands,
+            'item_body_types' => $item_body_types,
             'productListBanners' => $productListBanners,
         ]);
     }
+
+    public function shop_show($id, Request $request)
+    {
+        $search = $request->input('search', '');
+        $brand_code = $request->input('brand_code', '');
+        $perPage = $request->input('perPage', 25);
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $category_code = $request->input('category_code', '');
+        $body_type_code = $request->input('body_type_code', '');
+
+        $query = Item::query();
+        $query->with('created_by', 'updated_by', 'images', 'category', 'shop');
+
+        if ($category_code) {
+            // get category and its children codes
+            $category = ItemCategory::with('children')->where('code', $category_code)->first();
+
+            if ($category) {
+                $categoryCodes = collect([$category->code])
+                    ->merge($category->children->pluck('code'))
+                    ->toArray();
+
+                $query->whereIn('category_code', $categoryCodes);
+            }
+        }
+
+        if ($brand_code) {
+            $query->where('brand_code', $brand_code);
+        }
+        if ($body_type_code) {
+            $query->where('body_type_code', $body_type_code);
+        }
+
+        if ($search) {
+            $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('name_kh', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $query->orderBy($sortBy, $sortDirection);
+        $query->where('status', 'active');
+
+        $tableData = $query->paginate(perPage: $perPage)->onEachSide(1);
+
+        // $item_brands = ItemBrand::orderBy('order_index')->orderBy('name')
+        //     ->withCount('items')
+        //     ->where('status', 'active') // Specify 'item_categories' table for status
+        //     ->get();
+        // $item_body_types = ItemBodyType::orderBy('order_index')->orderBy('name')
+        //     ->withCount('items')
+        //     ->where('status', 'active') // Specify 'item_categories' table for status
+        //     ->get();
+        // $productListBanners = Banner::where('position_code', 'PRODUCT_SEARCH')->orderBy('order_index')->where('status', 'active')->get();
+
+        return Inertia::render('nokor-tech/shops/Show', [
+            'shop' => Shop::find($id),
+            'tableData' => $tableData,
+            // 'item_brands' => $item_brands,
+            // 'item_body_types' => $item_body_types,
+            // 'productListBanners' => $productListBanners,
+        ]);
+    }
+
 
     public function online_trainings(Request $request)
     {
@@ -298,5 +381,13 @@ class NokorTechController extends Controller
     public function success()
     {
         return Inertia::render("nokor-tech/cart/Success");
+    }
+    public function download_app()
+    {
+        return Inertia::render("nokor-tech/DownloadApp");
+    }
+    public function privacy()
+    {
+        return Inertia::render("nokor-tech/Privacy");
     }
 }

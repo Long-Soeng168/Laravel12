@@ -31,7 +31,7 @@ class UserController extends Controller implements HasMiddleware
 
         $query = User::query();
 
-        $query->with('created_by', 'updated_by', 'roles');
+        $query->with('created_by', 'updated_by', 'roles', 'shop');
 
         if ($status) {
             $query->where('status', $status);

@@ -13,13 +13,13 @@ const Show = () => {
         <NokorTechLayout>
             <div className="mx-auto flex max-w-4xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-0">
                 <div>
-                    <h3 className="line-clamp-2 pb-4 text-4xl font-semibold">{videoPlaylist?.name}</h3>
+                    <h3 className="line-clamp-2 py-4 text-4xl font-semibold">{videoPlaylist?.name}</h3>
                     {/* <img
                         className="mb-4 h-full max-h-[600px] w-full rounded-xl object-cover"
                         src={`/assets/images/video_play_lists/${videoPlaylist?.image}`}
                         alt=""
                     /> */}
-                    <div className="prose ck-content max-w-none">
+                    <div className="prose ck-content max-w-none whitespace-pre-line text-foreground">
                         <div dangerouslySetInnerHTML={{ __html: videoPlaylist?.short_description }} />
                     </div>
                     <div className="my-8">

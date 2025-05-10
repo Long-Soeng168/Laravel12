@@ -34,7 +34,7 @@ class GarageController extends Controller implements HasMiddleware
 
         $query = Garage::query();
 
-        $query->with('created_by', 'updated_by');
+        $query->with('created_by', 'updated_by', 'owner');
 
         if ($status) {
             $query->where('status', $status);
@@ -116,7 +116,7 @@ class GarageController extends Controller implements HasMiddleware
             'owner_user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
+            'phone' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'parent_code' => 'nullable|string|max:255',
@@ -180,7 +180,7 @@ class GarageController extends Controller implements HasMiddleware
             'owner_user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
+            'phone' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
             'parent_code' => 'nullable|string|max:255',

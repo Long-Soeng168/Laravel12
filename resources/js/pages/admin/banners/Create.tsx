@@ -210,7 +210,7 @@ export default function Create() {
                                                 onValueChange={(value) => {
                                                     field.onChange(value);
                                                     !editData?.id &&
-                                                        form.setValue('link', links?.find((link: any) => link.id.toString() == value)?.link);
+                                                        form.setValue('link', links?.find((link: any) => link.id?.toString() == value)?.link);
                                                 }}
                                                 defaultValue={field.value}
                                             >
@@ -221,7 +221,7 @@ export default function Create() {
                                                 </FormControl>
                                                 <SelectContent>
                                                     {links?.map((link: any) => (
-                                                        <SelectItem value={link?.id.toString()}>
+                                                        <SelectItem value={link?.id?.toString()}>
                                                             <span>
                                                                 <img
                                                                     src={`/assets/images/links/thumb/${link?.image}`}

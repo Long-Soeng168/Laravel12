@@ -51,7 +51,7 @@ export default function Create({
             code: editData?.code || '',
             name: editData?.name || '',
             name_kh: editData?.name_kh || '',
-            order_index: editData?.order_index.toString() || '',
+            order_index: editData?.order_index?.toString() || '',
             image: editData?.image || '',
         },
     });

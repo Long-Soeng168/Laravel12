@@ -6,7 +6,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
-import { router, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
@@ -30,7 +30,7 @@ const MyTableData = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -165,7 +165,13 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.phone || '---'}</TableCell>
                                 <TableCell className="capitalize">{item.gender || '---'}</TableCell>
-                                <TableCell>{item.shop_id || '---'}</TableCell>
+                                <TableCell>
+                                    <Link className="hover:underline" href={`/admin/shops/${item.shop_id}`}>
+                                        <Badge variant="outline" className="hover:underline">
+                                            {item.shop?.name || '---'}
+                                        </Badge>
+                                    </Link>
+                                </TableCell>
                                 <TableCell>{item.garage_id || '---'}</TableCell>
                                 <TableCell>
                                     {item.created_at

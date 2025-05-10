@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Heading;
+use App\Models\ItemDailyView;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
@@ -19,13 +20,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $post_daily_views_data = DB::table('post_daily_views')
+        $post_daily_views_data = DB::table('item_daily_views')
             ->selectRaw('view_date as date, SUM(view_counts) as total')
-            ->where('view_date', '>=', now()->subDays(6)->toDateString())
+            ->where('view_date', '>=', now()->subDays(30)->toDateString())
             ->groupBy('view_date')
             ->orderBy('view_date')
             ->get();
-        $totalPostViews = PostDailyView::query()->sum('view_counts');
+        $totalPostViews = ItemDailyView::query()->sum('view_counts');
 
 
         $post_counts = Post::count();

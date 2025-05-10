@@ -38,7 +38,7 @@ class GaragePostController extends Controller implements HasMiddleware
 
         $query = GaragePost::query();
 
-        $query->with('created_by', 'updated_by', 'images');
+        $query->with('created_by', 'updated_by', 'images', 'garage');
 
         if ($status) {
             $query->where('status', $status);
@@ -84,10 +84,10 @@ class GaragePostController extends Controller implements HasMiddleware
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
-            'long_description' => 'nullable|string',
-            'long_description_kh' => 'nullable|string',
-            'link' => 'nullable|string|max:255',
-            'source' => 'nullable|string|max:255',
+            // 'long_description' => 'nullable|string',
+            // 'long_description_kh' => 'nullable|string',
+            // 'link' => 'nullable|string|max:255',
+            // 'source' => 'nullable|string|max:255',
             'garage_id' => 'required|exists:garages,id',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
@@ -169,10 +169,10 @@ class GaragePostController extends Controller implements HasMiddleware
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
             'short_description_kh' => 'nullable|string|max:500',
-            'long_description' => 'nullable|string',
-            'long_description_kh' => 'nullable|string',
-            'link' => 'nullable|string|max:255',
-            'source' => 'nullable|string|max:255',
+            // 'long_description' => 'nullable|string',
+            // 'long_description_kh' => 'nullable|string',
+            // 'link' => 'nullable|string|max:255',
+            // 'source' => 'nullable|string|max:255',
             'garage_id' => 'required|exists:garages,id',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',

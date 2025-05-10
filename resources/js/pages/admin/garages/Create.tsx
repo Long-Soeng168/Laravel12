@@ -67,8 +67,8 @@ export default function Create({
             status: editData?.status || 'active',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
-            order_index: editData?.order_index.toString() || '',
-            owner_user_id: editData?.owner_user_id.toString() || '',
+            order_index: editData?.order_index?.toString() || '',
+            owner_user_id: editData?.owner_user_id?.toString() || '',
             logo: '',
             banner: '',
         },
@@ -297,7 +297,7 @@ export default function Create({
                                                                                 item.id == field.value ? 'opacity-100' : 'opacity-0',
                                                                             )}
                                                                         />
-                                                                        {item.id} - {item.name}
+                                                                        {item.name} ({item.email})
                                                                     </CommandItem>
                                                                 );
                                                             })}

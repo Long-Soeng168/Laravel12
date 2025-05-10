@@ -34,7 +34,7 @@ class ShopController extends Controller implements HasMiddleware
 
         $query = Shop::query();
 
-        $query->with('created_by', 'updated_by');
+        $query->with('created_by', 'updated_by', 'owner');
 
         if ($status) {
             $query->where('status', $status);
@@ -151,7 +151,7 @@ class ShopController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/shops', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/shops', 1200);
                 $validated['banner'] = $created_image_name;
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload image: ' . $e->getMessage());
@@ -223,7 +223,7 @@ class ShopController extends Controller implements HasMiddleware
         }
         if ($banner_file) {
             try {
-                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/shops', 900);
+                $created_image_name = ImageHelper::uploadAndResizeImageWebp($banner_file, 'assets/images/shops', 1200);
                 $validated['banner'] = $created_image_name;
 
                 if ($shop->banner && $created_image_name) {

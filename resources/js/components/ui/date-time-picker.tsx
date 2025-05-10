@@ -53,7 +53,7 @@ function getValidNumber(value: string, { max, min = 0, loop = false }: GetValidN
       if (numericValue > max) numericValue = min;
       if (numericValue < min) numericValue = max;
     }
-    return numericValue.toString().padStart(2, '0');
+    return numericValue?.toString().padStart(2, '0');
   }
 
   return '00';
@@ -220,7 +220,7 @@ function genYears(yearRange = 50) {
   const today = new Date();
   return Array.from({ length: yearRange * 2 + 1 }, (_, i) => ({
     value: today.getFullYear() - yearRange + i,
-    label: (today.getFullYear() - yearRange + i).toString(),
+    label: (today.getFullYear() - yearRange + i)?.toString(),
   }));
 }
 
@@ -321,7 +321,7 @@ function Calendar({
           return (
             <div className="inline-flex gap-2">
               <Select
-                defaultValue={calendarMonth.date.getMonth().toString()}
+                defaultValue={calendarMonth.date.getMonth()?.toString()}
                 onValueChange={(value) => {
                   const newDate = new Date(calendarMonth.date);
                   newDate.setMonth(Number.parseInt(value, 10));
@@ -333,14 +333,14 @@ function Calendar({
                 </SelectTrigger>
                 <SelectContent>
                   {MONTHS.map((month) => (
-                    <SelectItem key={month.value} value={month.value.toString()}>
+                    <SelectItem key={month.value} value={month.value?.toString()}>
                       {month.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Select
-                defaultValue={calendarMonth.date.getFullYear().toString()}
+                defaultValue={calendarMonth.date.getFullYear()?.toString()}
                 onValueChange={(value) => {
                   const newDate = new Date(calendarMonth.date);
                   newDate.setFullYear(Number.parseInt(value, 10));
@@ -352,7 +352,7 @@ function Calendar({
                 </SelectTrigger>
                 <SelectContent>
                   {YEARS.map((year) => (
-                    <SelectItem key={year.value} value={year.value.toString()}>
+                    <SelectItem key={year.value} value={year.value?.toString()}>
                       {year.label}
                     </SelectItem>
                   ))}
@@ -395,7 +395,7 @@ const TimePeriodSelect = React.forwardRef<HTMLButtonElement, PeriodSelectorProps
         const tempDate = new Date(date);
         const hours = display12HourValue(date.getHours());
         onDateChange?.(
-          setDateByType(tempDate, hours.toString(), '12hours', period === 'AM' ? 'PM' : 'AM'),
+          setDateByType(tempDate, hours?.toString(), '12hours', period === 'AM' ? 'PM' : 'AM'),
         );
       }
     };

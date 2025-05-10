@@ -70,7 +70,7 @@ export function MyPerpageShort() {
     }
 
     // Update the URL
-    window.history.pushState({}, "", `?${params.toString()}`);
+    window.history.pushState({}, "", `?${params?.toString()}`);
     setSearchParams(params); // update the state to trigger re-render
   };
 

@@ -3,6 +3,7 @@ import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
+import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
@@ -30,7 +31,7 @@ const MyTableData = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -202,7 +203,12 @@ const MyTableData = () => {
                                 <TableCell>{item.address || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell>
-                                <TableCell>{item.owner_user_id || '---'}</TableCell>
+                                <TableCell>
+                                    <div className="space-y-2">
+                                        <Badge variant="secondary">{item.owner?.name || '---'}</Badge>
+                                        <Badge variant="outline">{item.owner?.email || '---'}</Badge>
+                                    </div>
+                                </TableCell>
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 {/* <TableCell>{item.order_index || '---'}</TableCell> */}
                                 <TableCell>

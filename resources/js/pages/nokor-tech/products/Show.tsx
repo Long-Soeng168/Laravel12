@@ -62,7 +62,7 @@ const ProductDetailPage = () => {
                             {itemShow?.short_description && (
                                 <div>
                                     <hr className="my-8" />
-                                    <p className="text-foreground mb-2 text-lg font-semibold">Features:</p>
+                                    <p className="text-foreground mb-2 text-lg font-semibold">Description:</p>
                                     <div className="whitespace-pre-line">{itemShow?.short_description}</div>
                                 </div>
                             )}
@@ -73,7 +73,7 @@ const ProductDetailPage = () => {
                         <MyVideoGallery />
                     </div> */}
 
-                    {itemShow?.long_description && (
+                    {/* {itemShow?.long_description && (
                         <div className="px-2">
                             <Accordion defaultValue="description" type="single" collapsible>
                                 <AccordionItem value="description" className="border-none">
@@ -90,7 +90,7 @@ const ProductDetailPage = () => {
                                 </AccordionItem>
                             </Accordion>
                         </div>
-                    )}
+                    )} */}
 
                     {relatedItems?.length > 0 && (
                         <div>

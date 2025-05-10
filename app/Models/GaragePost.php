@@ -24,4 +24,9 @@ class GaragePost extends Model
     {
         return $this->hasMany(GaragePostImage::class, 'post_id', 'id');
     }
+
+    public function garage()
+    {
+        return $this->belongsTo(Garage::class, 'garage_id', 'id');
+    }
 }

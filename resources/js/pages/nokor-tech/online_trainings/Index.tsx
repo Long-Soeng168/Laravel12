@@ -1,8 +1,10 @@
+import MyNoData from '@/components/my-no-data';
 import { MyPagination } from '@/components/my-pagination';
 import { MyRefreshButton } from '@/components/my-refresh-button';
 import { MySearchTableData } from '@/components/my-search-table-data';
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import AddToCart from '../components/add-to-cart';
 import NokorTechLayout from '../layouts/nokor-tech-layout';
 import { MyFilterButton } from './my-filter-button';
@@ -39,21 +41,23 @@ const Index = () => {
                     </div>
                 </div>
 
+                {!(tableData?.data?.length > 0) && <MyNoData />}
+
                 <div className="mt-4 grid gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
                     {tableData?.data?.map((item, i) => (
                         <Card key={i} className="h-full overflow-hidden rounded-md p-0 shadow-none">
                             <CardHeader className="p-0">
                                 <div className="group bg-muted relative aspect-video w-full overflow-hidden border-b">
-                                    <Link href={`/online_trainings/${item?.id}`} prefetch>
-                                        <img
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            src={`/assets/images/video_play_lists/thumb/${item?.image}`}
-                                            alt=""
-                                        />
+                                    {/* <Link href={`/online_trainings/${item?.id}`} prefetch> */}
+                                    <img
+                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        src={`/assets/images/video_play_lists/thumb/${item?.image}`}
+                                        alt=""
+                                    />
 
-                                        {/* Overlay on hover */}
-                                        {/* <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div> */}
-                                    </Link>
+                                    {/* Overlay on hover */}
+                                    {/* <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div> */}
+                                    {/* </Link> */}
 
                                     {/* AddToCart button with fade + slide effect */}
                                     {/* <div className="absolute right-2 bottom-2 translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
@@ -63,15 +67,17 @@ const Index = () => {
                             </CardHeader>
 
                             <CardContent className="flex h-full flex-col items-start justify-between">
+                                <Badge variant="outline" className="text-primary mb-2 text-base">
+                                    {item?.videos_count} videos
+                                </Badge>
+
+                                {/* <Link href={`/online_trainings/${item?.id}`} prefetch> */}
                                 <div>
-                                    <h3 className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight underline-offset-4 hover:underline">
-                                        {item?.name}
-                                    </h3>
-                                    <p className="text-muted-foreground mt-2 line-clamp-3 underline-offset-4 hover:underline">
-                                        {item?.short_description}
-                                    </p>
-                                    <p>{item?.videos_count}</p>
+                                    <h3 className="line-clamp-2 pt-2 text-[1.35rem] leading-8 underline-offset-4">{item?.name}</h3>
+                                    <p className="text-muted-foreground mt-2 line-clamp-3 leading-7 underline-offset-4">{item?.short_description}</p>
                                 </div>
+                                {/* </Link> */}
+
                                 <div className="my-6 flex w-full justify-end">
                                     <AddToCart item={item} />
                                 </div>

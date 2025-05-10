@@ -30,7 +30,7 @@ const formSchema = z.object({
     link: z.string().max(255).optional(),
     type: z.string().optional(),
     status: z.string().optional(),
-    garage_id: z.string(),
+    garage_id: z.any(),
     source: z.string().optional(),
     // category_code: z.string().optional(),
     post_date: z.coerce.date(),
@@ -212,7 +212,7 @@ export default function Create() {
                                                                     value={garageObject.name}
                                                                     key={garageObject.id}
                                                                     onSelect={() => {
-                                                                        form.setValue('garage_id', garageObject.id.toString());
+                                                                        form.setValue('garage_id', garageObject.id?.toString());
                                                                     }}
                                                                 >
                                                                     <Check
@@ -221,7 +221,13 @@ export default function Create() {
                                                                             garageObject.id === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
-                                                                    {garageObject.name} {garageObject.name_kh && `(${garageObject.name_kh})`}
+                                                                    {garageObject.logo && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/garages/thumb/${garageObject.logo}`}
+                                                                        />
+                                                                    )}
+                                                                    {garageObject.name}
                                                                 </CommandItem>
                                                             ))}
                                                         </CommandGroup>
@@ -352,7 +358,7 @@ export default function Create() {
                                                 onValueChange={(value) => {
                                                     field.onChange(value);
                                                     !editData?.id &&
-                                                        form.setValue('link', links?.find((link: any) => link.id.toString() == value)?.link);
+                                                        form.setValue('link', links?.find((link: any) => link.id?.toString() == value)?.link);
                                                 }}
                                                 defaultValue={field.value}
                                             >
@@ -363,7 +369,7 @@ export default function Create() {
                                                 </FormControl>
                                                 <SelectContent>
                                                     {links?.map((link: any) => (
-                                                        <SelectItem value={link?.id.toString()}>
+                                                        <SelectItem value={link?.id?.toString()}>
                                                             <span>
                                                                 <img
                                                                     src={`/assets/images/links/thumb/${link?.image}`}

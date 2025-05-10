@@ -3,12 +3,13 @@ import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
 import MyUpdateStatusButton from '@/components/my-update-status-button';
+import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, ScanEyeIcon, SquareArrowOutUpRightIcon } from 'lucide-react';
+import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
@@ -31,7 +32,7 @@ const MyTableData = () => {
             queryParams.set('sortBy', fieldName);
             queryParams.set('sortDirection', 'asc');
         }
-        router.get(currentPath + '?' + queryParams.toString());
+        router.get(currentPath + '?' + queryParams?.toString());
     };
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -200,7 +201,14 @@ const MyTableData = () => {
                                 {/* <TableCell>{item.title_kh || '---'}</TableCell> */}
                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 {/* <TableCell>{item.short_description_kh || '---'}</TableCell> */}
-                                <TableCell>{item.garage_id || '---'}</TableCell>
+                                {/* <TableCell>{item.garage_id || '---'}</TableCell> */}
+                                <TableCell>
+                                    <Link className="hover:underline" href={`/admin/garages/${item.garage_id}`}>
+                                        <Badge variant="outline" className="hover:underline">
+                                            {item.garage?.name || '---'}
+                                        </Badge>
+                                    </Link>
+                                </TableCell>
                                 <TableCell>
                                     {hasPermission('post update') ? (
                                         <MyUpdateStatusButton
