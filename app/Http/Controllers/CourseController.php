@@ -17,10 +17,10 @@ class CourseController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:partner view', only: ['index', 'show']),
-            new Middleware('permission:partner create', only: ['create', 'store']),
-            new Middleware('permission:partner update', only: ['edit', 'update', 'update_status']),
-            new Middleware('permission:partner delete', only: ['destroy', 'destroy_image']),
+            new Middleware('permission:course view', only: ['index', 'show']),
+            new Middleware('permission:course create', only: ['create', 'store']),
+            new Middleware('permission:course update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:course delete', only: ['destroy', 'destroy_image']),
         ];
     }
     /**

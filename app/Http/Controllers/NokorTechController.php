@@ -265,6 +265,7 @@ class NokorTechController extends Controller
 
         $query->orderBy($sortBy, $sortDirection);
         $query->where('status', 'active');
+        $query->where('shop_id', $id);
 
         $tableData = $query->paginate(perPage: $perPage)->onEachSide(1);
 

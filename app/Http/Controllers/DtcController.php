@@ -17,10 +17,10 @@ class DtcController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:partner view', only: ['index', 'show']),
-            new Middleware('permission:partner create', only: ['create', 'store']),
-            new Middleware('permission:partner update', only: ['edit', 'update', 'update_status']),
-            new Middleware('permission:partner delete', only: ['destroy', 'destroy_image']),
+            new Middleware('permission:dtc view', only: ['index', 'show']),
+            new Middleware('permission:dtc create', only: ['create', 'store']),
+            new Middleware('permission:dtc update', only: ['edit', 'update', 'update_status']),
+            new Middleware('permission:dtc delete', only: ['destroy', 'destroy_image']),
         ];
     }
     /**

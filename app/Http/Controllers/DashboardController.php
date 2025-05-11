@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Heading;
+use App\Models\Item;
 use App\Models\ItemDailyView;
 use App\Models\Link;
 use App\Models\Page;
@@ -29,6 +30,8 @@ class DashboardController extends Controller
         $totalPostViews = ItemDailyView::query()->sum('view_counts');
 
 
+        $item_counts = Item::count();
+        $item_counts = Item::count();
         $post_counts = Post::count();
         $page_counts = Page::count();
         $link_counts = Link::count();
@@ -43,6 +46,7 @@ class DashboardController extends Controller
         return Inertia::render('admin/dashboard/Index', [
             'post_daily_views_data' => $post_daily_views_data,
             'featureDatas' => [
+                'item_counts' => $item_counts,
                 'post_counts' => $post_counts,
                 'totalPostViews' => $totalPostViews,
                 'page_counts' => $page_counts,

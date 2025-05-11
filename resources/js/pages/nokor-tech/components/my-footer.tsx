@@ -61,6 +61,11 @@ export default function MyFooter() {
                                 </Link>
                             </li>
                             <li>
+                                <Link prefetch href="/privacy" className="hover:underline">
+                                    Privacy
+                                </Link>
+                            </li>
+                            <li>
                                 <Link prefetch href="/contact-us" className="hover:underline">
                                     Contact
                                 </Link>

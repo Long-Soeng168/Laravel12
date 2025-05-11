@@ -17,9 +17,9 @@ const CartItemSummary = () => {
         <div className="bg-muted rounded-md p-6 shadow-sm lg:w-4/12">
             <h2 className="mb-6 text-xl font-bold">Summary</h2>
 
-            <Accordion type="single" collapsible>
+            <Accordion type="single" collapsible defaultValue='item-1'>
                 <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-sm font-semibold">Products</AccordionTrigger>
+                    <AccordionTrigger className="text-sm font-semibold">Oneline Trainings</AccordionTrigger>
                     <AccordionContent className="text-sm">
                         <table className="w-full">
                             <tbody>

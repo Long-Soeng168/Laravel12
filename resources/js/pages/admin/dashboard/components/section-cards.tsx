@@ -1,13 +1,21 @@
 import usePermission from '@/hooks/use-permission';
 import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
-import { AppWindowIcon, FilePenLineIcon, GalleryThumbnailsIcon, Heading1Icon, LinkIcon, ProjectorIcon, ShieldCheckIcon, UsersIcon, Waypoints } from 'lucide-react';
+import { AppWindowIcon, FilePenLineIcon, GalleryThumbnailsIcon, Heading1Icon, LinkIcon, ListCheckIcon, ListTodoIcon, ProjectorIcon, ShieldCheckIcon, UsersIcon, Waypoints } from 'lucide-react';
 
 const SectionCards = () => {
     const hasPermission = usePermission();
     const { t, currentLocale } = useTranslation();
     const { featureDatas } = usePage().props;
     const features = [
+        {
+            icon: ListTodoIcon,
+            title: t('Items'),
+            total_records: `${featureDatas?.item_counts}`,
+            // sub_total_records: `Total view : ${featureDatas?.totalPostViews}`,
+            link: '/admin/items',
+            permission: 'item view',
+        },
         {
             icon: FilePenLineIcon,
             title: t('Posts'),

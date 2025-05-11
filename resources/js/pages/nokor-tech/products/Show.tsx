@@ -1,5 +1,6 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
 import { Link, usePage } from '@inertiajs/react';
+import { PhoneIcon } from 'lucide-react';
 import CarouselWithThumbs from '../components/CarouselWithThumbs';
 import MyProductList from '../components/my-product-list';
 import MyProductListHeader from '../components/my-product-list-header';
@@ -42,7 +43,13 @@ const ProductDetailPage = () => {
                             <div className="mt-6 mb-4">
                                 <p className="text-2xl font-bold text-red-600">${itemShow?.price}</p>
                             </div>
-                            <Link href={`/shops/${itemShow.shop?.id}`} className='hover:bg-muted p-2 block rounded-md cursor-pointer'>
+                            <a href={`tel:${itemShow.shop?.phone}`}>
+                                <Button size="lg" className='mb-4 mt-2'>
+                                    <PhoneIcon /> Call Now
+                                </Button>
+                            </a>
+
+                            <Link href={`/shops/${itemShow.shop?.id}`} className="hover:bg-muted block cursor-pointer rounded-md p-2">
                                 <figcaption className="flex items-center space-x-4">
                                     <img
                                         src={`/assets/images/shops/thumb/${itemShow.shop?.logo}`}
@@ -58,6 +65,7 @@ const ProductDetailPage = () => {
                                     </div>
                                 </figcaption>
                             </Link>
+
                             {/* <AddToCart item={itemShow} /> */}
                             {itemShow?.short_description && (
                                 <div>
