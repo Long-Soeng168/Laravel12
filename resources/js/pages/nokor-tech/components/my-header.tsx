@@ -2,6 +2,7 @@ import MySelectLanguageSwitch from '@/components/my-select-language-switch';
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search, User2Icon } from 'lucide-react';
 import CartButton from './cart-button';
@@ -9,18 +10,17 @@ import { MyCategoriesNav } from './my-categories-nav';
 import { MySearchProducts } from './my-search-products';
 
 const MyHeader = () => {
-    const { application_info, links, post_counts, item_categories } = usePage().props;
-    const currentPath = window.location.pathname;
-
+    const { application_info, post_counts, item_categories } = usePage().props;
+    const { t } = useTranslation();
     const navItems1 = [
-        { label: 'Products', href: '/products' },
-        { label: 'Online Trainings', href: '/online_trainings' },
+        { label: t('Products'), href: '/products' },
+        { label: t('Online Trainings'), href: '/online_trainings' },
     ];
 
     const navItems2 = [
-        { label: 'Privacy', href: '/privacy' },
-        { label: 'About', href: '/about-us' },
-        { label: 'Contact', href: '/contact-us' },
+        { label: t('Privacy'), href: '/privacy' },
+        { label: t('About'), href: '/about-us' },
+        { label: t('Contact'), href: '/contact-us' },
     ];
 
     const renderNavLink = ({ label, href }) => {
@@ -57,7 +57,7 @@ const MyHeader = () => {
                             <span className="text-xl font-bold">{application_info.name}</span>
                         </Link>
                     )}
-                    <div className="lg:justify-self-center hidden md:block">
+                    <div className="hidden md:block lg:justify-self-center">
                         <ul className="flex flex-col gap-1 text-white">
                             <li className="flex">
                                 <span className="mr-2 font-semibold">Phone:</span>
@@ -117,7 +117,7 @@ const MyHeader = () => {
                                 )}
                                 {navItems1.map(renderNavLink)}
                                 <li className="border-primary/5 bg-primary/50 h-6 border" />
-                                {renderNavLink({ label: 'Home', href: '/' })}
+                                {renderNavLink({ label: t('Home'), href: '/' })}
                                 {navItems2.map(renderNavLink)}
                             </ul>
                         </div>

@@ -95,7 +95,7 @@ const MyTableData = () => {
                                     <TableCell>{item.short_description_kh || '---'}</TableCell>
                                     {/* <TableCell>{item.image || '---'}</TableCell> */}
                                     <TableCell>
-                                        {hasPermission('partner update') ? (
+                                        {hasPermission('dtc update') ? (
                                             <MyUpdateStatusButton
                                                 id={item.id}
                                                 pathName="/admin/dtcs"

@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { Link } from '@inertiajs/react';
+import useTranslation from '@/hooks/use-translation';
+import { Link, usePage } from '@inertiajs/react';
 import { ArrowUpRightIcon } from 'lucide-react';
 import NokorTechLayout from './layouts/nokor-tech-layout';
 
 const About = () => {
+    const { about, whyChooseUs, buildForEveryone, getInTouch, privacyPolicy, getStartedNow } = usePage().props;
+    const { t, currentLocale } = useTranslation();
     return (
         <NokorTechLayout>
             <div className="text-foreground bg-background">
@@ -12,146 +15,217 @@ const About = () => {
                     {/* About */}
                     <section>
                         <div className="text-center">
-                            <h2 className="text-foreground mb-6 text-4xl font-bold">About ATA Auto</h2>
-                            <p className="mx-auto mb-8 max-w-3xl text-lg text-gray-400">
-                                ATA Auto is your ultimate companion for all things automotive. Designed for car owners, auto engineers, garage
-                                professionals, and passionate enthusiasts, our platform offers everything you need to maintain, repair, and enjoy your
-                                vehicle to the fullest.
-                            </p>
+                            <h2 className="text-foreground mb-6 text-4xl font-bold">{currentLocale == 'kh' ? about.title_kh : about.title}</h2>
+                            <p
+                                className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{ __html: currentLocale == 'kh' ? about.short_description_kh : about.short_description }}
+                            ></p>
                         </div>
 
-                        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                            <div className="bg-card rounded-3xl p-8 shadow-xl">
-                                <h3 className="text-card-foreground mb-2 text-2xl font-bold">🔧 Smart Tools & Decoders</h3>
-                                <p className="text-gray-500">
-                                    Instantly decode vehicle error codes, manage diagnostics, and access essential repair documentation — all in one
-                                    place.
-                                </p>
+                        {about?.children?.length > 0 && (
+                            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                {about?.children?.map((item) => (
+                                    <div className="bg-card rounded-3xl p-8 shadow-xl">
+                                        <h3 className="text-card-foreground mb-2 text-2xl font-bold">
+                                            {currentLocale == 'kh' ? item.title_kh : item.title}
+                                        </h3>
+                                        <p
+                                            className="text-gray-500"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentLocale == 'kh' ? item.short_description_kh : item.short_description,
+                                            }}
+                                        ></p>
+                                    </div>
+                                ))}
                             </div>
-
-                            <div className="bg-card rounded-3xl p-8 shadow-xl">
-                                <h3 className="text-card-foreground mb-2 text-2xl font-bold">🎓 Learn & Grow</h3>
-                                <p className="text-gray-500">
-                                    Boost your skills with curated automotive courses tailored for beginners, professionals, and enthusiasts alike.
-                                </p>
-                            </div>
-
-                            <div className="bg-card rounded-3xl p-8 shadow-xl">
-                                <h3 className="text-card-foreground mb-2 text-2xl font-bold">🛒 Product Marketplace</h3>
-                                <p className="text-gray-500">
-                                    Discover top-quality automotive products, tools, and accessories carefully selected for performance and
-                                    reliability.
-                                </p>
-                            </div>
-                        </div>
+                        )}
 
                         <div className="mt-16 text-center">
-                            <p className="mx-auto max-w-3xl text-lg text-gray-400">
-                                Whether you're fixing your car, upgrading your skills, or managing a garage — ATA Auto is built to support your
-                                journey. Join our community and experience a smarter, more connected automotive world.
-                            </p>
+                            <p
+                                className="mx-auto max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{ __html: currentLocale == 'kh' ? about.long_description_kh : about.long_description }}
+                            ></p>
                         </div>
                     </section>
 
-                    {/* Why Choose Us */}
-                    <section className="my-20 text-center">
-                        <h2 className="text-foreground mb-4 text-4xl font-bold">Why Choose Us?</h2>
-                        <p className="mx-auto max-w-2xl text-lg text-gray-500">
-                            Everything you need for your automotive journey — from shopping and learning to decoding and repairs.
-                        </p>
-                    </section>
+                    <section className="mt-20">
+                        <div className="text-center">
+                            <h2 className="text-foreground mb-6 text-4xl font-bold">
+                                {currentLocale == 'kh' ? whyChooseUs.title_kh : whyChooseUs.title}
+                            </h2>
+                            <p
+                                className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? whyChooseUs.short_description_kh : whyChooseUs.short_description,
+                                }}
+                            ></p>
+                        </div>
 
-                    {/* Features */}
-                    <section className="mb-20 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                        {[
-                            {
-                                title: '🛠️ Shop Products',
-                                desc: 'Top-quality automotive tools, parts & accessories for every car enthusiast or garage.',
-                            },
-                            { title: '🎓 Learn & Grow', desc: 'Expert-crafted courses to boost your diagnostic and repair skills.' },
-                            { title: '🚦 DTC Decoder', desc: 'Decode vehicle error codes instantly and fix issues fast.' },
-                            { title: '📄 Docs & Manuals', desc: 'Access essential automotive guides, manuals and repair docs anywhere.' },
-                            { title: '🏪 Garage Finder', desc: 'Find trusted garages with real reviews, services & ratings near you.' },
-                        ].map((item, idx) => (
-                            <div key={idx} className="bg-card transform rounded-3xl p-8 shadow-xl transition hover:scale-105">
-                                <h3 className="text-card-foreground mb-2 text-2xl font-bold">{item.title}</h3>
-                                <p className="text-gray-500">{item.desc}</p>
+                        {whyChooseUs?.children?.length > 0 && (
+                            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                {whyChooseUs?.children?.map((item) => (
+                                    <div className="bg-card rounded-3xl p-8 shadow-xl">
+                                        <h3 className="text-card-foreground mb-2 text-2xl font-bold">
+                                            {currentLocale == 'kh' ? item.title_kh : item.title}
+                                        </h3>
+                                        <p
+                                            className="text-gray-500"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentLocale == 'kh' ? item.short_description_kh : item.short_description,
+                                            }}
+                                        ></p>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </section>
+                        )}
 
-                    {/* Audience */}
-                    <section className="mb-20 text-center">
-                        <h2 className="text-foreground mb-6 text-4xl font-bold">Built for Everyone</h2>
-                        <div className="mx-auto max-w-3xl space-y-4 text-left text-gray-400">
-                            {[
-                                ['🚗 Car Owners:', 'Stay ahead with smart tools for maintenance & error checking.'],
-                                ['👨‍🔧 Auto Engineers:', 'Take your skills further with industry-focused learning.'],
-                                ['🏭 Garage Owners:', 'Manage smarter, reach more customers & grow.'],
-                                ['💡 Car Enthusiasts:', 'Dive deep into tools, docs & your passion for cars.'],
-                            ].map(([label, text], idx) => (
-                                <p key={idx}>
-                                    <span className="text-foreground font-semibold">{label}</span> {text}
-                                </p>
-                            ))}
+                        <div className="mt-16 text-center">
+                            <p
+                                className="mx-auto max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? whyChooseUs.long_description_kh : whyChooseUs.long_description,
+                                }}
+                            ></p>
                         </div>
                     </section>
 
-                    {/* Contact */}
-                    <section className="bg-card mb-20 rounded-3xl p-12 text-center">
-                        <h2 className="text-card-foreground mb-6 text-4xl font-bold">Get in Touch</h2>
-                        <p className="mb-4">We'd love to hear from you. Reach out through any of the channels below.</p>
-                        <div className="space-y-3 text-lg text-gray-400">
-                            <p>
-                                <strong>📞 Phone:</strong>{' '}
-                                <a href="tel:061561154" className="hover:underline">
-                                    061561154
-                                </a>
-                            </p>
-                            <p>
-                                <strong>📧 Email:</strong>{' '}
-                                <a href="mailto:longsoeng017@gmail.com" className="hover:underline">
-                                    longsoeng017@gmail.com
-                                </a>
-                            </p>
-                            <p>
-                                <strong>💬 Telegram:</strong>{' '}
-                                <a href="https://t.me/longsoeng" target="_blank" rel="noreferrer" className="hover:underline">
-                                    https://t.me/longsoeng
-                                </a>
-                            </p>
+                    <section className="mt-20">
+                        <div>
+                            <h2 className="text-foreground mb-6 text-center text-4xl font-bold">
+                                {currentLocale == 'kh' ? buildForEveryone.title_kh : buildForEveryone.title}
+                            </h2>
+                            <p
+                                className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? buildForEveryone.short_description_kh : buildForEveryone.short_description,
+                                }}
+                            ></p>
+                        </div>
+
+                        {buildForEveryone?.children?.length > 0 && (
+                            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                {buildForEveryone?.children?.map((item) => (
+                                    <div className="bg-card rounded-3xl p-8 shadow-xl">
+                                        <h3 className="text-card-foreground mb-2 text-2xl font-bold">
+                                            {currentLocale == 'kh' ? item.title_kh : item.title}
+                                        </h3>
+                                        <p
+                                            className="text-gray-500"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentLocale == 'kh' ? item.short_description_kh : item.short_description,
+                                            }}
+                                        ></p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="mt-16 text-center">
+                            <p
+                                className="mx-auto max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? buildForEveryone.long_description_kh : buildForEveryone.long_description,
+                                }}
+                            ></p>
                         </div>
                     </section>
+                    <section className="mt-20">
+                        <div>
+                            <h2 className="text-foreground mb-6 text-center text-4xl font-bold">
+                                {currentLocale == 'kh' ? getInTouch.title_kh : getInTouch.title}
+                            </h2>
+                            <p
+                                className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? getInTouch.short_description_kh : getInTouch.short_description,
+                                }}
+                            ></p>
+                        </div>
 
-                    {/* Privacy Policy */}
-                    <section className="mb-20 rounded-3xl p-12 text-center">
-                        <h2 className="text-foreground mb-6 text-4xl font-bold">Privacy Policy</h2>
-                        <div className="text-foreground mx-auto max-w-3xl space-y-4 text-left">
-                            <p>
-                                We respect your privacy and are committed to protecting your personal data. Any information you share with us — such
-                                as your email or contact details — will only be used to improve your experience and keep you informed.
-                            </p>
-                            <p>We do not share or sell your data to third parties. Your trust is important to us, and we take security seriously.</p>
-                            <p>
-                                By using our app or subscribing to our services, you agree to our data practices as outlined here. For questions or
-                                concerns, feel free to{' '}
-                                <a href="/contact-us" className="text-primary underline">
-                                    contact us
-                                </a>
-                                .
-                            </p>
+                        {getInTouch?.children?.length > 0 && (
+                            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                {getInTouch?.children?.map((item) => (
+                                    <div className="bg-card rounded-3xl p-8 shadow-xl">
+                                        <h3 className="text-card-foreground mb-2 text-2xl font-bold">
+                                            {currentLocale == 'kh' ? item.title_kh : item.title}
+                                        </h3>
+                                        <p
+                                            className="text-gray-500"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentLocale == 'kh' ? item.short_description_kh : item.short_description,
+                                            }}
+                                        ></p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="mt-16 text-center">
+                            <p
+                                className="mx-auto max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? getInTouch.long_description_kh : getInTouch.long_description,
+                                }}
+                            ></p>
+                        </div>
+                    </section>
+                    <section className="mt-20">
+                        <div className="mx-auto mb-8 max-w-3xl">
+                            <h2 className="text-foreground mb-6 text-center text-4xl font-bold">
+                                {currentLocale == 'kh' ? privacyPolicy.title_kh : privacyPolicy.title}
+                            </h2>
+                            <p
+                                className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? privacyPolicy.short_description_kh : privacyPolicy.short_description,
+                                }}
+                            ></p>
                             <Link href={`/privacy`} prefetch>
                                 <Button variant="outline" size="lg">
                                     More about privacy <ArrowUpRightIcon />
                                 </Button>
                             </Link>
                         </div>
+
+                        {privacyPolicy?.children?.length > 0 && (
+                            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                {privacyPolicy?.children?.map((item) => (
+                                    <div className="bg-card rounded-3xl p-8 shadow-xl">
+                                        <h3 className="text-card-foreground mb-2 text-2xl font-bold">
+                                            {currentLocale == 'kh' ? item.title_kh : item.title}
+                                        </h3>
+                                        <p
+                                            className="text-gray-500"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentLocale == 'kh' ? item.short_description_kh : item.short_description,
+                                            }}
+                                        ></p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="mt-16 text-center">
+                            <p
+                                className="mx-auto max-w-3xl text-lg text-gray-400"
+                                dangerouslySetInnerHTML={{
+                                    __html: currentLocale == 'kh' ? privacyPolicy.long_description_kh : privacyPolicy.long_description,
+                                }}
+                            ></p>
+                        </div>
                     </section>
 
                     {/* Download Call-to-Action */}
                     <section className="text-center">
-                        <h2 className="text-foreground mb-4 text-4xl font-bold">Get Started Now</h2>
-                        <p className="mb-6 text-gray-500">Download the app and drive your automotive knowledge forward.</p>
+                        <h2 className="text-foreground mb-6 text-center text-4xl font-bold">
+                            {currentLocale == 'kh' ? getStartedNow.title_kh : getStartedNow.title}
+                        </h2>
+                        <p
+                            className="mx-auto mb-8 max-w-3xl text-lg text-gray-400"
+                            dangerouslySetInnerHTML={{
+                                __html: currentLocale == 'kh' ? getStartedNow.short_description_kh : getStartedNow.short_description,
+                            }}
+                        ></p>
                         <Link
                             href="/download-app"
                             prefetch

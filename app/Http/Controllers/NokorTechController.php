@@ -91,23 +91,7 @@ class NokorTechController extends Controller
         ]);
     }
 
-    public function about()
-    {
-        $aboutPages = Page::with('images')->where('position_code', 'ABOUT')->where('status', 'active')->orderBy('order_index')->get();
-        // return $aboutPages;
-        return Inertia::render("nokor-tech/About", [
-            "aboutPages" => $aboutPages
-        ]);
-    }
 
-    public function contact()
-    {
-        $contactPage = Page::with('images')->where('position_code', 'CONTACT')->where('status', 'active')->orderBy('order_index')->first();
-
-        return Inertia::render("nokor-tech/Contact", [
-            "contactPage" => $contactPage
-        ]);
-    }
 
     public function blogs(Request $request)
     {
@@ -389,6 +373,37 @@ class NokorTechController extends Controller
     }
     public function privacy()
     {
-        return Inertia::render("nokor-tech/Privacy");
+        $privacies = Page::with('children')->where('code', 'PRIVACY-POLICY-PAGE')->where('status', 'active')->orderBy('order_index')->first();
+        // return $privacies;
+        return Inertia::render("nokor-tech/Privacy", [
+            'privacies' => $privacies,
+        ]);
+    }
+    public function about()
+    {
+        $about = Page::with('children')->where('code', 'ABOUT-ATA-AUTO')->where('status', 'active')->orderBy('order_index')->first();
+        $whyChooseUs = Page::with('children')->where('code', 'WHY-CHOOSE-US')->where('status', 'active')->orderBy('order_index')->first();
+        $buildForEveryone = Page::with('children')->where('code', 'BUILD-FOR-EVERYONE')->where('status', 'active')->orderBy('order_index')->first();
+        $getInTouch = Page::with('children')->where('code', 'GET-IN-TOUCH')->where('status', 'active')->orderBy('order_index')->first();
+        $privacyPolicy = Page::with('children')->where('code', 'PRIVACY-POLICY')->where('status', 'active')->orderBy('order_index')->first();
+        $getStartedNow = Page::with('children')->where('code', 'GET-STARTED-NOW')->where('status', 'active')->orderBy('order_index')->first();
+        // return $about;
+        return Inertia::render("nokor-tech/About", [
+            "about" => $about,
+            "whyChooseUs" => $whyChooseUs,
+            "buildForEveryone" => $buildForEveryone,
+            "getInTouch" => $getInTouch,
+            "privacyPolicy" => $privacyPolicy,
+            "getStartedNow" => $getStartedNow,
+        ]);
+    }
+
+    public function contact()
+    {
+        $contactPage = Page::with('images')->where('position_code', 'CONTACT')->where('status', 'active')->orderBy('order_index')->first();
+
+        return Inertia::render("nokor-tech/Contact", [
+            "contactPage" => $contactPage
+        ]);
     }
 }
