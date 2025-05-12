@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-// Route::get('/western_layout123', function(){
-//     return Inertia::render('westernuniversity/layout/layout');
-// });
+Route::get('/test_component', function(){
+    return Inertia::render('test/TestComponent');
+});
 
 Route::get('/', function () {
 return Inertia::render('westernUniversityNew/Home');
