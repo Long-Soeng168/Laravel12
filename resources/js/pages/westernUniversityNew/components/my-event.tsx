@@ -3,7 +3,7 @@ import { User } from 'lucide-react';
 const MyEvent = () => {
     return (
         <div className="mx-auto max-w-screen-2xl bg-white px-4 py-16 text-center sm:px-16">
-            <h2 className="font-noto-san-extra-light text-3xl text-black sm:text-4xl">Events</h2>
+            <h2 className="font-bold text-3xl text-black sm:text-4xl">Events</h2>
             <div className="mx-auto my-10 h-1 w-16 bg-[#282d91]"></div>
             <div className="container mx-auto px-4 pb-12">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">

@@ -3,9 +3,9 @@ const MyStatistics = () => {
     return (
         <div className='mt-12'>
             <div className="mx-auto max-w-screen-xl bg-white px-4 pb-16 text-center sm:px-16">
-                <h2 className="text-3xl text-black sm:text-4xl">Statistics</h2>
+                <h2 className="text-3xl font-bold text-black sm:text-4xl">Statistics</h2>
                 <div className="mx-auto my-4 h-1 w-16 bg-black"></div>
-                <p className="font-noto-san-regular mx-auto max-w-2xl text-sm text-gray-600 sm:text-base">
+                <p className=" mx-auto max-w-2xl text-sm text-gray-600 sm:text-base">
                     Jonathan Carroll University was founded on the principle that by pursuing big ideas and sharing what we learn, we make the world a
                     better place. For more than 135 years, we haven’t strayed from that vision.
                 </p>

@@ -140,6 +140,12 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'team update']);
         Permission::firstOrCreate(['name' => 'team delete']);
 
+        // client
+        Permission::firstOrCreate(['name' => 'client view']);
+        Permission::firstOrCreate(['name' => 'client create']);
+        Permission::firstOrCreate(['name' => 'client update']);
+        Permission::firstOrCreate(['name' => 'client delete']);
+
         // Sample Content View
         Permission::firstOrCreate(['name' => 'sample_content view']);
 

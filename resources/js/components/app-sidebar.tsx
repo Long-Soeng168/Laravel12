@@ -321,6 +321,12 @@ export function AppSidebar() {
             url: '/admin/partners',
             icon: HandshakeIcon,
         },
+         {
+            title: t('Clients'),
+            permission: 'client view',
+            url: '/admin/clients',
+            icon: HandshakeIcon,
+        },
         {
             title: t('Phone Companies'),
             permission: 'phone_company view',

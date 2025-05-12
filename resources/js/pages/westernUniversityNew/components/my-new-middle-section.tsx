@@ -9,7 +9,7 @@ const MyNewMiddleSection = () => {
                 </div>
 
                 <div className="h-full w-full px-4 py-12 text-white sm:px-10 md:p-24">
-                    <h2 className="text-4xl">Our Featured Courses</h2>
+                    <h2 className="text-4xl font-bold">Our Featured Courses</h2>
                     <div className="my-10 h-1 w-16 bg-white"></div>
                     <p className="text-sm text-gray-300">
                         Our Featured Courses are selected through a rigorous process and uniquely created for each semester.

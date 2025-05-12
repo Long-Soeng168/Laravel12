@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BannerPositionController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CareerSubmitController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GarageController;
@@ -92,6 +93,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/partners', PartnerController::class);
     Route::post('admin/partners/{partner}/update', [PartnerController::class, 'update']);
     Route::post('admin/partners/{partner}/update_status', [PartnerController::class, 'update_status']);
+
+     // Client Route
+    Route::resource('admin/clients', ClientController::class);
+    Route::post('admin/clients/{client}/update', [ClientController::class, 'update']);
+    Route::post('admin/clients/{client}/update_status', [ClientController::class, 'update_status']);
 
     // Phone Company Route
     Route::resource('admin/phone_companies', PhoneCompanyController::class);
