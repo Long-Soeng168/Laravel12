@@ -1,6 +1,7 @@
+import useTranslation from '@/hooks/use-translation';
 import { cn } from '@/lib/utils';
 import { MyLanguageSelector } from '@/pages/westec/components/my-select-language';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { AlignLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
@@ -8,6 +9,10 @@ import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu';
 
 export function MyNavbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
+
+    const { t, currentLocale } = useTranslation();
+    const { pages_menus } = usePage().props;
+    console.log(pages_menus);
     return (
         <>
             <div className={cn('mx-auto max-w-[2000px]', className)}>
@@ -20,46 +25,70 @@ export function MyNavbar({ className }: { className?: string }) {
                     </Button>
                     <div className="hidden xl:block">
                         <Menu setActive={setActive}>
-                            <Link prefetch href={`/about`}>
-                                <MenuItem setActive={setActive} active={active} item="About Us">
-                                    <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/about">What is Westec?</HoveredLink>
-                                        <HoveredLink href="/about">Why Choose Westec?</HoveredLink>
-                                        <HoveredLink href="/about">Vision</HoveredLink>
-                                        <HoveredLink href="/about">Our Commitment</HoveredLink>
-                                        <HoveredLink href="/about">Our Journey</HoveredLink>
-                                    </div>
-                                </MenuItem>
-                            </Link>
+                            {pages_menus?.abouts && (
+                                <Link prefetch href={`/about`}>
+                                    <MenuItem
+                                        setActive={setActive}
+                                        active={active}
+                                        item={currentLocale == 'kh' ? pages_menus?.abouts.title_kh : pages_menus?.abouts.title}
+                                    >
+                                        {pages_menus?.abouts.children?.length > 0 && (
+                                            <div className="flex flex-col space-y-4 text-sm">
+                                                {pages_menus?.abouts.children?.map((about) => (
+                                                    <HoveredLink href={`/about#${about?.code}`}>
+                                                        {currentLocale == 'kh' ? about?.title_kh : about?.title}
+                                                    </HoveredLink>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </MenuItem>
+                                </Link>
+                            )}
 
-                            <Link prefetch href={`/solutions`}>
-                                <MenuItem setActive={setActive} active={active} item="Solutions">
-                                    <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/solutions">Security & Safety Solutions</HoveredLink>
-                                        <HoveredLink href="/solutions">Smart Home & Office Solutions</HoveredLink>
-                                        <HoveredLink href="/solutions">Commercial & Residential Equipments</HoveredLink>
-                                        <HoveredLink href="/solutions">IT Solutions</HoveredLink>
-                                        <HoveredLink href="/solutions">Solution Boosters</HoveredLink>
-                                    </div>
-                                </MenuItem>
-                            </Link>
-                            <Link prefetch href={`/case_studies`}>
-                                <MenuItem setActive={setActive} active={active} item="Case Studies">
-                                    <div className="flex flex-col space-y-4 text-sm">
-                                        <HoveredLink href="/case_studies">Banking</HoveredLink>
-                                        <HoveredLink href="/case_studies">Microfinance</HoveredLink>
-                                        <HoveredLink href="/case_studies">Manufacturing</HoveredLink>
-                                        <HoveredLink href="/case_studies">Construction</HoveredLink>
-                                        <HoveredLink href="/case_studies">Entertainment</HoveredLink>
-                                    </div>
-                                </MenuItem>
-                            </Link>
+                            {pages_menus?.solutions && (
+                                <Link prefetch href={`/solutions`}>
+                                    <MenuItem
+                                        setActive={setActive}
+                                        active={active}
+                                        item={currentLocale == 'kh' ? pages_menus?.solutions.title_kh : pages_menus?.solutions.title}
+                                    >
+                                        {pages_menus?.solutions.children?.length > 0 && (
+                                            <div className="flex flex-col space-y-4 text-sm">
+                                                {pages_menus?.solutions.children?.map((solution) => (
+                                                    <HoveredLink href={`/solutions#${solution?.code}`}>
+                                                        {currentLocale == 'kh' ? solution?.title_kh : solution?.title}
+                                                    </HoveredLink>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </MenuItem>
+                                </Link>
+                            )}
+                            {pages_menus?.case_studies && (
+                                <Link prefetch href={`/case_studies`}>
+                                    <MenuItem
+                                        setActive={setActive}
+                                        active={active}
+                                        item={currentLocale == 'kh' ? pages_menus?.case_studies.title_kh : pages_menus?.case_studies.title}
+                                    >
+                                        {pages_menus?.case_studies.children?.length > 0 && (
+                                            <div className="flex flex-col space-y-4 text-sm">
+                                                {pages_menus?.case_studies.children?.map((case_study) => (
+                                                    <HoveredLink href={`/case_studies#${case_study?.code}`}>
+                                                        {currentLocale == 'kh' ? case_study?.title_kh : case_study?.title}
+                                                    </HoveredLink>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </MenuItem>
+                                </Link>
+                            )}
 
                             <Link prefetch href={`/#partners`}>
                                 <MenuItem setActive={setActive} active={active} item="Partners">
-                                    <div className="flex flex-col space-y-4 text-sm">
+                                    {/* <div className="flex flex-col space-y-4 text-sm">
                                         <HoveredLink href="/#partners">Our Partners</HoveredLink>
-                                    </div>
+                                    </div> */}
                                 </MenuItem>
                             </Link>
 

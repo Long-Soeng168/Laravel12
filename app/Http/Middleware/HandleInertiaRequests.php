@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\ApplicationInfo;
 use App\Models\ItemCategory;
 use App\Models\Link;
+use App\Models\Page;
 use App\Models\Post;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
@@ -67,6 +68,30 @@ class HandleInertiaRequests extends Middleware
             'links' => Link::where('status', 'active')->orderBy('order_index')->get(),
             'item_categories' => ItemCategory::with('children')->withCount('items')->where('status', 'active')->where('parent_code', null)->orderBy('order_index')->orderBy('name')->get() ?? [],
             'post_counts' => Post::where('status', 'active')->count(),
+
+            // Westec
+            'pages_menus' => [
+                'abouts' => Page::where('code', 'ABOUT-US')
+                    ->with(['children' => function ($query) {
+                        $query->select('id', 'code', 'parent_id', 'title', 'title_kh');
+                    }])
+                    ->where('status', 'active')
+                    ->first(['id', 'code', 'title', 'title_kh']),
+                'solutions' => Page::where('code', 'SOLUTION')
+                    ->with(['children' => function ($query) {
+                        $query->select('id', 'code', 'parent_id', 'title', 'title_kh');
+                    }])
+                    ->where('status', 'active')
+                    ->first(['id', 'code', 'title', 'title_kh']),
+                'case_studies' => Page::where('code', 'CASE-STUDIES')
+                    ->with(['children' => function ($query) {
+                        $query->select('id', 'code', 'parent_id', 'title', 'title_kh');
+                    }])
+                    ->where('status', 'active')
+                    ->first(['id', 'code', 'title', 'title_kh']),
+
+            ],
+            // End Westec
 
             'flash' => [
                 'success' => session('success'),

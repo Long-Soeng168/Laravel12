@@ -51,8 +51,6 @@ class PageController extends Controller implements HasMiddleware
                     ->orWhere('title_kh', 'LIKE', "%{$search}%")
                     ->orWhere('code', 'LIKE', "%{$search}%")
                     ->orWhere('position_code', 'LIKE', "%{$search}%")
-                    ->orWhere('short_description', 'LIKE', "%{$search}%")
-                    ->orWhere('short_description_kh', 'LIKE', "%{$search}%")
                     ->orWhereHas('parent', function ($parent_query) use ($search) {
                         $parent_query->where('title', 'LIKE', "%{$search}%")
                             ->orWhere('title_kh', 'LIKE', "%{$search}%");
