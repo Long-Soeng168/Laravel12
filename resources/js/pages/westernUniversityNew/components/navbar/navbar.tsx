@@ -15,7 +15,7 @@ const NavbarPage = () => {
                     {/* Desktop Menu */}
                     <MyNavMenu className="hidden md:block" />
                     {/* Mobile Menu */}
-                    <div className="xl:hidden flex items-center gap-4">
+                    <div className="xl:hidden flex items-center gap-2 xl:gap-4">
                         <div>
                             <Sheet>
                                 <div className="flex items-center gap-2">

@@ -5,7 +5,7 @@ const MyHeroHistory = () => {
     <div className="flex items-center justify-center">
       <div className="max-w-screen-xl w-full mx-auto grid md:flex gap-10 md:gap-12 px-6 mt-12">
         <div>
-          <h1 className="font-noto-san-extra-light max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
+          <h1 className="max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
           Our Hestory
           </h1>
           <div className="my-10 border-[1.5px] border-black w-15 "/>

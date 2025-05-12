@@ -17,7 +17,7 @@ const MyHeroEvent = () => {
 
                     <main className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                         <div className="sm:text-center lg:text-left">
-                            <h2 className="my-6 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl md:text-4xl font-noto-san-extra-light">Activities And Events</h2>
+                            <h2 className="my-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl ">Activities And Events</h2>
 
                             <p>
                             At Western International School, we provide our students with different experiences and opportunities to help improve and advance their intellectual skills and abilities. We acknowledge and appreciate their hard work and make sure that we reward them in our Award Ceremonies.

@@ -17,7 +17,7 @@ const MyHeroExtracurricularActivities = () => {
 
                     <main className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                         <div className="sm:text-center lg:text-left">
-                            <h2 className="my-6 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl md:text-4xl font-noto-san-extra-light">Extracurricular Activities</h2>
+                            <h2 className="my-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl ">Extracurricular Activities</h2>
 
                             <p>
                             Our students also participate in other activities that help them build teamwork, communication, and relationship. It helps students explore their interests and create a broader perspective of the worldview.

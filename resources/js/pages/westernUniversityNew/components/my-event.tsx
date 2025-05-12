@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { User } from 'lucide-react';
 
 const MyEvent = () => {
@@ -253,8 +254,8 @@ const MyEvent = () => {
                     </div>
                 </div>
             </div>
-            <a
-                href="#"
+            <Link
+                href="/school_calendar"
                 className="mt-6 inline-flex items-center rounded-md bg-[#e31c24] px-6 py-3 font-semibold text-[#ffff] shadow-md transition hover:bg-blue-950"
             >
                 View Event Calendar{' '}
@@ -271,7 +272,7 @@ const MyEvent = () => {
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
-            </a>
+            </Link>
         </div>
     );
 };

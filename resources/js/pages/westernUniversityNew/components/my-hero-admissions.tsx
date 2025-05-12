@@ -4,7 +4,7 @@ const MyHeroAdmissions = () => {
     <div className="pb-12">
     <div className="w-full flex flex-col gap-6 items-center justify-center px-6 mt-12 ">
       <div className="text-center max-w-4xl">
-        <h1 className=" text-xl sm:text-3xl md:text-4xl font-noto-san-extra-light font-bold !leading-[1.2] tracking-tight">
+        <h1 className=" text-xl sm:text-3xl md:text-4xl font-bold !leading-[1.2] tracking-tight">
           Customized Shadcn UI Blocks & Components
         </h1>
         <p className="mt-2 text-start lg:text-[17px] md:text-lg">
@@ -17,7 +17,7 @@ const MyHeroAdmissions = () => {
     </div>
     <div className="w-full flex flex-col gap-6 items-center justify-center px-6 mt-12 ">
       <div className="text-center max-w-4xl">
-        <h1 className=" text-xl sm:text-3xl md:text-4xl font-noto-san-extra-light font-bold !leading-[1.2] tracking-tight">
+        <h1 className=" text-xl sm:text-3xl md:text-4xl font-bold !leading-[1.2] tracking-tight">
            Blocks & Components
         </h1>
         <p className="mt-2 text-start lg:text-[17px] md:text-lg">
@@ -30,7 +30,7 @@ const MyHeroAdmissions = () => {
     </div>
     <div className="w-full flex flex-col gap-6 items-center justify-center px-6 mt-12 ">
       <div className="text-center max-w-4xl">
-        <h1 className=" text-xl sm:text-3xl md:text-4xl font-noto-san-extra-light font-bold !leading-[1.2] tracking-tight">
+        <h1 className=" text-xl sm:text-3xl md:text-4xl font-bold !leading-[1.2] tracking-tight">
           Customized Shadcn UI Blocks & Components
         </h1>
         <p className="mt-2 text-start lg:text-[17px] md:text-lg">
@@ -45,7 +45,7 @@ const MyHeroAdmissions = () => {
     </div>
     <div className="w-full flex flex-col gap-6 items-center justify-center px-6 mt-12 ">
       <div className="text-center max-w-4xl">
-        <h1 className=" text-xl sm:text-3xl md:text-4xl font-noto-san-extra-light font-bold !leading-[1.2] tracking-tight">
+        <h1 className=" text-xl sm:text-3xl md:text-4xl font-bold !leading-[1.2] tracking-tight">
           Customized Shadcn UI Blocks & Components
         </h1>
         <p className="mt-2 text-start lg:text-[17px] md:text-lg">
