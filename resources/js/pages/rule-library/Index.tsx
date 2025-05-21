@@ -1,19 +1,21 @@
-import MyHeader from './components/my-header';
-import { MyHero } from './components/my-hero';
+import MyCategory from './components/my-category';
+import MyHeroSection from './components/my-hero-section';
+import MyNews from './components/my-news';
+import MyPost from './components/my-post';
+import MySearch from './components/my-search';
+import MySlide from './components/my-slide';
+import Layout from './Layout';
 
 const Index = () => {
     return (
-        <>
-            {/* Start Header */}
-            <header>
-                <MyHero />
-                <div className='bg-true-primary dark:bg-black'>
-                    <MyHeader />
-                </div>
-            </header>
-
-            {/* End Header */}
-        </>
+        <Layout>
+            <MySlide />
+            <MySearch />
+            <MyHeroSection />
+            <MyCategory />
+            <MyPost />
+            <MyNews />
+        </Layout>
     );
 };
 
