@@ -69,7 +69,7 @@ const books = [
 ];
 
 
-const MyCollections = () => {
+const MyResources = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredBooks =
@@ -128,4 +128,4 @@ const MyCollections = () => {
   );
 };
 
-export default MyCollections;
+export default MyResources;

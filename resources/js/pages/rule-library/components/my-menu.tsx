@@ -14,10 +14,10 @@ import { Link } from '@inertiajs/react';
 const menuItems = [
   { id: 1, name: 'Home', link: '/' },
   { id: 2, name: 'About', link: '/about' },
-  { id: 3, name: 'Collection', link: '/collections' },
-  { id: 4, name: 'Resource', link: '/resource' },
-  { id: 5, name: 'Database', link: '/database' },
-  { id: 6, name: 'Contact Us', link: '/contact-us' },
+  { id: 3, name: 'Collections', link: '/collections' },
+  { id: 4, name: 'Resources', link: '/resources' },
+  { id: 5, name: 'Databases', link: '/databases' },
+  { id: 6, name: 'Contact Us', link: '/contact_us' },
 ];
 
 const MyMenu = () => {

@@ -1,4 +1,4 @@
-import MyCollections from './components/my-collections'
+import React from 'react'
 import Layout from './Layout'
 import {
   Breadcrumb,
@@ -8,8 +8,10 @@ import {
   BreadcrumbSeparator
 } from './components/ui/breadcrumb'
 import { SlashIcon } from 'lucide-react'
+import MyHeroAbout from './components/my-hero-about'
+import MyOurValues from './components/my-our-values'
 
-const Collection = () => {
+const About = () => {
   return (
     <Layout>
       <div className="relative w-full h-[60vh] flex flex-col items-center justify-center text-white overflow-hidden">
@@ -23,7 +25,7 @@ const Collection = () => {
 
         {/* Title and Breadcrumb */}
         <div className="relative z-20 text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-noto-san-extra-light">Collections</h1>
+          <h1 className="text-4xl md:text-6xl font-noto-san-extra-light">About</h1>
           <div className="mt-6">
             <Breadcrumb>
               <BreadcrumbList className="justify-center flex gap-2">
@@ -34,16 +36,17 @@ const Collection = () => {
                   <SlashIcon className="text-gray-400 w-4 h-4" />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="#/collection" className="text-gray-400">Collections</BreadcrumbLink>
+                  <BreadcrumbLink href="#/about" className="text-gray-400">About</BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </div>
       </div>
-        <MyCollections/>
+       <MyHeroAbout/>
+       <MyOurValues/>
     </Layout>
   )
 }
 
-export default Collection
+export default About

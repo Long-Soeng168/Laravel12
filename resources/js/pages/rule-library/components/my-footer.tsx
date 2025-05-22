@@ -6,98 +6,113 @@ const MyFooter = () => {
     closed: "Sunday",
   };
 
-  // Simple icon SVG URLs from jsDelivr CDN (Simple Icons)
-  const menuFooter = [
-    { id: 1, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/home.svg", name: "Home", type: "link", link: "/" },
-    { id: 2, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/about-dot-me.svg", name: "About", type: "link", link: "/about" },
-    { id: 3, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/collections.svg", name: "Collections", type: "link", link: "/collections" },
-    { id: 4, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/resources-dotai.svg", name: "Resources", type: "link", link: "/resources" },
-    { id: 5, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/database.svg", name: "Databases", type: "link", link: "/databases" },
-    { id: 6, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/contactlesspayment.svg", name: "Contact Us", type: "link", link: "/contact" },
-  ];
-
   const socialMedia = [
-    { id: 1, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/facebook.svg", name: "Facebook", alt: "Facebook", link: "https://facebook.com" },
-    { id: 2, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/telegram.svg", name: "Telegram", alt: "Telegram", link: "https://telegram.org" },
-    { id: 3, image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/youtube.svg", name: "YouTube", alt: "YouTube", link: "https://youtube.com" },
-  ];
+  {
+    id: 1,
+    image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/facebook.svg",
+    name: "Facebook",
+    alt: "Facebook",
+    link: "https://facebook.com",
+    hoverColor: "hover:bg-[#1877F2]", // Facebook Blue
+  },
+  {
+    id: 2,
+    image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/telegram.svg",
+    name: "Telegram",
+    alt: "Telegram",
+    link: "https://telegram.org",
+    hoverColor: "hover:bg-[#0088cc]", // Telegram Blue
+  },
+  {
+    id: 3,
+    image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/youtube.svg",
+    name: "YouTube",
+    alt: "YouTube",
+    link: "https://youtube.com",
+    hoverColor: "hover:bg-[#FF0000]", // YouTube Red
+  },
+  {
+    id: 4,
+    image: "https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/tiktok.svg",
+    name: "TikTok",
+    alt: "TikTok",
+    link: "https://www.tiktok.com",
+    hoverColor: "hover:bg-[#010101]", // TikTok Black
+  },
+];
 
-  const companyName = "Power By:";
+
+  const companyName = "Powered By:";
 
   return (
     <footer className="bg-[#393838] text-gray-300 py-12">
-      <div className="max-w-screen-2xl mx-auto px-3 xl:px-16">
-
-        {/* Grid Layout */}
-        <div className="flex flex-wrap gap-12 text-center sm:text-left">
-
-          {/* Contact Info */}
-          <div className="flex-1 ">
-            <h3 className="text-2xl font-medium text-white mb-4">Information</h3>
-            <p className="text-gray-400 leading-relaxed ">
-              {websiteInfos.address}<br />
-              <span className="font-semibold">Phone:</span> {websiteInfos.phone} <br />
-              <span className="font-semibold">Hours:</span> {websiteInfos.hours} <br />
-              <span className="text-red-400 font-semibold">{websiteInfos.closed}: CLOSED</span>
-            </p>
-            <hr className="w-20 mt-2 mx-auto md:mx-0 border-t border-white" />
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 xl:px-16">
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-center md:text-left items-start">
+          
+          {/* Logo */}
+          <div className="flex justify-center md:justify-start">
+            <img
+              src="/assets/rule-library/images/rule-logo.png"
+              alt="Rule Library Logo"
+              className="h-60 w-auto object-contain"
+            />
           </div>
 
-          {/* Menu Section */}
-          <div className="flex-1 flex flex-col justify-center items-center">
-            <h3 className="text-2xl font-medium text-white mb-4">Menu</h3>
-            <ul className="space-y-1">
-              {menuFooter.map((item) => (
-                <li key={item.id} className="transition-transform hover:translate-x-2">
-                  <a
-                    href={item.type === "link" ? item.link : item.name.toLowerCase() === "home" ? "/" : `/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="flex items-center gap-3 sm:justify-start hover:text-white transition-colors"
-                  >
-                    {/* Render SVG inline via <img> */}
-                    <img src={item.image} alt={item.name} width={20} height={20} className="invert" />
-                    <span className="text-lg">{item.name}</span>
-                  </a>
-                </li>
-              ))}
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-2xl font-semibold text-white mb-4">Information</h3>
+            <ul className="text-gray-400 space-y-2 text-sm leading-relaxed">
+              <li>{websiteInfos.address}</li>
+              <li><span className="font-medium">Phone:</span> {websiteInfos.phone}</li>
+              <li><span className="font-medium">Hours:</span> {websiteInfos.hours}</li>
+              <li className="text-red-400 font-semibold">{websiteInfos.closed}: CLOSED</li>
             </ul>
+             <hr className="w-20 mt-4 mx-auto md:mx-0 border-t border-white" />
           </div>
 
           {/* Social Media */}
-          <div className="md:flex-1 flex flex-col md:items-end w-full">
-            <div>
-              <h3 className="text-2xl font-medium text-center text-white mb-4">Social Media</h3>
-              <div className="flex gap-6 justify-center lg:justify-end">
-                {socialMedia.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    rel="noopener noreferrer"
-                    aria-label={item.alt}
-                    className="group flex flex-col items-center text-white transition-transform transform hover:scale-110"
+          <div className="flex flex-col items-center md:items-end">
+            <h3 className="text-2xl font-semibold text-white mb-4">Social Media</h3>
+            <div className="flex gap-6">
+              {socialMedia.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={item.name}
+                  className="group flex flex-col items-center space-y-1"
+                >
+                  <div
+                    className={`w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center shadow-md transition-all duration-300 ${item.hoverColor}`}
                   >
-                    <div className="p-2 rounded-full bg-gray-700 hover:bg-gray-500 shadow-lg transition-all">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        width={40}
-                        height={40}
-                        className="invert"
-                      />
-                    </div>
-                    <span className="mt-2 text-xs group-hover:text-gray-100">{item.name}</span>
-                  </a>
-                ))}
-              </div>
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className="w-8 h-8 invert transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <span className="text-sm text-gray-400 group-hover:text-white transition">
+                    {item.name}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="text-center mt-5 md:mt-0 md:text-end text-sm">
+        {/* Divider */}
+        <div className="pt-4 text-center xl:text-end text-sm text-gray-400">
           <p>
             {companyName}{" "}
-            <a href="https://alphalib.org/" className="hover:underline hover:text-white transition-colors">
-              Alphalib.
+            <a
+              href="https://alphalib.org/"
+              className="hover:underline hover:text-white transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Alphalib
             </a>
           </p>
         </div>

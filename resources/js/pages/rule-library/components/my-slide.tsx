@@ -1,4 +1,11 @@
-import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import {
+    Carousel,
+    CarouselApi,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel';
 import { Link } from '@inertiajs/react';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
@@ -14,14 +21,14 @@ const MySlide = ({ className, images = [] }: { className?: string; images?: any 
         },
         {
             id: '2',
-           image: '/assets/demo-images/rule-images/slide1.jpg',
+            image: '/assets/demo-images/rule-images/slide1.jpg',
             alt: 'image 2',
             short: 'Your safety starts at the door—let an <strong>Access Control System</strong> decide who comes through.',
             bg: '#008080',
         },
         {
             id: '3',
-           image: '/assets/demo-images/rule-images/slide1.jpg',
+            image: '/assets/demo-images/rule-images/slide1.jpg',
             alt: 'image 3',
             short: 'Peace of mind begins with protection—<strong>Intrusion Alarms</strong> ensure you sleep soundly.',
             bg: '#36454f',
@@ -37,7 +44,7 @@ const MySlide = ({ className, images = [] }: { className?: string; images?: any 
             id: '5',
             image: '/assets/demo-images/rule-images/slide1.jpg',
             alt: 'image 5',
-            short: 'A smart home isn"t just about convenice—it"s about control.Automate your world with a <strong>Smart Home Automation System</strong>.',
+            short: 'A smart home isn’t just about convenience—it’s about control. Automate your world with a <strong>Smart Home Automation System</strong>.',
             bg: '#273896',
         },
     ];
@@ -47,55 +54,61 @@ const MySlide = ({ className, images = [] }: { className?: string; images?: any 
     const [count, setCount] = React.useState(0);
 
     React.useEffect(() => {
-        if (!api) {
-            return;
-        }
+        if (!api) return;
 
         setCount(api.scrollSnapList().length);
-        setCurrent(api.selectedScrollSnap() + 1);
+        setCurrent(api.selectedScrollSnap());
 
         api.on('select', () => {
-            setCurrent(api.selectedScrollSnap() + 1);
+            setCurrent(api.selectedScrollSnap());
         });
     }, [api]);
+
     return (
         <div className={className}>
             {images.length > 0 && (
                 <Carousel
                     plugins={[
                         Autoplay({
-                            delay: 3000,
+                            delay: 4000,
+                            stopOnInteraction: false,
                         }),
                     ]}
-                    opts={{ align: 'start', loop: false }}
+                    opts={{ loop: true }}
                     setApi={setApi}
-                    className='bg-true-primary m-0'
+                    className="relative bg-true-primary"
                 >
                     <CarouselContent>
                         {images.map((image) => (
-                            <CarouselItem key={image.id} className='pl-0'>
+                            <CarouselItem key={image.id} className="pl-0">
                                 <Link href={image.link || '#'}>
                                     <img
                                         className={`w-full object-cover transition-all duration-500 ${
                                             image.link ? 'border-primary hover:scale-95 hover:border-2' : ''
                                         }`}
-                                        // width={1050}
-                                        // height={300}
                                         src={image.image}
-                                        alt={image.name}
+                                        alt={image.alt}
                                     />
                                 </Link>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 py-2">
-                        {Array.from({ length: count }).map((_, index) => (
-                            <div key={index} className={`size-2 md:size-3 rounded-full ${current === index + 1 ? 'bg-yellow-400' : 'bg-white'}`}></div>
+
+                    {/* Dots */}
+                    <div className="absolute bottom-2 sm:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-2">
+                        {images.map((_, index) => (
+                            <button
+                                key={index}
+                                className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition ${
+                                    index === current ? 'bg-yellow-400' : 'bg-white'
+                                }`}
+                                onClick={() => api?.scrollTo(index)}
+                            />
                         ))}
                     </div>
 
-                    {/* <CarouselPrevious className="rounded-none max-md:hidden" />
-          <CarouselNext className="rounded-none max-md:hidden" /> */}
+                    <CarouselPrevious className="absolute top-1/2 left-4 z-20 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-black hover:bg-white md:flex" />
+                    <CarouselNext className="absolute top-1/2 right-4 z-20 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-black hover:bg-white md:flex" />
                 </Carousel>
             )}
         </div>
