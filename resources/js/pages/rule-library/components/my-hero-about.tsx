@@ -1,7 +1,7 @@
 const MyHeroAbout = () => {
     return (
         <section className="bg-white px-6 py-16 md:px-20">
-            <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 md:grid-cols-2">
+            <div className="mx-auto grid max-w-screen-xl grid-cols-1 items-center gap-10 md:grid-cols-2">
                 {/* Left: Images */}
                 <div className="relative h-[32rem] w-full">
                     {' '}

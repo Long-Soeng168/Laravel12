@@ -8,7 +8,7 @@ export default function MyFooter() {
     return (
         <footer className="relative border-t border-white/50">
             <BackgroundAnimated />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 pt-12 text-white sm:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto max-w-screen-xl px-4 pt-12 text-white sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
                     <div className="justify-self-center">
                         {application_info?.image && (

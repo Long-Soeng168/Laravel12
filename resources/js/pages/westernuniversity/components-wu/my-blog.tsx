@@ -12,7 +12,7 @@ import { ChevronRight } from "lucide-react";
 
 const MyBlog = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-16 px-6 xl:px-0">
+    <div className="max-w-screen-xl mx-auto py-16 px-6 xl:px-6">
       <div className="flex items-end justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
         <Select defaultValue="recommended">

@@ -7,7 +7,7 @@ import { ChevronRight, Search } from 'lucide-react';
 
 const BlogPosts = () => {
     return (
-        <div className="mx-auto max-w-screen-xl px-6 py-16 xl:px-0">
+        <div className="mx-auto max-w-screen-xl px-6 py-16 xl:px-6">
             <div className="flex items-end flex-wrap justify-between gap-4">
                 <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
                 <div className="flex flex-wrap items-center gap-4 w-full md:w-auto justify-end">

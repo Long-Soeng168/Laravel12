@@ -141,7 +141,7 @@ const MyFooter = () => {
                     </div>
 
                     {/* Bottom section */}
-                    <div className="flex flex-col-reverse items-center justify-center gap-x-2 gap-y-5 px-6 py-8 xl:px-0">
+                    <div className="flex flex-col-reverse items-center justify-center gap-x-2 gap-y-5 px-6 py-8 xl:px-6">
                         {/* Copyright */}
                         <span className="text-white">Copyright © 2025 Western International School . All Rights Reserved.</span>
 

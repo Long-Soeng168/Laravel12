@@ -8,7 +8,7 @@ const CamActiveLayout = ({ children }: { children: ReactNode }) => {
     return (
         <>
             <div className="bg-true-primary text-white">
-                <div className="mx-auto flex max-w-7xl flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-4 sm:flex-row xl:px-0">
+                <div className="mx-auto flex max-w-screen-xl flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-4 sm:flex-row xl:px-6">
                     {/* Copyright */}
                     <span className="text-white flex items-center gap-2">
                         92 Bowery St New York, NY 10013 demo@example.com

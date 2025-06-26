@@ -10,7 +10,7 @@ import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu';
 export function Navbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
     return (
-        <div className={cn('mx-auto flex max-w-7xl items-center justify-between', className)}>
+        <div className={cn('mx-auto flex max-w-screen-xl items-center justify-between', className)}>
             <Link href={'/'} prefetch>
                 <img src="/assets/cam-active/logo.png" className="h-20 p-2" />
                 {/* <img src="/assets/icons/image-icon.png" className="h-20 p-2" /> */}

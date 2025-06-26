@@ -34,8 +34,8 @@ const Footer = () => {
     return (
         <footer className="relative border-t border-white/50">
             <BackgroundAnimated />
-            <div className="relative z-10 mx-auto max-w-7xl text-white">
-                <div className="flex flex-col items-start justify-between gap-x-8 gap-y-10 px-6 py-12 sm:flex-row xl:px-0">
+            <div className="relative z-10 mx-auto max-w-screen-xl text-white">
+                <div className="flex flex-col items-start justify-between gap-x-8 gap-y-10 px-6 py-12 sm:flex-row xl:px-6">
                     <div>
                         {/* Logo */}
                         <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ const Footer = () => {
                     </div> */}
                 </div>
                 <Separator className="bg-white/50" />
-                <div className="flex flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-8 sm:flex-row xl:px-0">
+                <div className="flex flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-8 sm:flex-row xl:px-6">
                     {/* Copyright */}
                     <span>
                         &copy; {new Date().getFullYear()}{' '}

@@ -22,7 +22,7 @@ const MyContact = () => (
 
 
     <div className="flex min-h-screen items-center justify-center py-16">
-        <div className="mx-auto w-full max-w-screen-xl px-6 xl:px-0">
+        <div className="mx-auto w-full max-w-screen-xl px-6 xl:px-6">
             <b className="text-muted-foreground">Contact Us</b>
             <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Visit The School</h2>
             <p className="mt-3 text-base sm:text-lg">Western International School Central Office</p>

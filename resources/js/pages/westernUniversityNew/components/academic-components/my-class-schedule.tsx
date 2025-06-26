@@ -25,7 +25,7 @@ const schedules = {
 
 const MyClassSchedules = () => {
   return (
-    <div className="p-6 max-w-7xl mx-auto py-16">
+    <div className="p-6 max-w-screen-xl mx-auto py-16">
       <h1 className="text-xl md:text-3xl font-bold text-center mb-10">Weekly Schedules and Subjects (Grades 3–6)</h1>
       {Object.entries(schedules).map(([grade, schedule]) => (
         <div key={grade} className="mb-12">

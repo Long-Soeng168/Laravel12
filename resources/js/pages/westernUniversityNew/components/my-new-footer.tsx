@@ -11,7 +11,7 @@ const Footer03Page = () => {
             <div className="bg-muted grow" />
             <footer>
                 <div className="mx-auto max-w-screen-xl">
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-10 px-6 py-12 xl:grid-cols-3 xl:px-0">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-10 px-6 py-12 xl:grid-cols-3 xl:px-6">
                         <Link href={'http://western.kimsoreya.site/'} className="col-span-full w-32 text-center xl:col-span-1">
                             {/* Logo */}
                             <img src="/assets/demo-images/Homepage/01_Logo_WIS.png" />

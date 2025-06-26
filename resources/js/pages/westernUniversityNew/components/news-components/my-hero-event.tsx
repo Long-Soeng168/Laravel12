@@ -1,7 +1,7 @@
 const MyHeroEvent = () => {
     return (
         <div id="about" className="relative mt-0 lg:mt-12 overflow-hidden bg-white">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-screen-xl">
                 <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
                     <svg
                         className="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-white lg:block"
@@ -15,7 +15,7 @@ const MyHeroEvent = () => {
 
                     <div className="pt-1"></div>
 
-                    <main className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <main className="mx-auto mt-10 max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                         <div className="sm:text-center lg:text-left">
                             <h2 className="my-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl ">Activities And Events</h2>
 

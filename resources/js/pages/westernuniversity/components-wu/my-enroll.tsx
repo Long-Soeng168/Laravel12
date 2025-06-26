@@ -1,6 +1,6 @@
 const MyEnroll = ({enrollYourChild}:{enrollYourChild:any}) => (
     <div className="flex items-center justify-center pt-12 pb-16 md:pt-16">
-        <div className="mx-auto w-full max-w-screen-2xl px-6 xl:px-0">
+        <div className="mx-auto w-full max-w-screen-2xl px-6 xl:px-6">
             <h2 className="mt-3 text-center text-3xl tracking-tight text-[#244494] md:text-5xl">{enrollYourChild.title}</h2>
           <div className="mx-auto mt-12 grid max-w-full grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4">
 

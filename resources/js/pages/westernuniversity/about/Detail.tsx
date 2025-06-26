@@ -9,7 +9,7 @@ const Detail = () => {
             </div>
 
             <div className="min-h-screen bg-gray-100 px-4 py-8 text-gray-800">
-                <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-4">
+                <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-10 md:grid-cols-4">
                     {/* Main Content */}
                     <div className="md:col-span-3">
                         <h1 className="mb-2 text-3xl font-bold">Quality Education</h1>

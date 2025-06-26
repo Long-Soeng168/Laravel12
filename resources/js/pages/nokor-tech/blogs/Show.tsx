@@ -11,7 +11,7 @@ const Show = () => {
     const { post, relatedPosts, postCategories } = usePage().props;
     return (
         <NokorTechLayout>
-            <div className="mx-auto flex max-w-screen-xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-0">
+            <div className="mx-auto flex max-w-screen-xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-6">
                 <div>
                     <h3 className="line-clamp-2 py-4 text-4xl font-semibold">{post?.title}</h3>
                     <img

@@ -11,7 +11,7 @@ const About = () => {
         <NokorTechLayout>
             <div className="text-foreground bg-background">
                 {/* Main Content */}
-                <main className="mx-auto max-w-7xl px-4 py-20">
+                <main className="mx-auto max-w-screen-xl px-4 py-20">
                     {/* About */}
                     <section>
                         <div className="text-center">
