@@ -38,7 +38,7 @@ const caseStudies = [
 const FeaturedMedia = () => {
     return (
         <div className="mx-auto mb-20 flex max-w-screen-xl flex-col items-start gap-8 px-6 lg:flex-row">
-            <div className="max-w-full w-full lg:min-w-2xl flex-1 rounded-md whitespace-nowrap">
+            <div className="w-full max-w-full flex-1 rounded-md whitespace-nowrap lg:min-w-2xl">
                 <div className="z-30 flex justify-between">
                     <h2 className="text-3xl font-bold tracking-tight">Featured Media</h2>
                     <Link href={`/posts`}>
@@ -52,19 +52,21 @@ const FeaturedMedia = () => {
                     <ScrollArea className="w-full">
                         <div className="flex space-x-4 p-4 pb-6">
                             {caseStudies.map((item) => (
-                                <Card key={item.id} className="w-60 gap-2 overflow-hidden rounded-none border-none p-0">
-                                    <CardHeader className="p-0">
-                                        <div className="bg-muted aspect-video w-full rounded-md border-b" />
-                                    </CardHeader>
-                                    <CardContent className="p-0 whitespace-normal">
-                                        <h3 className="m-0 line-clamp-2 text-[1.35rem] font-semibold tracking-tight">
-                                            A beginner&apos;s guide to blackchain for engineers
-                                        </h3>
-                                        <p className="text-muted-foreground mt-1 line-clamp-3">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
-                                        </p>
-                                    </CardContent>
-                                </Card>
+                                <Link href={'/posts/1'} key={item.id}>
+                                    <Card className="w-60 gap-2 overflow-hidden rounded-none border-none p-0">
+                                        <CardHeader className="p-0">
+                                            <div className="bg-muted aspect-video w-full rounded-md border-b" />
+                                        </CardHeader>
+                                        <CardContent className="p-0 whitespace-normal">
+                                            <h3 className="m-0 line-clamp-2 text-[1.35rem] font-semibold tracking-tight">
+                                                A beginner&apos;s guide to blackchain for engineers
+                                            </h3>
+                                            <p className="text-muted-foreground mt-1 line-clamp-3">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
+                                            </p>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
                             ))}
                         </div>
                         <ScrollBar orientation="horizontal" />

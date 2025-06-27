@@ -1,3 +1,4 @@
+import MySelectLanguageSwitch from '@/components/my-select-language-switch';
 import ToggleModeSwitch from '@/components/toggle-mode-switch';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -5,13 +6,12 @@ import { cn } from '@/lib/utils';
 import { Link } from '@inertiajs/react';
 import { MenuIcon } from 'lucide-react';
 import { useState } from 'react';
-import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu';
-import MySelectLanguageSwitch from '@/components/my-select-language-switch';
+import { Menu } from './ui/navbar-menu';
 
 export function Navbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
     return (
-        <div className={cn('mx-auto flex max-w-screen-xl px-4 items-center justify-between', className)}>
+        <div className={cn('mx-auto flex max-w-screen-xl items-center justify-between px-4', className)}>
             <Link href={'/'} prefetch>
                 <img src="/assets/cam-active/logo.png" className="h-20 p-2" />
                 {/* <img src="/assets/icons/image-icon.png" className="h-20 p-2" /> */}
@@ -19,7 +19,7 @@ export function Navbar({ className }: { className?: string }) {
 
             <Sheet>
                 <SheetTrigger asChild>
-                    <Button variant="outline" size="icon" className='md:hidden flex'>
+                    <Button variant="outline" size="icon" className="flex md:hidden">
                         <MenuIcon />
                     </Button>
                 </SheetTrigger>
@@ -110,7 +110,7 @@ export function Navbar({ className }: { className?: string }) {
                     <Link href={'/careers'} prefetch>
                         Careers
                     </Link>
-                    <Link href={'/contact'} prefetch>
+                    <Link href={'/about'} prefetch>
                         About Us
                     </Link>
                     <Link href={'/contact'} prefetch>

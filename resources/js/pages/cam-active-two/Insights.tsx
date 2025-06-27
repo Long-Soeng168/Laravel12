@@ -27,6 +27,7 @@ const Company = () => {
                 <LatestPosts />
 
                 <FeaturedMedia />
+                
                 <div className="mx-auto max-w-screen-xl px-6">
                     <Card className="bg-primary/10 mt-8 flex flex-col gap-0 overflow-hidden rounded-xl border border-none border-gray-200 px-6 shadow-none transition sm:flex-col">
                         <CardContent className="flex flex-col justify-center p-0">

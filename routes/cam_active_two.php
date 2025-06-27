@@ -25,9 +25,15 @@ Route::get('/insights', function () {
 Route::get('/posts', function () {
     return Inertia::render('cam-active-two/Posts');
 });
+Route::get('/posts/{id}', function () {
+    return Inertia::render('cam-active-two/posts/Show');
+});
 
 Route::get('/careers', function () {
     return Inertia::render('cam-active-two/Careers');
+});
+Route::get('/about', function () {
+    return Inertia::render('cam-active-two/About');
 });
 
 Route::get('/contact', function () {

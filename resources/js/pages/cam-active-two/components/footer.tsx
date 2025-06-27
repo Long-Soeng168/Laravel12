@@ -1,6 +1,6 @@
 import { Separator } from '@/components/ui/separator';
 import { Link } from '@inertiajs/react';
-import { DribbbleIcon, GithubIcon, TwitchIcon, TwitterIcon } from 'lucide-react';
+import Social from './social';
 
 const Footer = () => {
     return (
@@ -67,20 +67,7 @@ const Footer = () => {
                             </form> */}
                         {/* Social Icons */}
                         <h6 className="font-semibold">Social Media</h6>
-                        <div className="text-muted-foreground mt-6 flex space-x-3 text-sm">
-                            <Link href="#" target="_blank">
-                                <TwitterIcon className="size-8" />
-                            </Link>
-                            <Link href="#" target="_blank">
-                                <DribbbleIcon className="size-8" />
-                            </Link>
-                            <Link href="#" target="_blank">
-                                <TwitchIcon className="size-8" />
-                            </Link>
-                            <Link href="#" target="_blank">
-                                <GithubIcon className="size-8" />
-                            </Link>
-                        </div>
+                        <Social />
                     </div>
                 </div>
 

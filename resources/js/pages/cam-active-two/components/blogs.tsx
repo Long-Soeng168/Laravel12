@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Link } from '@inertiajs/react';
 import { Search } from 'lucide-react';
 
 const BlogPosts = () => {
@@ -41,17 +42,21 @@ const BlogPosts = () => {
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-                    <Card key={i} className="gap-2 overflow-hidden rounded-none border-none p-0">
-                        <CardHeader className="p-0">
-                            <div className="bg-muted aspect-video w-full rounded-md border-b" />
-                        </CardHeader>
-                        <CardContent className="p-0">
-                            <h3 className="m-0 text-[1.35rem] font-semibold tracking-tight">A beginner&apos;s guide to blackchain for engineers</h3>
-                            <p className="text-muted-foreground mt-1">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
-                            </p>
-                        </CardContent>
-                    </Card>
+                    <Link href={`/posts/1`} prefetch key={i}>
+                        <Card className="gap-2 overflow-hidden rounded-none border-none p-0">
+                            <CardHeader className="p-0">
+                                <div className="bg-muted aspect-video w-full rounded-md border-b" />
+                            </CardHeader>
+                            <CardContent className="p-0">
+                                <h3 className="m-0 text-[1.35rem] font-semibold tracking-tight">
+                                    A beginner&apos;s guide to blackchain for engineers
+                                </h3>
+                                <p className="text-muted-foreground mt-1">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </Link>
                 ))}
             </div>
         </div>
