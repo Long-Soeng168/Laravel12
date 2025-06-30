@@ -117,7 +117,7 @@ const Show = () => {
                         src={`/assets/images/posts/${post.images[0].image}`}
                         alt=""
                     /> */}
-                    <div className="flex aspect-video overflow-hidden w-full shrink-0 justify-center rounded-lg md:justify-start">
+                    <div className="flex h-auto w-full shrink-0 justify-center overflow-hidden rounded-lg md:justify-start">
                         <img src={`/assets/cam-active/posts/image2.jpg`} className="mb-2 size-full shrink-0 object-cover" alt="" />
                     </div>
                     <div className="prose ck-content max-w-none">
