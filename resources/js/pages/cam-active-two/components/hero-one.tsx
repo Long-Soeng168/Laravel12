@@ -27,7 +27,9 @@ const HeroOne = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="bg-accent aspect-video w-full rounded-xl" />
+                <div className="bg-transparent aspect-video w-full rounded-xl">
+                    <img src="/assets/cam-active/hero1.png" alt="" />
+                </div>
             </div>
         </div>
     );

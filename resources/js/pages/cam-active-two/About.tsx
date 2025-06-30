@@ -1,10 +1,8 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { EarthIcon, TargetIcon } from 'lucide-react';
-import CurrentOpportunities from './components/current-opportunities';
 import OurApproach from './components/our-approach';
+import OurTeam from './components/our-team';
 import SectionHeader from './components/section-header';
 import CamActiveLayout from './layouts/CamActiveLayout';
-import OurTeam from './components/our-team';
 
 const Careers = () => {
     return (
@@ -12,11 +10,11 @@ const Careers = () => {
             <div className="bg-primary/10 py-10">
                 <SectionHeader title="Who We Are" subtitle="Creating impact through education, logistics, and collaboration." />
             </div>
-            <div className="mx-auto max-w-screen-xl mt-20">
+            <div className="mx-auto mt-20 max-w-screen-xl">
                 <Card className="flex flex-row justify-start gap-0 overflow-hidden rounded-xl border border-none border-gray-200 px-4 shadow-none transition sm:flex-row">
                     <CardHeader className="pl-0">
-                        <div className="bg-primary/20 flex aspect-square w-24 shrink-0 items-center justify-center rounded-2xl shadow-md lg:w-28">
-                            <TargetIcon className="text-primary size-20" />
+                        <div className="flex size-16 shrink-0 justify-center rounded-lg md:justify-start">
+                            <img src={`/assets/cam-active/about/mission.png`} className="mb-2 size-16 shrink-0 object-contain" alt="" />
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col justify-center p-0">
@@ -29,8 +27,8 @@ const Careers = () => {
                 </Card>
                 <Card className="flex flex-row justify-start gap-0 overflow-hidden rounded-xl border border-none border-gray-200 px-4 shadow-none transition sm:flex-row">
                     <CardHeader className="pl-0">
-                        <div className="bg-primary/20 flex aspect-square w-24 shrink-0 items-center justify-center rounded-2xl shadow-md lg:w-28">
-                            <EarthIcon className="text-primary size-20" />
+                        <div className="flex size-16 shrink-0 justify-center rounded-lg md:justify-start">
+                            <img src={`/assets/cam-active/about/vision.png`} className="mb-2 size-16 shrink-0 object-contain" alt="" />
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col justify-center p-0">
@@ -44,7 +42,7 @@ const Careers = () => {
             </div>
             <div>
                 <OurApproach />
-                <OurTeam/>
+                <OurTeam />
             </div>
             {/* <HeroTwo />
             <OurServices />

@@ -53,9 +53,15 @@ const FeaturedMedia = () => {
                         <div className="flex space-x-4 p-4 pb-6">
                             {caseStudies.map((item) => (
                                 <Link href={'/posts/1'} key={item.id}>
-                                    <Card className="w-60 gap-2 overflow-hidden rounded-none border-none p-0">
+                                    <Card className="w-60 gap-2 overflow-hidden rounded-none border-none p-0 transition-all duration-300 hover:scale-105">
                                         <CardHeader className="p-0">
-                                            <div className="bg-muted aspect-video w-full rounded-md border-b" />
+                                            <div className="flex aspect-video w-full shrink-0 justify-center overflow-hidden rounded-lg md:justify-start">
+                                                <img
+                                                    src={`/assets/cam-active/posts/image2.jpg`}
+                                                    className="mb-2 size-full shrink-0 object-cover"
+                                                    alt=""
+                                                />
+                                            </div>
                                         </CardHeader>
                                         <CardContent className="p-0 whitespace-normal">
                                             <h3 className="m-0 line-clamp-2 text-[1.35rem] font-semibold tracking-tight">

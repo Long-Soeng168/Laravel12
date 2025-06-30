@@ -1,5 +1,4 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { UserCircle2Icon } from 'lucide-react';
 
 const teamMembers = [
     { id: 1, name: 'Long Soeng', position: 'Full-Stack Developer' },
@@ -28,8 +27,8 @@ const OurTeam = () => {
                             className="border-border/50 transform rounded-xl border-none transition-all duration-300 hover:scale-105"
                         >
                             <CardContent className="flex flex-col items-center space-y-3 px-0 py-0">
-                                <div className="bg-primary/10 flex aspect-square w-20 items-center justify-center rounded-full">
-                                    <UserCircle2Icon className="text-primary size-14" />
+                                <div className="flex size-16 shrink-0 justify-center rounded-lg md:justify-start">
+                                    <img src={`/assets/icons/user.png`} className="mb-2 size-16 shrink-0 object-cover" alt="" />
                                 </div>
                                 <h3 className="text-foreground text-lg font-semibold">{member.name}</h3>
                                 <p className="text-sm text-gray-500">{member.position}</p>

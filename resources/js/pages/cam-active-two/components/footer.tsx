@@ -7,7 +7,7 @@ const Footer = () => {
         <footer>
             <div className="mx-auto max-w-screen-xl">
                 <Separator />
-                <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-8 py-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:px-6">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-6 py-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:px-6">
                     {/* Logo & Tagline */}
                     <div className="col-span-full lg:col-span-2">
                         <div className="flex items-center gap-2">

@@ -6,7 +6,7 @@ import CamActiveLayout from './layouts/CamActiveLayout';
 const Solutions = () => {
     return (
         <CamActiveLayout>
-            <div className="bg-primary/10 py-10 mb-20">
+            <div className="bg-primary/10 text-primary py-10 mb-20">
                 <SectionHeader title="Our Solutions" subtitle="Empowering education. Streamlining logistics. Building partnerships." />
             </div>
             <WhatWeDo />

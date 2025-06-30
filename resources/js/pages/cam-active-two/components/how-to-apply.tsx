@@ -11,7 +11,7 @@ const HowToApply = () => {
                 <Input id="email" type="email" placeholder="Email" className="mt-0.5" />
             </div>
             <div className="w-full max-w-full">
-                <Label htmlFor="picture">CV Upload</Label>
+                <Label htmlFor="picture">Attach CV</Label>
                 <Input id="picture" type="file" className="pb-8 pl-1 file:py-0 file:bg-primary/20 file:rounded-sm file:px-2" />
             </div>
             <div className="flex w-full flex-col gap-2">

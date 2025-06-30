@@ -111,13 +111,15 @@ const Show = () => {
         <CamActiveLayout>
             <div className="mx-auto flex max-w-screen-xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-6">
                 <div>
-                    <h3 className="text-2xl lg:text-4xl font-semibold mb-8">{post.title}</h3>
+                    <h3 className="mb-8 text-2xl font-semibold lg:text-4xl">{post.title}</h3>
                     {/* <img
                         className="mb-4 h-full max-h-[600px] w-full rounded-xl object-cover"
                         src={`/assets/images/posts/${post.images[0].image}`}
                         alt=""
                     /> */}
-                    <div className="bg-primary/15 aspect-video w-full rounded-md border-b" />
+                    <div className="flex aspect-video overflow-hidden w-full shrink-0 justify-center rounded-lg md:justify-start">
+                        <img src={`/assets/cam-active/posts/image2.jpg`} className="mb-2 size-full shrink-0 object-cover" alt="" />
+                    </div>
                     <div className="prose ck-content max-w-none">
                         <div dangerouslySetInnerHTML={{ __html: post.long_description }} />
                     </div>
@@ -126,7 +128,7 @@ const Show = () => {
 
                     <div className="mt-4 space-y-12">
                         {relatedPosts.map((item, i) => (
-                            <Link href={`/blogs/${item.id}`} key={i}>
+                            <Link href={`/posts/${item.id}`} key={i}>
                                 <Card className="flex flex-col overflow-hidden rounded-md border-none shadow-none sm:flex-row sm:items-center">
                                     {/* <CardHeader className="px-0 sm:p-0">
                                         <div className="bg-muted aspect-video rounded-lg sm:w-64">
@@ -155,7 +157,7 @@ const Show = () => {
                     <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1">
                         {postCategories.map((category, i) => (
                             <Link
-                                href={`/blogs?category_code=${category.code}`}
+                                href={`/posts?category_code=${category.code}`}
                                 key={i}
                                 className="bg-primary/5 hover:bg-primary/10 flex cursor-pointer items-center justify-between gap-2 rounded-md p-3"
                             >
