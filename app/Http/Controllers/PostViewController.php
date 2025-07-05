@@ -22,7 +22,6 @@ class PostViewController extends Controller
         $from_date = $request->input('from_date', null);
         $to_date = $request->input('to_date', null);
 
-
         $from_date = $from_date
             ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
             : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
@@ -55,8 +54,9 @@ class PostViewController extends Controller
             });
         }
 
+        $totalViews = (clone $query)->sum('view_counts');
+
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
-        $totalViews = $query->sum('view_counts');
 
         return Inertia::render('admin/post_view_counts/Index', [
             'tableData' => $tableData,

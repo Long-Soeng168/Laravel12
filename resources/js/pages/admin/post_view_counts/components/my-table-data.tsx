@@ -1,4 +1,3 @@
-import DeleteButton from '@/components/delete-button';
 import MyImageGallery from '@/components/my-image-gallery';
 import MyNoData from '@/components/my-no-data';
 import { MyTooltipButton } from '@/components/my-tooltip-button';
@@ -6,7 +5,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ArrowUpDown, EditIcon, ScanEyeIcon } from 'lucide-react';
+import { ArrowUpDown, ScanEyeIcon } from 'lucide-react';
 import { useState } from 'react';
 
 const MyTableData = () => {
@@ -80,7 +79,9 @@ const MyTableData = () => {
                                           })
                                         : '---'}
                                 </TableCell>
-                                <TableCell>{item.post?.title || '---'}</TableCell>
+                                <TableCell>
+                                    <span dangerouslySetInnerHTML={{ __html: item.post?.title || '---' }}></span>
+                                </TableCell>
                                 <TableCell>{item.view_counts || '---'}</TableCell>
                             </TableRow>
                         ))}
