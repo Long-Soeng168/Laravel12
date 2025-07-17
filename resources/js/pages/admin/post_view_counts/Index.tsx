@@ -94,7 +94,7 @@ const Index = () => {
                                 <input type="hidden" name="from_date" value={selectedDateRange.from.toISOString()} />
                                 <input type="hidden" name="to_date" value={selectedDateRange.to.toISOString()} />
                                 <input type="hidden" name="search" value={urlParams.get('search')?.toString()} />
-                                <Button type="submit">
+                                <Button type="submit" variant='success'>
                                     <FileUpIcon /> Export
                                 </Button>
                             </form>
