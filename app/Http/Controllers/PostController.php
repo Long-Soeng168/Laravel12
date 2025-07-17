@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PostExport;
 use App\Helpers\ImageHelper;
 use App\Models\Link;
 use App\Models\Post;
@@ -10,6 +11,7 @@ use App\Models\PostImage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -20,9 +22,28 @@ class PostController extends Controller
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
 
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
+
         $query = Post::query();
 
         $query->with('created_by', 'updated_by', 'images', 'category', 'source_detail');
+
+        if ($from_date) {
+            // dd($from_date);
+            $query->where('post_date', '>=', $from_date);
+        }
+
+        if ($to_date) {
+            $query->where('post_date', '<=', $to_date);
+        }
 
         if ($status) {
             $query->where('status', $status);
@@ -32,14 +53,20 @@ class PostController extends Controller
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('title_kh', 'LIKE', "%{$search}%");
+                    ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%");
             });
         }
+
+        $totalRecord = (clone $query)->count();
 
         $tableData = $query->paginate(perPage: 10)->onEachSide(1);
 
         return Inertia::render('admin/posts/Index', [
             'tableData' => $tableData,
+            'totalRecord' => $totalRecord,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
         ]);
     }
 
@@ -95,7 +122,7 @@ class PostController extends Controller
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 800);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/posts', 800);
                     PostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $created_project->id,
@@ -176,7 +203,7 @@ class PostController extends Controller
         if ($image_files) {
             try {
                 foreach ($image_files as $image) {
-                    $created_image_name = ImageHelper::uploadAndResizeImage($image, 'assets/images/posts', 800);
+                    $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/posts', 800);
                     PostImage::create([
                         'image' => $created_image_name,
                         'post_id' => $post->id,
@@ -229,5 +256,32 @@ class PostController extends Controller
         $image->delete();
 
         return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+
+    public function export(Request $request)
+    {
+        // dd($request->all());
+        $from_date = $request->input('from_date', null);
+        $to_date = $request->input('to_date', null);
+
+        $from_date = $from_date
+            ? Carbon::parse($from_date)->setTimezone('Asia/Bangkok')->startOfDay()->toDateString()
+            : Carbon::now()->setTimezone('Asia/Bangkok')->startOfYear()->toDateString();
+        $to_date = $to_date
+            ? Carbon::parse($to_date)->setTimezone('Asia/Bangkok')->endOfDay()->toDateString()
+            : now()->endOfDay()->toDateString();
+        // dd($from_date, $to_date);
+
+        $filters = [
+            'search' => $request->input('search', ''),
+            'status' => $request->input('status'),
+            'sortBy' => $request->input('sortBy', 'id'),
+            'sortDirection' => $request->input('sortDirection', 'desc'),
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ];
+
+        return Excel::download(new PostExport($filters), 'posts_export_file.xlsx');
     }
 }

@@ -23,6 +23,10 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+    public function created_by_user()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
     public function updated_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');

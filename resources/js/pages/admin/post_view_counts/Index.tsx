@@ -73,7 +73,7 @@ const Index = () => {
                     <MyRefreshButton />
 
                     <div className="flex w-full flex-wrap gap-2">
-                        <div className="flex gap-2 flex-wrap">
+                        <div className="flex flex-wrap gap-2">
                             <div className="inline-block rounded-xl border p-1">
                                 <Button variant="outline" className="text-primary">
                                     <EyeIcon />

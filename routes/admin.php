@@ -15,7 +15,6 @@ use App\Http\Controllers\PostViewController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Models\PostDailyView;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -72,7 +71,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/posts/images/{image}', [PostController::class, 'destroy_image']);
     Route::get('admin/post_view_counts', [PostViewController::class, 'index']);
     Route::get('admin/post_view_counts/export', [PostViewController::class, 'export']);
-    
+
+    Route::get('admin/posts_export', [PostController::class, 'export']);
+
     // Page Position Route
     Route::resource('admin/page_positions', PagePositionController::class);
     Route::post('admin/page_positions/{pagePosition}/update', [PagePositionController::class, 'update']);
