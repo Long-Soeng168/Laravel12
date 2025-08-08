@@ -18,4 +18,11 @@ class FCMTokenController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function destroy($token)
+    {
+        FcmToken::where('token', $token)->delete();
+
+        return response()->json(['status' => 'deleted']);
+    }
 }
