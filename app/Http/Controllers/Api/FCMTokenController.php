@@ -27,4 +27,16 @@ class FCMTokenController extends Controller
 
         return response()->json(['status' => 'deleted']);
     }
+    public function check(Request $request)
+    {
+        $token = $request->input('token');
+
+        if (!$token) {
+            return response()->json(['exists' => false], 400);
+        }
+
+        $exists = FcmToken::where('token', $token)->exists();
+
+        return response()->json(['exists' => $exists]);
+    }
 }

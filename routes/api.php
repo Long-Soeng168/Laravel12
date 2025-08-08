@@ -28,3 +28,4 @@ Route::get('/post_categories', [PostController::class, 'post_categories']);
 // Firebase Cloud Message (Notification)
 Route::post('/save-fcm-token', [FCMTokenController::class, 'store']);
 Route::post('/remove-fcm-token', [FcmTokenController::class, 'destroy']);
+Route::get('/check-fcm-token', [FcmTokenController::class, 'check']);
