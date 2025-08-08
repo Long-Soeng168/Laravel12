@@ -27,4 +27,4 @@ Route::get('/post_categories', [PostController::class, 'post_categories']);
 
 // Firebase Cloud Message (Notification)
 Route::post('/save-fcm-token', [FCMTokenController::class, 'store']);
-Route::delete('/fcm-tokens/{token}', [FcmTokenController::class, 'destroy']);
+Route::post('/remove-fcm-token', [FcmTokenController::class, 'destroy']);
