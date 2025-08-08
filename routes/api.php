@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\FCMTokenController;
 use App\Http\Controllers\Api\LinkController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PostController;
@@ -22,3 +23,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts_most_views', [PostController::class, 'posts_most_views']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
 Route::get('/post_categories', [PostController::class, 'post_categories']);
+
+
+// Firebase Cloud Message (Notification)
+Route::post('/save-fcm-token', [FCMTokenController::class, 'store']);
