@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\PostExport;
 use App\Helpers\ImageHelper;
+use App\Models\FCMToken;
 use App\Models\Link;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -12,6 +13,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Maatwebsite\Excel\Facades\Excel;
+
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Notification;
+use Kreait\Firebase\Factory;
 
 class PostController extends Controller
 {
@@ -117,7 +122,7 @@ class PostController extends Controller
             }
         }
 
-        $created_project = Post::create($validated);
+        $created_post = Post::create($validated);
 
         if ($image_files) {
             try {
@@ -125,13 +130,61 @@ class PostController extends Controller
                     $created_image_name = ImageHelper::uploadAndResizeImageWebp($image, 'assets/images/posts', 800);
                     PostImage::create([
                         'image' => $created_image_name,
-                        'post_id' => $created_project->id,
+                        'post_id' => $created_post->id,
                     ]);
                 }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload images: ' . $e->getMessage());
             }
         }
+
+        // Start Notification
+
+        $created_post = Post::create($validated);
+
+        $messaging = (new Factory)
+            ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+            ->createMessaging();
+
+        $deviceTokens = FCMToken::pluck('token')->toArray();
+
+        // return $deviceTokens;
+
+        if (empty($deviceTokens)) {
+            return response()->json(['status' => 'error', 'message' => 'No tokens found'], 400);
+        }
+
+        $notifcationTitle = $validated['title'];
+        $notifcationBody = $validated['post_date'];
+        $notificationPostId = (string) $created_post->id;
+
+        $message = CloudMessage::new()
+            ->withNotification(Notification::create($notifcationTitle, $notifcationBody, 'https://news-app.redcross.org.kh/crc-logo.png.png'))
+            ->withData(['"type"' => '"post"', '"id"' => '"' . $notificationPostId . '"']);
+
+
+        try {
+            $sendReport = $messaging->sendMulticast($message, $deviceTokens);
+
+            // Optional: remove failed tokens
+            foreach ($sendReport->failures() as $failure) {
+                $failedToken = $failure->target()->value();
+                FCMToken::where('token', $failedToken)->delete();
+            }
+            // return response()->json([
+            //     'status' => 'success',
+            //     'successCount' => $sendReport->successes()->count(),
+            //     'failureCount' => $sendReport->failures()->count(),
+            // ], 200);
+        } catch (\Throwable $e) {
+            // return response()->json([
+            //     'status' => 'error',
+            //     'message' => $e->getMessage()
+            // ], 500);
+        }
+
+        // End Notification
+
         return redirect()->back()->with('success', 'Post Created Successfully!.');
     }
 

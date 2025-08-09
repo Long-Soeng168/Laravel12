@@ -26,8 +26,6 @@ require __DIR__ . '/admin.php';
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 use Kreait\Firebase\Factory;
-use Kreait\Firebase\Exception\MessagingException;
-use Kreait\Firebase\Exception\FirebaseException;
 
 Route::get('/test-firebase-messaging', function () {
    $messaging = (new Factory)
