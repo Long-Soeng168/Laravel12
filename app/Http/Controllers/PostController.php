@@ -154,7 +154,7 @@ class PostController extends Controller
             return response()->json(['status' => 'error', 'message' => 'No tokens found'], 400);
         }
 
-        $notifcationTitle = $validated['title'];
+        $notifcationTitle = strip_tags($validated['title']);
         $notifcationBody = $validated['post_date'];
         $notificationPostId = (string) $created_post->id;
 
