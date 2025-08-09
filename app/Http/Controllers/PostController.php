@@ -140,8 +140,6 @@ class PostController extends Controller
 
         // Start Notification
 
-        $created_post = Post::create($validated);
-
         $messaging = (new Factory)
             ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
             ->createMessaging();
