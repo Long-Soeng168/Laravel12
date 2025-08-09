@@ -163,12 +163,6 @@ class PostController extends Controller
 
         try {
             $sendReport = $messaging->sendMulticast($message, $deviceTokens);
-
-            // Optional: remove failed tokens
-            foreach ($sendReport->failures() as $failure) {
-                $failedToken = $failure->target()->value();
-                FCMToken::where('token', $failedToken)->delete();
-            }
             // return response()->json([
             //     'status' => 'success',
             //     'successCount' => $sendReport->successes()->count(),
