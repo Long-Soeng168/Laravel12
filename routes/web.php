@@ -44,7 +44,7 @@ Route::get('/test-firebase-messaging', function () {
 
    $message = CloudMessage::new()
       ->withNotification(Notification::create('Title Notificationa', 'Body Notificationa', 'https://news-app.redcross.org.kh/crc-logo.png.png'))
-      ->withData(['type' => 'post', 'id' => '104']);
+      ->withData(['"type"' => '"post"', '"id"' => '"104"']);
 
    try {
       $sendReport = $messaging->sendMulticast($message, $deviceTokens);
