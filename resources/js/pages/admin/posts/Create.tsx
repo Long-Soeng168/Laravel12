@@ -29,6 +29,7 @@ const formSchema = z.object({
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
     status: z.string().optional(),
+    notification: z.string().optional(),
     parent_id: z.string().optional(),
     source: z.string().optional(),
     category_code: z.string().optional(),
@@ -69,6 +70,7 @@ export default function Create() {
             type: editData?.type || 'content',
             source: editData?.source?.toString() || '',
             status: editData?.status || 'active',
+            notification: editData?.notification || 'push',
             category_code: editData?.category_code?.toString() || '',
             post_date: editData?.id ? new Date(editData?.post_date) : new Date(),
         },
@@ -282,7 +284,7 @@ export default function Create() {
                                                 </FormControl>
                                                 <SelectContent>
                                                     <SelectItem value="0">
-                                                        <span className='size-6 flex justify-center items-center'>
+                                                        <span className="flex size-6 items-center justify-center">
                                                             <CircleOffIcon size={24} />
                                                         </span>
                                                         None
@@ -436,6 +438,29 @@ export default function Create() {
                                             </SelectContent>
                                         </Select>
                                         <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="notification"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Notification</FormLabel>
+                                        <Select  key={field.value} disabled={editData?.id} onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select notification" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="push">Push Notification</SelectItem>
+                                                <SelectItem value="not_push">Don't Push Notification</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.notification && <div>{errors.notification}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />

@@ -91,8 +91,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $validated = $request->validate([
             'title' => 'required|string|max:500',
+            'notification' => 'required|string|max:500',
             'post_date' => 'required|date',
             'title_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:500',
@@ -104,7 +106,7 @@ class PostController extends Controller
             'category_code' => 'nullable|string',
             'type' => 'nullable|string',
             'status' => 'nullable|string|in:active,inactive',
-            'images' => 'nullable|array',
+            'images' => 'required|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
@@ -162,7 +164,10 @@ class PostController extends Controller
 
 
         try {
-            $sendReport = $messaging->sendMulticast($message, $deviceTokens);
+            if ($validated['notification'] == 'push') {
+                // return 'Push success';
+                $sendReport = $messaging->sendMulticast($message, $deviceTokens);
+            }
             // return response()->json([
             //     'status' => 'success',
             //     'successCount' => $sendReport->successes()->count(),
