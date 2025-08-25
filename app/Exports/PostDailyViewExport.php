@@ -40,6 +40,7 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
     {
         return [
             $view->post?->title ?? 'N/A',
+            $view->post?->content_language ?? 'N/A',
             $view->view_date,
             $view->view_counts,
         ];
@@ -49,6 +50,7 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
     {
         return [
             'Post Title',
+            'Post Language',
             'View Date',
             'View Counts',
         ];
