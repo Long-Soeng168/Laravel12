@@ -29,6 +29,7 @@ const formSchema = z.object({
     link: z.string().min(0).max(255).optional(),
     type: z.string().optional(),
     status: z.string().optional(),
+    content_language: z.string().optional(),
     notification: z.string().optional(),
     parent_id: z.string().optional(),
     source: z.string().optional(),
@@ -70,6 +71,7 @@ export default function Create() {
             type: editData?.type || 'content',
             source: editData?.source?.toString() || '',
             status: editData?.status || 'active',
+            content_language: editData?.content_language || 'khmer',
             notification: editData?.notification || 'push',
             category_code: editData?.category_code?.toString() || '',
             post_date: editData?.id ? new Date(editData?.post_date) : new Date(),
@@ -442,6 +444,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
+                        
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -449,7 +452,7 @@ export default function Create() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Notification</FormLabel>
-                                        <Select  key={field.value} disabled={editData?.id} onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select key={field.value} disabled={editData?.id} onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Select notification" />
@@ -461,6 +464,35 @@ export default function Create() {
                                             </SelectContent>
                                         </Select>
                                         <FormMessage>{errors.notification && <div>{errors.notification}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="content_language"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Content Language</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Content Language" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="khmer">Khmer</SelectItem>
+                                                <SelectItem value="english">English</SelectItem>
+                                                <SelectItem value="chinese">Chinese</SelectItem>
+                                                <SelectItem value="french">French</SelectItem>
+                                                <SelectItem value="thai">Thai</SelectItem>
+                                                <SelectItem value="vietnamese">Vietnamese</SelectItem>
+                                                <SelectItem value="korean">Korean</SelectItem>
+                                                <SelectItem value="japanese">Japanese</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.content_language && <div>{errors.content_language}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
