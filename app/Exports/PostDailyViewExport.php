@@ -39,7 +39,7 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
     public function map($view): array
     {
         return [
-            $view->post?->title ?? 'N/A',
+            strip_tags($view->post?->title ?? 'N/A'),
             $view->post?->content_language ?? 'N/A',
             $view->view_date,
             $view->view_counts,
