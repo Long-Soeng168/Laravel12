@@ -474,11 +474,11 @@ export default function Create() {
                                 name="content_language"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Content Language</FormLabel>
+                                        <FormLabel>Language</FormLabel>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
-                                                    <SelectValue placeholder="Select Content Language" />
+                                                    <SelectValue placeholder="Select Language" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
