@@ -72,6 +72,7 @@ class PostController extends Controller
             'totalRecord' => $totalRecord,
             'from_date' => $from_date,
             'to_date' => $to_date,
+            'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
 

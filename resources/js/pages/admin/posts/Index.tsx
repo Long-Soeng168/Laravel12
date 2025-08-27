@@ -13,6 +13,9 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
+import FilterCategory from './components/filter-category';
+import TypeFilter from './components/type-filter';
+import LanguageFilter from './components/language-filter';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -86,6 +89,9 @@ const Index = () => {
                                     }}
                                 />
                             </div>
+                            <FilterCategory />
+                            <TypeFilter />
+                            <LanguageFilter />
                             <form method="GET" action="/admin/posts_export" target="_blank" className="inline-block rounded-xl border p-1">
                                 <input type="hidden" name="from_date" value={selectedDateRange.from.toISOString()} />
                                 <input type="hidden" name="to_date" value={selectedDateRange.to.toISOString()} />
