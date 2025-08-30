@@ -23,6 +23,9 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', '');
+        $category_code = $request->input('category_code', '');
+        $language = $request->input('language', '');
+        $type = $request->input('type', '');
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
@@ -44,6 +47,15 @@ class PostController extends Controller
         if ($from_date) {
             // dd($from_date);
             $query->where('post_date', '>=', $from_date);
+        }
+        if ($category_code) {
+            $query->where('category_code', $category_code);
+        }
+        if ($language) {
+            $query->where('content_language', $language);
+        }
+        if ($type) {
+            $query->where('type', $type);
         }
 
         if ($to_date) {
@@ -327,6 +339,9 @@ class PostController extends Controller
         // dd($from_date, $to_date);
 
         $filters = [
+            'type' => $request->input('type', ''),
+            'language' => $request->input('language', ''),
+            'category_code' => $request->input('category_code', ''),
             'search' => $request->input('search', ''),
             'status' => $request->input('status'),
             'sortBy' => $request->input('sortBy', 'id'),

@@ -26,6 +26,15 @@ class PostExport implements FromQuery, WithMapping, WithHeadings
         if (!empty($this->filters['status'])) {
             $query->where('status', $this->filters['status']);
         }
+        if (!empty($this->filters['category_code'])) {
+            $query->where('category_code', $this->filters['category_code']);
+        }
+        if (!empty($this->filters['language'])) {
+            $query->where('content_language', $this->filters['language']);
+        }
+        if (!empty($this->filters['type'])) {
+            $query->where('type', $this->filters['type']);
+        }
 
         if (!empty($this->filters['search'])) {
             $search = $this->filters['search'];
@@ -65,7 +74,7 @@ class PostExport implements FromQuery, WithMapping, WithHeadings
             'Status',
             'Link',
             'Type',
-            'Content Language',
+            'Language',
             'Category',
             'Post By',
             'Total View Counts',

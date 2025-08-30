@@ -11,11 +11,11 @@ import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { EyeIcon, FileUpIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import FilterCategory from './components/filter-category';
+import LanguageFilter from './components/language-filter';
 import { MyFilterButton } from './components/my-filter-button';
 import MyTableData from './components/my-table-data';
-import FilterCategory from './components/filter-category';
 import TypeFilter from './components/type-filter';
-import LanguageFilter from './components/language-filter';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -71,7 +71,7 @@ const Index = () => {
                     <MySearchTableData />
                     <MyFilterButton />
                     <MyRefreshButton />
-                    <div className="flex w-full flex-wrap justify-end lg:justify-between gap-2">
+                    <div className="flex w-full flex-wrap justify-end gap-2 lg:justify-between">
                         <div className="flex flex-wrap gap-2">
                             <div className="inline-block rounded-xl border p-1">
                                 <Button variant="outline" className="text-primary">
@@ -89,14 +89,23 @@ const Index = () => {
                                     }}
                                 />
                             </div>
-                            <FilterCategory />
-                            <TypeFilter />
-                            <LanguageFilter />
+                            <span className="rounded-xl border p-1">
+                                <FilterCategory />
+                            </span>
+                            <span className="rounded-xl border p-1">
+                                <TypeFilter />
+                            </span>
+                            <span className="rounded-xl border p-1">
+                                <LanguageFilter />
+                            </span>
                             <form method="GET" action="/admin/posts_export" target="_blank" className="inline-block rounded-xl border p-1">
                                 <input type="hidden" name="from_date" value={selectedDateRange.from.toISOString()} />
                                 <input type="hidden" name="to_date" value={selectedDateRange.to.toISOString()} />
                                 <input type="hidden" name="search" value={urlParams.get('search')?.toString()} />
-                                <Button type="submit" variant='success'>
+                                <input type="hidden" name="category_code" value={urlParams.get('category_code')?.toString()} />
+                                <input type="hidden" name="type" value={urlParams.get('type')?.toString()} />
+                                <input type="hidden" name="language" value={urlParams.get('language')?.toString()} />
+                                <Button type="submit" variant="success">
                                     <FileUpIcon /> Export
                                 </Button>
                             </form>

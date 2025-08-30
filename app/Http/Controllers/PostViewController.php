@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PostDailyViewExport;
+use App\Models\PostCategory;
 use App\Models\PostDailyView;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,6 +17,9 @@ class PostViewController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', '');
+        $category_code = $request->input('category_code', '');
+        $language = $request->input('language', '');
+        $type = $request->input('type', '');
         $sortBy = $request->input('sortBy', 'view_date');
         $sortDirection = $request->input('sortDirection', 'desc');
         $status = $request->input('status');
@@ -31,6 +35,7 @@ class PostViewController extends Controller
 
         $query = PostDailyView::query();
 
+        $query->with('post');
 
         if ($from_date) {
             // dd($from_date);
@@ -41,18 +46,34 @@ class PostViewController extends Controller
             $query->where('view_date', '<=', $to_date);
         }
 
-        if ($status) {
-            $query->where('status', $status);
-        }
+        // filter inside relationship "post"
+        $query->whereHas('post', function ($subQuery) use ($category_code, $language, $type, $search) {
+            if ($category_code) {
+                $subQuery->where('category_code', $category_code);
+            }
+            if ($language) {
+                $subQuery->where('content_language', $language);
+            }
+            if ($type) {
+                $subQuery->where('type', $type);
+            }
+            if ($search) {
+                $subQuery->where(function ($q) use ($search) {
+                    $q->where('title', 'LIKE', "%{$search}%")
+                        ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                        ->orWhere('id', 'LIKE', "%{$search}%");
+                });
+            }
+        });
+
         $query->orderBy($sortBy, $sortDirection);
 
-        $query->with('post');
 
-        if ($search) {
-            $query->whereHas('post', function ($subQuery) use ($search) {
-                $subQuery->where('title', 'LIKE', "%{$search}%");
-            });
-        }
+        // if ($search) {
+        //     $query->whereHas('post', function ($subQuery) use ($search) {
+        //         $subQuery->where('title', 'LIKE', "%{$search}%");
+        //     });
+        // }
 
         $totalViews = (clone $query)->sum('view_counts');
 
@@ -63,6 +84,8 @@ class PostViewController extends Controller
             'totalViews' => $totalViews,
             'from_date' => $from_date,
             'to_date' => $to_date,
+            'postCategories' => PostCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+
         ]);
     }
 
@@ -81,6 +104,9 @@ class PostViewController extends Controller
         // dd($from_date, $to_date);
 
         $filters = [
+            'type' => $request->input('type', ''),
+            'language' => $request->input('language', ''),
+            'category_code' => $request->input('category_code', ''),
             'search' => $request->input('search', ''),
             'status' => $request->input('status'),
             'sortBy' => $request->input('sortBy', 'view_date'),

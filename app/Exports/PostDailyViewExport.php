@@ -23,15 +23,34 @@ class PostDailyViewExport implements FromQuery, WithMapping, WithHeadings
             ->whereBetween('view_date', [$this->filters['from_date'], $this->filters['to_date']])
             ->orderBy($this->filters['sortBy'], $this->filters['sortDirection']);
 
-        if (!empty($this->filters['status'])) {
-            $query->where('status', $this->filters['status']);
-        }
+        $category_code = $this->filters['category_code'];
+        $language = $this->filters['language'];
+        $type = $this->filters['type'];
+        $search = $this->filters['search'];
+        $query->whereHas('post', function ($subQuery) use ($category_code, $language, $type, $search) {
+            if ($category_code) {
+                $subQuery->where('category_code', $category_code);
+            }
+            if ($language) {
+                $subQuery->where('content_language', $language);
+            }
+            if ($type) {
+                $subQuery->where('type', $type);
+            }
+            if ($search) {
+                $subQuery->where(function ($q) use ($search) {
+                    $q->where('title', 'LIKE', "%{$search}%")
+                        ->orWhere('title_kh', 'LIKE', "%{$search}%")
+                        ->orWhere('id', 'LIKE', "%{$search}%");
+                });
+            }
+        });
 
-        if (!empty($this->filters['search'])) {
-            $query->whereHas('post', function ($subQuery) {
-                $subQuery->where('title', 'LIKE', "%{$this->filters['search']}%");
-            });
-        }
+        // if (!empty($this->filters['search'])) {
+        //     $query->whereHas('post', function ($subQuery) {
+        //         $subQuery->where('title', 'LIKE', "%{$this->filters['search']}%");
+        //     });
+        // }
 
         return $query;
     }
