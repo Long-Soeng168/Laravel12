@@ -59,7 +59,7 @@ class HeadingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:1000',
+            'title' => 'required|string',
             'title_kh' => 'nullable|string|max:255',
             'code' => 'nullable|string|max:255|unique:headings,code',
             'short_description' => 'nullable|string|max:255',
@@ -104,7 +104,7 @@ class HeadingController extends Controller
     public function update(Request $request, Heading $heading)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:1000',
+            'title' => 'required|string',
             'title_kh' => 'nullable|string|max:255',
             'code' => 'nullable|string|max:255|unique:headings,code,'. $heading->id,
             'short_description' => 'nullable|string|max:255',
