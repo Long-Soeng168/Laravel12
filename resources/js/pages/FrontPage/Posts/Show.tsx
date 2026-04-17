@@ -14,10 +14,10 @@ const Show = () => {
     const { showData, relatedData, app_url } = usePage<any>().props;
     const { t, currentLocale } = useTranslation();
 
-    const description = currentLocale === 'kh' ? showData?.short_description_kh || showData?.short_description : showData?.short_description;
+    const description = currentLocale === 'kh' ? showData?.short_description || showData?.short_description : showData?.short_description;
 
     // Get the raw title string
-    const rawTitle = currentLocale === 'kh' ? showData?.title_kh || showData?.title : showData?.title;
+    const rawTitle = currentLocale === 'kh' ? showData?.title || showData?.title : showData?.title;
 
     // Helper to strip HTML tags for Meta Tags (SEO needs plain text)
     const cleanTitle = rawTitle?.replace(/<[^>]*>?/gm, '') || '';
@@ -115,9 +115,7 @@ const Show = () => {
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html:
-                                        currentLocale == 'kh'
-                                            ? (showData.long_description_kh ?? showData.long_description)
-                                            : showData.long_description,
+                                        currentLocale == 'kh' ? (showData.long_description ?? showData.long_description) : showData.long_description,
                                 }}
                             ></div>
                         </div>
