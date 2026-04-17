@@ -295,6 +295,21 @@ export default function Create() {
                             )}
                         />
                     </div>
+                     <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Phone Number</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Phone Number" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.phone && <div>{errors.phone}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
                     {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
