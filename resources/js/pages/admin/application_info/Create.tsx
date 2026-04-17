@@ -1,3 +1,4 @@
+import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -154,19 +155,7 @@ export default function Create() {
                         />
                     </div> */}
                 </div>
-                {/* <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Address</FormLabel>
-                            <FormControl>
-                                <AutosizeTextarea placeholder="Address" className="resize-none" {...field} />
-                            </FormControl>
-                            <FormMessage>{errors.address && <div>{errors.address}</div>}</FormMessage>
-                        </FormItem>
-                    )}
-                />
+                {/* 
                 <FormField
                     control={form.control}
                     name="address_kh"
@@ -181,21 +170,7 @@ export default function Create() {
                     )}
                 />
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
-                        <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Phone Number</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Phone Number" type="text" {...field} />
-                                    </FormControl>
-                                    <FormMessage>{errors.phone && <div>{errors.phone}</div>}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
+                  
                    
                 </div>
 
@@ -295,7 +270,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                     <div className="col-span-6">
+                    <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="phone"
@@ -310,6 +285,20 @@ export default function Create() {
                             )}
                         />
                     </div>
+                    <FormField
+                        control={form.control}
+                        name="address"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Address</FormLabel>
+                                <FormControl>
+                                    <AutosizeTextarea placeholder="Address" className="resize-none" {...field} />
+                                </FormControl>
+                                <FormMessage>{errors.address && <div>{errors.address}</div>}</FormMessage>
+                            </FormItem>
+                        )}
+                    />
+
                     {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
