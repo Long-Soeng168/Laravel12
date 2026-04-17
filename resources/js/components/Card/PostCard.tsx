@@ -63,13 +63,13 @@ export function PostCard({ post }: any) {
             <div className="flex flex-1 flex-col p-4">
                 <Link href={`/posts/${post?.id}`}>
                     <div
-                        className="text-foreground group-hover:text-primary mb-4 line-clamp-2 text-xl font-semibold leading-8 transition-colors"
+                        className="text-foreground group-hover:text-primary mb-4 line-clamp-2 text-xl leading-8 font-semibold transition-colors"
                         dangerouslySetInnerHTML={{ __html: post.title }}
                     />
                 </Link>
 
                 {/* Footer Section */}
-                <div className="border-border mt-auto flex items-center justify-between border-t pt-4 text-base">
+                <div className="border-border mt-auto flex flex-nowrap overflow-hidden items-center justify-between border-t pt-4 text-sm">
                     {post.source_detail?.link && (
                         <a
                             href={post.source_detail?.link}
