@@ -35,7 +35,7 @@ export default function FrontPageLayout({ children }: { children: React.ReactNod
     const marqueeText = endless_text_motion?.title || 'Welcome to CRC News Portal • Cambodia Red Cross News • ';
 
     return (
-        <div className="bg-background flex min-h-screen flex-col font-sans selection:bg-red-100 selection:text-red-600">
+        <div className="bg-background flex min-h-screen flex-col selection:bg-red-100 selection:text-red-600">
             {/* 1. TOP TICKER */}
             <div className="hidden overflow-hidden border-b border-white/10 bg-[#e62129] py-2 text-white md:block">
                 <div className="section-container mx-auto px-4">

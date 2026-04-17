@@ -41,7 +41,7 @@ export const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 sm:px-10 md:px-20 antialiased font-sans py-20 overflow-hidden">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-10 md:px-20 antialiased py-20 overflow-hidden">
 
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
