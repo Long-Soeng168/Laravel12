@@ -15,7 +15,7 @@ const Index = () => {
         <FrontPageLayout>
             <div className="section-container relative min-h-screen">
                 {/* Header Section */}
-                <div className="relative z-10 flex min-h-[100px] flex-col justify-center gap-6 pt-10">
+                <div className="relative z-10 flex min-h-[100px] flex-col justify-center gap-6 pt-6">
                     <div className="section-container mx-auto w-full">
                         <div className="flex flex-col gap-2">
                             <h1 className="text-4xl font-medium tracking-tighter md:text-5xl">{t('Posts')}</h1>

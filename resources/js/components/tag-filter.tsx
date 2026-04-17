@@ -1,4 +1,4 @@
-import { Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerTrigger } from '@/components/ui/drawer';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from '@/components/ui/drawer';
 import useTranslation from '@/hooks/use-translation';
 import { router } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
@@ -68,7 +68,7 @@ export function TagFilter({ tags }: TagFilterProps) {
 
                         {item.posts_count !== undefined && (
                             <span
-                                className={`flex items-center justify-center text-xs font-semibold text-primary ${
+                                className={`text-primary flex items-center justify-center text-xs font-semibold ${
                                     active ? 'text-primary-foreground' : ''
                                 }`}
                             >
@@ -82,7 +82,7 @@ export function TagFilter({ tags }: TagFilterProps) {
     );
 
     const MobileTagFilter = () => (
-        <Drawer>
+        <Drawer modal={false}>
             <DrawerTrigger className="flex w-full items-center justify-between rounded-none border px-4 py-2 md:hidden">
                 <span className="text-sm font-medium">{selectedTag ? tags.find((t) => t.code === selectedTag)?.name : t('All Category')}</span>
                 <ChevronDown className="h-4 w-4" />
@@ -93,8 +93,8 @@ export function TagFilter({ tags }: TagFilterProps) {
                     <h3 className="text-sm font-semibold">{t('Select Category')}</h3>
                 </DrawerHeader>
 
-                <DrawerBody>
-                    <div className="space-y-3">
+                <DrawerContent>
+                    <div className="space-y-3 p-4">
                         {tags.map((item) => {
                             const active = selectedTag === item.code;
 
@@ -109,7 +109,7 @@ export function TagFilter({ tags }: TagFilterProps) {
                                     </span>
 
                                     {item.posts_count !== undefined && (
-                                        <span className="flex items-center justify-center text-xs font-semibold text-primary">
+                                        <span className="text-primary flex items-center justify-center text-xs font-semibold">
                                             ({item.posts_count})
                                         </span>
                                     )}
@@ -117,7 +117,7 @@ export function TagFilter({ tags }: TagFilterProps) {
                             );
                         })}
                     </div>
-                </DrawerBody>
+                </DrawerContent>
             </DrawerContent>
         </Drawer>
     );
