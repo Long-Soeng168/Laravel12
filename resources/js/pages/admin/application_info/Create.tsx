@@ -285,19 +285,6 @@ export default function Create() {
                             )}
                         />
                     </div>
-                    <FormField
-                        control={form.control}
-                        name="address"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Address</FormLabel>
-                                <FormControl>
-                                    <AutosizeTextarea placeholder="Address" className="resize-none" {...field} />
-                                </FormControl>
-                                <FormMessage>{errors.address && <div>{errors.address}</div>}</FormMessage>
-                            </FormItem>
-                        )}
-                    />
 
                     {/* <div className="col-span-6">
                         <FormField
@@ -315,6 +302,19 @@ export default function Create() {
                         />
                     </div> */}
                 </div>
+                <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Address</FormLabel>
+                            <FormControl>
+                                <AutosizeTextarea placeholder="Address" className="resize-none" {...field} />
+                            </FormControl>
+                            <FormMessage>{errors.address && <div>{errors.address}</div>}</FormMessage>
+                        </FormItem>
+                    )}
+                />
 
                 <FormField
                     control={form.control}
