@@ -101,7 +101,7 @@ class PostController extends Controller
     {
         $post->increment('total_view_counts');
         return view('ShowPost', [
-            'showData'    => $post->load('images', 'category'),
+            'showData'    => $post->load('images'),
             'app_url'     => config('app.url'), // Pass the app URL for the share links
         ]);
     }
