@@ -8,6 +8,7 @@ export default function MyFileManager({
     handleInsertMedia?: (type: 'image' | 'file', url: string, fileName?: string) => void;
     toolbarContainerId?: string;
 }) {
+    return null;
     return (
         <FileManagerProvider>
             <MyFileManagerDialog toolbarContainerId={toolbarContainerId} handleInsertMedia={handleInsertMedia} />

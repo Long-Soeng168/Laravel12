@@ -229,13 +229,18 @@
 }
 @theme {
     /* Start Long Soeng */
-    --font-poppins-regular: 'PoppinsRegular', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-koulen-regular: 'Koulen', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-siemreap-regular: 'Siemreap', 'PoppinsRegular', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-poppins-regular:
+        'PoppinsRegular', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-koulen-regular:
+        'Koulen', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-siemreap-regular:
+        'Siemreap', 'PoppinsRegular', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
     /* End Long Soeng */
 
     --font-sans:
-        'Siemreap', 'PoppinsRegular', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        'Siemreap', 'PoppinsRegular', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
     --font-moul-regular: MoulRegular;
     --font-now-black: NowBlack, 'Poppins';
     --font-now-bold: NowBold, 'Poppins';
@@ -472,8 +477,8 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.59 0.23 278.87);
-    --true-primary: oklch(0.59 0.23 278.87);
+    --primary: #e62129;
+    --true-primary: #e62129;
     --primary-foreground: oklch(0.985 0 0);
     --success: oklch(0.627 0.194 149.214);
     --success-foreground: oklch(0.985 0 0);
@@ -514,7 +519,7 @@
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.985 0 0);
-    --true-primary: oklch(0.59 0.23 278.87);
+    --true-primary: #e62129;
     --primary-foreground: oklch(0.205 0 0);
     --success: oklch(0.627 0.194 149.214);
     --success-foreground: oklch(0.985 0 0);
@@ -549,6 +554,10 @@
 @layer base {
     * {
         @apply border-border;
+    }
+
+    .section-container {
+        @apply mx-auto max-w-333 px-2;
     }
 
     body {

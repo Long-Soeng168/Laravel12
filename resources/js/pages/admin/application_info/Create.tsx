@@ -1,4 +1,3 @@
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { Button } from '@/components/ui/button';
 import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from '@/components/ui/file-upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -278,6 +277,7 @@ export default function Create() {
                         />
                     </div>
                 </div>
+                */}
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-6">
                         <FormField
@@ -294,7 +294,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="copyright_kh"
@@ -308,8 +308,8 @@ export default function Create() {
                                 </FormItem>
                             )}
                         />
-                    </div>
-                </div> */}
+                    </div> */}
+                </div>
 
                 <FormField
                     control={form.control}

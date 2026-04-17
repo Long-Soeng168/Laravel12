@@ -18,8 +18,13 @@ class PostCategory extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_code', 'code');
+    }
 
-    public function children(){
-        return $this->hasMany(PostCategory::class,'parent_code','code');
+    public function children()
+    {
+        return $this->hasMany(PostCategory::class, 'parent_code', 'code');
     }
 }

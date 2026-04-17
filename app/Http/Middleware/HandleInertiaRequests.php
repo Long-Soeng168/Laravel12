@@ -3,6 +3,10 @@
 namespace App\Http\Middleware;
 
 use App\Models\ApplicationInfo;
+use App\Models\Heading;
+use App\Models\Link;
+use App\Models\Page;
+use App\Models\PostCategory;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -55,6 +59,10 @@ class HandleInertiaRequests extends Middleware
             ],
 
             'application_info' => ApplicationInfo::first(),
+            'endless_text_motion' => Heading::where('status', 'active')->orderBy('id', 'desc')->first(),
+            'links' => Link::orderBy('order_index')->where('status', 'active')->get(),
+            'post_categories' => PostCategory::orderBy('order_index')->where('status', 'active')->get(),
+            'page_links' => Page::orderBy('order_index')->select('title', 'position_code', 'id')->where('status', 'active')->get(),
 
             'flash' => [
                 'success' => session('success'),

@@ -1,13 +1,50 @@
 <?php
 
+use App\Http\Controllers\FrontPage\PostController;
+use App\Models\ApplicationInfo;
+use App\Models\Banner;
 use App\Models\FCMToken;
+use App\Models\Heading;
+use App\Models\Link;
+use App\Models\Page;
+use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-   // return Inertia::render('LaravelDefaultPage');
-   return redirect('/dashboard');
+
+   $banners = Banner::orderBy('order_index')->where('position_code', 'TOP_HOMEPAGE')->where('status', 'active')->get();
+   $recent_posts = Post::orderByDesc('post_date')->with('created_by', 'images', 'category', 'source_detail')->where('status', 'active')->limit(4)->get();
+   // return [
+   //    'endless_text_motion' => $endless_text_motion,
+   //    'links' => $links,
+   //    'banners' => $banners,
+   //    'recent_posts' => $recent_posts,
+   //    'post_categories' => $post_categories,
+   //    'application_info' => $application_info,
+   // ];
+
+   return Inertia::render('FrontPage', [
+      'banners' => $banners,
+      'recent_posts' => $recent_posts,
+   ]);
+   // return redirect('/dashboard');
 })->name('home');
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+Route::get('/pages/{position_code}', function (string $position_code) {
+   $showData = Page::where('position_code', $position_code)->with('images')->firstOrFail();
+   // return $showData;
+   return Inertia::render('FrontPage/DetailPage', [
+      'showData' => $showData,
+   ]);
+});
+Route::get('/contact', function () {
+   return Inertia::render('FrontPage/Contact/Index');
+});
+
 Route::get('/privacy', function () {
    return Inertia::render('Privacy');
 })->name('home');
