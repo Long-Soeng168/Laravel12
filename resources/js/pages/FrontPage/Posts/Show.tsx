@@ -74,7 +74,7 @@ const Show = () => {
 
                                 {/* Telegram */}
                                 <a
-                                    href={`https://t.me/share/url?url=${shareUrl}&text=${cleanTitle}`}
+                                    href={`https://t.me/share/url?url=${shareUrl}`}
                                     target="_blank"
                                     className="flex h-10 w-10 items-center justify-center rounded-full bg-[#24A1DE] text-white transition-transform hover:scale-110"
                                     title="Share on Telegram"
@@ -94,7 +94,7 @@ const Show = () => {
 
                                 {/* X (Twitter) */}
                                 <a
-                                    href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${cleanTitle}`}
+                                    href={`https://twitter.com/intent/tweet?url=${shareUrl}`}
                                     target="_blank"
                                     className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform hover:scale-110 dark:bg-slate-800"
                                     title="Share on X"
