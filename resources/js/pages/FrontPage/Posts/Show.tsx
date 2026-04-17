@@ -14,13 +14,14 @@ const Show = () => {
     const { showData, relatedData, app_url } = usePage<any>().props;
     const { t, currentLocale } = useTranslation();
 
-    const description = currentLocale === 'kh' ? showData?.short_description || showData?.short_description : showData?.short_description;
-
-    // Get the raw title string
-    const rawTitle = currentLocale === 'kh' ? showData?.title || showData?.title : showData?.title;
-
     // Helper to strip HTML tags for Meta Tags (SEO needs plain text)
-    const cleanTitle = rawTitle?.replace(/<[^>]*>?/gm, '') || '';
+    const cleanTitle = showData?.title?.replace(/<[^>]*>?/gm, '') || '';
+    const cleanDescription =
+        showData?.long_description
+            ?.replace(/<[^>]*>?/gm, '') // Remove HTML
+            ?.replace(/\s+/g, ' ') // Collapse multiple spaces/newlines into one space
+            ?.trim() // Remove leading/trailing space
+            ?.substring(0, 300) + '...'; // Take first 300 chars and add ellipsis
 
     const image = `${ASSET_URL}/posts/thumb/${showData?.images[0]?.image}`;
 
@@ -39,19 +40,19 @@ const Show = () => {
             <Head>
                 {/* Basic Meta - Use cleanTitle for plain text */}
                 <title>{cleanTitle}</title>
-                <meta name="description" content={description} />
+                <meta name="description" content={cleanDescription} />
 
                 {/* Open Graph */}
                 <meta property="og:title" content={cleanTitle} />
-                <meta property="og:description" content={description} />
+                <meta property="og:description" content={cleanDescription} />
                 <meta property="og:image" content={image} />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={app_url} />
+                <meta property="og:url" content={shareUrl} />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={cleanTitle} />
-                <meta name="twitter:description" content={description} />
+                <meta name="twitter:description" content={cleanDescription} />
                 <meta name="twitter:image" content={image} />
             </Head>
 
@@ -60,7 +61,10 @@ const Show = () => {
                     <main className="prose dark:prose-invert prose-h2:mb-0.5 prose-h3:mb-0.5 prose-p:m-0 prose-ul:m-0 w-full max-w-none">
                         <div>
                             {/* Title rendered as HTML */}
-                            <h1 className="text-primary mt-6 text-2xl leading-tight md:text-3xl" dangerouslySetInnerHTML={{ __html: rawTitle }} />
+                            <h1
+                                className="text-primary mt-6 text-2xl leading-tight md:text-3xl"
+                                dangerouslySetInnerHTML={{ __html: showData?.title }}
+                            />
 
                             <div className="border-border my-6 flex flex-wrap items-center gap-3 border-y py-4">
                                 <span className="text-muted-foreground flex items-center gap-2 text-base font-bold">
