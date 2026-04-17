@@ -133,7 +133,7 @@ export default function FrontPageLayout({ children }: { children: React.ReactNod
                         <ul className="text-foreground space-y-3 text-base font-bold">
                             <li>{application_info?.phone}</li>
                             <li>{application_info?.email}</li>
-                            <li>{application_info?.working_hours}</li>
+                            {/* <li>{application_info?.working_hours}</li> */}
                         </ul>
                         <div className="border-border mt-6 flex items-center gap-4 border-t pt-4">
                             <span className="text-muted-foreground text-base font-bold">Appearance</span>

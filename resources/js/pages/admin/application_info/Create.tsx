@@ -196,21 +196,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Your Email</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Your Email" type="text" {...field} />
-                                    </FormControl>
-                                    <FormMessage>{errors.email && <div>{errors.email}</div>}</FormMessage>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
+                   
                 </div>
 
                 <div className="grid grid-cols-12 gap-4">
@@ -290,6 +276,21 @@ export default function Create() {
                                         <Input placeholder="Copy Right" type="text" {...field} />
                                     </FormControl>
                                     <FormMessage>{errors.copyright && <div>{errors.copyright}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="col-span-6">
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Your Email" type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.email && <div>{errors.email}</div>}</FormMessage>
                                 </FormItem>
                             )}
                         />
