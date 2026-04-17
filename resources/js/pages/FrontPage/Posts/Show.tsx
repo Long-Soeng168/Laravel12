@@ -27,7 +27,7 @@ const Show = () => {
 
     // Share Logic
     const [copied, setCopied] = useState(false);
-    const shareUrl = APP_URL + `/posts/${showData?.id}`;
+    const shareUrl = APP_URL + `/share/posts/${showData?.id}`;
 
     const handleCopyLink = () => {
         navigator.clipboard.writeText(shareUrl);

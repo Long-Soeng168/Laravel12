@@ -91,6 +91,19 @@ class PostController extends Controller
             'showData' => $post->load('images', 'category'),
             'relatedData' => $relatedData,
         ]);
+        // return view('ShowPost', [
+        //     'showData'    => $post->load('images', 'category'),
+        //     'relatedData' => $relatedData,
+        //     'app_url'     => config('app.url'), // Pass the app URL for the share links
+        // ]);
+    }
+    public function show_static_post(Post $post)
+    {
+        $post->increment('total_view_counts');
+        return view('ShowPost', [
+            'showData'    => $post->load('images', 'category'),
+            'app_url'     => config('app.url'), // Pass the app URL for the share links
+        ]);
     }
 
     /**

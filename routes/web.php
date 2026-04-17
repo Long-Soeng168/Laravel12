@@ -33,6 +33,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
+Route::get('/share/posts/{post}', [PostController::class, 'show_static_post']);
 
 Route::get('/pages/{position_code}', function (string $position_code) {
    $showData = Page::where('position_code', $position_code)->with('images')->firstOrFail();

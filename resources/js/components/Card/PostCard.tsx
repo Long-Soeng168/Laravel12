@@ -69,7 +69,7 @@ export function PostCard({ post }: any) {
                 </Link>
 
                 {/* Footer Section */}
-                <div className="border-border mt-auto flex flex-nowrap overflow-hidden items-center justify-between border-t pt-4 text-sm">
+                <div className="border-border mt-auto flex flex-nowrap items-center justify-between overflow-hidden border-t pt-4 text-sm">
                     {post.source_detail?.link && (
                         <a
                             href={post.source_detail?.link}
