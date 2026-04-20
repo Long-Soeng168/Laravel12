@@ -199,6 +199,35 @@
             });
         }
     </script>
+    {{-- Open in App Banner --}}
+    {{-- Test Buttons Container --}}
+    <div class="mb-6 section-container rounded-2xl bg-slate-50 p-6 border border-slate-200">
+        <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Deep Link Testing</p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+            {{-- Button 1: Normal Web Link (App Links / Universal Links) --}}
+            <a href="{{ $shareUrl }}" class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all active:scale-95 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                Test HTTPS Link
+            </a>
+
+            {{-- Button 2: Custom URI Scheme (crc-news-app://) --}}
+            <a href="crc-news-app://share/posts/{{ $showData->id }}" class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-black text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all active:scale-95 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                    <path d="M12 18h.01" />
+                </svg>
+                Test Scheme Link
+            </a>
+        </div>
+
+        <p class="mt-3 text-xs text-muted-foreground">
+            Note: The Black button (Scheme) usually works even if the server verification fails.
+        </p>
+    </div>
 </body>
 
 </html>
