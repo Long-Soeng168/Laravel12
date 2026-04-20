@@ -54,11 +54,13 @@
     <div class="section-container py-8">
         {{-- Navigation / Back Home Button --}}
         <div class="mb-6">
-            <a href="/" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground font-bold rounded-full border border-border hover:bg-primary hover:text-white transition-all active:scale-95 group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform">
-                    <path d="m15 18-6-6 6-6" />
-                </svg>
-                Back to Home
+            <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-200 font-semibold rounded-full border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300 active:scale-95 group">
+                <div class="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 transition-colors group-hover:-translate-x-0.5 text-primary transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </div>
+                <span class="tracking-tight">Back to Home</span>
             </a>
         </div>
 
@@ -190,7 +192,7 @@
     </script>
     {{-- Open in App Banner --}}
     {{-- Test Buttons Container --}}
-    <div class="mb-6 section-container rounded-2xl bg-slate-50 p-6 border border-slate-200">
+    <div class="mb-6 section-container hidden rounded-2xl bg-slate-50 p-6 border border-slate-200">
         <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Deep Link Testing</p>
 
         <div class="flex flex-col sm:flex-row gap-4">
