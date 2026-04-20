@@ -20,6 +20,8 @@
     : "{$ASSET_URL}/default-logo.png";
 
     $shareUrl = "{$APP_URL}/share/posts/{$showData->id}";
+    $appSchemeUrl = "crc-news-app://share/posts/{$showData->id}";
+
     @endphp
 
     <title>{{ $cleanTitle }}</title>
@@ -182,6 +184,37 @@
     </div>
 
     <script>
+        // Feature: Open App via Scheme
+        function openApp(schemeUrl) {
+            const start = Date.now();
+
+            // Try to open the custom scheme
+            window.location.href = schemeUrl;
+
+            // Log to console immediately
+            console.log("Attempting to open app: " + schemeUrl);
+
+            // Wait 2 seconds. If the user is still on this page, the app probably isn't installed.
+            setTimeout(() => {
+                if (Date.now() - start < 2500) {
+                    console.log("App not detected. User stayed on webpage.");
+                    // You could show an alert or redirect to App Store here
+                    // alert("App not found. Please install CRC News app.");
+                }
+            }, 2000);
+        }
+
+        window.onload = function() {
+            // Trigger all
+            openApp('{{ $appSchemeUrl }}');
+
+            // Target only ios and android
+            // if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            //     console.log("Mobile detected, auto-triggering app check...");
+            //     openApp('{{ $appSchemeUrl }}');
+            // }
+        };
+
         function copyToClipboard(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
                 const textSpan = btn.querySelector('#copyText');
