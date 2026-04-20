@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "PY5U295K7A.solutions.kampu.crcnews2",
+                "paths": [ "/share/posts/*" ]
+            }
+        ]
+    }
+}

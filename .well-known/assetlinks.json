@@ -1,0 +1,10 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "solutions.kampu.crc_news",
+            "sha256_cert_fingerprints": ["6A:28:FD:28:81:F4:94:CA:D4:0F:5F:C9:09:CB:C0:6F:8B:A1:63:86:7A:A0:8B:E9:FE:7E:FA:33:DD:58:01:9A"]
+        }
+    }
+]
