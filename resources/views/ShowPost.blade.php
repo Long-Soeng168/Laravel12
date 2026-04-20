@@ -36,61 +36,17 @@
     <meta name="twitter:description" content="{{ $cleanDescription }}">
     <meta name="twitter:image" content="{{ $mainImage }}">
 
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#e62129',
-                        border: 'hsl(var(--border))',
-                        background: 'hsl(var(--background))',
-                        foreground: 'hsl(var(--foreground))',
-                        muted: {
-                            DEFAULT: 'hsl(var(--muted))',
-                            foreground: 'hsl(var(--muted-foreground))'
-                        },
-                        card: {
-                            DEFAULT: 'hsl(var(--card))',
-                            foreground: 'hsl(var(--card-foreground))'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+
     <style>
-        :root {
-            --background: 0 0% 100%;
-            --foreground: 222.2 84% 4.9%;
-            --muted: 210 40% 96.1%;
-            --muted-foreground: 215.4 16.3% 46.9%;
-            --border: 214.3 31.8% 91.4%;
-            --card: 0 0% 100%;
-            --card-foreground: 222.2 84% 4.9%;
+        html {
+            background-color: oklch(1 0 0);
         }
 
-        .dark {
-            --background: 222.2 84% 4.9%;
-            --foreground: 210 40% 98%;
-            --muted: 217.2 32.6% 17.5%;
-            --muted-foreground: 215 20.2% 65.1%;
-            --border: 217.2 32.6% 17.5%;
-            --card: 222.2 84% 4.9%;
-            --card-foreground: 210 40% 98%;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+        html.dark {
+            background-color: oklch(0.145 0 0);
         }
     </style>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body class="bg-background text-foreground transition-colors duration-300">
@@ -158,7 +114,7 @@
                     </div>
 
                     {{-- 3. Article Body --}}
-                    <div class="content-body text-base font-bold leading-relaxed text-muted-foreground">
+                    <div class="prose dark:prose-invert prose-h2:mb-0.5 prose-h3:mb-0.5 prose-p:m-0 prose-ul:m-0 w-full max-w-none">
                         {!! $showData->long_description !!}
                     </div>
                 </div>

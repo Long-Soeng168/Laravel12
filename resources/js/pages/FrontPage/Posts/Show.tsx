@@ -62,12 +62,12 @@ const Show = () => {
                         <div>
                             {/* Title rendered as HTML */}
                             <h1
-                                className="text-primary mt-6 text-2xl leading-tight md:text-3xl"
+                                className="text-primary mt-6 text-2xl font-semibold md:text-3xl"
                                 dangerouslySetInnerHTML={{ __html: showData?.title }}
                             />
 
                             <div className="border-border my-6 flex flex-wrap items-center gap-3 border-y py-4">
-                                <span className="text-muted-foreground flex items-center gap-2 text-base font-bold">
+                                <span className="text-muted-foreground flex items-center gap-2 text-base font-semibold">
                                     <Share2Icon size={18} />
                                     {t('Share')}:
                                 </span>
@@ -107,7 +107,7 @@ const Show = () => {
                                 {/* Copy Link */}
                                 <button
                                     onClick={handleCopyLink}
-                                    className={`flex h-10 items-center gap-2 rounded-full px-4 text-base font-bold transition-all active:scale-95 ${
+                                    className={`flex h-10 items-center gap-2 rounded-full px-4 text-base font-semibold transition-all active:scale-95 ${
                                         copied ? 'bg-green-600 text-white' : 'bg-muted text-foreground hover:bg-slate-200 dark:hover:bg-slate-800'
                                     }`}
                                 >
@@ -131,7 +131,7 @@ const Show = () => {
             </div>
 
             {relatedData?.length > 0 && (
-                <section className="bg-slate-50 py-10 dark:bg-slate-900/50">
+                <section className="bg-slate-50 pt-14 py-10 dark:bg-slate-900/50">
                     <div className="section-container">
                         <ContentHeader link={`/posts?category_code=${showData?.category_code}&page=1`} title={t('Related Posts')} />
                         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

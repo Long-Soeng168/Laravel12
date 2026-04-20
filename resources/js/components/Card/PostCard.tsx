@@ -74,7 +74,7 @@ export function PostCard({ post }: any) {
                         <a
                             href={post.source_detail?.link}
                             target="_blank"
-                            className="text-muted-foreground hover:text-foreground flex items-center gap-2 font-bold transition-all hover:underline"
+                            className="text-muted-foreground hover:text-foreground flex items-center gap-2 font-semibold transition-all hover:underline"
                         >
                             <img
                                 src={`${ASSET_URL}/links/thumb/${post.source_detail.image}`}
@@ -85,10 +85,10 @@ export function PostCard({ post }: any) {
                         </a>
                     )}
 
-                    <span className="text-muted-foreground font-bold">{formatToKhmerDateTime(post.post_date, false)}</span>
+                    <span className="text-muted-foreground font-semibold">{formatToKhmerDateTime(post.post_date, false)}</span>
 
                     <Link href={`/posts/${post?.id}`}>
-                        <button className="text-primary flex items-center gap-1 font-bold transition-all hover:underline active:scale-95">
+                        <button className="text-primary flex items-center gap-1 font-semibold transition-all hover:underline active:scale-95">
                             Read More
                             <ChevronRight size={20} />
                         </button>

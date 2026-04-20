@@ -12,7 +12,7 @@ export default function SwitchDarkModeSingle({ className = '' }: { className?: s
     };
 
     return (
-        <Button onClick={handleToggle} variant="outline" size="sm" className="size-9">
+        <Button onClick={handleToggle} variant="outline" size="sm" className="size-10">
             {isDark ? (
                 <MoonIcon className="h-4 w-4" /> // moon icon bright
             ) : (

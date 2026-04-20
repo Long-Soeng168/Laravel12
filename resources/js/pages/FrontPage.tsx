@@ -38,7 +38,7 @@ export default function CRCWebsite() {
                             <Link
                                 prefetch
                                 href="/posts?category_code=NEWS&page=1"
-                                className="group relative flex items-center gap-3 overflow-hidden rounded-full border-2 border-[#e62129] px-10 py-3 text-base font-bold text-[#e62129] shadow-sm transition-all hover:bg-[#e62129] hover:text-white hover:shadow-red-200 active:scale-95 dark:hover:shadow-none"
+                                className="group relative flex items-center gap-3 overflow-hidden rounded-full border-2 border-[#e62129] px-10 py-3 text-base font-semibold text-[#e62129] shadow-sm transition-all hover:bg-[#e62129] hover:text-white hover:shadow-red-200 active:scale-95 dark:hover:shadow-none"
                             >
                                 <span>See More News</span>
                                 <ChevronRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -55,7 +55,7 @@ export default function CRCWebsite() {
                     <div className="border-border bg-card rounded-2xl border p-6 shadow-sm transition-colors">
                         <div className="mb-4 flex items-center gap-2">
                             <div className="h-5 w-1 rounded-full bg-[#e62129]" />
-                            <h4 className="text-foreground text-base font-bold">Categories</h4>
+                            <h4 className="text-foreground text-base font-semibold">Categories</h4>
                         </div>
                         <div className="space-y-1">
                             {post_categories.map((cat: any) => (
@@ -73,7 +73,7 @@ export default function CRCWebsite() {
                                                 alt={cat.name}
                                             />
                                         </div>
-                                        <span className="text-muted-foreground text-base font-bold transition-colors group-hover:text-[#e62129]">
+                                        <span className="text-muted-foreground text-base font-semibold transition-colors group-hover:text-[#e62129]">
                                             {cat.name}
                                         </span>
                                     </div>
@@ -100,7 +100,7 @@ export default function CRCWebsite() {
                                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white transition-colors">
                                         <img src={`${ASSET_URL}/links/thumb/${link.image}`} className="size-10 object-contain" alt={link.title} />
                                     </div>
-                                    <span className="text-muted-foreground text-base font-bold transition-colors group-hover:text-[#e62129]">
+                                    <span className="text-muted-foreground text-base font-semibold transition-colors group-hover:text-[#e62129]">
                                         {link.title}
                                     </span>
                                 </a>
@@ -121,18 +121,8 @@ function SectionHeader({ title }: any) {
     return (
         <div className="mb-6 flex items-center gap-3">
             <span className="h-8 w-1.5 rounded-full bg-[#e62129]"></span>
-            <h3 className="text-2xl font-bold text-foreground">{title}</h3>
+            <h3 className="text-2xl font-semibold text-foreground">{title}</h3>
         </div>
     );
 }
-
-function ResourceLink({ link }: any) {
-    return (
-        <a href={link.link} target="_blank" className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-red-50">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-50">
-                <img src={`${ASSET_URL}/links/thumb/${link.image}`} className="h-8 w-8 object-contain" />
-            </div>
-            <span className="text-base font-bold text-slate-700 group-hover:text-red-600">{link.title}</span>
-        </a>
-    );
-}
+ 

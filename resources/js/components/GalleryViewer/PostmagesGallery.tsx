@@ -73,7 +73,7 @@ export default function PostmagesGallery({
             )}
         >
             <div className={cn('grid content-start gap-2', containerClassName)}>
-                <h2 className="flex items-center font-bold gap-1 text-base">
+                <h2 className="flex items-center font-semibold gap-1 text-base">
                     <ImagesIcon size={18} />
                     {label}
                 </h2>
